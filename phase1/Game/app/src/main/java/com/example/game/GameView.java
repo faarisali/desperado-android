@@ -36,6 +36,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
+        gameManager = new GameManager((screenHeight), (screenWidth));
     }
     /**
      * What happens when new view is created?
@@ -49,8 +50,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         charWidth = paintText.measureText("W");
         charHeight = -paintText.ascent() + paintText.descent();
-
-        gameManager = new GameManager((screenHeight), (screenWidth));
 
         thread.setRunning(true);
         thread.start();
@@ -81,7 +80,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         // MotionEvent reports input details from the touch screen
         // and other input controls. In this case, you are only
         // interested in events where the touch position changed.
-
         gameManager.tapEvent(e);
 
         return true;

@@ -29,6 +29,7 @@ class GameManager {
     public GameManager(int height, int width) {
         gridHeight = height;
         gridWidth = width;
+        levelList = new ArrayList<>();
         buildLevelList();
         currLevel = levelList.get(0);//Curr level is the first one first
     }

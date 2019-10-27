@@ -7,28 +7,86 @@ import java.util.ArrayList;
 
 public abstract class GenericLevel {
 
+    /**
+     * This level's background image
+     */
     private Image backgroundImage;
+    /**
+     * The objects in this level
+     */
     private ArrayList<GameObjects> gameObjects;
+    /**
+     * True iff this level is running
+     */
+    private boolean isRunning;
 
-    public GenericLevel(Image backgroundImage) {
+
+    /**
+     * Number of lives left in this level
+     */
+    private int lives;
+    /**
+     * Number of gold collected in this level
+     */
+    private int gold;
+    /**
+     * Number of points collected in this level.
+     */
+    private int points;
+
+    /**
+     * Constructs a GenericLevel
+     * @param backgroundImage background image for this level.
+     * @param lives the number of lives the player starts with.
+     */
+    public GenericLevel(Image backgroundImage, int lives) {
         this.backgroundImage = backgroundImage;
+        gameObjects = new ArrayList<>();
+        isRunning = false;
+        lives = lives;
+        gold = 0;
+        points = 0;
     }
 
+    /**
+     * Draws the current level onto the canvas.
+     * @param canvas the canvas on to draw this level on
+     */
     public abstract void draw(Canvas canvas);
+
+    /**
+     * Updates this level.
+     */
     public abstract void update();
 
+    /**
+     * Getter for background image.
+     * @return this background image
+     */
     public Image getBackgroundImage() {
         return backgroundImage;
     }
 
+    /**
+     * Sets this level's background image to backgroundImage
+     * @param backgroundImage the new background image
+     */
     public void setBackgroundImage(Image backgroundImage) {
         this.backgroundImage = backgroundImage;
     }
 
+    /**
+     * Returns gameObjects
+     * @return the objects in this level
+     */
     public ArrayList<GameObjects> getGameObjects() {
         return gameObjects;
     }
 
+    /**
+     * Sets the gameObjects of this level.
+     * @param gameObjects the new set of objects for this level
+     */
     public void setGameObjects(ArrayList<GameObjects> gameObjects) {
         this.gameObjects = gameObjects;
     }

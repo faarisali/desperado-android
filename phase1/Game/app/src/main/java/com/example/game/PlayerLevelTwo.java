@@ -29,10 +29,10 @@ public class PlayerLevelTwo {
     private double Vy;
     private boolean isFalling = false;
 
-    private final double gravity = 1;
+    private final double gravity = 1.6;
     private final int ground = 500;
     private final double jumpStrength = -25;
-    private boolean isJumping;
+    private boolean isJumping = false;
 
 
     public PlayerLevelTwo() {
@@ -48,6 +48,7 @@ public class PlayerLevelTwo {
         if (!isJumping) {
             isFalling = true;
             Vy = jumpStrength;
+            isJumping = true;
         }
 
     }
@@ -63,6 +64,7 @@ public class PlayerLevelTwo {
             y = ground;
             Vy = 0;
             isFalling = false;
+            isJumping = false;
         }
         if (isFalling) {
             this.fall();

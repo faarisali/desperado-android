@@ -2,24 +2,42 @@ package com.example.game;
 
 import android.media.Image;
 
+/**
+ * The player in Level Two, (will be update with context to other levels in future)
+ */
 public class PlayerLevelTwo {
-    //What it will look like
-    private Image modelWalk;
-    private Image modelRunning;
-    //Where it is
+    /**
+     * How the object looks (2 states to accomodate running)
+     */
+    private Image modelState1;
+
+    /**
+     * How the object looks (2 states to accomodate running)
+     */
+    private Image modelState2;
+    /**
+     * Player's locaton
+     */
     private int x, y;
-    //Jump speed
+    /**
+     * How fast the player will jump
+     */
     private float Vy;
 
     public PlayerLevelTwo() {
 
     }
 
-    //Jumps
+    /**
+     * Player performs a jump
+     */
     public void jumpUp() {
 
     }
 
+    /**
+     * Draw the player.
+     */
     public void draw() {
 
     }

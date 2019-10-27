@@ -1,4 +1,20 @@
 package com.example.game;
 
-public class LevelOne {
+import android.graphics.Canvas;
+
+public class LevelOne extends GenericLevel{
+
+    public LevelOne () {
+
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+
+    }
+
+    @Override
+    public void update() {
+
+    }
 }

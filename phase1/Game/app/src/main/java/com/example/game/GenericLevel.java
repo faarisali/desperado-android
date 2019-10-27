@@ -1,7 +1,7 @@
 package com.example.game;
 
 import android.graphics.Canvas;
-import android.media.Image;
+import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public abstract class GenericLevel {
     /**
      * This level's background image
      */
-    private Image backgroundImage;
+    private Drawable backgroundImage;
     /**
      * The objects in this level
      */
@@ -20,7 +20,6 @@ public abstract class GenericLevel {
      * True iff this level is running
      */
     private boolean isRunning;
-
 
     /**
      * Number of lives left in this level
@@ -40,7 +39,7 @@ public abstract class GenericLevel {
      * @param backgroundImage background image for this level.
      * @param lives the number of lives the player starts with.
      */
-    public GenericLevel(Image backgroundImage, int lives) {
+    public GenericLevel(Drawable backgroundImage, int lives) {
         this.backgroundImage = backgroundImage;
         gameObjects = new ArrayList<>();
         isRunning = false;
@@ -53,7 +52,12 @@ public abstract class GenericLevel {
      * Draws the current level onto the canvas.
      * @param canvas the canvas on to draw this level on
      */
-    public abstract void draw(Canvas canvas);
+    public void draw(Canvas canvas) {
+        backgroundImage.draw(canvas);
+        for (GameObject gameObject : gameObjects) {
+            gameObject.draw(canvas);
+        }
+    }
 
     /**
      * Updates this level.
@@ -70,7 +74,7 @@ public abstract class GenericLevel {
      * Getter for background image.
      * @return this background image
      */
-    public Image getBackgroundImage() {
+    public Drawable getBackgroundImage() {
         return backgroundImage;
     }
 
@@ -78,7 +82,7 @@ public abstract class GenericLevel {
      * Sets this level's background image to backgroundImage
      * @param backgroundImage the new background image
      */
-    public void setBackgroundImage(Image backgroundImage) {
+    public void setBackgroundImage(Drawable backgroundImage) {
         this.backgroundImage = backgroundImage;
     }
 

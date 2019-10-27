@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -74,6 +75,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             retry = false;
         }
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+        // MotionEvent reports input details from the touch screen
+        // and other input controls. In this case, you are only
+        // interested in events where the touch position changed.
+
+        gameManager.tapEvent(e);
+
+        return true;
+    }
+
 
     /**
      */

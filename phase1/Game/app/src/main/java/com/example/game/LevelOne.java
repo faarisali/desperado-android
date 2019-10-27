@@ -1,10 +1,12 @@
 package com.example.game;
 
 import android.graphics.Canvas;
+import android.view.MotionEvent;
 
 public class LevelOne extends GenericLevel{
 
     public LevelOne () {
+        super();
 
     }
 
@@ -15,6 +17,11 @@ public class LevelOne extends GenericLevel{
 
     @Override
     public void update() {
+
+    }
+
+    @Override
+    public void tapEvent(MotionEvent event) {
 
     }
 }

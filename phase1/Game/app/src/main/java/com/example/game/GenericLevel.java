@@ -15,7 +15,7 @@ public abstract class GenericLevel {
     /**
      * The objects in this level
      */
-    private ArrayList<GameObjects> gameObjects;
+    private ArrayList<GameObject> gameObjects;
     /**
      * True iff this level is running
      */
@@ -86,7 +86,7 @@ public abstract class GenericLevel {
      * Returns gameObjects
      * @return the objects in this level
      */
-    public ArrayList<GameObjects> getGameObjects() {
+    public ArrayList<GameObject> getGameObjects() {
         return gameObjects;
     }
 
@@ -110,7 +110,7 @@ public abstract class GenericLevel {
      * Sets the gameObjects of this level.
      * @param gameObjects the new set of objects for this level
      */
-    public void setGameObjects(ArrayList<GameObjects> gameObjects) {
+    public void setGameObjects(ArrayList<GameObject> gameObjects) {
         this.gameObjects = gameObjects;
     }
 
@@ -118,7 +118,7 @@ public abstract class GenericLevel {
      * Add gameObject to this level.
      * @param gameObject to add to this level
      */
-    public void addGameObject(GameObjects gameObject) {
+    public void addGameObject(GameObject gameObject) {
         this.gameObjects.add(gameObject);
     }
 
@@ -126,7 +126,7 @@ public abstract class GenericLevel {
      * Remove gameObject from this level.
      * @param gameObject to remove from this level.
      */
-    public void removeGameObject(GameObjects gameObject) {
+    public void removeGameObject(GameObject gameObject) {
         if (gameObject != null) {
             this.gameObjects.remove(gameObject);
         }

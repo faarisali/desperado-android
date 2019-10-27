@@ -84,6 +84,22 @@ public abstract class GenericLevel {
     }
 
     /**
+     * Returns lives
+     * @return the lives of the player
+     */
+    public int getLives() {
+        return lives;
+    }
+
+    /**
+     *
+     * @param newLives the new lives value
+     */
+    public void setLives(int newLives) {
+        lives = newLives;
+    }
+
+    /**
      * Sets the gameObjects of this level.
      * @param gameObjects the new set of objects for this level
      */

@@ -1,21 +1,28 @@
 package com.example.game;
 
 import android.graphics.Canvas;
+import android.media.Image;
 
 import java.util.Random;
 
-public class LevelThree extends GenericLevel{
+public class LevelThree extends GenericLevel {
+    /**
+     * The position the player is at.
+     */
     private int playerPosition;
+    /**
+     * The position the player is targeting.
+     */
     private int playerTarget;
-    private int playerLives;
 
-    public LevelThree() {
+    public LevelThree(Image backgroundImage, int lives) {
+        super(backgroundImage, lives);
         playerPosition = 1;
         playerTarget = 1;
-        playerLives = 3; //FOR NOW; WILL EVENTUALLY BE INHERITED???
     }
 
     public void runRound() {
+        int playerLives = super.getLives();
         if (playerLives > 0) {
             Random randomNum = new Random();
             int computerTarget = randomNum.nextInt(3);
@@ -25,15 +32,13 @@ public class LevelThree extends GenericLevel{
                 if (playerLives == 1) {
                     loseGame();
                 } else {
-                    playerLives -= 1;
+                    super.setLives(playerLives - 1);
                 }
             }
             if (playerTarget == computerPosition) {
                 winGame();
             }
-
         }
-
     }
 
     private void winGame() {

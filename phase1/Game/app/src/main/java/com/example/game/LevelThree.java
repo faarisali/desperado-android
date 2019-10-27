@@ -1,7 +1,8 @@
 package com.example.game;
 
 import android.graphics.Canvas;
-import android.media.Image;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 
 import java.util.Random;
 
@@ -15,7 +16,7 @@ public class LevelThree extends GenericLevel {
      */
     private int playerTarget;
 
-    public LevelThree(Image backgroundImage, int lives) {
+    public LevelThree(Drawable backgroundImage, int lives) {
         super(backgroundImage, lives);
         playerPosition = 1;
         playerTarget = 1;
@@ -39,6 +40,11 @@ public class LevelThree extends GenericLevel {
                 winGame();
             }
         }
+    }
+
+    @Override
+    public void tapEvent(MotionEvent event) {
+
     }
 
     private void winGame() {

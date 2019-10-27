@@ -1,11 +1,13 @@
 package com.example.game;
 
 import android.graphics.Canvas;
-import android.media.Image;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 
 public class LevelTwo extends GenericLevel {
 
     private float movementSpeed;
+    private PlayerLevelTwo player = new PlayerLevelTwo();
 
     /**
      * Constructs a GenericLevel
@@ -13,8 +15,8 @@ public class LevelTwo extends GenericLevel {
      * @param backgroundImage background image for this level.
      * @param lives           the number of lives the player starts with on this level.
      */
-    public LevelTwo(Image backgroundImage, int lives) {
-        super(backgroundImage, lives);
+    public LevelTwo(Drawable backgroundImage, int lives) {
+
     }
 
     /**
@@ -32,6 +34,11 @@ public class LevelTwo extends GenericLevel {
      * Spawn a new obstacle (may depend on player has ran so far)
      */
     public void spawnObstacle() {
+
+    }
+
+    @Override
+    public void tapEvent(MotionEvent event) {
 
     }
 

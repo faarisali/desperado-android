@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 public class LevelOne extends GenericLevel{
 
     public LevelOne () {
-        super();
+
 
     }
 

@@ -48,6 +48,9 @@ public abstract class GenericLevel {
         points = 0;
     }
 
+    public GenericLevel() {
+    }
+
     /**
      * Draws the current level onto the canvas.
      * @param canvas the canvas on to draw this level on

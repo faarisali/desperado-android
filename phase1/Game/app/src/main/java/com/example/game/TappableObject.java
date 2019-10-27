@@ -3,7 +3,13 @@ package com.example.game;
 import android.view.MotionEvent;
 
 public class TappableObject extends GameObject {
+    /**
+     * length of hitbox.
+     */
     private int length;
+    /**
+     * height of hitbox.
+     */
     private int height;
 
     public TappableObject(int newX, int newY, int newLength, int newHeight) {
@@ -21,5 +27,20 @@ public class TappableObject extends GameObject {
         } else {
             return false;
         }
+    }
+
+    public void setLength(int newLength) {
+        length = newLength;
+    }
+    public int getLength() {
+        return length;
+    }
+
+    public void setHeight(int newHeight) {
+        length = newHeight;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

@@ -2,6 +2,7 @@ package com.example.game;
 
 import android.graphics.Canvas;
 import android.media.Image;
+import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
@@ -58,6 +59,12 @@ public abstract class GenericLevel {
      * Updates this level.
      */
     public abstract void update();
+
+    /**
+     * registers a tap even in the level.
+     * @param event the tap event registered.
+     */
+    public abstract void tapEvent(MotionEvent event);
 
     /**
      * Getter for background image.

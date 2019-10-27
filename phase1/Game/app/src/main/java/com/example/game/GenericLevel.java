@@ -90,4 +90,22 @@ public abstract class GenericLevel {
     public void setGameObjects(ArrayList<GameObjects> gameObjects) {
         this.gameObjects = gameObjects;
     }
+
+    /**
+     * Add gameObject to this level.
+     * @param gameObject to add to this level
+     */
+    public void addGameObject(GameObjects gameObject) {
+        this.gameObjects.add(gameObject);
+    }
+
+    /**
+     * Remove gameObject from this level.
+     * @param gameObject to remove from this level.
+     */
+    public void removeGameObject(GameObjects gameObject) {
+        if (gameObject != null) {
+            this.gameObjects.remove(gameObject);
+        }
+    }
 }

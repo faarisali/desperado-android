@@ -19,6 +19,9 @@ public class LevelTwo extends GenericLevel {
 
     }
 
+    public LevelTwo() {
+    }
+
     /**
      * Need to draw background, character and obstacles.
      *
@@ -26,6 +29,7 @@ public class LevelTwo extends GenericLevel {
      */
     @Override
     public void draw(Canvas canvas) {
+        player.draw(canvas);
 
     }
 
@@ -39,6 +43,7 @@ public class LevelTwo extends GenericLevel {
 
     @Override
     public void tapEvent(MotionEvent event) {
+        player.jumpUp();
 
     }
 
@@ -47,6 +52,7 @@ public class LevelTwo extends GenericLevel {
      */
     @Override
     public void update() {
+        player.move();
 
     }
 

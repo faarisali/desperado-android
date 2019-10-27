@@ -1,5 +1,9 @@
 package com.example.game;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.media.Image;
 
 /**
@@ -22,23 +26,60 @@ public class PlayerLevelTwo {
     /**
      * How fast the player will jump
      */
-    private float Vy;
+    private double Vy;
+    private boolean isFalling = false;
+
+    private final double gravity = 1;
+    private final int ground = 500;
+    private final double jumpStrength = -25;
+    private boolean isJumping;
+
 
     public PlayerLevelTwo() {
-
+        x = 10;
+        y = ground;
+        Vy = 0;
     }
 
     /**
      * Player performs a jump
      */
     public void jumpUp() {
+        if (!isJumping) {
+            isFalling = true;
+            Vy = jumpStrength;
+        }
+
+    }
+
+    private void fall() {
+        Vy += gravity;
+    }
+
+    public void move() {
+        if (Vy + y <= ground) {
+            y += Vy;
+        } else {
+            y = ground;
+            Vy = 0;
+            isFalling = false;
+        }
+        if (isFalling) {
+            this.fall();
+        }
 
     }
 
     /**
      * Draw the player.
      */
-    public void draw() {
+    public void draw(Canvas canvas) {
+        Paint paintText = new Paint();
+        paintText.setTextSize(60);
+        paintText.setTypeface(Typeface.DEFAULT_BOLD);
+        paintText.setColor(Color.BLUE);
+
+        canvas.drawText("O", x, y, paintText);
 
     }
 }

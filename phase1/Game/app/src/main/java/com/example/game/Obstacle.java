@@ -27,6 +27,7 @@ public class Obstacle extends GameObject {
      * Move the obstacle according to to its speed Vx
      */
     public void move() {
+        x -= Vx;
     }
 
     /**

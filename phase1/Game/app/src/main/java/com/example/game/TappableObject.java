@@ -30,6 +30,14 @@ public class TappableObject extends GameObject {
         }
     }
 
+    public boolean tapped(int x, int y) {
+        if (super.x <= x && x <= super.x + length) {
+            return super.y <= y && x <= super.y + height;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public void draw(Canvas canvas) {
 

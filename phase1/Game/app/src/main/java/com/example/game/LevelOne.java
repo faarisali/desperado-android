@@ -20,8 +20,8 @@ public class LevelOne extends GenericLevel{
         int randHorizontal = (int) randDouble;
         System.out.println(randHorizontal);
         double rand = Math.random();
-        if (rand < 0.1) {
-            tappables.add(new Coin(randHorizontal, 0));
+        if (rand < 0.05) {
+            tappables.add(new Coin(randHorizontal, 20));
             System.out.println("Spawned a coin");
         } else if (rand > 0.95) {
 //            super.addGameObject(new Bomb(randHorizontal, 50, 0, 0));
@@ -32,6 +32,9 @@ public class LevelOne extends GenericLevel{
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
+        for (TappableObject tappableObject : tappables) {
+            tappableObject.draw(canvas);
+        }
     }
 
     @Override
@@ -42,12 +45,19 @@ public class LevelOne extends GenericLevel{
 
     @Override
     public void tapEvent(MotionEvent event) {
+        ArrayList<TappableObject> remove = new ArrayList<>();
         for (TappableObject tappableObject : tappables) {
-            if (tappableObject.isTapped(event)) {
+            if (tappableObject.tapped((int) event.getX(), (int) event.getY())) {
+                remove.add(tappableObject);
                 if (tappableObject instanceof Coin) {
-
+                    super.setGold(super.getGold() + 1);
+                } else if (tappableObject instanceof Bomb) {
+                    super.setLives(super.getLives() - 1);
                 }
             }
+        }
+        for (TappableObject tappableObject : remove) {
+            tappables.remove(tappableObject);
         }
     }
 }

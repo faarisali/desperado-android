@@ -31,4 +31,12 @@ public class Coin extends TappableObject {
             return false;
         }
     }
+
+    public boolean tapped(int x, int y) {
+        if (super.x <= x && x <= super.x + super.getLength()) {
+            return super.y <= y && y <= super.y + super.getLength();
+        } else {
+            return false;
+        }
+    }
 }

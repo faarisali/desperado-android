@@ -1,6 +1,9 @@
 package com.example.game;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.view.MotionEvent;
@@ -45,22 +48,22 @@ public class LevelThree extends GenericLevel {
         ShootingPosition cpuPos0 = new ShootingPosition(100, 200, 250, 250);//top 3 positions (targets)
         ShootingPosition cpuPos1 = new ShootingPosition(425, 200, 250, 250);
         ShootingPosition cpuPos2 = new ShootingPosition(750, 200, 250, 250);
-
         super.addGameObject(cpuPos0);
         super.addGameObject(cpuPos1);
         super.addGameObject(cpuPos2);
 
         ShootingPosition playerPos0 = new ShootingPosition(100, 1000, 250, 250); //bottom 3 positions
-        ShootingPosition playerPos1 = new ShootingPosition(425, 1000, 250, 250); //bottom 3 positions
-        ShootingPosition playerPos2 = new ShootingPosition(750, 1000, 250, 250); //bottom 3 positions
+        ShootingPosition playerPos1 = new ShootingPosition(425, 1000, 250, 250);
+        ShootingPosition playerPos2 = new ShootingPosition(750, 1000, 250, 250);
 
         super.addGameObject(playerPos0);
         super.addGameObject(playerPos1);
         super.addGameObject(playerPos2);
 
+        ShootingPosition startButton = new ShootingPosition(425, 1500, 250, 250);
 
-        start = new TappableObject(425, 1500, 250, 250); //start button
-        super.addGameObject(start);
+        start = startButton;
+        super.addGameObject(startButton);
 
     }
 
@@ -98,6 +101,11 @@ public class LevelThree extends GenericLevel {
         for (GameObject item : objs) {
             item.draw(canvas);
         }
+        Paint paintText = new Paint();
+        paintText.setTextSize(60);
+        paintText.setTypeface(Typeface.DEFAULT_BOLD);
+        paintText.setColor(Color.GREEN);
+        canvas.drawText(Integer.toString(getLives()), 50, 50, paintText);
     }
 
     public void update() {
@@ -114,7 +122,9 @@ public class LevelThree extends GenericLevel {
         ArrayList<GameObject> objs = super.getGameObjects();
         for (GameObject item : objs) {
             TappableObject newItem = (TappableObject) item;
-            newItem.isTapped(event);
+            if (newItem.isTapped(event)) {
+                System.out.println("YAYEET");
+            }
         }
 
 

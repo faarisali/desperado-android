@@ -30,8 +30,9 @@ class GameManager {
         gridHeight = height;
         gridWidth = width;
         levelList = new ArrayList<>();
-        buildLevelList();
-        currLevel = levelList.get(0);//Curr level is the first one first
+       // buildLevelList();
+        //currLevel = levelList.get(0);//Curr level is the first one first
+        currLevel = new LevelThree();
     }
 
     public void buildLevelList() { //Probably want builder design pattern here idk
@@ -49,9 +50,11 @@ class GameManager {
 
     public void draw(Canvas canvas) {
         //TODO
+        currLevel.draw(canvas);
 
     }
     public void update() {
         //TODO
+        currLevel.update();
     }
 }

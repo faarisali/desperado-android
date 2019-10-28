@@ -49,6 +49,11 @@ public abstract class GenericLevel {
     }
 
     public GenericLevel() {
+        gameObjects = new ArrayList<>();
+        isRunning = false;
+        lives = 3;
+        gold = 0;
+        points = 0;
     }
 
     /**

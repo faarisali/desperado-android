@@ -7,18 +7,18 @@ import android.graphics.Typeface;
 import android.view.MotionEvent;
 
 public class Coin extends TappableObject {
-    private Paint paintText;
+    private Paint paint;
 
-    public Coin(int newX, int newY, int newLength, int newHeight) {
+    public Coin(int newX, int newY) {
         super(newX, newY, 50, 50);
-        this.paintText = new Paint();
-        paintText.setTextSize(60);
-        paintText.setTypeface(Typeface.DEFAULT_BOLD);
-        paintText.setColor(Color.YELLOW);
+        this.paint = new Paint();
+        paint.setTextSize(60);
+        paint.setTypeface(Typeface.DEFAULT_BOLD);
+        paint.setColor(Color.YELLOW);
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawText("O", x, y, paintText);
+        canvas.drawCircle(super.x, super.y, 25, paint);
     }
 
     public boolean isTapped(MotionEvent event) {

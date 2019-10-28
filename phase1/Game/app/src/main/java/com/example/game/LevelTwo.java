@@ -8,7 +8,7 @@ public class LevelTwo extends GenericLevel {
 
     private float movementSpeed;
     private PlayerLevelTwo player = new PlayerLevelTwo();
-
+    private Obstacle cactus = new Obstacle(100, 20, 1);
     /**
      * Constructs a GenericLevel
      *
@@ -30,21 +30,20 @@ public class LevelTwo extends GenericLevel {
     @Override
     public void draw(Canvas canvas) {
         player.draw(canvas);
-
+        spawnObstacle(canvas);
     }
 
 
     /**
      * Spawn a new obstacle (may depend on player has ran so far)
      */
-    public void spawnObstacle() {
-
+    public void spawnObstacle(Canvas canvas) {
+        cactus.draw(canvas);
     }
 
     @Override
     public void tapEvent(MotionEvent event) {
         player.jumpUp();
-
     }
 
     /**
@@ -53,7 +52,7 @@ public class LevelTwo extends GenericLevel {
     @Override
     public void update() {
         player.move();
-
+        cactus.move();
     }
 
 

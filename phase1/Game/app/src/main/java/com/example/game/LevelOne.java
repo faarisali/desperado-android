@@ -19,7 +19,7 @@ public class LevelOne extends GenericLevel{
             super.addGameObject(new Coin(randHorizontal, 0));
             System.out.println("Spawned a coin");
         } else if (rand > 0.9) {
-            super.addGameObject(new Bomb(randHorizontal, 50, 0, 0));
+            super.addGameObject(new Bomb(randHorizontal, 50));
             System.out.println("Spawned a bomb");
         }
     }

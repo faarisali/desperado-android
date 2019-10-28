@@ -13,7 +13,6 @@ abstract class GameObject {
         y = newY;
     }
 
-    public void draw(Canvas canvas) {
-    }
+    public abstract void draw(Canvas canvas);
 
 }

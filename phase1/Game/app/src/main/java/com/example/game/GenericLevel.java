@@ -43,7 +43,15 @@ public abstract class GenericLevel {
         this.backgroundImage = backgroundImage;
         gameObjects = new ArrayList<>();
         isRunning = false;
-        lives = lives;
+        this.lives = lives;
+        gold = 0;
+        points = 0;
+    }
+
+    public GenericLevel(int lives) {
+        gameObjects = new ArrayList<>();
+        isRunning = false;
+        this.lives = lives;
         gold = 0;
         points = 0;
     }

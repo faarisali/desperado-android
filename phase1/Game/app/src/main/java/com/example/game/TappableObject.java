@@ -31,8 +31,8 @@ public class TappableObject extends GameObject {
     }
 
     public boolean tapped(int x, int y) {
-        if (super.x <= x && x <= super.x + length) {
-            return super.y <= y && x <= super.y + height;
+        if (this.x <= x && x <= this.x + length) {
+            return this.y <= y && x <= this.y + height;
         } else {
             return false;
         }

@@ -18,7 +18,7 @@ public class Coin extends TappableObject {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawCircle(super.x, super.y, 25, paint);
+        canvas.drawCircle(super.x + 25, super.y + 25, 25, paint);
     }
 
     public boolean isTapped(MotionEvent event) {

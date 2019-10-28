@@ -40,7 +40,7 @@ public abstract class GenericLevel {
      * @param lives the number of lives the player starts with.
      */
     public GenericLevel(Drawable backgroundImage, int lives) {
-        this.backgroundImage = backgroundImage;
+//        this.backgroundImage = backgroundImage;
         gameObjects = new ArrayList<>();
         isRunning = false;
         this.lives = lives;

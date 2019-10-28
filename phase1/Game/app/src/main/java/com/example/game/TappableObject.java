@@ -42,6 +42,9 @@ public class TappableObject extends GameObject {
     public void draw(Canvas canvas) {
 
     }
+    public void move() {
+        y++;
+    }
 
     public void setLength(int newLength) {
         length = newLength;

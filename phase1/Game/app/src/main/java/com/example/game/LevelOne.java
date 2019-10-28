@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LevelOne extends GenericLevel{
 
@@ -40,6 +41,9 @@ public class LevelOne extends GenericLevel{
     @Override
     public void update() {
         spawnTappables();
+        for (int i = 0; i < tappables.size(); i++) {
+            tappables.get(i).move();
+        }
 
     }
 

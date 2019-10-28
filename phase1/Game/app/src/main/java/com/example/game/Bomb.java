@@ -18,10 +18,6 @@ public class Bomb extends TappableObject {
         paintText.setColor(Color.GRAY);
     }
 
-    public void move() {
-        y++;
-    }
-
     public void draw(Canvas canvas) {
         canvas.drawText("X", x, y, paintText);
     }

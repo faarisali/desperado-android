@@ -10,8 +10,8 @@ import android.view.MotionEvent;
 public class Bomb extends TappableObject {
     private Paint paintText;
 
-    public Bomb(int newX, int newY, int newLength, int newHeight) {
-        super(newX, newY, newLength, newHeight);
+    public Bomb(int newX, int newY) {
+        super(newX, newY, 50, 50);
         this.paintText = new Paint();
         paintText.setTextSize(60);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);

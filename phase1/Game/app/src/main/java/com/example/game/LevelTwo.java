@@ -12,10 +12,10 @@ import java.util.TimerTask;
 public class LevelTwo extends GenericLevel {
 
     private float movementSpeed;
-    private PlayerLevelTwo player = new PlayerLevelTwo();
     private ArrayList<Obstacle> obstacleList = new ArrayList<Obstacle>();
     private int groundY = 500;
     private float defaultObstacleMoveSpeed = 9;
+    private PlayerLevelTwo player = new PlayerLevelTwo(groundY);
 
     //TimerTask subclass, deals with random spawning of obstacles
     private class SpawnObstacleTask extends TimerTask {

@@ -42,24 +42,24 @@ public class LevelThree extends GenericLevel {
      * Creates all the objects within level 3.
      */
     private void buildGameObjects() {
-        ShootingPosition cpuPos0 = new ShootingPosition(100,200,250,250);//top 3 positions (targets)
-        ShootingPosition cpuPos1 = new ShootingPosition(425,200,250,250);
-        ShootingPosition cpuPos2 = new ShootingPosition(750,200,250,250);
+        ShootingPosition cpuPos0 = new ShootingPosition(100, 200, 250, 250);//top 3 positions (targets)
+        ShootingPosition cpuPos1 = new ShootingPosition(425, 200, 250, 250);
+        ShootingPosition cpuPos2 = new ShootingPosition(750, 200, 250, 250);
 
         super.addGameObject(cpuPos0);
         super.addGameObject(cpuPos1);
         super.addGameObject(cpuPos2);
 
-        ShootingPosition playerPos0 = new ShootingPosition(100,1000,250,250); //bottom 3 positions
-        ShootingPosition playerPos1 = new ShootingPosition(425,1000,250,250); //bottom 3 positions
-        ShootingPosition playerPos2 = new ShootingPosition(750,1000,250,250); //bottom 3 positions
+        ShootingPosition playerPos0 = new ShootingPosition(100, 1000, 250, 250); //bottom 3 positions
+        ShootingPosition playerPos1 = new ShootingPosition(425, 1000, 250, 250); //bottom 3 positions
+        ShootingPosition playerPos2 = new ShootingPosition(750, 1000, 250, 250); //bottom 3 positions
 
         super.addGameObject(playerPos0);
         super.addGameObject(playerPos1);
         super.addGameObject(playerPos2);
 
 
-        start = new TappableObject(425,1500,250,250); //start button
+        start = new TappableObject(425, 1500, 250, 250); //start button
         super.addGameObject(start);
 
     }
@@ -106,6 +106,7 @@ public class LevelThree extends GenericLevel {
 
     /**
      * What Level 3 does when the user taps the screen.
+     *
      * @param event the tap event registered.
      */
     @Override
@@ -115,7 +116,6 @@ public class LevelThree extends GenericLevel {
             TappableObject newItem = (TappableObject) item;
             newItem.isTapped(event);
         }
-
 
 
     }

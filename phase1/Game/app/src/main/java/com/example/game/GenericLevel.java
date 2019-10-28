@@ -40,10 +40,18 @@ public abstract class GenericLevel {
      * @param lives the number of lives the player starts with.
      */
     public GenericLevel(Drawable backgroundImage, int lives) {
-        this.backgroundImage = backgroundImage;
+//        this.backgroundImage = backgroundImage;
         gameObjects = new ArrayList<>();
         isRunning = false;
-        lives = lives;
+        this.lives = lives;
+        gold = 0;
+        points = 0;
+    }
+
+    public GenericLevel(int lives) {
+        gameObjects = new ArrayList<>();
+        isRunning = false;
+        this.lives = lives;
         gold = 0;
         points = 0;
     }
@@ -61,7 +69,6 @@ public abstract class GenericLevel {
      * @param canvas the canvas on to draw this level on
      */
     public void draw(Canvas canvas) {
-        backgroundImage.draw(canvas);
         for (GameObject gameObject : gameObjects) {
             gameObject.draw(canvas);
         }
@@ -142,5 +149,13 @@ public abstract class GenericLevel {
         if (gameObject != null) {
             this.gameObjects.remove(gameObject);
         }
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.game;
 
+import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 public class TappableObject extends GameObject {
@@ -27,6 +28,22 @@ public class TappableObject extends GameObject {
         } else {
             return false;
         }
+    }
+
+    public boolean tapped(int x, int y) {
+        if (this.x <= x && x <= this.x + length) {
+            return this.y <= y && x <= this.y + height;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+
+    }
+    public void move() {
+        y++;
     }
 
     public void setLength(int newLength) {

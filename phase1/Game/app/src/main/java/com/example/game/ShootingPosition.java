@@ -51,6 +51,9 @@ public class ShootingPosition extends TappableObject {
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         paintText.setColor(Color.BLUE);
         //left top right bottom
+        if (isSelected()) {
+            paintText.setColor(Color.RED);
+        }
         canvas.drawRect(myRect, paintText);
 
     }

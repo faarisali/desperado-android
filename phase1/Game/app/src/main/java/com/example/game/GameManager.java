@@ -32,14 +32,14 @@ class GameManager {
         levelList = new ArrayList<>();
        // buildLevelList();
         //currLevel = levelList.get(0);//Curr level is the first one first
-        currLevel = new LevelThree();
+        currLevel = new LevelOne();
     }
 
     public void buildLevelList() { //Probably want builder design pattern here idk
-        //LevelOne myLevelOne = new LevelOne(null,5);
+        LevelOne myLevelOne = new LevelOne();
         LevelTwo myLevelTwo = new LevelTwo(null,5);
         LevelThree myLevelThree = new LevelThree(null,5); //Temporary implementation for rn
-        //levelList.add(myLevelOne);
+        levelList.add(myLevelOne);
         levelList.add(myLevelTwo);
         levelList.add(myLevelThree);
     }

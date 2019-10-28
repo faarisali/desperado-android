@@ -69,7 +69,6 @@ public abstract class GenericLevel {
      * @param canvas the canvas on to draw this level on
      */
     public void draw(Canvas canvas) {
-        backgroundImage.draw(canvas);
         for (GameObject gameObject : gameObjects) {
             gameObject.draw(canvas);
         }
@@ -150,5 +149,13 @@ public abstract class GenericLevel {
         if (gameObject != null) {
             this.gameObjects.remove(gameObject);
         }
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 }

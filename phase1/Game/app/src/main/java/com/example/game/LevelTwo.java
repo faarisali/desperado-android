@@ -6,9 +6,10 @@ import android.view.MotionEvent;
 
 public class LevelTwo extends GenericLevel {
 
-    private float movementSpeed;
-    private PlayerLevelTwo player = new PlayerLevelTwo();
-    private Obstacle cactus = new Obstacle(500, 500, 3);
+    private final int ground = 600;
+    private float movementSpeed = 7;
+    private PlayerLevelTwo player = new PlayerLevelTwo(ground);
+    private Obstacle cactus = new Obstacle(1500, ground, movementSpeed);
     /**
      * Constructs a GenericLevel
      *
@@ -51,6 +52,7 @@ public class LevelTwo extends GenericLevel {
      */
     @Override
     public void update() {
+
         player.move();
         cactus.move();
     }

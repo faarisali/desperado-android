@@ -9,7 +9,7 @@ import android.media.Image;
 /**
  * The player in Level Two, (will be update with context to other levels in future)
  */
-public class PlayerLevelTwo {
+public class PlayerLevelTwo extends GameObject {
     /**
      * How the object looks (2 states to accomodate running)
      */
@@ -27,17 +27,23 @@ public class PlayerLevelTwo {
      * How fast the player will jump
      */
     private double Vy;
+
+    /**
+     * Is the player in midair?
+     */
     private boolean isFalling = false;
 
     private final double gravity = 1.6;
-    private final int ground = 500;
+    private int ground = 600;
     private final double jumpStrength = -25;
-    private boolean isJumping = false;
 
 
-    public PlayerLevelTwo() {
+    public PlayerLevelTwo(int ground) {
+        super(10, 500);
         x = 10;
+        this.ground = ground;
         y = ground;
+
         Vy = 0;
     }
 
@@ -45,10 +51,9 @@ public class PlayerLevelTwo {
      * Player performs a jump
      */
     public void jumpUp() {
-        if (!isJumping) {
-            isFalling = true;
+        if (!isFalling) {
             Vy = jumpStrength;
-            isJumping = true;
+            isFalling = true;
         }
 
     }
@@ -64,7 +69,6 @@ public class PlayerLevelTwo {
             y = ground;
             Vy = 0;
             isFalling = false;
-            isJumping = false;
         }
         if (isFalling) {
             this.fall();

@@ -8,7 +8,7 @@ public class LevelTwo extends GenericLevel {
 
     private float movementSpeed;
     private PlayerLevelTwo player = new PlayerLevelTwo();
-    private Obstacle cactus = new Obstacle(100, 20, 1);
+    private Obstacle cactus = new Obstacle(500, 500, 3);
     /**
      * Constructs a GenericLevel
      *

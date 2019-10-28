@@ -36,7 +36,7 @@ public class Obstacle extends GameObject {
     @Override
     public void draw(Canvas canvas) {
         Paint paintText = new Paint();
-        paintText.setTextSize(60);
+        paintText.setTextSize(90);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         paintText.setColor(Color.GREEN);
 

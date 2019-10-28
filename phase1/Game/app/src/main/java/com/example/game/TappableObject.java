@@ -32,6 +32,7 @@ public class TappableObject extends GameObject {
     public void setLength(int newLength) {
         length = newLength;
     }
+
     public int getLength() {
         return length;
     }

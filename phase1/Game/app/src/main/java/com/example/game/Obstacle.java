@@ -1,17 +1,13 @@
 package com.example.game;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.media.Image;
 
-public class Obstacle {
-    /**
-     * what it looks like (We can just make this a a random shape for now)
-     */
-    private Image model;
+public class Obstacle extends GameObject {
 
-    /**
-     * x and y location of the object
-     */
-    private int x, y;
     /**
      * How fast the obstacle should be moving towards the player (negative value)
      */
@@ -22,7 +18,9 @@ public class Obstacle {
      *
      * @param moveSpeed how fast this obstacle is going to be moving
      */
-    public Obstacle(float moveSpeed) {
+    public Obstacle(int x, int y, float moveSpeed) {
+        super(x, y);
+        this.Vx = moveSpeed;
     }
 
     /**
@@ -34,7 +32,14 @@ public class Obstacle {
     /**
      * Draw the obstacle.
      */
-    public void draw() {
+    @Override
+    public void draw(Canvas canvas) {
+        Paint paintText = new Paint();
+        paintText.setTextSize(60);
+        paintText.setTypeface(Typeface.DEFAULT_BOLD);
+        paintText.setColor(Color.GREEN);
+
+        canvas.drawText("[]", x, y, paintText);
     }
 
 

@@ -75,6 +75,8 @@ public class LevelThree extends GenericLevel {
             Random randomNum = new Random();
             int computerTarget = randomNum.nextInt(3);
             int computerPosition = randomNum.nextInt(3);
+            System.out.println("Computer Target" + computerTarget);
+            System.out.println("Computer Position" + computerPosition);
 
             if (computerTarget == playerPosition) {
                 if (playerLives == 1) {
@@ -108,10 +110,9 @@ public class LevelThree extends GenericLevel {
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         paintText.setColor(Color.GREEN);
         canvas.drawText(Integer.toString(getLives()), 50, 50, paintText);
-        canvas.drawText(Integer.toString(playerPosition), 50, 100, paintText);
-        canvas.drawText(Integer.toString(playerTarget), 50, 150, paintText);
 
-
+        canvas.drawText(Integer.toString(playerTarget), 50, 100, paintText);
+        canvas.drawText(Integer.toString(playerPosition), 50, 150, paintText);
     }
 
     public void update() {
@@ -123,7 +124,7 @@ public class LevelThree extends GenericLevel {
      * @param selectedIndex the item that will be selected.
      * @param objs the items to reset.
      */
-    public void resetOtherTargets(int selectedIndex, ArrayList<ShootingPosition> objs) {
+    private void resetOtherTargets(int selectedIndex, ArrayList<ShootingPosition> objs) {
         for (int i = 0; i < objs.size(); i++) {
             if (i != selectedIndex) {
                 ShootingPosition item = objs.get(i);
@@ -133,36 +134,46 @@ public class LevelThree extends GenericLevel {
     }
 
     /**
+     * Checks if event event happened in arraylist objects and returns the index of the event
+     * it happened to if found. If not, return -1.
+     * @param objects shooting positions beaing searched for an event.
+     * @param event event being searched for.
+     * @return index of object if found.
+     */
+    private int checkTapEvents(ArrayList<ShootingPosition> objects, MotionEvent event) {
+        for (int i = 0; i < objects.size(); i++) {
+            ShootingPosition item = objects.get(i);
+            if (item.isTapped(event)) {
+                item.setSelected(true);
+                //playerParam = i;
+                resetOtherTargets(i, objects);
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
      * What Level 3 does when the user taps the screen.
      *
      * @param event the tap event registered.
      */
     @Override
     public void tapEvent(MotionEvent event) {
-        ArrayList<GameObject> objs = super.getGameObjects();
-
-        for (int i = 0; i < cpuPositions.size(); i++) {
-            ShootingPosition item = cpuPositions.get(i);
-
-            if (item.isTapped(event)) {
-                item.setSelected(true);
-                playerTarget = i;
-                resetOtherTargets(i, cpuPositions);
-            }
+        int newTarget = checkTapEvents(cpuPositions, event);
+        if (newTarget != -1) {
+            playerTarget = newTarget;
         }
-        for (int i = 0; i < playerPositions.size(); i++) {
-            ShootingPosition item = playerPositions.get(i);
+        //playerTarget = checkTapEvents(cpuPositions, event);
 
-            if (item.isTapped(event)) {
-                item.setSelected(true);
-                System.out.println(i);
-                playerPosition = i;
-                resetOtherTargets(i, playerPositions);
-            }
+        int newPosition = checkTapEvents(playerPositions, event);
+        if (newPosition != -1) {
+            playerPosition = newPosition;
         }
+        //playerPosition = checkTapEvents(playerPositions, event);
+
         if (start.isTapped(event)) {
             runRound();
         }
-
     }
 }

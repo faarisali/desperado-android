@@ -16,7 +16,7 @@ public class LevelOne extends GenericLevel{
         System.out.println(randVertical);
         double rand = Math.random();
         if (rand < 0.5) {
-            super.addGameObject(new Coin(randVertical, 50, 0, 0));
+            super.addGameObject(new Coin(50, randVertical));
             System.out.println("Spawned a coin");
         } else if (rand > 0.9) {
             super.addGameObject(new Bomb(randVertical, 50, 0, 0));

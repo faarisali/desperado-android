@@ -61,4 +61,8 @@ public class TappableObject extends GameObject {
     public int getHeight() {
         return height;
     }
+
+//    public boolean outOfBounds() {
+//
+//    }
 }

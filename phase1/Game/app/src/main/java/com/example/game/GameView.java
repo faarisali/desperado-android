@@ -54,9 +54,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
      **/
 
     /** Draw the Bitmap background*/
-    public void onDraw(Canvas canvas) {
-        canvas.drawBitmap(background, 0, 0, null); // draw the background
-    }
+//    public void onDraw(Canvas canvas) {
+//        canvas.drawBitmap(background, 0, 0, null); // draw the background
+//    }
 
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {

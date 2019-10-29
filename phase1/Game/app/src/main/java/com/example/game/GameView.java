@@ -68,7 +68,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 //        background = Bitmap.createScaledBitmap(newBackground, newWidth, newHeight, true);
 
 //        background = BitmapFactory.decodeResource(getResources(), R.drawable.nightdesert);
-        adjustOpacity(background, 100);
+//        adjustOpacity(background, 100);
 
         Paint paintText = new Paint();
         paintText.setTextSize(36);
@@ -130,13 +130,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     /** Change the opacity of a Bitmap*/
-    private Bitmap adjustOpacity(Bitmap bitmap, int opacity) {
-        Bitmap mutableBitmap = bitmap.isMutable() ? bitmap : bitmap.copy(Bitmap.Config.ARGB_8888, true);
-        Canvas canvas = new Canvas(mutableBitmap);
-        int colour = (opacity & 0xFF) << 24;
-        canvas.drawColor(colour, PorterDuff.Mode.DST_IN);
-        return mutableBitmap;
-    }
+//    private Bitmap adjustOpacity(Bitmap bitmap, int opacity) {
+//        Bitmap mutableBitmap = bitmap.isMutable() ? bitmap : bitmap.copy(Bitmap.Config.ARGB_8888, true);
+//        Canvas canvas = new Canvas(mutableBitmap);
+//        int colour = (opacity & 0xFF) << 24;
+//        canvas.drawColor(colour, PorterDuff.Mode.DST_IN);
+//        return mutableBitmap;
+//    }
 
 
 }

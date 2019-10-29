@@ -61,11 +61,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         // Create and scale the background
-        Bitmap newBackground = BitmapFactory.decodeResource(getResources(), R.drawable.nightdesert);
-        float scale = (float)newBackground.getHeight()/(float)getHeight();
-        int newWidth = Math.round(newBackground.getWidth()/scale);
-        int newHeight = Math.round(newBackground.getHeight()/scale);
-        background = Bitmap.createScaledBitmap(newBackground, newWidth, newHeight, true);
+//        Bitmap newBackground = BitmapFactory.decodeResource(getResources(), R.drawable.nightdesert);
+//        float scale = (float)newBackground.getHeight()/(float)getHeight();
+//        int newWidth = Math.round(newBackground.getWidth()/scale);
+//        int newHeight = Math.round(newBackground.getHeight()/scale);
+//        background = Bitmap.createScaledBitmap(newBackground, newWidth, newHeight, true);
 
 //        background = BitmapFactory.decodeResource(getResources(), R.drawable.nightdesert);
         adjustOpacity(background, 100);

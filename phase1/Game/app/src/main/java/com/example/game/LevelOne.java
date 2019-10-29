@@ -60,8 +60,13 @@ public class LevelOne extends GenericLevel{
                 }
             }
         }
-        for (TappableObject tappableObject : remove) {
-            tappables.remove(tappableObject);
+        // remove multiple coins per tap
+//        for (TappableObject tappableObject : remove) {
+//            tappables.remove(tappableObject);
+//        }
+        // remove single coin per tap
+        if (remove.size() > 0) {
+            tappables.remove(remove.get(0));
         }
     }
 }

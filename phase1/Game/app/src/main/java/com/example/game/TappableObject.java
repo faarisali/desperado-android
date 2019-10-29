@@ -43,7 +43,7 @@ public class TappableObject extends GameObject {
 
     }
     public void move() {
-        y++;
+        y = y + 5;
     }
 
     public void setLength(int newLength) {
@@ -61,4 +61,8 @@ public class TappableObject extends GameObject {
     public int getHeight() {
         return height;
     }
+
+//    public boolean outOfBounds() {
+//
+//    }
 }

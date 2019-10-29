@@ -15,6 +15,19 @@ public class LevelTwo extends GenericLevel {
     private ArrayList<Obstacle> obstacleList = new ArrayList<Obstacle>();
     private int groundY = 500;
     private float defaultObstacleMoveSpeed = 9;
+
+    public ArrayList<Obstacle> getObstacleList() {
+        return obstacleList;
+    }
+
+    public int getGroundY() {
+        return groundY;
+    }
+
+    public float getDefaultObstacleMoveSpeed() {
+        return defaultObstacleMoveSpeed;
+    }
+
     private PlayerLevelTwo player = new PlayerLevelTwo(groundY);
 
     //TimerTask subclass, deals with random spawning of obstacles

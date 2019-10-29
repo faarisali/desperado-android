@@ -18,7 +18,6 @@ public class Bomb extends TappableObject {
         paint.setColor(Color.GRAY);
     }
 
-
     public void draw(Canvas canvas) {
         canvas.drawCircle(super.x + 25, super.y + 25, 25, paint);
     }

@@ -16,10 +16,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private GameManager gameManager;
     private MainThread thread;
 
-    /**
-     * The background of the view
-     */
-    public Bitmap background;
+//    /**
+//     * The background of the view
+//     */
+//    public Bitmap background;
 
     /**
      * The width of a character.
@@ -41,7 +41,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public GameView(Context context) {
         super(context);
-        setWillNotDraw(false); // Allow the background to be drawn
+//        setWillNotDraw(false); // Allow the background to be drawn
         getHolder().addCallback(this);
         thread = new MainThread(getHolder(), this);
         setFocusable(true);

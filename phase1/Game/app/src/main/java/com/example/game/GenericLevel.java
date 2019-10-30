@@ -19,7 +19,7 @@ public abstract class GenericLevel {
     /**
      * True iff this level is running
      */
-    private boolean isRunning;
+    boolean isRunning;
 
     /**
      * Number of lives left in this level

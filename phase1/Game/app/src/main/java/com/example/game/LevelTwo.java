@@ -11,7 +11,6 @@ import java.util.TimerTask;
 
 public class LevelTwo extends GenericLevel {
 
-    private float movementSpeed;
     private ArrayList<Obstacle> obstacleList = new ArrayList<Obstacle>();
     private int groundY = 500;
     private float defaultObstacleMoveSpeed = 9;
@@ -30,6 +29,7 @@ public class LevelTwo extends GenericLevel {
 
     public LevelTwo() {
         new SpawnObstacleTask(this).run();
+        isRunning = true;
     }
 
     /**
@@ -47,7 +47,7 @@ public class LevelTwo extends GenericLevel {
     /**
      * draws every obstacle in managed in this Level2
      *
-     * @param canvas
+     * @param canvas      where obstacles are drawn.
      */
     private void drawObstacles(Canvas canvas) {
         for (Obstacle o :
@@ -76,8 +76,20 @@ public class LevelTwo extends GenericLevel {
      */
     @Override
     public void update() {
-        player.move();
-        updateObstacles();
+        if (isRunning) {
+            player.move();
+            updateObstacles();
+            detectCollisions();
+        }
+    }
+
+    private void detectCollisions() {
+        for(Obstacle item: obstacleList) {
+            if (-40 < player.x - item.x && player.x - item.x < 45){
+                if (player.y - item.y > - 60)
+                    isRunning = false;
+            }
+        }
     }
 
 

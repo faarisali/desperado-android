@@ -40,7 +40,7 @@ public class Obstacle extends GameObject {
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         paintText.setColor(Color.GREEN);
 
-        canvas.drawText("[]", x, y, paintText);
+        canvas.drawText("{}", x, y, paintText);
     }
 
 

@@ -22,7 +22,7 @@ public class PlayerLevelTwo extends GameObject {
     /**
      * Player's locaton
      */
-    private int x, y;
+    public int x, y;
     /**
      * How fast the player will jump
      */
@@ -43,7 +43,6 @@ public class PlayerLevelTwo extends GameObject {
         x = 10;
         this.ground = ground;
         y = ground;
-
         Vy = 0;
     }
 

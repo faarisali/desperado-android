@@ -38,10 +38,10 @@ class GameManager {
     public void buildLevelList() { //Probably want builder design pattern here idk
         LevelOne myLevelOne = new LevelOne();
         LevelTwo myLevelTwo = new LevelTwo(null,5);
-        LevelThree myLevelThree = new LevelThree(null,5); //Temporary implementation for rn
+        //LevelThree myLevelThree = new LevelThree(null,5); //Temporary implementation for rn
         levelList.add(myLevelOne);
         levelList.add(myLevelTwo);
-        levelList.add(myLevelThree);
+        //levelList.add(myLevelThree);
     }
 
     public void tapEvent(MotionEvent event) {

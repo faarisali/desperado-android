@@ -45,19 +45,31 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
     public void buildGameObjects() {
         ToggleButton pos0 = findViewById(R.id.position0);
         pos0.setOnClickListener(this);
+        pos0.setBackgroundResource(R.drawable.crate);
+
         ToggleButton pos1 = findViewById(R.id.position1);
         pos1.setOnClickListener(this);
+        pos1.setBackgroundResource(R.drawable.crate);
+
         ToggleButton pos2 = findViewById(R.id.position2);
         pos2.setOnClickListener(this);
+        pos2.setBackgroundResource(R.drawable.crate);
+
 
         playerPositions = Arrays.asList(pos0, pos1, pos2);
 
         ToggleButton tar0 = findViewById(R.id.target0);
         tar0.setOnClickListener(this);
+        tar0.setBackgroundResource(R.drawable.crate);
+
         ToggleButton tar1 = findViewById(R.id.target1);
         tar1.setOnClickListener(this);
+        tar1.setBackgroundResource(R.drawable.crate);
+
         ToggleButton tar2 = findViewById(R.id.target2);
         tar2.setOnClickListener(this);
+        tar2.setBackgroundResource(R.drawable.crate);
+
 
         targetPositions = Arrays.asList(tar0, tar1, tar2);
 
@@ -128,8 +140,11 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         for (int i = 0; i < targetPositions.size(); i++) {
             if (i == target) {
                 targetPositions.get(i).setChecked(true);
+                //targetPositions.get(i).setBackgroundResource(R.drawable.pixelheart);
+
             } else {
                 targetPositions.get(i).setChecked(false);
+                targetPositions.get(i).setBackgroundResource(R.drawable.crate);
             }
         }
     }

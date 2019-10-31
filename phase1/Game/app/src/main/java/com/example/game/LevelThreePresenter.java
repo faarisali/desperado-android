@@ -27,6 +27,10 @@ public class LevelThreePresenter implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
+        int newPlayerPosition = ((int[]) o)[0];
+        int newPlayerTarget = ((int[]) o)[1];
+        levelThreeView.setPositionSelected(newPlayerPosition);
+        levelThreeView.setTargetSelected(newPlayerTarget);
 
     }
 }

@@ -32,18 +32,18 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         ToggleButton pos0 = findViewById(R.id.position0);
         pos0.setOnClickListener(this);
         ToggleButton pos1 = findViewById(R.id.position1);
-        pos0.setOnClickListener(this);
+        pos1.setOnClickListener(this);
         ToggleButton pos2 = findViewById(R.id.position2);
-        pos0.setOnClickListener(this);
+        pos2.setOnClickListener(this);
 
         playerPositions = Arrays.asList(pos0, pos1, pos2);
 
         ToggleButton tar0= findViewById(R.id.target0);
-        pos0.setOnClickListener(this);
+        tar0.setOnClickListener(this);
         ToggleButton tar1 = findViewById(R.id.target1);
-        pos0.setOnClickListener(this);
+        tar1.setOnClickListener(this);
         ToggleButton tar2 = findViewById(R.id.target2);
-        pos0.setOnClickListener(this);
+        tar2.setOnClickListener(this);
 
         targetPositions = Arrays.asList(tar0, tar1, tar2);
 
@@ -59,8 +59,20 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
             case R.id.position0:
                 presenter.setPositionValue(0);
                 break;
+            case R.id.position1:
+                presenter.setPositionValue(1);
+                break;
+            case R.id.position2:
+                presenter.setPositionValue(2);
+                break;
             case R.id.target0:
                 presenter.setTargetValue(0);
+                break;
+            case R.id.target1:
+                presenter.setTargetValue(1);
+                break;
+            case R.id.target2:
+                presenter.setTargetValue(2);
                 break;
         }
     }
@@ -68,9 +80,12 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
     public void setPositionSelected(int target) {
         for (int i = 0; i < playerPositions.size(); i++) {
             if (i == target) {
-                playerPositions.get(i).setSelected(true);
+                playerPositions.get(i).setChecked(true);
+                System.out.println("SETSELECTED");
             } else {
-                playerPositions.get(i).setSelected(false);
+                playerPositions.get(i).setChecked(false);
+                System.out.println("SETNOTSELECTED");
+
             }
         }
     }
@@ -78,9 +93,9 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
     public void setTargetSelected(int target) {
         for (int i = 0; i < targetPositions.size(); i++) {
             if (i == target) {
-                targetPositions.get(i).setSelected(true);
+                targetPositions.get(i).setChecked(true);
             } else {
-                targetPositions.get(i).setSelected(false);
+                targetPositions.get(i).setChecked(false);
             }
         }
     }

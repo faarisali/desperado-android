@@ -94,14 +94,17 @@ public class LevelThree extends Observable {
                 winGame();
             }
         }
+        update();
     }
 
     void setPlayerPosition (int position) {
         this.playerPosition = position;
+        update();
     }
 
     void setPlayerTarget (int target) {
         this.playerTarget = target;
+        update();
     }
 
     private void winGame() {

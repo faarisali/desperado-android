@@ -25,6 +25,7 @@ public class LevelThreeInteractor extends Observable implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-
+        setChanged();
+        notifyObservers(o);
     }
 }

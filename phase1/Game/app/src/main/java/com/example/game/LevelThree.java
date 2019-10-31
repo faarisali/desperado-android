@@ -31,7 +31,7 @@ public class LevelThree extends Observable {
     /**
      * The amount of lives the player has remaining.
      */
-    private int lives = 3;
+    private int lives = 2;
 
 //    public LevelThree(Drawable backgroundImage, int lives) {
 //        super(backgroundImage, lives);
@@ -45,6 +45,7 @@ public class LevelThree extends Observable {
         playerPosition = 1;
         playerTarget = 1;
         //buildGameObjects();
+        update();
     }
 
 

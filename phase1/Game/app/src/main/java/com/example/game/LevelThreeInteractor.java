@@ -11,7 +11,7 @@ public class LevelThreeInteractor extends Observable implements Observer {
 
     LevelThreeInteractor(LevelThree levelThree) {
         this.levelThree = levelThree;
-        levelThree.addObserver(this);
+        this.levelThree.addObserver(this);
     }
 
     /**

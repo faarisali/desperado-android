@@ -11,7 +11,7 @@ public class LevelThreePresenter implements Observer {
     LevelThreePresenter(LevelThreeView levelThreeView, LevelThreeInteractor levelThreeInteractor) {
         this.levelThreeView = levelThreeView;
         this.levelThreeInteractor = levelThreeInteractor;
-        levelThreeInteractor.addObserver(this);
+        this.levelThreeInteractor.addObserver(this);
     }
 
     /**

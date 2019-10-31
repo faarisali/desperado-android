@@ -6,6 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".LevelThreeActivity">
 
+    <ImageView
+        android:id="@+id/heart3"
+        android:layout_width="61dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toEndOf="@+id/heart2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pixelheart" />
+
+    <ImageView
+        android:id="@+id/heart2"
+        android:layout_width="61dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toEndOf="@+id/heart1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pixelheart" />
+
     <ToggleButton
         android:id="@+id/target2"
         android:layout_width="wrap_content"
@@ -96,10 +118,23 @@
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="175dp"
         android:text="Go!"
         app:layout_constraintBottom_toTopOf="@+id/target1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heart3" />
+
+    <ImageView
+        android:id="@+id/heart1"
+        android:layout_width="61dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pixelheart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

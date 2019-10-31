@@ -6,8 +6,11 @@ public interface LevelThreeView {
 //    void getTargetValues();
 //
 //    void startRound();
-    void buildGameButtons();
+    void buildGameObjects();
     void setPositionSelected(int target);
     void setTargetSelected(int target);
+    void setPlayerLives(int newLives);
+
+
 
 }

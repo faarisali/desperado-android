@@ -133,7 +133,7 @@ public class LevelThree extends Observable {
 
     public void update() {
         setChanged();
-        int[] data = {playerPosition, playerTarget};
+        int[] data = {playerPosition, playerTarget, lives};
         notifyObservers(data);
     }
 

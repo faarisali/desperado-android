@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ToggleButton;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
     private LevelThreePresenter presenter;
     private List<ToggleButton> playerPositions;
     private List<ToggleButton> targetPositions;
-
+    private List<ImageView> playerHearts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +25,10 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
 
         presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree()));
 
-        buildGameButtons();
+        buildGameObjects();
     }
 
-    public void buildGameButtons() {
+    public void buildGameObjects() {
         ToggleButton pos0 = findViewById(R.id.position0);
         pos0.setOnClickListener(this);
         ToggleButton pos1 = findViewById(R.id.position1);
@@ -49,6 +49,13 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
 
         Button start= findViewById(R.id.startButton);
         start.setOnClickListener(this);
+
+        ImageView heart1 = findViewById(R.id.heart1);
+        ImageView heart2 = findViewById(R.id.heart2);
+        ImageView heart3 = findViewById(R.id.heart3);
+        playerHearts = Arrays.asList(heart1, heart2, heart3);
+
+
     }
 
     @Override
@@ -96,6 +103,15 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 targetPositions.get(i).setChecked(true);
             } else {
                 targetPositions.get(i).setChecked(false);
+            }
+        }
+    }
+
+    @Override
+    public void setPlayerLives(int newLives) {
+        for (int i = 0; i < playerHearts.size(); i++) {
+            if (i >= newLives) {
+                playerHearts.get(i).setVisibility(View.GONE);
             }
         }
     }

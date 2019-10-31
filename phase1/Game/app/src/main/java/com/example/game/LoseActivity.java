@@ -29,10 +29,10 @@ public class LoseActivity extends AppCompatActivity {
      */
     void displayStats(int pointsValue, int goldValue) {
         TextView goldBox = findViewById(R.id.goldVariableBox);
-        goldBox.setText(goldValue);
+        goldBox.setText(Integer.toString(goldValue));
 
         TextView pointsBox = findViewById(R.id.pointsVariableBox);
-        goldBox.setText(pointsValue);
+        pointsBox.setText(Integer.toString(pointsValue));
     }
 
     /**

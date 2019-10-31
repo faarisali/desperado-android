@@ -20,10 +20,9 @@ public class LevelTwo extends GenericLevel {
     /**
      * Constructs a GenericLevel
      *
-     * @param backgroundImage background image for this level.
      * @param lives           the number of lives the player starts with on this level.
      */
-    public LevelTwo(Drawable backgroundImage, int lives) {
+    public LevelTwo(int lives) {
         new SpawnObstacleTask(this).run();
     }
 

@@ -38,7 +38,7 @@ class GameManager {
 
     public void buildLevelList() { //Probably want builder design pattern here idk
         LevelOne myLevelOne = new LevelOne();
-        LevelTwo myLevelTwo = new LevelTwo(null,5);
+        LevelTwo myLevelTwo = new LevelTwo(5);
         //LevelThree myLevelThree = new LevelThree(null,5); //Temporary implementation for rn
         levelList.add(myLevelOne);
         levelList.add(myLevelTwo);

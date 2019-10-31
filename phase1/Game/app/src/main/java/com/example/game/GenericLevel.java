@@ -9,10 +9,6 @@ import java.util.ArrayList;
 public abstract class GenericLevel {
 
     /**
-     * This level's background image
-     */
-    private Drawable backgroundImage;
-    /**
      * The objects in this level
      */
     private ArrayList<GameObject> gameObjects;
@@ -36,17 +32,8 @@ public abstract class GenericLevel {
 
     /**
      * Constructs a GenericLevel
-     * @param backgroundImage background image for this level.
      * @param lives the number of lives the player starts with.
      */
-    public GenericLevel(Drawable backgroundImage, int lives) {
-//        this.backgroundImage = backgroundImage;
-        gameObjects = new ArrayList<>();
-        isRunning = false;
-        this.lives = lives;
-        gold = 0;
-        points = 0;
-    }
 
     public GenericLevel(int lives) {
         gameObjects = new ArrayList<>();
@@ -84,22 +71,6 @@ public abstract class GenericLevel {
      * @param event the tap event registered.
      */
     public abstract void tapEvent(MotionEvent event);
-
-    /**
-     * Getter for background image.
-     * @return this background image
-     */
-    public Drawable getBackgroundImage() {
-        return backgroundImage;
-    }
-
-    /**
-     * Sets this level's background image to backgroundImage
-     * @param backgroundImage the new background image
-     */
-    public void setBackgroundImage(Drawable backgroundImage) {
-        this.backgroundImage = backgroundImage;
-    }
 
     /**
      * Returns gameObjects

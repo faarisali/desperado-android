@@ -14,17 +14,37 @@ public class LevelThreePresenter implements Observer {
         levelThreeInteractor.addObserver(this);
     }
 
+    /**
+     * Tells the interactor that the user has selected a new position.
+     *
+     * @param position the new position.
+     */
     void setPositionValue(int position) {
         levelThreeInteractor.setPosition(position);
     }
+
+    /**
+     * Tells the interactor that the user has selected a new target.
+     *
+     * @param target the new target.
+     */
     void setTargetValue(int target) {
         levelThreeInteractor.setTarget(target);
     }
 
+    /**
+     * Tells the interactor that the user wants to run a round.
+     */
     void runRound() {
         levelThreeInteractor.runRound();
     }
 
+    /**
+     * Observes when the interactor has new information and updates the view accordingly.
+     *
+     * @param observable the item this object observes (LevelThreeInteractor)
+     * @param o          the new data (player position, target, and lives)
+     */
     @Override
     public void update(Observable observable, Object o) {
         int newPlayerPosition = ((int[]) o)[0];

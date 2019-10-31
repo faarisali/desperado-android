@@ -12,10 +12,21 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LevelThreeActivity extends AppCompatActivity implements View.OnClickListener, LevelThreeView {
-    //private LevelThree levelThree;
+    /**
+     * The presenter responsible for this activity.
+     */
     private LevelThreePresenter presenter;
+    /**
+     * The list of buttons representing the players position.
+     */
     private List<ToggleButton> playerPositions;
+    /**
+     * The list of buttons representing the players target.
+     */
     private List<ToggleButton> targetPositions;
+    /**
+     * The list of images representing the players lives remaining.
+     */
     private List<ImageView> playerHearts;
 
     @Override
@@ -28,6 +39,9 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         buildGameObjects();
     }
 
+    /**
+     * Creates all the buttons, image views, etc necessary for the level.
+     */
     public void buildGameObjects() {
         ToggleButton pos0 = findViewById(R.id.position0);
         pos0.setOnClickListener(this);
@@ -38,7 +52,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
 
         playerPositions = Arrays.asList(pos0, pos1, pos2);
 
-        ToggleButton tar0= findViewById(R.id.target0);
+        ToggleButton tar0 = findViewById(R.id.target0);
         tar0.setOnClickListener(this);
         ToggleButton tar1 = findViewById(R.id.target1);
         tar1.setOnClickListener(this);
@@ -47,7 +61,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
 
         targetPositions = Arrays.asList(tar0, tar1, tar2);
 
-        Button start= findViewById(R.id.startButton);
+        Button start = findViewById(R.id.startButton);
         start.setOnClickListener(this);
 
         ImageView heart1 = findViewById(R.id.heart1);
@@ -58,6 +72,11 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    /**
+     * Detects when a button was clicked and determines what to do.
+     *
+     * @param view the view in which the button was pressed.
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -84,19 +103,27 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    /**
+     * sets the players targeted position as selected and the un-selects the other positions.
+     *
+     * @param target the target position that the user wants to be at.
+     */
     public void setPositionSelected(int target) {
         for (int i = 0; i < playerPositions.size(); i++) {
             if (i == target) {
                 playerPositions.get(i).setChecked(true);
-                System.out.println("SETSELECTED");
             } else {
                 playerPositions.get(i).setChecked(false);
-                System.out.println("SETNOTSELECTED");
 
             }
         }
     }
 
+    /**
+     * sets the players desired position asn selected and un-selects the other positions.
+     *
+     * @param target the target the user wants to target.
+     */
     public void setTargetSelected(int target) {
         for (int i = 0; i < targetPositions.size(); i++) {
             if (i == target) {
@@ -107,6 +134,11 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    /**
+     * Sets the visible life bar of the player to the appropriate amount.
+     *
+     * @param newLives the new amount of lives to be displayed.
+     */
     @Override
     public void setPlayerLives(int newLives) {
         for (int i = 0; i < playerHearts.size(); i++) {

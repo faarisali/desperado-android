@@ -24,10 +24,13 @@ public class LevelThree extends Observable {
      */
     private int playerTarget;
 
-    private ArrayList<ShootingPosition> cpuPositions;
-    private ArrayList<ShootingPosition> playerPositions;
-    private ShootingPosition start;
+//    private ArrayList<ShootingPosition> cpuPositions;
+//    private ArrayList<ShootingPosition> playerPositions;
+//    private ShootingPosition start;
 
+    /**
+     * The amount of lives the player has remaining.
+     */
     private int lives = 3;
 
 //    public LevelThree(Drawable backgroundImage, int lives) {
@@ -37,7 +40,7 @@ public class LevelThree extends Observable {
 //        buildGameObjects();
 //    }
 
-    public LevelThree() {
+    LevelThree() {
         super();
         playerPosition = 1;
         playerTarget = 1;
@@ -45,9 +48,9 @@ public class LevelThree extends Observable {
     }
 
 
-    /**
-     * Creates all the objects within level 3.
-     */
+//    /**
+//     * Creates all the objects within level 3.
+//     */
 //    private void buildGameObjects() {
 //        cpuPositions = new ArrayList<>();
 //        playerPositions = new ArrayList<>();
@@ -73,7 +76,10 @@ public class LevelThree extends Observable {
 //
 //    }
 
-    public void runRound() {
+    /**
+     * Completes a round of the level with the present date for position, target and lives.
+     */
+    void runRound() {
         int playerLives = lives; //super.getLives();
         if (playerLives > 0) {
             Random randomNum = new Random();
@@ -97,12 +103,22 @@ public class LevelThree extends Observable {
         update();
     }
 
-    void setPlayerPosition (int position) {
+    /**
+     * Sets the new player position.
+     *
+     * @param position the new position.
+     */
+    void setPlayerPosition(int position) {
         this.playerPosition = position;
         update();
     }
 
-    void setPlayerTarget (int target) {
+    /**
+     * sets the new player target
+     *
+     * @param target the new target.
+     */
+    void setPlayerTarget(int target) {
         this.playerTarget = target;
         update();
     }
@@ -131,6 +147,9 @@ public class LevelThree extends Observable {
 //        canvas.drawText(Integer.toString(playerPosition), 50, 150, paintText);
 //    }
 
+    /**
+     * Updates the game view using the observer pattern.
+     */
     public void update() {
         setChanged();
         int[] data = {playerPosition, playerTarget, lives};
@@ -139,8 +158,9 @@ public class LevelThree extends Observable {
 
     /**
      * Makes sure that only one target from each section is selected at a time.
+     *
      * @param selectedIndex the item that will be selected.
-     * @param objs the items to reset.
+     * @param objs          the items to reset.
      */
     private void resetOtherTargets(int selectedIndex, ArrayList<ShootingPosition> objs) {
         for (int i = 0; i < objs.size(); i++) {
@@ -154,8 +174,9 @@ public class LevelThree extends Observable {
     /**
      * Checks if event event happened in arraylist objects and returns the index of the event
      * it happened to if found. If not, return -1.
+     *
      * @param objects shooting positions beaing searched for an event.
-     * @param event event being searched for.
+     * @param event   event being searched for.
      * @return index of object if found.
      */
     private int checkTapEvents(ArrayList<ShootingPosition> objects, MotionEvent event) {
@@ -171,11 +192,11 @@ public class LevelThree extends Observable {
         return -1;
     }
 
-    /**
-     * What Level 3 does when the user taps the screen.
-     *
-     * @param event the tap event registered.
-     */
+//    /**
+//     * What Level 3 does when the user taps the screen.
+//     *
+//     * @param event the tap event registered.
+//     */
 //    @Override
 //    public void tapEvent(MotionEvent event) {
 //        int newTarget = checkTapEvents(cpuPositions, event);

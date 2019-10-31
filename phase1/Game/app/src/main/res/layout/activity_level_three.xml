@@ -96,7 +96,7 @@
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="175dp"
         android:text="Go!"
         app:layout_constraintBottom_toTopOf="@+id/target1"
         app:layout_constraintEnd_toEndOf="parent"

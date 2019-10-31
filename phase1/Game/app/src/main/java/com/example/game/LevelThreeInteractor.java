@@ -1,10 +1,14 @@
 package com.example.game;
 
-public class LevelThreeInteractor {
+import java.util.Observable;
+import java.util.Observer;
+
+public class LevelThreeInteractor extends Observable implements Observer {
     private LevelThree levelThree;
 
     LevelThreeInteractor(LevelThree levelThree) {
         this.levelThree = levelThree;
+        levelThree.addObserver(this);
     }
 
     void setPosition(int position) {
@@ -13,5 +17,14 @@ public class LevelThreeInteractor {
 
     void setTarget (int target) {
         levelThree.setPlayerTarget(target);
+    }
+
+    void runRound() {
+        levelThree.runRound();
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+
     }
 }

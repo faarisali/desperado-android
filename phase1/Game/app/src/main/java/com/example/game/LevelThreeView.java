@@ -10,5 +10,4 @@ public interface LevelThreeView {
     void setPositionSelected(int target);
     void setTargetSelected(int target);
 
-
 }

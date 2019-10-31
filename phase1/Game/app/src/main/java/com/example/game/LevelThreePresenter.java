@@ -1,19 +1,32 @@
 package com.example.game;
 
-public class LevelThreePresenter {
+import java.util.Observable;
+import java.util.Observer;
 
-    private LevelThreeView levelThreeView;
+public class LevelThreePresenter implements Observer {
+
+    private LevelThreeView levelThreeView; //essentially level three activity with abstraction layer
     private LevelThreeInteractor levelThreeInteractor;
-    private LevelThree levelThree;
 
-    LevelThreePresenter(LevelThreeView levelThreeView, LevelThreeInteractor levelThreeInteractor, LevelThree levelThree) {
+    LevelThreePresenter(LevelThreeView levelThreeView, LevelThreeInteractor levelThreeInteractor) {
         this.levelThreeView = levelThreeView;
         this.levelThreeInteractor = levelThreeInteractor;
-        this.levelThree = levelThree;
+        levelThreeInteractor.addObserver(this);
     }
 
     void setPositionValue(int position) {
         levelThreeInteractor.setPosition(position);
     }
+    void setTargetValue(int target) {
+        levelThreeInteractor.setTarget(target);
+    }
 
+    void runRound() {
+        levelThreeInteractor.runRound();
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+
+    }
 }

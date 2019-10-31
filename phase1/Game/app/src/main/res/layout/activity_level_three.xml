@@ -7,6 +7,50 @@
     tools:context=".LevelThreeActivity">
 
     <ToggleButton
+        android:id="@+id/target2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="200dp"
+        android:text="ToggleButton"
+        app:layout_constraintBottom_toTopOf="@+id/position2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/position1" />
+
+    <ToggleButton
+        android:id="@+id/target1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="200dp"
+        android:text="ToggleButton"
+        app:layout_constraintBottom_toTopOf="@+id/position1"
+        app:layout_constraintEnd_toStartOf="@+id/position2"
+        app:layout_constraintStart_toEndOf="@+id/position0" />
+
+    <ToggleButton
+        android:id="@+id/target0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="200dp"
+        android:text="ToggleButton"
+        app:layout_constraintBottom_toTopOf="@+id/position0"
+        app:layout_constraintEnd_toStartOf="@+id/position1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ToggleButton
         android:id="@+id/position0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,5 +91,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/position1" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        android:text="Go!"
+        app:layout_constraintBottom_toTopOf="@+id/target1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

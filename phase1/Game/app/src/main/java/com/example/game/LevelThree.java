@@ -91,6 +91,14 @@ public class LevelThree extends GenericLevel {
         }
     }
 
+    void setPlayerPosition (int position) {
+        this.playerPosition = position;
+    }
+
+    void setPlayerTarget (int target) {
+        this.playerTarget = target;
+    }
+
     private void winGame() {
         //TODO
     }

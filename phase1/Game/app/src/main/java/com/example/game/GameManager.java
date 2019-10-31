@@ -16,6 +16,7 @@ class GameManager {
     private int gridWidth;
 
     int x, y;
+
     /**
      * List of all levels in this GameManager.
      */
@@ -56,5 +57,7 @@ class GameManager {
     public void update() {
         //TODO
         currLevel.update();
+        System.out.println("Coins :" + currLevel.getGold());
     }
+
 }

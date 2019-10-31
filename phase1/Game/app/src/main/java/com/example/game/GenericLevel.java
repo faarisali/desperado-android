@@ -118,7 +118,6 @@ public abstract class GenericLevel {
     }
 
     /**
-     *
      * @param newLives the new lives value
      */
     public void setLives(int newLives) {

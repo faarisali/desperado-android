@@ -39,7 +39,7 @@ public class Obstacle extends GameObject {
     }
 
     private void checkOutOfBounds() {
-        if (x <= -30) {
+        if (x <= -40) {
             this.outOfBounds = true;
         }
     }

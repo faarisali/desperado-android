@@ -5,11 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class LevelThreeActivity extends AppCompatActivity implements View.OnClickListener, LevelThreeView {
@@ -57,44 +55,11 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
      * Creates all the buttons, image views, etc necessary for the level.
      */
     public void buildGameObjects() {
-        ToggleButton pos0 = findViewById(R.id.position0);
-        pos0.setOnClickListener(this);
-         pos0.setBackgroundResource(R.drawable.crate);
-
-        ToggleButton pos1 = findViewById(R.id.position1);
-        pos1.setOnClickListener(this);
-        pos1.setBackgroundResource(R.drawable.crate);
-
-        ToggleButton pos2 = findViewById(R.id.position2);
-        pos2.setOnClickListener(this);
-        pos2.setBackgroundResource(R.drawable.crate);
-
-
-        playerPositions = Arrays.asList(pos0, pos1, pos2);
-
-        ToggleButton tar0 = findViewById(R.id.target0);
-        tar0.setOnClickListener(this);
-        tar0.setBackgroundResource(R.drawable.crate);
-
-        ToggleButton tar1 = findViewById(R.id.target1);
-        tar1.setOnClickListener(this);
-        tar1.setBackgroundResource(R.drawable.crate);
-
-        ToggleButton tar2 = findViewById(R.id.target2);
-        tar2.setOnClickListener(this);
-        tar2.setBackgroundResource(R.drawable.crate);
-
-
-        targetPositions = Arrays.asList(tar0, tar1, tar2);
-
-        Button start = findViewById(R.id.startButton);
-        start.setOnClickListener(this);
-
-        ImageView heart1 = findViewById(R.id.heart1);
-        ImageView heart2 = findViewById(R.id.heart2);
-        ImageView heart3 = findViewById(R.id.heart3);
-        playerHearts = Arrays.asList(heart1, heart2, heart3);
-
+        LevelThreeButtonBuilder builder = new LevelThreeButtonBuilder(this);
+        playerPositions = builder.createPositions();
+        targetPositions = builder.createTargets();
+        builder.buildStartButton();
+        playerHearts = builder.buildLifeBar();
 
     }
 

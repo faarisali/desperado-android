@@ -1,9 +1,11 @@
-package com.example.game;
+package com.example.game.LevelTwo;
 
-import android.content.Intent;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
+
+import com.example.game.GenericLevel;
+import com.example.game.Heart;
+import com.example.game.SpawnObstacleTask;
 
 import java.util.ArrayList;
 import java.util.Timer;

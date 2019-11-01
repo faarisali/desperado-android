@@ -20,8 +20,8 @@
         <activity android:name=".PauseScreen">
         </activity>
         <activity android:name=".MainMenu"></activity>
-        <activity android:name=".LevelOneActivity"></activity>
-        <activity android:name=".LevelThreeActivity" />
+        <activity android:name=".LevelOne.LevelOneActivity"></activity>
+        <activity android:name=".LevelThree.LevelThreeActivity" />
         <activity android:name=".MainActivity"></activity>
     </application>
 

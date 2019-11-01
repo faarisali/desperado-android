@@ -3,6 +3,9 @@ package com.example.game;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
+import com.example.game.LevelOne.LevelOne;
+import com.example.game.LevelTwo.LevelTwo;
+
 import java.util.ArrayList;
 
 class GameManager {

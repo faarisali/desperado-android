@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.game.LevelThree.LevelThreeActivity;
+
 public class MainMenu extends AppCompatActivity {
 
     /** The character display*/

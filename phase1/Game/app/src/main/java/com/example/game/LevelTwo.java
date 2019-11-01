@@ -2,6 +2,7 @@ package com.example.game;
 
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 
@@ -44,7 +45,7 @@ public class LevelTwo extends GenericLevel {
     private void populateHeartList(int lives) {
         int xIncrement = 45;
         for (int i = 0; i < lives; i++) {
-            heartList.add(new Heart(xIncrement, 55));
+            heartList.add(new Heart(xIncrement, 55, 60, Color.RED));
             xIncrement += 80;
         }
 
@@ -136,7 +137,7 @@ public class LevelTwo extends GenericLevel {
     private void detectCollisions() {
         for(Obstacle item: obstacleList) {
             if (-40 < player.x - item.x && player.x - item.x < 45){
-                if (player.y - item.y > -60 && item.isCollided() == false)
+                if (player.y - item.y > -60 & item.isCollided() == false)
                     updateLives();
                 item.setCollided(true);
             }

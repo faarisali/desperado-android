@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.game.LevelThree.LevelThreeActivity;
+
 public class MainMenu extends AppCompatActivity {
 
     /** The character display*/
@@ -47,10 +49,9 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(USERNAME);
         TextView usernameText = findViewById(R.id.usernameTextView);
-        usernameText.setText(message);
+        String username = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
+        usernameText.setText(username);
         customizeCharacter();
     }
 
@@ -74,4 +75,9 @@ public class MainMenu extends AppCompatActivity {
         startActivity(levelThree);
     }
 
+    public void logOut(View v) {
+        Intent logout = new Intent(this, LoginActivity.class);
+        LoginAndroidMapDatabase.getSingleton().setCurrentUser("");
+        startActivity(logout);
+    }
 }

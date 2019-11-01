@@ -1,8 +1,10 @@
-package com.example.game;
+package com.example.game.LevelThree;
 
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
+
+import com.example.game.R;
 
 import java.util.Arrays;
 import java.util.List;

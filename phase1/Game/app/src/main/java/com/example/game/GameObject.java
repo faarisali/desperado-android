@@ -6,9 +6,9 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.media.Image;
 
-abstract class GameObject {
-    int x;
-    int y;
+public abstract class GameObject {
+    public int x;
+    public int y;
     private Image image;
     private Paint paintText = new Paint();
     private int size;

@@ -1,4 +1,4 @@
-package com.example.game;
+package com.example.game.LevelOne;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -6,16 +6,15 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 
-/** A bomb that harms the player in level 1*/
-public class Bomb extends TappableObject {
+public class Coin extends TappableObject {
     private Paint paint;
 
-    public Bomb(int newX, int newY) {
+    public Coin(int newX, int newY) {
         super(newX, newY, 50, 50);
         this.paint = new Paint();
         paint.setTextSize(60);
         paint.setTypeface(Typeface.DEFAULT_BOLD);
-        paint.setColor(Color.GRAY);
+        paint.setColor(Color.YELLOW);
     }
 
     public void draw(Canvas canvas) {

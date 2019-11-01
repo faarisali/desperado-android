@@ -36,8 +36,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        presenter = new LoginPresenter(this);
+        LoginAndroidMapDatabase.setSingleton(this);
+        presenter = new LoginPresenter(this, LoginAndroidMapDatabase.getSingleton());
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
@@ -51,20 +51,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void displayError() {
         Toast.makeText(this, "Incorrect username or password.", Toast.LENGTH_LONG).show();
-        username.setText("");
         password.setText("");
     }
 
     public void navigateToHome(String username) {
         Intent intent = new Intent(this, MainMenu.class);
-        intent.putExtra(MainMenu.USERNAME, username);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    public Context getContext() {
-        return this;
     }
 
     public void login() {

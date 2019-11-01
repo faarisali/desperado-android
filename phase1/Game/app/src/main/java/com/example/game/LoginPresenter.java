@@ -6,9 +6,9 @@ public class LoginPresenter {
     private LoginView loginView;
     private  LoginModel loginModel;
 
-    LoginPresenter(LoginView loginView) {
+    LoginPresenter(LoginView loginView, LoginMapDatabase loginMapDatabase) {
         this.loginView = loginView;
-        this.loginModel = new LoginModel(this, new LoginAndroidMapDatabase(getContext()));
+        this.loginModel = new LoginModel(this, loginMapDatabase);
     }
 
     public void login(String username, String password) {
@@ -30,9 +30,5 @@ public class LoginPresenter {
         if (loginView != null) {
             loginView.navigateToHome(username);
         }
-    }
-
-    Context getContext() {
-        return loginView.getContext();
     }
 }

@@ -19,6 +19,7 @@ public class LevelOne extends GenericLevel{
         textStyle.setTextSize(60);
         textStyle.setTypeface(Typeface.DEFAULT_BOLD);
         textStyle.setColor(Color.WHITE);
+        isRunning = true;
     }
 
     public void spawnTappables(){
@@ -39,6 +40,13 @@ public class LevelOne extends GenericLevel{
     public void textDisplay(Canvas canvas){
         canvas.drawText("Coins : " + getGold(), 0, 50, textStyle);
         canvas.drawText("Lives : " + getLives(), 0, 100, textStyle);
+    }
+
+    public void checkLives(){
+        if (getLives() <= 0) {
+            isRunning = false;
+            System.out.println("Out of lives");
+        }
     }
 
     @Override
@@ -69,6 +77,7 @@ public class LevelOne extends GenericLevel{
                     super.setGold(super.getGold() + 1);
                 } else if (tappableObject instanceof Bomb) {
                     super.setLives(super.getLives() - 1);
+                    checkLives();
                 }
             }
         }

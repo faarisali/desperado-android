@@ -21,12 +21,13 @@ public class LevelThree extends Observable {
 
     LevelThree(int lives) {
         this.lives = lives;
-        playerPosition = 1;
-        playerTarget = 1;
+        setPlayerPosition(1);
+        setPlayerTarget(1);
     }
 
     /**
      * Completes a round of the level with the present date for position, target and lives.
+     * Generates two random ints for computer target/position and compares them with the players'.
      */
     void runRound() {
         int playerLives = lives; //super.getLives();

@@ -1,6 +1,7 @@
 package com.example.game;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.game.LevelThree.LevelThreeActivity;
 import com.example.game.Login.LoginActivity;
@@ -41,6 +43,12 @@ public class MainMenu extends AppCompatActivity {
     /** The menu music player*/
     private MediaPlayer player;
 
+    /** The switch that toggles night mode*/
+    private Switch nightModeSwitch;
+
+    /** The menu layout*/
+    private ConstraintLayout menuBackground;
+
     public static final String USERNAME = "username";
 
     public void customizeCharacter() {
@@ -59,6 +67,7 @@ public class MainMenu extends AppCompatActivity {
     public void playMusic() {
         if (player == null) {
             player = MediaPlayer.create(this, R.raw.music);
+            player.setLooping(true);
         }
         player.start();
     }
@@ -85,6 +94,22 @@ public class MainMenu extends AppCompatActivity {
         });
     }
 
+    public void toggleNightMode() {
+        nightModeSwitch = findViewById(R.id.nightModeSwitch);
+        menuBackground = findViewById(R.id.menu);
+    nightModeSwitch.setOnCheckedChangeListener(
+        new CompoundButton.OnCheckedChangeListener() {
+          @Override
+          public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+            if (isChecked) {
+              menuBackground.setBackgroundColor(Color.parseColor("#000000"));
+            } else {
+              menuBackground.setBackgroundColor(Color.parseColor("#ffffff"));
+            }
+          }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +119,7 @@ public class MainMenu extends AppCompatActivity {
         usernameText.setText(username);
         customizeCharacter();
         toggleMusic();
+        toggleNightMode();
     }
 
     /**

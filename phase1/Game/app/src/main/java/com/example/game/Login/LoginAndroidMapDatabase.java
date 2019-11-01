@@ -14,6 +14,9 @@ public class LoginAndroidMapDatabase extends LoginMapDatabase {
 
     static void setSingleton(Context context) {
             loginAndroidMapDatabase = new LoginAndroidMapDatabase(context);
+        if (loginAndroidMapDatabase.getCurrentUser() == null) {
+            loginAndroidMapDatabase.setCurrentUser("");
+        }
     }
 
     public static LoginAndroidMapDatabase getSingleton() {
@@ -22,7 +25,6 @@ public class LoginAndroidMapDatabase extends LoginMapDatabase {
 
     private LoginAndroidMapDatabase(Context context) {
         sharedPref = context.getSharedPreferences(String.valueOf(R.string.accounts), Context.MODE_PRIVATE);
-        save(currentUser, "");
     }
     @Override
     public void save(String username, String password) {

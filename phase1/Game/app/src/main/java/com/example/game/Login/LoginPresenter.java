@@ -23,6 +23,11 @@ public class LoginPresenter {
         }
     }
 
+    public void notifyInvalidUser() {
+        if (loginView != null) {
+            loginView.displayInvalidUser();
+        }
+    }
 
     public void notifySuccess(String username) {
         if (loginView != null) {

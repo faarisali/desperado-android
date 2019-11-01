@@ -39,6 +39,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         LoginAndroidMapDatabase.setSingleton(this);
+        LoginMapDatabase db = LoginAndroidMapDatabase.getSingleton();
+        if (!db.getCurrentUser().equals("")) {
+            navigateToHome(db.getCurrentUser());
+        }
         presenter = new LoginPresenter(this, LoginAndroidMapDatabase.getSingleton());
 
         username = findViewById(R.id.username);
@@ -54,6 +58,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     public void displayError() {
         Toast.makeText(this, "Incorrect username or password.", Toast.LENGTH_LONG).show();
         password.setText("");
+    }
+
+    @Override
+    public void displayInvalidUser() {
+        Toast.makeText(this, "Username cannot be blank or contain $", Toast.LENGTH_LONG).show();
     }
 
     public void navigateToHome(String username) {

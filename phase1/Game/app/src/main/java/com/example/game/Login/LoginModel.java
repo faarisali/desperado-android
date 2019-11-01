@@ -18,6 +18,10 @@ public class LoginModel {
     }
 
     public void signup(String username, String password) {
+        if (username.equals("") || username.contains("$")) {
+            presenter.notifyInvalidUser();
+            return;
+        }
         loginMapDatabase.save(username, password);
         presenter.notifySuccess(username);
         loginMapDatabase.setCurrentUser(username);

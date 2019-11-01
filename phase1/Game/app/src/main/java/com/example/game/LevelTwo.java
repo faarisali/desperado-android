@@ -40,6 +40,7 @@ public class LevelTwo extends GenericLevel {
     private void returnToMain() {
     }
 
+
     private void countDown(int seconds) {
         this.time.schedule(new TimerTask() {
             @Override
@@ -85,6 +86,13 @@ public class LevelTwo extends GenericLevel {
         for (Obstacle o :
                 obstacleList) {
             o.move();
+        }
+        removeOutOfBoundsObstacles(this.obstacleList.get(0));
+    }
+
+    private void removeOutOfBoundsObstacles(Obstacle o) {
+        if (o.isOutOfBounds()) {
+            this.obstacleList.remove(o);
         }
     }
     /**

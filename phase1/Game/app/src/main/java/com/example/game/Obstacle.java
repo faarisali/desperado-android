@@ -12,6 +12,7 @@ public class Obstacle extends GameObject {
      * How fast the obstacle should be moving towards the player (negative value)
      */
     private float Vx;
+    private boolean outOfBounds;
 
     /**
      * Create a new obstacle.
@@ -21,6 +22,7 @@ public class Obstacle extends GameObject {
     public Obstacle(int x, int y, float moveSpeed) {
         super(x, y);
         this.Vx = moveSpeed;
+        this.outOfBounds = false;
     }
 
     /**
@@ -28,8 +30,14 @@ public class Obstacle extends GameObject {
      */
     public void move() {
         x -= Vx;
+        checkOutOfBounds();
     }
 
+    private void checkOutOfBounds() {
+        if (x <= -30) {
+            this.outOfBounds = true;
+        }
+    }
     /**
      * Draw the obstacle.
      */
@@ -43,5 +51,8 @@ public class Obstacle extends GameObject {
         canvas.drawText("{}", x, y, paintText);
     }
 
+    public boolean isOutOfBounds() {
+        return outOfBounds;
+    }
 
 }

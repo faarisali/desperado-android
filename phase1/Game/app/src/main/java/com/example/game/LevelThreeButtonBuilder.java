@@ -4,12 +4,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Arrays;
 import java.util.List;
 
-public class LevelThreeButtonBuilder extends AppCompatActivity {
+class LevelThreeButtonBuilder {
     private LevelThreeActivity view;
 
     LevelThreeButtonBuilder(LevelThreeActivity view) {

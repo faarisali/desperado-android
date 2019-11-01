@@ -128,4 +128,12 @@ public abstract class GenericLevel {
     public void setGold(int gold) {
         this.gold = gold;
     }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
 }

@@ -22,10 +22,6 @@ public class PlayerLevelTwo extends GameObject {
      */
     private Image modelState2;
     /**
-     * Player's locaton
-     */
-    public int x, y;
-    /**
      * How fast the player will jump
      */
     private double Vy;
@@ -36,14 +32,12 @@ public class PlayerLevelTwo extends GameObject {
     private boolean isFalling = false;
 
     private final double gravity = 1.6;
-    private int ground = 600;
+    private int ground;
     private final double jumpStrength = -25;
 
     public PlayerLevelTwo(int x, int y, int size, int color) {
-        super(x, y, size, color);
-        ;
-        this.ground = ground;
-        y = ground;
+        super(x, y + 20, size, color);
+        this.ground = y + 20;
         Vy = 0;
     }
 
@@ -80,12 +74,6 @@ public class PlayerLevelTwo extends GameObject {
      * Draw the player.
      */
     public void draw(Canvas canvas) {
-//        Paint paintText = new Paint();
-//        paintText.setTextSize(60);
-//        paintText.setTypeface(Typeface.DEFAULT_BOLD);
-//        paintText.setColor(Color.BLUE);
-
-        canvas.drawText("O", x, y, getPaintText());
-
+        canvas.drawText("O", this.x, this.y, getPaintText());
     }
 }

@@ -28,6 +28,7 @@ public class LevelTwo extends GenericLevel {
         new SpawnObstacleTask(this).run();
         this.lives = lives;
         countDown(5);
+        populateHeartList(this.lives);
     }
 
     public LevelTwo() {
@@ -104,15 +105,17 @@ public class LevelTwo extends GenericLevel {
     private void updateObstacles() {
         for (Obstacle o :
                 obstacleList) {
+            removeOutOfBoundsObstacles(o);
             o.move();
+
         }
-        removeOutOfBoundsObstacles(this.obstacleList.get(0));
     }
 
     private void removeOutOfBoundsObstacles(Obstacle o) {
         if (o.isOutOfBounds()) {
             this.obstacleList.remove(o);
         }
+
     }
     /**
      * update movement of player (jumps), spawning of obstacles and update
@@ -136,10 +139,11 @@ public class LevelTwo extends GenericLevel {
 
     private void detectCollisions() {
         for(Obstacle item: obstacleList) {
-            if (-40 < player.x - item.x && player.x - item.x < 45){
-                if (player.y - item.y > -90 && item.isCollided() == false)
+            if (item.isCollided() == false & player.y - item.y > -60) {
+                if (player.x - item.x > -40 && player.x - item.x < 40) {
                     updateLives();
-                item.setCollided(true);
+                    item.setCollided(true);
+                }
             }
         }
     }

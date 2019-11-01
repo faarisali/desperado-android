@@ -17,10 +17,15 @@ public class LoginModel {
         this.presenter = presenter;
     }
     public void login(String username, String password) {
-
+        boolean isValid = false;
+        presenter.notifyError();
     }
 
     public void signup(String username, String passsword) {
+        if (username.contains("$")) {
+            presenter.notifyInvalidUsername();
+            return;
+        }
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(presenter.getContext().openFileOutput(SAVE_FILE, MODE_PRIVATE));
             outputStreamWriter.write(username + "$" + passsword + "\n");

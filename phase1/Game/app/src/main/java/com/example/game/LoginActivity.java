@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
@@ -49,7 +50,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void displayError() {
+        Toast.makeText(this, "Incorrect username or password.", Toast.LENGTH_LONG).show();
+        username.setText("");
+        password.setText("");
+    }
 
+    @Override
+    public void displayInvalidUsernameError() {
+        Toast.makeText(this, "Username cannot contain $", Toast.LENGTH_LONG).show();
     }
 
     public void navigateToHome(String username) {

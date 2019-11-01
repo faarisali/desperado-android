@@ -22,6 +22,7 @@ import android.content.Context;
 
 public interface LoginView {
     void displayError();
+    void displayInvalidUsernameError();
     void navigateToHome(String username);
     Context getContext();
 }

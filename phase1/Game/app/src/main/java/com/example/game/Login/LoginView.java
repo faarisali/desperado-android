@@ -18,9 +18,12 @@
 
 package com.example.game.Login;
 
-import android.content.Context;
-
+/**
+ * Interface that specifies methods that every login UI must implement
+ */
 public interface LoginView {
     void displayError();
+    void displayInvalidUser();
     void navigateToHome(String username);
+
 }

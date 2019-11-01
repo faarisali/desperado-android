@@ -13,11 +13,13 @@ public class LoginModel {
             presenter.notifyError();
         } else {
             presenter.notifySuccess(username);
+            loginMapDatabase.setCurrentUser(username);
         }
     }
 
-    public void signup(String username, String passsword) {
-        loginMapDatabase.save(username, passsword);
+    public void signup(String username, String password) {
+        loginMapDatabase.save(username, password);
         presenter.notifySuccess(username);
+        loginMapDatabase.setCurrentUser(username);
     }
 }

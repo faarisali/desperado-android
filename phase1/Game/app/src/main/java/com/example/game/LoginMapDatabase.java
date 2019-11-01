@@ -2,8 +2,10 @@ package com.example.game;
 
 import java.util.Map;
 
-interface LoginMapDatabase {
-    public void save (String username, String password);
-    public Map<String, ?> load ();
-    public String getPass (String username);
+abstract class LoginMapDatabase {
+    public abstract void save (String username, String password);
+    public abstract Map<String, ?> load ();
+    public abstract String getCurrentUser();
+    public abstract void setCurrentUser(String username);
+    public abstract String getPass (String username);
 }

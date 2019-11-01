@@ -2,11 +2,8 @@ package com.example.game;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -43,7 +40,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         super(context);
 //        setWillNotDraw(false); // Allow the background to be drawn
         getHolder().addCallback(this);
-        thread = new MainThread(getHolder(), this);
         setFocusable(true);
         gameManager = new GameManager((screenHeight), (screenWidth));
     }
@@ -75,9 +71,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         charWidth = paintText.measureText("W");
         charHeight = -paintText.ascent() + paintText.descent();
-
+        surfaceDestroyed(getHolder());
+        thread = new MainThread(getHolder(), this);
         thread.setRunning(true);
         thread.start();
+        System.out.println("surface created");
     }
 
     @Override
@@ -88,7 +86,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         boolean retry = true;
-        while (retry) {
+        while (retry && thread != null) {
             try {
                 thread.setRunning(false);
                 thread.join();
@@ -110,6 +108,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
 
 
+
         return true;
     }
 
@@ -126,6 +125,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if (canvas != null) {
             gameManager.draw(canvas);
         }
+
+    }
+
+    public void stop() {
+        surfaceDestroyed(getHolder());
+    }
+
+    public void resume() {
+        surfaceCreated(getHolder());
+        System.out.println("starting");
 
     }
 

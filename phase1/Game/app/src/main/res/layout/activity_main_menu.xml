@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainMenu">
+
+    <Button
+        android:id="@+id/bLevelTwo"
+        android:layout_width="113dp"
+        android:layout_height="53dp"
+        android:onClick="beginLevelTwo"
+        android:text="Level Two"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.531" />
+
+    <Button
+        android:id="@+id/bLevelOne"
+        android:layout_width="113dp"
+        android:layout_height="53dp"
+        android:onClick="beginLevelOne"
+        android:text="Level One"
+        app:layout_constraintBottom_toTopOf="@+id/bLevelTwo"
+        app:layout_constraintEnd_toEndOf="@+id/bLevelTwo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/bLevelTwo"
+        app:layout_constraintTop_toBottomOf="@+id/textMenu"
+        app:layout_constraintVertical_bias="0.678" />
+
+    <TextView
+        android:id="@+id/textMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:text="Menu"
+        android:textAllCaps="false"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="@+id/bLevelOne"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="@+id/bLevelOne"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bLevelThree"
+        android:layout_width="113dp"
+        android:layout_height="53dp"
+        android:onClick="beginLevelThree"
+        android:text="Level Three"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/bLevelTwo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/bLevelTwo"
+        app:layout_constraintTop_toBottomOf="@+id/bLevelTwo"
+        app:layout_constraintVertical_bias="0.178" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -75,4 +75,9 @@ public class MainMenu extends AppCompatActivity {
         startActivity(levelThree);
     }
 
+    public void logOut(View v) {
+        Intent logout = new Intent(this, LoginActivity.class);
+        LoginAndroidMapDatabase.getSingleton().setCurrentUser("");
+        startActivity(logout);
+    }
 }

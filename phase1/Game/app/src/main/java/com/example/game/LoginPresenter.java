@@ -6,8 +6,9 @@ public class LoginPresenter {
 
     LoginPresenter(LoginView loginView) {
         LoginAndroidMapDatabase.setSingleton(loginView.getContext());
-        this.loginView = loginView;
         LoginAndroidMapDatabase loginAndroidMapDatabase = LoginAndroidMapDatabase.getSingleton();
+        
+        this.loginView = loginView;
         this.loginModel = new LoginModel(this, loginAndroidMapDatabase);
     }
 

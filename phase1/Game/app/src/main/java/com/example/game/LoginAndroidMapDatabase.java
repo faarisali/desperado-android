@@ -8,10 +8,10 @@ import java.util.Map;
 public class LoginAndroidMapDatabase extends LoginMapDatabase {
     private SharedPreferences sharedPref;
     private final String currentUser = "$current_user$";
-    private static LoginAndroidMapDatabase loginAndroidMapDatabase;
+    private static LoginAndroidMapDatabase loginAndroidMapDatabase = null;
 
     static void setSingleton(Context context) {
-        loginAndroidMapDatabase = new LoginAndroidMapDatabase(context);
+            loginAndroidMapDatabase = new LoginAndroidMapDatabase(context);
     }
 
     static LoginAndroidMapDatabase getSingleton() {

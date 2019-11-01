@@ -157,6 +157,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         intent.putExtra("Lives", 0);
 
         startActivity(intent);
+        finish();
     }
 
     /**
@@ -170,5 +171,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         intent.putExtra("Gold", goldAccumulated);
         intent.putExtra("Lives", playerLives);
         startActivity(intent);
+        finish();
+
     }
 }

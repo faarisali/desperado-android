@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -18,6 +17,7 @@ public class LevelTwo extends GenericLevel {
     private PlayerLevelTwo player = new PlayerLevelTwo(groundY);
     private int lives;
     private Timer time = new Timer();
+    private ArrayList<Heart> heartList = new ArrayList<>();
 
     /**
      * Constructs a GenericLevel
@@ -35,11 +35,20 @@ public class LevelTwo extends GenericLevel {
         isRunning = true;
         this.lives = 3;
         countDown(5);
+        populateHeartList(this.lives);
     }
 
     private void returnToMain() {
     }
 
+    private void populateHeartList(int lives) {
+        int xIncrement = 45;
+        for (int i = 0; i < lives; i++) {
+            heartList.add(new Heart(xIncrement, 55));
+            xIncrement += 80;
+        }
+
+    }
 
     private void countDown(int seconds) {
         this.time.schedule(new TimerTask() {
@@ -58,6 +67,7 @@ public class LevelTwo extends GenericLevel {
     public void draw(Canvas canvas) {
         player.draw(canvas);
         drawObstacles(canvas);
+        drawHearths(canvas);
     }
 
 
@@ -70,6 +80,14 @@ public class LevelTwo extends GenericLevel {
         for (Obstacle o :
                 obstacleList) {
             o.draw(canvas);
+        }
+
+    }
+
+    private void drawHearths(Canvas canvas) {
+        for (Heart h :
+                heartList) {
+            h.draw(canvas);
         }
 
     }
@@ -109,6 +127,7 @@ public class LevelTwo extends GenericLevel {
 
     private void updateLives() {
         this.lives--;
+        heartList.remove(heartList.size() - 1);
         if (this.lives == 0) {
             returnToMain();
         }
@@ -117,8 +136,9 @@ public class LevelTwo extends GenericLevel {
     private void detectCollisions() {
         for(Obstacle item: obstacleList) {
             if (-40 < player.x - item.x && player.x - item.x < 45){
-                if (player.y - item.y > - 60)
+                if (player.y - item.y > -60 && item.isCollided() == false)
                     updateLives();
+                item.setCollided(true);
             }
         }
     }

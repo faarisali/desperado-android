@@ -13,6 +13,7 @@ public class Obstacle extends GameObject {
      */
     private float Vx;
     private boolean outOfBounds;
+    private boolean collided;
 
     /**
      * Create a new obstacle.
@@ -23,7 +24,9 @@ public class Obstacle extends GameObject {
         super(x, y);
         this.Vx = moveSpeed;
         this.outOfBounds = false;
+        this.collided = false;
     }
+
 
     /**
      * Move the obstacle according to to its speed Vx
@@ -55,4 +58,11 @@ public class Obstacle extends GameObject {
         return outOfBounds;
     }
 
+    public boolean isCollided() {
+        return collided;
+    }
+
+    public void setCollided(boolean collided) {
+        this.collided = collided;
+    }
 }

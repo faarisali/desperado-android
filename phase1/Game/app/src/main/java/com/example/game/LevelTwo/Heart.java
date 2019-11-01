@@ -1,9 +1,6 @@
 package com.example.game.LevelTwo;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 
 import com.example.game.GameObject;
 

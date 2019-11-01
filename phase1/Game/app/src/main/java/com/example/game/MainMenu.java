@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game.LevelThree.LevelThreeActivity;
+import com.example.game.Login.LoginActivity;
+import com.example.game.Login.LoginAndroidMapDatabase;
 
 public class MainMenu extends AppCompatActivity {
 

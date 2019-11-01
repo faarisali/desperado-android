@@ -1,14 +1,16 @@
-package com.example.game;
+package com.example.game.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.game.MainMenu;
+import com.example.game.R;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 

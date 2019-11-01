@@ -1,7 +1,9 @@
-package com.example.game;
+package com.example.game.Login;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.example.game.R;
 
 import java.util.Map;
 
@@ -14,7 +16,7 @@ public class LoginAndroidMapDatabase extends LoginMapDatabase {
             loginAndroidMapDatabase = new LoginAndroidMapDatabase(context);
     }
 
-    static LoginAndroidMapDatabase getSingleton() {
+    public static LoginAndroidMapDatabase getSingleton() {
         return loginAndroidMapDatabase;
     }
 

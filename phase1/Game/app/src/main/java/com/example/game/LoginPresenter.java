@@ -8,7 +8,7 @@ public class LoginPresenter {
 
     LoginPresenter(LoginView loginView) {
         this.loginView = loginView;
-        this.loginModel = new LoginModel(this);
+        this.loginModel = new LoginModel(this, new LoginAndroidMapDatabase(getContext()));
     }
 
     public void login(String username, String password) {

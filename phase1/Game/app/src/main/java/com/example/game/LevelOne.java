@@ -1,11 +1,9 @@
 package com.example.game;
 
-import android.annotation.TargetApi;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class LevelOne extends GenericLevel{
 
@@ -23,10 +21,10 @@ public class LevelOne extends GenericLevel{
         double rand = Math.random();
         if (rand < 0.05) {
             tappables.add(new Coin(randHorizontal, 20));
-            System.out.println("Spawned a coin");
+//            System.out.println("Spawned a coin");
         } else if (rand > 0.99) {
             tappables.add(new Bomb(randHorizontal, 20));
-            System.out.println("Spawned a bomb");
+//            System.out.println("Spawned a bomb");
         }
     }
 

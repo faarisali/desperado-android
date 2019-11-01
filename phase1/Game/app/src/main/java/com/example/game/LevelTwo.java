@@ -27,23 +27,27 @@ public class LevelTwo extends GenericLevel {
     public LevelTwo(int lives) {
         new SpawnObstacleTask(this).run();
         this.lives = lives;
+        countDown(5);
     }
 
     public LevelTwo() {
         new SpawnObstacleTask(this).run();
         isRunning = true;
         this.lives = 3;
-        this.time.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                returnToMain();
-            }
-        }, 5000);//5 second countdown
+        countDown(5);
     }
 
     private void returnToMain() {
     }
 
+    private void countDown(int seconds) {
+        this.time.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                returnToMain();
+            }
+        }, seconds * 1000);//5 second countdown
+    }
     /**
      * Need to draw background, character and obstacles.
      *

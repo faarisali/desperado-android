@@ -15,10 +15,10 @@ public class LevelTwo extends GenericLevel {
     private int groundY = 500;
     private float defaultObstacleMoveSpeed = 9;
     private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, 60, Color.BLUE);
+    private Points points = new Points(45, 110, 50, Color.WHITE, 0);
     private int lives;
     private Timer time = new Timer();
     private ArrayList<Heart> heartList = new ArrayList<>();
-
     /**
      * Constructs a GenericLevel
      *
@@ -33,8 +33,8 @@ public class LevelTwo extends GenericLevel {
 
     public LevelTwo() {
         new SpawnObstacleTask(this).run();
-        isRunning = true;
         this.lives = 3;
+        isRunning = true;
         countDown(5);
         populateHeartList(this.lives);
     }
@@ -69,7 +69,8 @@ public class LevelTwo extends GenericLevel {
     public void draw(Canvas canvas) {
         player.draw(canvas);
         drawObstacles(canvas);
-        drawHearths(canvas);
+        drawHearts(canvas);
+        points.draw(canvas);
     }
 
 
@@ -86,7 +87,7 @@ public class LevelTwo extends GenericLevel {
 
     }
 
-    private void drawHearths(Canvas canvas) {
+    private void drawHearts(Canvas canvas) {
         for (Heart h :
                 heartList.toArray(new Heart[0])) {
             h.draw(canvas);
@@ -105,17 +106,20 @@ public class LevelTwo extends GenericLevel {
     private void updateObstacles() {
         for (Obstacle o :
                 obstacleList) {
-            removeOutOfBoundsObstacles(o);
+            if (removeOutOfBoundsObstacles(o)) {
+                this.points.setPoints(this.points.getPoints() + 100);
+            }
             o.move();
 
         }
     }
 
-    private void removeOutOfBoundsObstacles(Obstacle o) {
+    private boolean removeOutOfBoundsObstacles(Obstacle o) {
         if (o.isOutOfBounds()) {
             this.obstacleList.remove(o);
+            return true;
         }
-
+        return false;
     }
     /**
      * update movement of player (jumps), spawning of obstacles and update

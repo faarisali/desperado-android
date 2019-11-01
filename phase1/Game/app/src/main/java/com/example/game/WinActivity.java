@@ -52,6 +52,7 @@ public class WinActivity extends AppCompatActivity implements View.OnClickListen
         switch (view.getId()) {
             case R.id.mainMenuButton:
                 Intent intent = new Intent(this, MainMenu.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 finish();
                 break;

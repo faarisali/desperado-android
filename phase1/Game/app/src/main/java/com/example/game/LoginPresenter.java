@@ -1,7 +1,5 @@
 package com.example.game;
 
-import android.content.Context;
-
 public class LoginPresenter {
     private LoginView loginView;
     private  LoginModel loginModel;

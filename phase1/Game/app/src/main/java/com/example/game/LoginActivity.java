@@ -51,7 +51,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void displayError() {
         Toast.makeText(this, "Incorrect username or password.", Toast.LENGTH_LONG).show();
-        username.setText("");
         password.setText("");
     }
 

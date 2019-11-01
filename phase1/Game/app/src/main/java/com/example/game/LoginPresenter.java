@@ -1,15 +1,14 @@
 package com.example.game;
 
+import android.content.Context;
+
 public class LoginPresenter {
     private LoginView loginView;
     private  LoginModel loginModel;
 
-    LoginPresenter(LoginView loginView) {
-        LoginAndroidMapDatabase.setSingleton(loginView.getContext());
-        LoginAndroidMapDatabase loginAndroidMapDatabase = LoginAndroidMapDatabase.getSingleton();
-        
+    LoginPresenter(LoginView loginView, LoginMapDatabase loginMapDatabase) {
         this.loginView = loginView;
-        this.loginModel = new LoginModel(this, loginAndroidMapDatabase);
+        this.loginModel = new LoginModel(this, loginMapDatabase);
     }
 
     public void login(String username, String password) {

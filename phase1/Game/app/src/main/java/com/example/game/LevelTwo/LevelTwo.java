@@ -86,7 +86,7 @@ public class LevelTwo extends GenericLevel {
 
     private void drawHearths(Canvas canvas) {
         for (Heart h :
-                heartList) {
+                heartList.toArray(new Heart[0])) {
             h.draw(canvas);
         }
 

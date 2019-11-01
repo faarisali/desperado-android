@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.game.LevelOne.LevelOneActivity;
 import com.example.game.LevelThree.LevelThreeActivity;
 
 public class MainMenu extends AppCompatActivity {
@@ -61,12 +62,12 @@ public class MainMenu extends AppCompatActivity {
      * @param v the view object that is clicked.
      */
     public void beginLevelOne(View v) {
-        Intent levelOne = new Intent(this.getBaseContext(), MainActivity.class);
+        Intent levelOne = new Intent(this.getBaseContext(), LevelOneActivity.class);
         startActivity(levelOne);
     }
 
     public void beginLevelTwo(View v) {
-        Intent levelTwo = new Intent(this.getBaseContext(), PauseScreen.class);
+        Intent levelTwo = new Intent(this.getBaseContext(), LevelTwoActivity.class);
         startActivity(levelTwo);
     }
 

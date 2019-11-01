@@ -1,4 +1,4 @@
-package com.example.game;
+package com.example.game.LevelThree;
 
 
 import java.util.Observable;

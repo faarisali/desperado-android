@@ -1,4 +1,4 @@
-package com.example.game;
+package com.example.game.LevelThree;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
+
+import com.example.game.LoseActivity;
+import com.example.game.R;
+import com.example.game.WinActivity;
 
 import java.util.List;
 

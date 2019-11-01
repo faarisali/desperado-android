@@ -6,8 +6,6 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 
-import com.example.game.TappableObject;
-
 /** A bomb that harms the player in level 1*/
 public class Bomb extends TappableObject {
     private Paint paint;

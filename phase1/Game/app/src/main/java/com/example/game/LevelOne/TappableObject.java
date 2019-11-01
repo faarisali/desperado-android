@@ -1,7 +1,9 @@
-package com.example.game;
+package com.example.game.LevelOne;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
+
+import com.example.game.GameObject;
 
 public class TappableObject extends GameObject {
     /**

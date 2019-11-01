@@ -1,7 +1,4 @@
-package com.example.game;
-
-import com.example.game.LevelTwo.LevelTwo;
-import com.example.game.LevelTwo.Obstacle;
+package com.example.game.LevelTwo;
 
 import java.util.Random;
 import java.util.Timer;

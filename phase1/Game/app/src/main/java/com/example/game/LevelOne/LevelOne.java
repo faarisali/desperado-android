@@ -7,7 +7,6 @@ import android.graphics.Typeface;
 import android.view.MotionEvent;
 
 import com.example.game.GenericLevel;
-import com.example.game.TappableObject;
 
 import java.util.ArrayList;
 

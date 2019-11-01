@@ -152,6 +152,10 @@ public class LevelTwo extends GenericLevel {
         }
     }
 
+    @Override
+    public int getPoints(){
+        return this.points.getPoints();
+    }
 
     public ArrayList<Obstacle> getObstacleList() {
         return obstacleList;

@@ -25,9 +25,9 @@ public class LoginPresenter {
         }
     }
 
-    public void notifySuccess() {
+    public void notifySuccess(String username) {
         if (loginView != null) {
-            loginView.navigateToHome();
+            loginView.navigateToHome(username);
         }
     }
 

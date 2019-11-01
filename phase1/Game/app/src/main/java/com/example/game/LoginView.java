@@ -22,6 +22,6 @@ import android.content.Context;
 
 public interface LoginView {
     void displayError();
-    void navigateToHome();
+    void navigateToHome(String username);
     Context getContext();
 }

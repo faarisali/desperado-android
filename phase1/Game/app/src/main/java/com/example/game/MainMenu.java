@@ -3,15 +3,21 @@ package com.example.game;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainMenu extends AppCompatActivity {
-
+    public static final String USERNAME = "username";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(USERNAME);
+        TextView usernameText = findViewById(R.id.usernameTextView);
+        usernameText.setText(message);
     }
 
     /**

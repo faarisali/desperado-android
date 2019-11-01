@@ -29,6 +29,6 @@ public class LoginModel {
         catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
-        presenter.notifySuccess();
+        presenter.notifySuccess(username);
     }
 }

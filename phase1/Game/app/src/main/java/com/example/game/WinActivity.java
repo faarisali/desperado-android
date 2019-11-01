@@ -40,18 +40,25 @@ public class WinActivity extends AppCompatActivity implements View.OnClickListen
         livesBox.setText(Integer.toString(livesRemaining));
     }
 
+    /**
+     * Delegates the click to the correct button and sends it to the correct view.
+     *
+     * @param view the current view
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.mainMenuButton:
                 Intent intent = new Intent(this, MainMenu.class);
                 startActivity(intent);
+                break;
             case R.id.restartButton:
                 Intent intent2 = new Intent(this, LevelThreeActivity.class);
                 intent2.putExtra("Points", 0);
                 intent2.putExtra("Gold", 0); //Temporary until all are converted to activities
                 intent2.putExtra("Lives", 3);
                 startActivity(intent2);
+                break;
         }
     }
 }

@@ -1,16 +1,24 @@
 package com.example.game;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
 public class LevelOne extends GenericLevel{
 
+    private Paint textStyle = new Paint();
+
     private ArrayList<TappableObject> tappables = new ArrayList<>();
 
     public LevelOne () {
         super(3);
+        textStyle.setTextSize(60);
+        textStyle.setTypeface(Typeface.DEFAULT_BOLD);
+        textStyle.setColor(Color.YELLOW);
     }
 
     public void spawnTappables(){
@@ -31,6 +39,7 @@ public class LevelOne extends GenericLevel{
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
+        canvas.drawText("Coins : " + getGold(), 0, 40, textStyle);
         for (TappableObject tappableObject : tappables) {
             tappableObject.draw(canvas);
         }

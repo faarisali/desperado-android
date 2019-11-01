@@ -51,10 +51,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/costume" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/costume"
         android:layout_width="151dp"
         android:layout_height="184dp"
         android:layout_marginBottom="68dp"

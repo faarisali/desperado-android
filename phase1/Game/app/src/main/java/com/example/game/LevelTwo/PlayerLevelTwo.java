@@ -39,10 +39,9 @@ public class PlayerLevelTwo extends GameObject {
     private int ground = 600;
     private final double jumpStrength = -25;
 
-
-    public PlayerLevelTwo(int ground) {
-        super(10, 500);
-        x = 10;
+    public PlayerLevelTwo(int x, int y, int size, int color) {
+        super(x, y, size, color);
+        ;
         this.ground = ground;
         y = ground;
         Vy = 0;
@@ -81,12 +80,12 @@ public class PlayerLevelTwo extends GameObject {
      * Draw the player.
      */
     public void draw(Canvas canvas) {
-        Paint paintText = new Paint();
-        paintText.setTextSize(60);
-        paintText.setTypeface(Typeface.DEFAULT_BOLD);
-        paintText.setColor(Color.BLUE);
+//        Paint paintText = new Paint();
+//        paintText.setTextSize(60);
+//        paintText.setTypeface(Typeface.DEFAULT_BOLD);
+//        paintText.setColor(Color.BLUE);
 
-        canvas.drawText("O", x, y, paintText);
+        canvas.drawText("O", x, y, getPaintText());
 
     }
 }

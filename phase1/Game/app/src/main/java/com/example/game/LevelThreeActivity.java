@@ -108,6 +108,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         switch (view.getId()) {
             case R.id.startButton:
                 presenter.runRound();
+                break;
             case R.id.position0:
                 presenter.setPositionValue(0);
                 break;
@@ -184,7 +185,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         Intent intent = new Intent(this, LoseActivity.class);
         intent.putExtra("Points", pointsAccumulated);
         intent.putExtra("Gold", goldAccumulated);
-        intent.putExtra("Lives", 3);
+        intent.putExtra("Lives", 0);
 
         startActivity(intent);
     }

@@ -18,7 +18,7 @@ public class LevelOne extends GenericLevel{
         super(3);
         textStyle.setTextSize(60);
         textStyle.setTypeface(Typeface.DEFAULT_BOLD);
-        textStyle.setColor(Color.YELLOW);
+        textStyle.setColor(Color.WHITE);
     }
 
     public void spawnTappables(){
@@ -36,10 +36,15 @@ public class LevelOne extends GenericLevel{
         }
     }
 
+    public void textDisplay(Canvas canvas){
+        canvas.drawText("Coins : " + getGold(), 0, 50, textStyle);
+        canvas.drawText("Lives : " + getLives(), 0, 100, textStyle);
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        canvas.drawText("Coins : " + getGold(), 0, 40, textStyle);
+        textDisplay(canvas);
         for (TappableObject tappableObject : tappables) {
             tappableObject.draw(canvas);
         }

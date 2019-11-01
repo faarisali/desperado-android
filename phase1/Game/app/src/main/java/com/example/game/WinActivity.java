@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-public class WinActivity extends AppCompatActivity {
+public class WinActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +19,12 @@ public class WinActivity extends AppCompatActivity {
         int pointsValue = intent.getIntExtra("Points", 0);
         int goldValue = intent.getIntExtra("Gold", 0);
         int livesRemaining = intent.getIntExtra("Lives", 0);
+
+        Button mainMenu = findViewById(R.id.mainMenuButton);
+        mainMenu.setOnClickListener(this);
+
+        Button restart = findViewById(R.id.restartButton);
+        restart.setOnClickListener(this);
 
         displayStats(pointsValue, goldValue, livesRemaining);
 
@@ -30,5 +38,27 @@ public class WinActivity extends AppCompatActivity {
 
         TextView livesBox = findViewById(R.id.livesVariable);
         livesBox.setText(Integer.toString(livesRemaining));
+    }
+
+    /**
+     * Delegates the click to the correct button and sends it to the correct view.
+     *
+     * @param view the current view
+     */
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.mainMenuButton:
+                Intent intent = new Intent(this, MainMenu.class);
+                startActivity(intent);
+                break;
+            case R.id.restartButton:
+                Intent intent2 = new Intent(this, LevelThreeActivity.class);
+                intent2.putExtra("Points", 0);
+                intent2.putExtra("Gold", 0); //Temporary until all are converted to activities
+                intent2.putExtra("Lives", 3);
+                startActivity(intent2);
+                break;
+        }
     }
 }

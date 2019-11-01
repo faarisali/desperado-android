@@ -2,6 +2,7 @@ package com.example.game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,12 +30,25 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
      */
     private List<ImageView> playerHearts;
 
+    /**
+     * the gold collected in previous levels.
+     */
+    private int goldAccumulated;
+    /**
+     * the points accumulated in previous levels.
+     */
+    private int pointsAccumulated;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_three);
+        Intent intent = getIntent(); //get the data from sender
+        int lives = intent.getIntExtra("Lives", 3);
+        goldAccumulated = intent.getIntExtra("Gold", 0);
+        pointsAccumulated = intent.getIntExtra("Points", 0);
 
-        presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree()));
+        presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree(lives)));
 
         buildGameObjects();
     }
@@ -161,5 +175,30 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 playerHearts.get(i).setVisibility(View.GONE);
             }
         }
+    }
+
+    /**
+     * Sends the game to the lose screen.
+     */
+    public void loseGame() {
+        Intent intent = new Intent(this, LoseActivity.class);
+        intent.putExtra("Points", pointsAccumulated);
+        intent.putExtra("Gold", goldAccumulated);
+        intent.putExtra("Lives", 3);
+
+        startActivity(intent);
+    }
+
+    /**
+     * Sends the game to the win screen.
+     *
+     * @param playerLives the amount of lives remaining.
+     */
+    public void winGame(int playerLives) {
+        Intent intent = new Intent(this, WinActivity.class);
+        intent.putExtra("Points", pointsAccumulated);
+        intent.putExtra("Gold", goldAccumulated);
+        intent.putExtra("Lives", playerLives);
+        startActivity(intent);
     }
 }

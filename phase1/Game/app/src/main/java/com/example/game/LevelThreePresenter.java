@@ -50,11 +50,18 @@ public class LevelThreePresenter implements Observer {
         int newPlayerPosition = ((int[]) o)[0];
         int newPlayerTarget = ((int[]) o)[1];
         int newPlayerLives = ((int[]) o)[2];
+        int gameFinished = ((int[]) o)[3];
 
-        levelThreeView.setPositionSelected(newPlayerPosition);
-        levelThreeView.setTargetSelected(newPlayerTarget);
-        levelThreeView.setPlayerLives(newPlayerLives);
-
-
+        if (gameFinished == 1) {
+            if (newPlayerLives == 0) {
+                levelThreeView.loseGame();
+            } else {
+                levelThreeView.winGame(newPlayerLives);
+            }
+        } else {
+            levelThreeView.setPositionSelected(newPlayerPosition);
+            levelThreeView.setTargetSelected(newPlayerTarget);
+            levelThreeView.setPlayerLives(newPlayerLives);
+        }
     }
 }

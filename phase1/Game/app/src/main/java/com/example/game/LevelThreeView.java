@@ -28,5 +28,17 @@ public interface LevelThreeView {
      */
     void setPlayerLives(int newLives);
 
+    /**
+     * Wins the game with playerLives remaining.
+     *
+     * @param playerLives the amount of lives remaining.
+     */
+    void winGame(int playerLives);
+
+    /**
+     * Loses the game.
+     */
+    void loseGame();
+
 
 }

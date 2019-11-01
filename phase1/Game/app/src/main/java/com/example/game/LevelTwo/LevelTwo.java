@@ -4,8 +4,6 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import com.example.game.GenericLevel;
-import com.example.game.Heart;
-import com.example.game.SpawnObstacleTask;
 
 import java.util.ArrayList;
 import java.util.Timer;

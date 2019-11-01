@@ -22,8 +22,8 @@ public class Obstacle extends GameObject {
      *
      * @param moveSpeed how fast this obstacle is going to be moving
      */
-    public Obstacle(int x, int y, float moveSpeed) {
-        super(x, y);
+    public Obstacle(int x, int y, int size, int color, float moveSpeed) {
+        super(x, y, size, color);
         this.Vx = moveSpeed;
         this.outOfBounds = false;
         this.collided = false;
@@ -48,12 +48,9 @@ public class Obstacle extends GameObject {
      */
     @Override
     public void draw(Canvas canvas) {
-        Paint paintText = new Paint();
-        paintText.setTextSize(90);
-        paintText.setTypeface(Typeface.DEFAULT_BOLD);
-        paintText.setColor(Color.GREEN);
 
-        canvas.drawText("{}", x, y, paintText);
+
+        canvas.drawText("{}", x, y, getPaintText());
     }
 
     public boolean isOutOfBounds() {

@@ -29,7 +29,7 @@ public abstract class GameObject {
         y = newY;
     }
 
-    Paint getPaintText() {
+    public Paint getPaintText() {
         return paintText;
     }
 

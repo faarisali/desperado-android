@@ -108,6 +108,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         switch (view.getId()) {
             case R.id.startButton:
                 presenter.runRound();
+                break;
             case R.id.position0:
                 presenter.setPositionValue(0);
                 break;

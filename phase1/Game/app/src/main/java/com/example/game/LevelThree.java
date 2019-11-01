@@ -1,7 +1,6 @@
 package com.example.game;
 
 
-
 import java.util.Observable;
 import java.util.Random;
 
@@ -18,21 +17,12 @@ public class LevelThree extends Observable {
     /**
      * The amount of lives the player has remaining.
      */
-    private int lives = 2;
+    private int lives;
 
-//    public LevelThree(Drawable backgroundImage, int lives) {
-//        super(backgroundImage, lives);
-//        playerPosition = 1;
-//        playerTarget = 1;
-//        buildGameObjects();
-//    }
-
-    LevelThree() {
-        super();
+    LevelThree(int lives) {
+        this.lives = lives;
         playerPosition = 1;
         playerTarget = 1;
-        //buildGameObjects();
-        update();
     }
 
     /**
@@ -48,18 +38,16 @@ public class LevelThree extends Observable {
             System.out.println("Computer Position" + computerPosition);
 
             if (computerTarget == playerPosition) {
-                if (playerLives == 1) {
-                    loseGame();
-                } else {
-                    //super.setLives(playerLives - 1);
-                    lives -= 1;
+                lives -= 1;
+                if (lives == 0) {
+                    update(1); // Lose game
                 }
             }
             if (playerTarget == computerPosition) {
-                winGame();
+                update(1); // Win game
             }
         }
-        update();
+        update(0);
     }
 
     /**
@@ -69,7 +57,7 @@ public class LevelThree extends Observable {
      */
     void setPlayerPosition(int position) {
         this.playerPosition = position;
-        update();
+        update(0);
     }
 
     /**
@@ -79,23 +67,15 @@ public class LevelThree extends Observable {
      */
     void setPlayerTarget(int target) {
         this.playerTarget = target;
-        update();
-    }
-
-    private void winGame() {
-        //TODO
-    }
-
-    private void loseGame() {
-        //TODO
+        update(0);
     }
 
     /**
-     * Updates the game view using the observer pattern.
+     * Will end the game using the observer pattern.
      */
-    public void update() {
+    public void update(int finish) {
         setChanged();
-        int[] data = {playerPosition, playerTarget, lives};
+        int[] data = {playerPosition, playerTarget, lives, finish};
         notifyObservers(data);
     }
 }

@@ -1,18 +1,24 @@
 package com.example.game;
 
-import android.annotation.TargetApi;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class LevelOne extends GenericLevel{
+
+    private Paint textStyle = new Paint();
 
     private ArrayList<TappableObject> tappables = new ArrayList<>();
 
     public LevelOne () {
         super(3);
+        textStyle.setTextSize(60);
+        textStyle.setTypeface(Typeface.DEFAULT_BOLD);
+        textStyle.setColor(Color.YELLOW);
     }
 
     public void spawnTappables(){
@@ -23,16 +29,17 @@ public class LevelOne extends GenericLevel{
         double rand = Math.random();
         if (rand < 0.05) {
             tappables.add(new Coin(randHorizontal, 20));
-            System.out.println("Spawned a coin");
+//            System.out.println("Spawned a coin");
         } else if (rand > 0.99) {
             tappables.add(new Bomb(randHorizontal, 20));
-            System.out.println("Spawned a bomb");
+//            System.out.println("Spawned a bomb");
         }
     }
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
+        canvas.drawText("Coins : " + getGold(), 0, 40, textStyle);
         for (TappableObject tappableObject : tappables) {
             tappableObject.draw(canvas);
         }

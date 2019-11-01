@@ -9,7 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoseActivity"></activity>
+        <activity android:name=".WinActivity"></activity>
+        <activity android:name=".LoseActivity" />
+        <activity android:name=".PauseScreen">
+        </activity>
+        <activity android:name=".MainMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LevelOneActivity"></activity>
         <activity android:name=".LevelThreeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

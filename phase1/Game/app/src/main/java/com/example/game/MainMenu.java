@@ -49,10 +49,9 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(USERNAME);
         TextView usernameText = findViewById(R.id.usernameTextView);
-        usernameText.setText(message);
+        String username = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
+        usernameText.setText(username);
         customizeCharacter();
     }
 

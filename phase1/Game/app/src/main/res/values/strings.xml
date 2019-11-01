@@ -2,4 +2,5 @@
     <string name="app_name">Game</string>
     <string name="username">USERNAME</string>
     <string name="password">PASSWORD</string>
+    <string name="accounts" />
 </resources>

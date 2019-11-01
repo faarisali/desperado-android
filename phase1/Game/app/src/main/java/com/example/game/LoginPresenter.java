@@ -25,9 +25,6 @@ public class LoginPresenter {
         }
     }
 
-    public void notifyInvalidUsername() {
-        loginView.displayInvalidUsernameError();
-    }
 
     public void notifySuccess(String username) {
         if (loginView != null) {

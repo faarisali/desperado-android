@@ -55,11 +55,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         password.setText("");
     }
 
-    @Override
-    public void displayInvalidUsernameError() {
-        Toast.makeText(this, "Username cannot contain $", Toast.LENGTH_LONG).show();
-    }
-
     public void navigateToHome(String username) {
         Intent intent = new Intent(this, MainMenu.class);
         intent.putExtra(MainMenu.USERNAME, username);

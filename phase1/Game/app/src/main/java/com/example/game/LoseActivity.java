@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.game.LevelOne.LevelOneActivity;
 import com.example.game.LevelThree.LevelThreeActivity;
 
 public class LoseActivity extends AppCompatActivity implements View.OnClickListener {
@@ -55,15 +56,18 @@ public class LoseActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.mainMenuButton:
                 Intent intent = new Intent(this, MainMenu.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
+                finish();
                 break;
-            case R.id.restartButton:
-                Intent intent2 = new Intent(this, LevelThreeActivity.class);
-                intent2.putExtra("Points", 0);
-                intent2.putExtra("Gold", 0); //Temporary until all are converted to activities
-                intent2.putExtra("Lives", 3);
-                startActivity(intent2);
-                break;
+//            case R.id.restartButton: //For future when all activities are working
+//                Intent intent2 = new Intent(this, LevelOneActivity.class);
+//                intent2.putExtra("Points", 0);
+//                intent2.putExtra("Gold", 0); //Temporary until all are converted to activities
+//                intent2.putExtra("Lives", 3);
+//                startActivity(intent2);
+//                finish();
+//                break;
         }
     }
 }

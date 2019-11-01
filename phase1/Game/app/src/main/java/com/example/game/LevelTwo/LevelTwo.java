@@ -2,7 +2,7 @@ package com.example.game.LevelTwo;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
-
+import android.graphics.Color;
 import com.example.game.GenericLevel;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class LevelTwo extends GenericLevel {
     private ArrayList<Obstacle> obstacleList = new ArrayList<Obstacle>();
     private int groundY = 500;
     private float defaultObstacleMoveSpeed = 9;
-    private PlayerLevelTwo player = new PlayerLevelTwo(groundY);
+    private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, 60, Color.BLUE);
     private int lives;
     private Timer time = new Timer();
     private ArrayList<Heart> heartList = new ArrayList<>();
@@ -44,7 +44,7 @@ public class LevelTwo extends GenericLevel {
     private void populateHeartList(int lives) {
         int xIncrement = 45;
         for (int i = 0; i < lives; i++) {
-            heartList.add(new Heart(xIncrement, 55));
+            heartList.add(new Heart(xIncrement, 55, 60, Color.RED));
             xIncrement += 80;
         }
 
@@ -54,7 +54,8 @@ public class LevelTwo extends GenericLevel {
         this.time.schedule(new TimerTask() {
             @Override
             public void run() {
-                returnToMain();
+//                returnToMain();
+//                isRunning = false;
             }
         }, seconds * 1000);//5 second countdown
     }
@@ -129,14 +130,14 @@ public class LevelTwo extends GenericLevel {
         this.lives--;
         heartList.remove(heartList.size() - 1);
         if (this.lives == 0) {
-            returnToMain();
+            isRunning = false;
         }
     }
 
     private void detectCollisions() {
         for(Obstacle item: obstacleList) {
             if (-40 < player.x - item.x && player.x - item.x < 45){
-                if (player.y - item.y > -60 && item.isCollided() == false)
+                if (player.y - item.y > -90 && item.isCollided() == false)
                     updateLives();
                 item.setCollided(true);
             }

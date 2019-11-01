@@ -1,14 +1,12 @@
-package com.example.game;
+package com.example.game.Login;
 
 public class LoginPresenter {
     private LoginView loginView;
     private  LoginModel loginModel;
 
-    LoginPresenter(LoginView loginView) {
-        LoginAndroidMapDatabase.setSingleton(loginView.getContext());
+    LoginPresenter(LoginView loginView, LoginMapDatabase loginMapDatabase) {
         this.loginView = loginView;
-        LoginAndroidMapDatabase loginAndroidMapDatabase = LoginAndroidMapDatabase.getSingleton();
-        this.loginModel = new LoginModel(this, loginAndroidMapDatabase);
+        this.loginModel = new LoginModel(this, loginMapDatabase);
     }
 
     public void login(String username, String password) {
@@ -25,6 +23,11 @@ public class LoginPresenter {
         }
     }
 
+    public void notifyInvalidUser() {
+        if (loginView != null) {
+            loginView.displayInvalidUser();
+        }
+    }
 
     public void notifySuccess(String username) {
         if (loginView != null) {

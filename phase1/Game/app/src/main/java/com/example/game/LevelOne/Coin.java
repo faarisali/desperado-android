@@ -6,9 +6,13 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 
+/** A coin in level 1*/
 public class Coin extends TappableObject {
+
+    /** The style of this coin*/
     private Paint paint;
 
+    /** Constructor for a new coin object*/
     public Coin(int newX, int newY) {
         super(newX, newY, 50, 50);
         this.paint = new Paint();
@@ -17,21 +21,12 @@ public class Coin extends TappableObject {
         paint.setColor(Color.YELLOW);
     }
 
+    /** Draw this coin*/
     public void draw(Canvas canvas) {
         canvas.drawCircle(super.x + 25, super.y + 25, 25, paint);
     }
 
-    public boolean isTapped(MotionEvent event) {
-        float x = event.getX();
-        float y = event.getY();
-
-        if (super.x <= x && x <= super.x + super.getLength()) {
-            return super.y <= y && x <= super.y + super.getHeight();
-        } else {
-            return false;
-        }
-    }
-
+    /** Response of this coin when tapped*/
     public boolean tapped(int x, int y) {
         if (super.x <= x && x <= super.x + super.getLength()) {
             return super.y <= y && y <= super.y + super.getLength();

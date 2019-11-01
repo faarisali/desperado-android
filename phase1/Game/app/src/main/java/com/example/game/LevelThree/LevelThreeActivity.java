@@ -155,8 +155,9 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         intent.putExtra("Points", pointsAccumulated);
         intent.putExtra("Gold", goldAccumulated);
         intent.putExtra("Lives", 0);
-
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
+        finish();
     }
 
     /**
@@ -169,7 +170,10 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         intent.putExtra("Points", pointsAccumulated);
         intent.putExtra("Gold", goldAccumulated);
         intent.putExtra("Lives", playerLives);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
+        finish();
+
     }
 
     @Override

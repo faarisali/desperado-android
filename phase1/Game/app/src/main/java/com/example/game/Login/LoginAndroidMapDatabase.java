@@ -1,26 +1,30 @@
-package com.example.game;
+package com.example.game.Login;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.example.game.R;
 
 import java.util.Map;
 
 public class LoginAndroidMapDatabase extends LoginMapDatabase {
     private SharedPreferences sharedPref;
     private final String currentUser = "$current_user$";
-    private static LoginAndroidMapDatabase loginAndroidMapDatabase;
+    private static LoginAndroidMapDatabase loginAndroidMapDatabase = null;
 
     static void setSingleton(Context context) {
-        loginAndroidMapDatabase = new LoginAndroidMapDatabase(context);
+            loginAndroidMapDatabase = new LoginAndroidMapDatabase(context);
+        if (loginAndroidMapDatabase.getCurrentUser() == null) {
+            loginAndroidMapDatabase.setCurrentUser("");
+        }
     }
 
-    static LoginAndroidMapDatabase getSingleton() {
+    public static LoginAndroidMapDatabase getSingleton() {
         return loginAndroidMapDatabase;
     }
 
     private LoginAndroidMapDatabase(Context context) {
         sharedPref = context.getSharedPreferences(String.valueOf(R.string.accounts), Context.MODE_PRIVATE);
-        save(currentUser, "");
     }
     @Override
     public void save(String username, String password) {

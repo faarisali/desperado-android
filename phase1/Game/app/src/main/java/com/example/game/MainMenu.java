@@ -1,16 +1,21 @@
 package com.example.game;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game.LevelOne.LevelOneActivity;
 import com.example.game.LevelThree.LevelThreeActivity;
+import com.example.game.Login.LoginActivity;
+import com.example.game.Login.LoginAndroidMapDatabase;
 
 public class MainMenu extends AppCompatActivity {
 
@@ -31,6 +36,12 @@ public class MainMenu extends AppCompatActivity {
             R.drawable.cowboy_bandit
     };
 
+    /** The switch that toggles the music*/
+    private Switch musicSwitch;
+
+    /** The menu music player*/
+    private MediaPlayer player;
+
     public static final String USERNAME = "username";
 
     public void customizeCharacter() {
@@ -46,6 +57,35 @@ public class MainMenu extends AppCompatActivity {
         });
     }
 
+    public void playMusic() {
+        if (player == null) {
+            player = MediaPlayer.create(this, R.raw.music);
+        }
+        player.start();
+    }
+
+    public void stopMusic() {
+        if (player != null) {
+            player.release();
+            player = null;
+        }
+    }
+
+    public void toggleMusic() {
+        musicSwitch = findViewById(R.id.musicSwitch);
+    musicSwitch.setOnCheckedChangeListener(
+        new CompoundButton.OnCheckedChangeListener() {
+          @Override
+          public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+            if (isChecked) {
+              playMusic();
+            } else {
+                stopMusic();
+            }
+          }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +94,7 @@ public class MainMenu extends AppCompatActivity {
         String username = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
         usernameText.setText(username);
         customizeCharacter();
+        toggleMusic();
     }
 
     /**
@@ -76,4 +117,9 @@ public class MainMenu extends AppCompatActivity {
         startActivity(levelThree);
     }
 
+    public void logOut(View v) {
+        Intent logout = new Intent(this, LoginActivity.class);
+        LoginAndroidMapDatabase.getSingleton().setCurrentUser("");
+        startActivity(logout);
+    }
 }

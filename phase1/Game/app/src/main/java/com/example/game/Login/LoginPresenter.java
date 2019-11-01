@@ -1,6 +1,4 @@
-package com.example.game;
-
-import android.content.Context;
+package com.example.game.Login;
 
 public class LoginPresenter {
     private LoginView loginView;

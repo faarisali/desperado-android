@@ -71,6 +71,9 @@ public class LoginAndroidMapDatabase implements LoginMapDatabase {
         }
 
         String[] userInfo = userInfoString.split("\\$");
+        if (userInfo.length < 8) {
+            return null;
+        }
         String usernameVal = userInfo[0];
         String password = userInfo[1];
         int totalGold = Integer.parseInt(userInfo[2]);

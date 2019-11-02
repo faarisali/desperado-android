@@ -1,8 +1,9 @@
 package com.example.game.LevelTwo;
 
 import android.graphics.Canvas;
-import android.view.MotionEvent;
 import android.graphics.Color;
+import android.view.MotionEvent;
+
 import com.example.game.GenericLevel;
 
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ public class LevelTwo extends GenericLevel {
     private float defaultObstacleMoveSpeed = 9;
     private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, 60, Color.BLUE);
     private Points points = new Points(45, 110, 50, Color.WHITE, 0);
-    private int lives;
     private Timer time = new Timer();
+    private int lives = 3;
     private ArrayList<Heart> heartList = new ArrayList<>();
     /**
      * Constructs a GenericLevel
@@ -26,16 +27,15 @@ public class LevelTwo extends GenericLevel {
      */
     public LevelTwo(int lives) {
         new SpawnObstacleTask(this).run();
-        this.lives = lives;
-        countDown(5);
+        lives = lives;
+        countDown(30);
         populateHeartList(this.lives);
     }
 
     public LevelTwo() {
         new SpawnObstacleTask(this).run();
-        this.lives = 3;
         isRunning = true;
-        countDown(5);
+        countDown(30);
         populateHeartList(this.lives);
     }
 
@@ -55,8 +55,7 @@ public class LevelTwo extends GenericLevel {
         this.time.schedule(new TimerTask() {
             @Override
             public void run() {
-//                returnToMain();
-//                isRunning = false;
+                isRunning = false;
             }
         }, seconds * 1000);//5 second countdown
     }
@@ -104,8 +103,7 @@ public class LevelTwo extends GenericLevel {
      * updates every obstacle in managed in this Level2
      */
     private void updateObstacles() {
-        for (Obstacle o :
-                obstacleList) {
+        for (Obstacle o : obstacleList.toArray(new Obstacle[0])) {
             if (removeOutOfBoundsObstacles(o)) {
                 this.points.setPoints(this.points.getPoints() + 100);
             }
@@ -150,6 +148,11 @@ public class LevelTwo extends GenericLevel {
                 }
             }
         }
+    }
+
+    @Override
+    public int getLives() {
+        return this.lives;
     }
 
     @Override

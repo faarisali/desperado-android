@@ -39,14 +39,37 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
     }
 
+    public void winGame(GameManager game) {
+        game.updateStats();
+        game.isPaused = true;
+        Intent win = new Intent(this, WinActivity.class);
+        win.putExtra("Points", game.getPoints());
+        win.putExtra("Gold", game.getGoldCoins());
+        win.putExtra("Lives", game.getCurrLives());
+        win.putExtra("total lives lost", game.getTotalLivesLost());
+        startActivity(win);
+        finish();
+    }
+
+    public void loseGame(GameManager game) {
+        game.updateStats();
+        game.isPaused = true;
+        Intent lose = new Intent(this, LoseActivity.class);
+        lose.putExtra("Points", game.getPoints());
+        lose.putExtra("Gold", game.getGoldCoins());
+        lose.putExtra("Lives", 0);
+        lose.putExtra("total lives lost", game.getTotalLivesLost());
+        startActivity(lose);
+        finish();
+    }
+
 
     public void pause() {
-        System.out.println("pause");
         Intent pauseMenu = new Intent(this, PauseScreen.class);
         if (currView != null) {
             currView.stop();
         }
-        startActivityForResult(pauseMenu, 0);
+        //startActivityForResult(pauseMenu, 0);
 
     }
 

@@ -6,6 +6,7 @@ import android.view.WindowManager;
 
 import com.example.game.AbstractActivity;
 import com.example.game.GameManager;
+import com.example.game.GameManagerObserver;
 import com.example.game.GameView;
 
 public class LevelOneActivity extends AbstractActivity {
@@ -17,6 +18,8 @@ public class LevelOneActivity extends AbstractActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         currView = new GameView(this);
         GameManager game = currView.gameManager;
+        GameManagerObserver observer = new GameManagerObserver(this);
+        game.setObserver(observer);
         game.changeLevel(1);
         setContentView(currView);
     }

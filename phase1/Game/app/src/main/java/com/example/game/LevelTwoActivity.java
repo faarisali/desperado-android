@@ -13,8 +13,11 @@ public class LevelTwoActivity extends AbstractActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         currView = new GameView(this);
         GameManager game = currView.gameManager;
+        GameManagerObserver observer = new GameManagerObserver(this);
+        game.setObserver(observer);
         game.changeLevel(2);
         setContentView(currView);
     }
+
 
 }

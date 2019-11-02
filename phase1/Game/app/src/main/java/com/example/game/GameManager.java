@@ -20,11 +20,42 @@ public class GameManager {
      */
     private int gridWidth;
 
+    public void setObserver(GameManagerObserver observer) {
+        this.observer = observer;
+    }
+
+    private GameManagerObserver observer;
+
     /**
      * List of all levels in this GameManager.
      */
 
-    private boolean isPaused;
+    public boolean isPaused;
+
+    public int getTotalLivesLost() {
+        return totalLivesLost;
+    }
+
+    public int getCurrLives() {
+        return currLevel.getLives();
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public int getCurrPoints() {
+        return currLevel.getPoints();
+    }
+
+    public int getGoldCoins() {
+        return goldCoins;
+    }
+
+    public int getCurrGold() {
+        return currLevel.getGold();
+    }
+
     private int totalLivesLost;
     private int points;
     private int goldCoins;
@@ -84,6 +115,7 @@ public class GameManager {
     public void update() {
         if (!isPaused) {
             currLevel.update();
+            observer.update(this);
         }
     }
 
@@ -95,7 +127,7 @@ public class GameManager {
         currLevel.isRunning = false;
     }
 
-    private void updateStats() {
+    public void updateStats() {
         totalLivesLost -= 3 - currLevel.getLives();
         points += currLevel.getPoints();
         goldCoins += currLevel.getGold();

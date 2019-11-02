@@ -8,7 +8,6 @@ import android.widget.ToggleButton;
 
 import com.example.game.AbstractActivity;
 import com.example.game.LoseActivity;
-import com.example.game.PauseScreen;
 import com.example.game.R;
 import com.example.game.WinActivity;
 
@@ -170,23 +169,10 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         intent.putExtra("Points", pointsAccumulated);
         intent.putExtra("Gold", goldAccumulated);
         intent.putExtra("Lives", playerLives);
+        intent.putExtra("total lives lost", 3 - playerLives);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
         finish();
-
-    }
-
-    @Override
-    protected void onResume() {
-        System.out.println("Resume");
-        super.onResume();
-
-    }
-
-    public void pause() {
-        System.out.println("pause");
-        Intent pauseMenu = new Intent(this, PauseScreen.class);
-        startActivityForResult(pauseMenu, 0);
 
     }
 

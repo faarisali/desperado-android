@@ -9,21 +9,26 @@ public class LoginModel {
         this.loginMapDatabase = loginMapDatabase;
     }
     public void login(String username, String password) {
-        if (!password.equals(loginMapDatabase.getPass(username))) {
+        User nonValidatedUser = loginMapDatabase.getUser(username);
+        if (nonValidatedUser == null) {
+            presenter.notifyError();
+        }
+        if (!password.equals(nonValidatedUser.getPassword())) {
             presenter.notifyError();
         } else {
-            presenter.notifySuccess(username);
-            loginMapDatabase.setCurrentUser(username);
+            presenter.notifySuccess();
+            loginMapDatabase.setCurrentUser(nonValidatedUser);
         }
     }
 
     public void signup(String username, String password) {
-        if (username.equals("") || username.contains("$")) {
+        if (username.equals("") || username.contains("$") || password.contains("$")) {
             presenter.notifyInvalidUser();
             return;
         }
-        loginMapDatabase.save(username, password);
-        presenter.notifySuccess(username);
-        loginMapDatabase.setCurrentUser(username);
+        User newUser = new User(username, password, 0, 0, 0, 0, 0, 0, false);
+        loginMapDatabase.addUser(newUser);
+        presenter.notifySuccess();
+        loginMapDatabase.setCurrentUser(newUser);
     }
 }

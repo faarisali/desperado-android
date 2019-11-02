@@ -40,8 +40,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         setContentView(R.layout.activity_login);
         LoginAndroidMapDatabase.setSingleton(this);
         LoginMapDatabase db = LoginAndroidMapDatabase.getSingleton();
-        if (!db.getCurrentUser().equals("")) {
-            navigateToHome(db.getCurrentUser());
+        if (db.getCurrentUser() != null) {
+            navigateToHome();
         }
         presenter = new LoginPresenter(this, LoginAndroidMapDatabase.getSingleton());
 
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         Toast.makeText(this, "Username cannot be blank or contain $", Toast.LENGTH_LONG).show();
     }
 
-    public void navigateToHome(String username) {
+    public void navigateToHome() {
         Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
         finish();

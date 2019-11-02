@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/menu"
     tools:context=".MainMenu">
 
     <Button
@@ -126,6 +128,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/costumeButton"
         app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Switch
+        android:id="@+id/nightModeSwitch"
+        android:layout_width="96dp"
+        android:layout_height="40dp"
+        android:text="Night Mode"
+        app:layout_constraintBottom_toTopOf="@+id/musicSwitch"
+        app:layout_constraintEnd_toStartOf="@+id/costumeButton"
+        app:layout_constraintHorizontal_bias="0.771"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@ import com.example.game.LevelThree.LevelThreeActivity;
 import com.example.game.LevelTwo.LevelTwoActivity;
 import com.example.game.Login.LoginActivity;
 import com.example.game.Login.LoginAndroidMapDatabase;
+import com.example.game.Login.User;
 
 public class MainMenu extends AppCompatActivity {
 
@@ -117,11 +118,29 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         TextView usernameText = findViewById(R.id.usernameTextView);
-        String username = LoginAndroidMapDatabase.getSingleton().getCurrentUser().getUsername();
+        User currentUser = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
+        String username = currentUser.getUsername();
         usernameText.setText(username);
         customizeCharacter();
         toggleMusic();
         toggleNightMode();
+        updateStats();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateStats();
+    }
+
+    private void updateStats() {
+        User currentUser = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
+        TextView points = findViewById(R.id.totalPoints);
+        points.setText(String.valueOf(currentUser.getTotalPoints()));
+        TextView gold = findViewById(R.id.totalGold);
+        gold.setText(String.valueOf(currentUser.getTotalGold()));
+        TextView livesLost = findViewById(R.id.totalLivesLost);
+        livesLost.setText(String.valueOf(currentUser.getTotalLivesLost()));
     }
 
     /**

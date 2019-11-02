@@ -14,7 +14,7 @@ public class Coin extends TappableObject {
 
     /** Constructor for a new coin object*/
     public Coin(int newX, int newY) {
-        super(newX, newY, 50, 50);
+        super(newX, newY, 150, 150);
         this.paint = new Paint();
         paint.setTextSize(60);
         paint.setTypeface(Typeface.DEFAULT_BOLD);

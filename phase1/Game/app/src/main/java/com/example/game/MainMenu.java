@@ -116,7 +116,7 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         TextView usernameText = findViewById(R.id.usernameTextView);
-        String username = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
+        String username = LoginAndroidMapDatabase.getSingleton().getCurrentUser().getUsername();
         usernameText.setText(username);
         customizeCharacter();
         toggleMusic();
@@ -145,7 +145,7 @@ public class MainMenu extends AppCompatActivity {
 
     public void logOut(View v) {
         Intent logout = new Intent(this, LoginActivity.class);
-        LoginAndroidMapDatabase.getSingleton().setCurrentUser("");
+        LoginAndroidMapDatabase.getSingleton().setCurrentUser(null);
         startActivity(logout);
     }
 }

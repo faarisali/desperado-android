@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 
 import com.example.game.R;
 
-import java.util.Map;
-
 public class LoginAndroidMapDatabase implements LoginMapDatabase {
     private SharedPreferences sharedPref;
     private final String currentUserKey = "$current_user$";
@@ -58,6 +56,13 @@ public class LoginAndroidMapDatabase implements LoginMapDatabase {
     public User getUser(String username) {
         String userInfo = load(username);
         return stringToUser(userInfo);
+    }
+
+    @Override
+    public User addDefaultUser(String username, String password) {
+        User newUser = new User(username, password, 0, 0, 0, R.drawable.cowboy_yellow, R.raw.music, 0, false);
+        addUser(newUser);
+        return newUser;
     }
 
     public User stringToUser(String userInfoString) {

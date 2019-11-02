@@ -12,8 +12,7 @@ public class LoginModel {
         User nonValidatedUser = loginMapDatabase.getUser(username);
         if (nonValidatedUser == null) {
             presenter.notifyError();
-        }
-        if (!password.equals(nonValidatedUser.getPassword())) {
+        } else if (!password.equals(nonValidatedUser.getPassword())) {
             presenter.notifyError();
         } else {
             presenter.notifySuccess();
@@ -26,8 +25,7 @@ public class LoginModel {
             presenter.notifyInvalidUser();
             return;
         }
-        User newUser = new User(username, password, 0, 0, 0, 0, 0, 0, false);
-        loginMapDatabase.addUser(newUser);
+        User newUser = loginMapDatabase.addDefaultUser(username, password);
         presenter.notifySuccess();
         loginMapDatabase.setCurrentUser(newUser);
     }

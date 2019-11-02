@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.example.game.LevelOne.LevelOneActivity;
 import com.example.game.LevelThree.LevelThreeActivity;
+import com.example.game.Login.LoginAndroidMapDatabase;
+import com.example.game.Login.User;
 
 public class LoseActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,6 +23,7 @@ public class LoseActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent(); //get the data from sender
         int pointsValue = intent.getIntExtra("Points", 0);
         int goldValue = intent.getIntExtra("Gold", 0);
+        int totalLivesLost = intent.getIntExtra("total lives lost", 0);
 
         Button mainMenu = findViewById(R.id.mainMenuButton);
         mainMenu.setOnClickListener(this);
@@ -29,6 +32,13 @@ public class LoseActivity extends AppCompatActivity implements View.OnClickListe
         restart.setOnClickListener(this);
 
         displayStats(pointsValue, goldValue);
+
+        // Update user info
+        User currentUser = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
+        currentUser.setTotalPoints(currentUser.getTotalPoints() + pointsValue);
+        currentUser.setTotalGold(currentUser.getTotalGold() + goldValue);
+        currentUser.setTotalLivesLost(currentUser.getTotalLivesLost() + totalLivesLost);
+        LoginAndroidMapDatabase.getSingleton().addUser(currentUser);
 
     }
 

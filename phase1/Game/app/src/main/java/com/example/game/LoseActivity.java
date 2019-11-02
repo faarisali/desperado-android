@@ -56,6 +56,7 @@ public class LoseActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.mainMenuButton:
                 Intent intent = new Intent(this, MainMenu.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 finish();
                 break;

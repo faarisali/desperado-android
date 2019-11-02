@@ -16,7 +16,7 @@ public class SpawnObstacleTask extends TimerTask {
 
     @Override
     public void run() {
-        int delay = (1 + new Random().nextInt(2)) * 1000;
+        int delay = (2 + new Random().nextInt(2)) * 1000;
         timer.schedule(new SpawnObstacleTask(this.l2), delay);
         Obstacle obstacle = new Obstacle(1000, this.l2.getGroundY(), 90, Color.GREEN, this.l2.getDefaultObstacleMoveSpeed());
         this.l2.getObstacleList().add(obstacle);

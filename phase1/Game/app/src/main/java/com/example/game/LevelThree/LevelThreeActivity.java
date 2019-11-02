@@ -1,20 +1,20 @@
 package com.example.game.LevelThree;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
+import com.example.game.AbstractActivity;
 import com.example.game.LoseActivity;
+import com.example.game.PauseScreen;
 import com.example.game.R;
 import com.example.game.WinActivity;
 
 import java.util.List;
 
-public class LevelThreeActivity extends AppCompatActivity implements View.OnClickListener, LevelThreeView {
+public class LevelThreeActivity extends AbstractActivity implements View.OnClickListener, LevelThreeView {
     /**
      * The presenter responsible for this activity.
      */
@@ -155,7 +155,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         intent.putExtra("Points", pointsAccumulated);
         intent.putExtra("Gold", goldAccumulated);
         intent.putExtra("Lives", 0);
-
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
         finish();
     }
@@ -170,8 +170,25 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         intent.putExtra("Points", pointsAccumulated);
         intent.putExtra("Gold", goldAccumulated);
         intent.putExtra("Lives", playerLives);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
         finish();
 
     }
+
+    @Override
+    protected void onResume() {
+        System.out.println("Resume");
+        super.onResume();
+
+    }
+
+    public void pause() {
+        System.out.println("pause");
+        Intent pauseMenu = new Intent(this, PauseScreen.class);
+        startActivityForResult(pauseMenu, 0);
+
+    }
+
+
 }

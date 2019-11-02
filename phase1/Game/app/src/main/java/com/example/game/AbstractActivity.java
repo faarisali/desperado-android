@@ -2,26 +2,16 @@ package com.example.game;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
-    GameView currView;
-    boolean backPress = false;
+public abstract class AbstractActivity extends AppCompatActivity {
+    public GameView currView;
+    public boolean backPress = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-       requestWindowFeature(Window.FEATURE_NO_TITLE);
-       getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //setContentView(R.layout.activity_main);
-        currView = new GameView(this);
-        setContentView(currView);
-
     }
-
 
     @Override
     protected void onPause() {
@@ -43,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         System.out.println("Resume");
         super.onResume();
-        currView.resume();
+        if (currView != null) {
+            currView.resume();
+        }
 
     }
 
@@ -51,9 +43,12 @@ public class MainActivity extends AppCompatActivity {
     public void pause() {
         System.out.println("pause");
         Intent pauseMenu = new Intent(this, PauseScreen.class);
-        currView.stop();
+        if (currView != null) {
+            currView.stop();
+        }
         startActivityForResult(pauseMenu, 0);
 
     }
+
 
 }

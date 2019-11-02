@@ -6,9 +6,11 @@ import android.view.MotionEvent;
 import com.example.game.LevelOne.LevelOne;
 import com.example.game.LevelTwo.LevelTwo;
 
-import java.util.ArrayList;
 
-class GameManager {
+/**
+ * Presenter and Controller class for game levels.
+ */
+public class GameManager {
     /**
      * Height of the screen.
      */
@@ -18,49 +20,88 @@ class GameManager {
      */
     private int gridWidth;
 
-    int x, y;
-
     /**
      * List of all levels in this GameManager.
      */
-    private ArrayList<GenericLevel> levelList;
+
+    private boolean isPaused;
+    private int totalLivesLost;
+    private int points;
+    private int goldCoins;
 
     /**
      * the current level this GameManager is on.
      */
     private GenericLevel currLevel;
 
+
     public GameManager(int height, int width) {
         gridHeight = height;
         gridWidth = width;
-        levelList = new ArrayList<>();
-       // buildLevelList();
-        //currLevel = levelList.get(0);//Curr level is the first one first
-        currLevel = new LevelOne();
+        isPaused = false;
+
     }
 
-    public void buildLevelList() { //Probably want builder design pattern here idk
-        LevelOne myLevelOne = new LevelOne();
-        LevelTwo myLevelTwo = new LevelTwo(5);
-        //LevelThree myLevelThree = new LevelThree(null,5); //Temporary implementation for rn
-        levelList.add(myLevelOne);
-        levelList.add(myLevelTwo);
-        //levelList.add(myLevelThree);
+    /**
+     * input the level the number
+     *
+     * @param level the level to be selected.
+     */
+
+    public void changeLevel(int level) {
+        switch (level) {
+            case 1:
+                currLevel = new LevelOne();
+                break;
+            case 2:
+                currLevel = new LevelTwo();
+                break;
+            default:
+                break;
+        }
     }
+
+    public boolean isCurrLevelRunning() {
+        return currLevel.isRunning;
+    }
+
 
     public void tapEvent(MotionEvent event) {
-        currLevel.tapEvent(event);
+        if (!isPaused) {
+            currLevel.tapEvent(event);
+        }
+    }
+
+    public void startCurrLevel() {
+        currLevel.isRunning = true;
     }
 
     public void draw(Canvas canvas) {
-        //TODO
         currLevel.draw(canvas);
 
     }
+
     public void update() {
-        //TODO
-        currLevel.update();
-        System.out.println("Coins :" + currLevel.getGold());
+        if (!isPaused) {
+            currLevel.update();
+        }
     }
+
+    public void togglePause() {
+        isPaused = !isPaused;
+    }
+
+    public void currLevelStop() {
+        currLevel.isRunning = false;
+    }
+
+    private void updateStats() {
+        totalLivesLost -= 3 - currLevel.getLives();
+        points += currLevel.getPoints();
+        goldCoins += currLevel.getGold();
+
+    }
+
+
 
 }

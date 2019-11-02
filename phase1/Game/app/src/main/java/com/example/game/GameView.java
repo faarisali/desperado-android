@@ -10,7 +10,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
-    private GameManager gameManager;
+    public GameManager gameManager;
     private MainThread thread;
 
 //    /**

@@ -95,8 +95,11 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
             case R.id.target2:
                 presenter.setTargetValue(2);
                 break;
+            case R.id.bPause:
+                pause();
         }
     }
+
 
     /**
      * sets the players targeted position as selected and the un-selects the other positions.

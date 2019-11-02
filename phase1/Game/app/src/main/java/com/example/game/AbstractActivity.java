@@ -16,18 +16,13 @@ public abstract class AbstractActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (!backPress) {
-            pause();
+        if (currView != null) {
+            currView.stop();
         }
-        backPress = false;
+
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        backPress = true;
-    }
 
     @Override
     protected void onResume() {
@@ -35,6 +30,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
         super.onResume();
         if (currView != null) {
             currView.resume();
+            currView.gameManager.isPaused = false;
         }
 
     }
@@ -66,10 +62,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
     public void pause() {
         Intent pauseMenu = new Intent(this, PauseScreen.class);
-        if (currView != null) {
-            currView.stop();
-        }
-        //startActivityForResult(pauseMenu, 0);
+        startActivityForResult(pauseMenu, 0);
 
     }
 

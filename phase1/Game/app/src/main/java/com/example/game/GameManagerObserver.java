@@ -16,9 +16,8 @@ public class GameManagerObserver {
                 System.out.println(game.getCurrLives());
                 activity.winGame(game);
             }
+        } else if (game.isPaused) {
+            activity.pause();
         }
-//        else if (game.isPaused) {
-//            activity.pause();
-//        }
     }
 }

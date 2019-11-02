@@ -24,6 +24,6 @@ package com.example.game.Login;
 public interface LoginView {
     void displayError();
     void displayInvalidUser();
-    void navigateToHome(String username);
+    void navigateToHome();
 
 }

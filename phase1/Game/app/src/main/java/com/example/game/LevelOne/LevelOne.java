@@ -28,14 +28,11 @@ public class LevelOne extends GenericLevel {
     double randDouble = Math.random();
     randDouble = randDouble * 1080 + 1;
     int randHorizontal = (int) randDouble;
-    System.out.println(randHorizontal);
     double rand = Math.random();
     if (rand < 0.05) {
       tappables.add(new Coin(randHorizontal, 20));
-      //            System.out.println("Spawned a coin");
     } else if (rand > 0.99) {
       tappables.add(new Bomb(randHorizontal, 20));
-      //            System.out.println("Spawned a bomb");
     }
   }
 
@@ -85,11 +82,8 @@ public class LevelOne extends GenericLevel {
         }
       }
     }
-    // remove multiple coins per tap
-    //        for (TappableObject tappableObject : remove) {
-    //            tappables.remove(tappableObject);
-    //        }
-    // remove single coin per tap
+
+      // remove single coin per tap
     if (remove.size() > 0) {
       tappables.remove(remove.get(0));
     }

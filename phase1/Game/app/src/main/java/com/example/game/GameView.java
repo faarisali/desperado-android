@@ -13,11 +13,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public GameManager gameManager;
     private MainThread thread;
 
-//    /**
-//     * The background of the view
-//     */
-//    public Bitmap background;
-
     /**
      * The width of a character.
      */
@@ -50,21 +45,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
      **/
 
     /** Draw the Bitmap background*/
-//    public void onDraw(Canvas canvas) {
-//        canvas.drawBitmap(background, 0, 0, null); // draw the background
-//    }
 
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        // Create and scale the background
-//        Bitmap newBackground = BitmapFactory.decodeResource(getResources(), R.drawable.nightdesert);
-//        float scale = (float)newBackground.getHeight()/(float)getHeight();
-//        int newWidth = Math.round(newBackground.getWidth()/scale);
-//        int newHeight = Math.round(newBackground.getHeight()/scale);
-//        background = Bitmap.createScaledBitmap(newBackground, newWidth, newHeight, true);
-
-//        background = BitmapFactory.decodeResource(getResources(), R.drawable.nightdesert);
-//        adjustOpacity(background, 100);
 
         Paint paintText = new Paint();
         paintText.setTextSize(36);
@@ -75,7 +58,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         thread = new MainThread(getHolder(), this);
         thread.setRunning(true);
         thread.start();
-        System.out.println("surface created");
     }
 
     @Override
@@ -112,9 +94,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         return true;
     }
 
-
-    /**
-     */
     public void update() {
         gameManager.update();
     }
@@ -134,18 +113,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void resume() {
         surfaceCreated(getHolder());
-        System.out.println("starting");
-
     }
-
-    /** Change the opacity of a Bitmap*/
-//    private Bitmap adjustOpacity(Bitmap bitmap, int opacity) {
-//        Bitmap mutableBitmap = bitmap.isMutable() ? bitmap : bitmap.copy(Bitmap.Config.ARGB_8888, true);
-//        Canvas canvas = new Canvas(mutableBitmap);
-//        int colour = (opacity & 0xFF) << 24;
-//        canvas.drawColor(colour, PorterDuff.Mode.DST_IN);
-//        return mutableBitmap;
-//    }
 
 
 }

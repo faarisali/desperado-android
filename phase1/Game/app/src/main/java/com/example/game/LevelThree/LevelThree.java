@@ -35,8 +35,6 @@ public class LevelThree extends Observable {
             Random randomNum = new Random();
             int computerTarget = randomNum.nextInt(3);
             int computerPosition = randomNum.nextInt(3);
-            System.out.println("Computer Target" + computerTarget);
-            System.out.println("Computer Position" + computerPosition);
 
             if (computerTarget == playerPosition) {
                 lives -= 1;

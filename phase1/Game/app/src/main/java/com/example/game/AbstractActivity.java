@@ -26,7 +26,6 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        System.out.println("Resume");
         super.onResume();
         if (currView != null) {
             currView.resume();

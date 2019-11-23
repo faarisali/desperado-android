@@ -151,12 +151,12 @@
         android:id="@+id/bPause"
         android:layout_width="49dp"
         android:layout_height="45dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginLeft="120dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
         android:onClick="onClick"
         android:text="❚❚"
         app:layout_constraintBottom_toTopOf="@+id/target2"
-        app:layout_constraintStart_toEndOf="@+id/heart3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.077" />
 

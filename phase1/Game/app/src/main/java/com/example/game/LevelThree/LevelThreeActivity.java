@@ -43,7 +43,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level_three);
+
         Intent intent = getIntent(); //get the data from sender
         int lives = intent.getIntExtra("Lives", 3);
         goldAccumulated = intent.getIntExtra("Gold", 0);
@@ -51,7 +51,12 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
 
         presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree(lives)));
 
+        setContentView(R.layout.activity_level_three);
+        
         buildGameObjects();
+        presenter.setPositionValue(1); //sets values so that the default positions selected at start
+        presenter.setTargetValue(1);
+
     }
 
     /**

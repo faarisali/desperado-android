@@ -110,7 +110,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         for (int i = 0; i < playerPositions.size(); i++) {
             if (i == target) {
                 playerPositions.get(i).setChecked(true);
-                playerPositions.get(i).setBackgroundResource(R.drawable.crate);
+                playerPositions.get(i).setBackgroundResource(R.drawable.crateselected);
             } else {
                 playerPositions.get(i).setChecked(false);
                 playerPositions.get(i).setBackgroundResource(R.drawable.crate);
@@ -127,7 +127,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         for (int i = 0; i < targetPositions.size(); i++) {
             if (i == target) {
                 targetPositions.get(i).setChecked(true);
-                targetPositions.get(i).setBackgroundResource(R.drawable.crate);
+                targetPositions.get(i).setBackgroundResource(R.drawable.crateselected);
             } else {
                 targetPositions.get(i).setChecked(false);
                 targetPositions.get(i).setBackgroundResource(R.drawable.crate);

@@ -5,10 +5,6 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.Interpolator;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
@@ -18,9 +14,7 @@ import com.example.game.R;
 import com.example.game.WinActivity;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import static java.lang.Thread.sleep;
 
 public class LevelThreeActivity extends AbstractActivity implements View.OnClickListener, LevelThreeView {
     /**
@@ -74,9 +68,6 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
 
 
         buildGameObjects();
-//        presenter.setPositionValue(1); //sets values so that the default positions selected at start
-//        presenter.setTargetValue(1);
-
     }
 
     /**
@@ -136,22 +127,19 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     public void animateRound(int cpuTarget, int cpuPosition) {
         ImageView animatedPosition = targetViews.get(cpuPosition);
 
-
         ObjectAnimator moveUp = ObjectAnimator.ofFloat(animatedPosition, "translationY", -175f);
         moveUp.setDuration(500);
 
         ObjectAnimator stay = ObjectAnimator.ofFloat(animatedPosition, "translationY", 0);
-        moveUp.setDuration(2000);
-
-        setPreviousComputerTarget(cpuTarget);
+        stay.setDuration(2000);
 
         ObjectAnimator moveDown = ObjectAnimator.ofFloat(animatedPosition, "translationY", 25f);
         moveDown.setDuration(500);
 
-
-        AnimatorSet s = new AnimatorSet();
-        s.playSequentially(moveUp, stay, moveDown);
-        s.start();
+        AnimatorSet enemyAppear = new AnimatorSet();
+        enemyAppear.playSequentially(moveUp, stay, moveDown);
+        enemyAppear.start();
+        setPreviousComputerTarget(cpuTarget); //Informs the player where the CPU targeted
     }
 
     /**
@@ -160,7 +148,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
      * @param target the target position that the user wants to be at.
      */
     public void setPositionSelected(int target) {
-        for (int i = 0; i < playerPositions.size(); i++) {
+        for (int i = 0; i < playerViews.size(); i++) {
             if (i == target) {
                 playerViews.get(i).setVisibility(View.VISIBLE);
             } else {

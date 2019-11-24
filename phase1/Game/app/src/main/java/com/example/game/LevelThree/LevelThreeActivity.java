@@ -74,8 +74,8 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
 
 
         buildGameObjects();
-        presenter.setPositionValue(1); //sets values so that the default positions selected at start
-        presenter.setTargetValue(1);
+//        presenter.setPositionValue(1); //sets values so that the default positions selected at start
+//        presenter.setTargetValue(1);
 
     }
 
@@ -143,6 +143,8 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         ObjectAnimator stay = ObjectAnimator.ofFloat(animatedPosition, "translationY", 0);
         moveUp.setDuration(2000);
 
+        setPreviousComputerTarget(cpuTarget);
+
         ObjectAnimator moveDown = ObjectAnimator.ofFloat(animatedPosition, "translationY", 25f);
         moveDown.setDuration(500);
 
@@ -185,6 +187,24 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     }
 
     /**
+     * Sets an indicator for where the CPU targeted in the last round so user can see outcome of
+     * previous round.
+     *
+     * @param cpuTarget where the CPU targeted.
+     */
+    public void setPreviousComputerTarget(int cpuTarget) {
+        for (int i = 0; i < playerPositions.size(); i++) {
+            if (i == cpuTarget) {
+                playerPositions.get(i).setChecked(true);
+                playerPositions.get(i).setBackgroundResource(R.drawable.crateselected);
+            } else {
+                playerPositions.get(i).setChecked(false);
+                playerPositions.get(i).setBackgroundResource(R.drawable.crate);
+            }
+        }
+    }
+
+    /**
      * Sets the visible life bar of the player to the appropriate amount.
      *
      * @param newLives the new amount of lives to be displayed.
@@ -208,7 +228,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         intent.putExtra("Lives", 0);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
-        //finish();
+        finish();
     }
 
     /**
@@ -224,7 +244,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         intent.putExtra("total lives lost", 3 - playerLives);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
-        //finish();
+        finish();
 
     }
 

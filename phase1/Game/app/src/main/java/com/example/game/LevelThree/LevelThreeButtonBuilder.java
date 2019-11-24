@@ -76,4 +76,16 @@ class LevelThreeButtonBuilder {
         ImageView heart3 = view.findViewById(R.id.heart3);
         return Arrays.asList(heart1, heart2, heart3);
     }
+
+    /**
+     * Builds the images representing the CPU enemy picture.
+     *
+     * @return list of enemy images.
+     */
+    List<ImageView> buildTargetViews() {
+        ImageView targetPic0 = view.findViewById(R.id.enemyView0);
+        ImageView targetPic1 = view.findViewById(R.id.enemyView1);
+        ImageView targetPic2 = view.findViewById(R.id.enemyView2);
+        return Arrays.asList(targetPic0, targetPic1, targetPic2);
+    }
 }

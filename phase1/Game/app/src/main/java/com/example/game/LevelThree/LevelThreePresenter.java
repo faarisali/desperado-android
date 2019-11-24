@@ -55,7 +55,7 @@ public class LevelThreePresenter implements Observer {
         int cpuPosition = (int)(((Object[]) o)[4]);
 
         boolean gameFinished = (boolean)(((Object[]) o)[5]);
-        boolean animate = (boolean)(((Object[]) o)[5]);
+        boolean animate = (boolean)(((Object[]) o)[6]);
 
         if (animate) {
             levelThreeView.animateRound(cpuTarget, cpuPosition);

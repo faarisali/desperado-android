@@ -1,8 +1,14 @@
 package com.example.game.LevelThree;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.Interpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
@@ -12,6 +18,9 @@ import com.example.game.R;
 import com.example.game.WinActivity;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static java.lang.Thread.sleep;
 
 public class LevelThreeActivity extends AbstractActivity implements View.OnClickListener, LevelThreeView {
     /**
@@ -30,6 +39,11 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
      * The list of images representing the players lives remaining.
      */
     private List<ImageView> playerHearts;
+
+    /**
+     * The list of images representing the CPU enemy in their position.
+     */
+    private List<ImageView> targetViews;
 
     /**
      * the gold collected in previous levels.
@@ -52,7 +66,8 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree(lives)));
 
         setContentView(R.layout.activity_level_three);
-        
+
+
         buildGameObjects();
         presenter.setPositionValue(1); //sets values so that the default positions selected at start
         presenter.setTargetValue(1);
@@ -69,6 +84,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         builder.buildStartButton();
         playerHearts = builder.buildLifeBar();
 
+        targetViews = builder.buildTargetViews();
     }
 
     /**
@@ -107,13 +123,28 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
 
     /**
      * Animates the round played, moving elements cpuPosition and targeting cpuTarget.
-     * @param cpuTarget the position the CPU is targeting.
+     *
+     * @param cpuTarget   the position the CPU is targeting.
      * @param cpuPosition the position the CPU is currently at.
      */
     public void animateRound(int cpuTarget, int cpuPosition) {
-        //TODO
-    }
+        ImageView animatedPosition = targetViews.get(cpuPosition);
 
+
+        ObjectAnimator moveUp = ObjectAnimator.ofFloat(animatedPosition, "translationY", -175f);
+        moveUp.setDuration(500);
+
+        ObjectAnimator stay = ObjectAnimator.ofFloat(animatedPosition, "translationY", 0);
+        moveUp.setDuration(2000);
+
+        ObjectAnimator moveDown = ObjectAnimator.ofFloat(animatedPosition, "translationY", 25f);
+        moveDown.setDuration(500);
+
+
+        AnimatorSet s = new AnimatorSet();
+        s.playSequentially(moveUp, stay, moveDown);
+        s.start();
+    }
 
     /**
      * sets the players targeted position as selected and the un-selects the other positions.
@@ -173,7 +204,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         intent.putExtra("Lives", 0);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     /**
@@ -189,9 +220,10 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         intent.putExtra("total lives lost", 3 - playerLives);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
-        finish();
+        //finish();
 
     }
 
 
 }
+

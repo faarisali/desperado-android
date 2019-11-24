@@ -47,12 +47,21 @@ public class LevelThreePresenter implements Observer {
      */
     @Override
     public void update(Observable observable, Object o) {
-        int newPlayerPosition = ((int[]) o)[0];
-        int newPlayerTarget = ((int[]) o)[1];
-        int newPlayerLives = ((int[]) o)[2];
-        int gameFinished = ((int[]) o)[3];
+        int newPlayerPosition = (int)(((Object[]) o)[0]); //TODO: get rid of nasty casting
+        int newPlayerTarget = (int)(((Object[]) o)[1]);
+        int newPlayerLives = (int)(((Object[]) o)[2]);
 
-        if (gameFinished == 1) {
+        int cpuTarget = (int)(((Object[]) o)[3]);
+        int cpuPosition = (int)(((Object[]) o)[4]);
+
+        boolean gameFinished = (boolean)(((Object[]) o)[5]);
+        boolean animate = (boolean)(((Object[]) o)[5]);
+
+        if (animate) {
+            levelThreeView.animateRound(cpuTarget, cpuPosition);
+        }
+
+        if (gameFinished) {
             if (newPlayerLives == 0) {
                 levelThreeView.loseGame();
             } else {

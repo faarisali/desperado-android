@@ -15,6 +15,18 @@ public class LevelThree extends Observable {
     private int playerTarget;
 
     /**
+     * The position the cpu is currently targeting.
+     */
+    private int computerTarget;
+
+    /**
+     * the position the cpu is currently at.
+     */
+    private int computerPosition;
+
+
+
+    /**
      * The amount of lives the player has remaining.
      */
     private int lives;
@@ -33,20 +45,20 @@ public class LevelThree extends Observable {
         int playerLives = lives; //super.getLives();
         if (playerLives > 0) {
             Random randomNum = new Random();
-            int computerTarget = randomNum.nextInt(3);
-            int computerPosition = randomNum.nextInt(3);
+             computerTarget = randomNum.nextInt(3);
+             computerPosition = randomNum.nextInt(3);
 
             if (computerTarget == playerPosition) {
                 lives -= 1;
                 if (lives == 0) {
-                    update(1); // Lose game
+                    update(true, true); // Lose game
                 }
             }
             if (playerTarget == computerPosition) {
-                update(1); // Win game
+                update(true, true); // Win game
             }
         }
-        update(0);
+        update(false, true);
     }
 
     /**
@@ -56,7 +68,7 @@ public class LevelThree extends Observable {
      */
     void setPlayerPosition(int position) {
         this.playerPosition = position;
-        update(0);
+        update(false, false);
     }
 
     /**
@@ -66,15 +78,15 @@ public class LevelThree extends Observable {
      */
     void setPlayerTarget(int target) {
         this.playerTarget = target;
-        update(0);
+        update(false, false);
     }
 
     /**
-     * Will end the game using the observer pattern.
+     * Will update the game using the observer pattern.
      */
-    public void update(int finish) {
+    public void update(boolean finish, boolean animate) {
         setChanged();
-        int[] data = {playerPosition, playerTarget, lives, finish};
+        Object[] data = {playerPosition, playerTarget, lives, computerTarget, computerPosition, finish, animate};
         notifyObservers(data);
     }
 }

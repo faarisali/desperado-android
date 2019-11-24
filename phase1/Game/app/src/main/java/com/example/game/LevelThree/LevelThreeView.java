@@ -40,5 +40,12 @@ public interface LevelThreeView {
      */
     void loseGame();
 
+    /**
+     * Animates the round played, moving elements cpuPosition and targeting cpuTarget.
+     * @param cpuTarget the position the CPU is targeting.
+     * @param cpuPosition the position the CPU is currently at.
+     */
+    void animateRound(int cpuTarget, int cpuPosition);
 
-}
+
+    }

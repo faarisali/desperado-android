@@ -5,7 +5,7 @@ public interface LevelThreeView {
     /**
      * Creates all the buttons, image views, etc necessary for the level.
      */
-    void buildGameObjects();
+    void buildGameObjects(int spriteID);
 
     /**
      * sets the players targeted position as selected and the un-selects the other positions.

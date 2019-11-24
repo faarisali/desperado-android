@@ -61,19 +61,22 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         int lives = intent.getIntExtra("Lives", 3);
         goldAccumulated = intent.getIntExtra("Gold", 0);
         pointsAccumulated = intent.getIntExtra("Points", 0);
+        int spriteID = intent.getIntExtra("spriteID", R.drawable.cowboy_yellow);
 
         presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree(lives)));
 
         setContentView(R.layout.activity_level_three);
 
 
-        buildGameObjects();
+        buildGameObjects(spriteID);
     }
 
     /**
      * Creates all the buttons, image views, etc necessary for the level.
+     * @param spriteID the ID of the players selected appearence.
      */
-    public void buildGameObjects() {
+
+    public void buildGameObjects(int spriteID) {
         LevelThreeButtonBuilder builder = new LevelThreeButtonBuilder(this);
         playerPositions = builder.createPositions();
         targetPositions = builder.createTargets();
@@ -81,7 +84,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         playerHearts = builder.buildLifeBar();
 
         targetViews = builder.buildTargetViews();
-        playerViews = builder.buildPlayerViews();
+        playerViews = builder.buildPlayerViews(spriteID);
     }
 
     /**

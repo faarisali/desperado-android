@@ -182,16 +182,19 @@ public class MainMenu extends AppCompatActivity {
      */
     public void beginLevelOne(View v) {
         Intent levelOne = new Intent(this.getBaseContext(), LevelOneActivity.class);
+        levelOne.putExtra("spriteID", costumes[currentCostume]);
         startActivity(levelOne);
     }
 
     public void beginLevelTwo(View v) {
         Intent levelTwo = new Intent(this.getBaseContext(), LevelTwoActivity.class);
+        levelTwo.putExtra("spriteID", costumes[currentCostume]);
         startActivity(levelTwo);
     }
 
     public void beginLevelThree(View v) {
         Intent levelThree = new Intent(this.getBaseContext(), LevelThreeActivity.class);
+        levelThree.putExtra("spriteID", costumes[currentCostume]);
         startActivity(levelThree);
     }
 

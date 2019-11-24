@@ -95,15 +95,18 @@ class LevelThreeButtonBuilder {
      *
      * @return list of enemy images.
      */
-    List<ImageView> buildPlayerViews() {
+    List<ImageView> buildPlayerViews(int spriteID) {
         ImageView targetPic0 = view.findViewById(R.id.playerView0);
         targetPic0.setVisibility(View.INVISIBLE);
+        targetPic0.setBackgroundResource(spriteID);
 
         ImageView targetPic1 = view.findViewById(R.id.playerView1);
         targetPic1.setVisibility(View.VISIBLE);
+        targetPic1.setBackgroundResource(spriteID);
 
         ImageView targetPic2 = view.findViewById(R.id.playerView2);
         targetPic2.setVisibility(View.INVISIBLE);
+        targetPic2.setBackgroundResource(spriteID);
 
         return Arrays.asList(targetPic0, targetPic1, targetPic2);
     }

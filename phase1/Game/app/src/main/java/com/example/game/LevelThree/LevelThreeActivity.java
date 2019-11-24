@@ -65,6 +65,8 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
 
         presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree(lives)));
 
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundResource(R.drawable.levelthreebg);
         setContentView(R.layout.activity_level_three);
 
 

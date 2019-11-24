@@ -111,10 +111,10 @@ public class MainMenu extends AppCompatActivity {
           @Override
           public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
             if (isChecked) {
-              menuBackground.setBackgroundColor(Color.parseColor("#000000"));
+                menuBackground.setBackgroundColor(Color.BLACK);
                 setTextColor(Color.WHITE);
             } else {
-              menuBackground.setBackgroundColor(Color.parseColor("#ffffff"));
+                menuBackground.setBackgroundColor(Color.WHITE);
                 setTextColor(Color.BLACK);
 
             }
@@ -140,8 +140,6 @@ public class MainMenu extends AppCompatActivity {
         viewsList.add((TextView) findViewById(R.id.totalLivesLost));
         viewsList.add((TextView) findViewById(R.id.nightModeSwitch));
         viewsList.add((TextView) findViewById(R.id.musicSwitch));
-
-
     }
 
     @Override

@@ -46,6 +46,11 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     private List<ImageView> targetViews;
 
     /**
+     * The list of images representing the player in their position.
+     */
+    private List<ImageView> playerViews;
+
+    /**
      * the gold collected in previous levels.
      */
     private int goldAccumulated;
@@ -85,6 +90,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         playerHearts = builder.buildLifeBar();
 
         targetViews = builder.buildTargetViews();
+        playerViews = builder.buildPlayerViews();
     }
 
     /**
@@ -154,11 +160,9 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     public void setPositionSelected(int target) {
         for (int i = 0; i < playerPositions.size(); i++) {
             if (i == target) {
-                playerPositions.get(i).setChecked(true);
-                playerPositions.get(i).setBackgroundResource(R.drawable.crateselected);
+                playerViews.get(i).setVisibility(View.VISIBLE);
             } else {
-                playerPositions.get(i).setChecked(false);
-                playerPositions.get(i).setBackgroundResource(R.drawable.crate);
+                playerViews.get(i).setVisibility(View.INVISIBLE);
             }
         }
     }

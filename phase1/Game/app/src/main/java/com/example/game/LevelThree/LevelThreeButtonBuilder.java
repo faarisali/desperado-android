@@ -1,5 +1,6 @@
 package com.example.game.LevelThree;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
@@ -86,6 +87,24 @@ class LevelThreeButtonBuilder {
         ImageView targetPic0 = view.findViewById(R.id.enemyView0);
         ImageView targetPic1 = view.findViewById(R.id.enemyView1);
         ImageView targetPic2 = view.findViewById(R.id.enemyView2);
+        return Arrays.asList(targetPic0, targetPic1, targetPic2);
+    }
+
+    /**
+     * Builds the images representing the player picture.
+     *
+     * @return list of enemy images.
+     */
+    List<ImageView> buildPlayerViews() {
+        ImageView targetPic0 = view.findViewById(R.id.playerView0);
+        targetPic0.setVisibility(View.INVISIBLE);
+
+        ImageView targetPic1 = view.findViewById(R.id.playerView1);
+        targetPic1.setVisibility(View.VISIBLE);
+
+        ImageView targetPic2 = view.findViewById(R.id.playerView2);
+        targetPic2.setVisibility(View.INVISIBLE);
+
         return Arrays.asList(targetPic0, targetPic1, targetPic2);
     }
 }

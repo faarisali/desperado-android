@@ -21,6 +21,10 @@ import com.example.game.Login.LoginActivity;
 import com.example.game.Login.LoginAndroidMapDatabase;
 import com.example.game.Login.User;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
 public class MainMenu extends AppCompatActivity {
 
     /** The character display*/
@@ -51,6 +55,8 @@ public class MainMenu extends AppCompatActivity {
 
     /** The menu layout*/
     private ConstraintLayout menuBackground;
+
+    private ArrayList<TextView> viewsList = new ArrayList<>();
 
     public static final String USERNAME = "username";
 
@@ -106,11 +112,36 @@ public class MainMenu extends AppCompatActivity {
           public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
             if (isChecked) {
               menuBackground.setBackgroundColor(Color.parseColor("#000000"));
+                setTextColor(Color.WHITE);
             } else {
               menuBackground.setBackgroundColor(Color.parseColor("#ffffff"));
+                setTextColor(Color.BLACK);
+
             }
           }
         });
+    }
+
+    private void setTextColor(int color) {
+        for (TextView v : this.viewsList) {
+            v.setTextColor(color);
+        }
+    }
+
+    private void populateViewsList() {
+        viewsList.add((TextView) findViewById(R.id.livesLostPlaceHolder));
+        viewsList.add((TextView) findViewById(R.id.welcomeTextView));
+        viewsList.add((TextView) findViewById(R.id.usernameTextView));
+        viewsList.add((TextView) findViewById(R.id.textMenu));
+        viewsList.add((TextView) findViewById(R.id.totalPointsPlaceHolder));
+        viewsList.add((TextView) findViewById(R.id.totalGoldPlaceHolder));
+        viewsList.add((TextView) findViewById(R.id.totalPoints));
+        viewsList.add((TextView) findViewById(R.id.totalGold));
+        viewsList.add((TextView) findViewById(R.id.totalLivesLost));
+        viewsList.add((TextView) findViewById(R.id.nightModeSwitch));
+        viewsList.add((TextView) findViewById(R.id.musicSwitch));
+
+
     }
 
     @Override
@@ -125,6 +156,7 @@ public class MainMenu extends AppCompatActivity {
         toggleMusic();
         toggleNightMode();
         updateStats();
+        populateViewsList();
     }
 
     @Override

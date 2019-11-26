@@ -90,7 +90,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         targetPositions = builder.createTargets();
         startButton = builder.buildStartButton();
         playerHearts = builder.buildLifeBar();
-
+        builder.buildCheatButton();
         targetViews = builder.buildTargetViews();
         playerViews = builder.buildPlayerViews(spriteID);
     }
@@ -126,8 +126,21 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
             case R.id.target2:
                 presenter.setTargetValue(2);
                 break;
+            case R.id.cheatButton:
+                showCheatView();
+                break;
             case R.id.bPause:
                 pause();
+                break;
+        }
+    }
+
+    /**
+     * Makes the CPU's targets invisible so that 'cheat vision' is enabled and the player can see where the CPU hides.
+     */
+    void showCheatView() {
+    for (int i = 0; i < targetPositions.size(); i++) {
+            targetPositions.get(i).setVisibility(View.INVISIBLE);
         }
     }
 
@@ -166,6 +179,17 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
                 playerViews.get(i).setVisibility(View.VISIBLE);
             } else {
                 playerViews.get(i).setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
+
+    public void setCpuNextPosition(int position) {
+        for (int i = 0; i < targetViews.size(); i++) {
+            if (i == position) {
+                targetViews.get(i).setVisibility(View.VISIBLE);
+            } else {
+                targetViews.get(i).setVisibility(View.INVISIBLE);
             }
         }
     }

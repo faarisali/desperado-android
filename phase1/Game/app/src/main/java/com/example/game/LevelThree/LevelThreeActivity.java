@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
@@ -45,6 +46,11 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     private List<ImageView> playerViews;
 
     /**
+     * The button that starts a round. Stored so it can be enabled/disabled at will.
+     */
+    private Button startButton;
+
+    /**
      * the gold collected in previous levels.
      */
     private int goldAccumulated;
@@ -82,9 +88,9 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         LevelThreeButtonBuilder builder = new LevelThreeButtonBuilder(this);
         playerPositions = builder.createPositions();
         targetPositions = builder.createTargets();
-        builder.buildStartButton();
+        startButton = builder.buildStartButton();
         playerHearts = builder.buildLifeBar();
-
+        builder.buildCheatButton();
         targetViews = builder.buildTargetViews();
         playerViews = builder.buildPlayerViews(spriteID);
     }
@@ -98,7 +104,9 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.startButton:
+                startButton.setClickable(false);
                 presenter.runRound();
+                startButton.setClickable(true);
                 break;
             case R.id.position0:
                 presenter.setPositionValue(0);
@@ -118,8 +126,21 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
             case R.id.target2:
                 presenter.setTargetValue(2);
                 break;
+            case R.id.cheatButton:
+                showCheatView();
+                break;
             case R.id.bPause:
                 pause();
+                break;
+        }
+    }
+
+    /**
+     * Makes the CPU's targets invisible so that 'cheat vision' is enabled and the player can see where the CPU hides.
+     */
+    void showCheatView() {
+    for (int i = 0; i < targetPositions.size(); i++) {
+            targetPositions.get(i).setVisibility(View.INVISIBLE);
         }
     }
 
@@ -158,6 +179,17 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
                 playerViews.get(i).setVisibility(View.VISIBLE);
             } else {
                 playerViews.get(i).setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
+
+    public void setCpuNextPosition(int position) {
+        for (int i = 0; i < targetViews.size(); i++) {
+            if (i == position) {
+                targetViews.get(i).setVisibility(View.VISIBLE);
+            } else {
+                targetViews.get(i).setVisibility(View.INVISIBLE);
             }
         }
     }

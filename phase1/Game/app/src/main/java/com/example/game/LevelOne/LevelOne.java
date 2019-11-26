@@ -9,20 +9,34 @@ import android.view.MotionEvent;
 import com.example.game.GenericLevel;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class LevelOne extends GenericLevel {
 
   private Paint textStyle = new Paint();
 
+  private Timer time = new Timer();
+
   private ArrayList<TappableObject> tappables = new ArrayList<>();
 
   public LevelOne() {
     super(3);
+    countDown(60);
     textStyle.setTextSize(60);
     textStyle.setTypeface(Typeface.DEFAULT_BOLD);
     textStyle.setColor(Color.WHITE);
     isRunning = true;
   }
+
+    private void countDown(int seconds) {
+        this.time.schedule(new TimerTask() {
+            @Override
+            public void run() {
+              isRunning = false;
+            }
+        }, seconds * 1000);//5 second countdown
+    }
 
   public void spawnTappables() {
     double randDouble = Math.random();
@@ -40,6 +54,7 @@ public class LevelOne extends GenericLevel {
     canvas.drawText("Coins : " + getGold(), 0, 50, textStyle);
     canvas.drawText("Lives : " + getLives(), 0, 100, textStyle);
     canvas.drawText("Points : " + getPoints(), 0, 150, textStyle);
+    canvas.drawText("Time left : " + time.toString(), 0, 200, textStyle);
   }
 
   public void checkLives() {

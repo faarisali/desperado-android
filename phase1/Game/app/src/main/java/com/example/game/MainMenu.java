@@ -112,10 +112,10 @@ public class MainMenu extends AppCompatActivity {
           @Override
           public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
             if (isChecked) {
-              menuBackground.setBackgroundColor(Color.parseColor("#000000"));
+                menuBackground.setBackgroundColor(Color.BLACK);
                 setTextColor(Color.WHITE);
             } else {
-              menuBackground.setBackgroundColor(Color.parseColor("#ffffff"));
+                menuBackground.setBackgroundColor(Color.WHITE);
                 setTextColor(Color.BLACK);
 
             }
@@ -141,8 +141,6 @@ public class MainMenu extends AppCompatActivity {
         viewsList.add((TextView) findViewById(R.id.totalLivesLost));
         viewsList.add((TextView) findViewById(R.id.nightModeSwitch));
         viewsList.add((TextView) findViewById(R.id.musicSwitch));
-
-
     }
 
     @Override
@@ -183,16 +181,19 @@ public class MainMenu extends AppCompatActivity {
      */
     public void beginLevelOne(View v) {
         Intent levelOne = new Intent(this.getBaseContext(), LevelOneActivity.class);
+        levelOne.putExtra("spriteID", costumes[currentCostume]);
         startActivity(levelOne);
     }
 
     public void beginLevelTwo(View v) {
         Intent levelTwo = new Intent(this.getBaseContext(), LevelTwoActivity.class);
+        levelTwo.putExtra("spriteID", costumes[currentCostume]);
         startActivity(levelTwo);
     }
 
     public void beginLevelThree(View v) {
         Intent levelThree = new Intent(this.getBaseContext(), LevelThreeActivity.class);
+        levelThree.putExtra("spriteID", costumes[currentCostume]);
         startActivity(levelThree);
     }
 

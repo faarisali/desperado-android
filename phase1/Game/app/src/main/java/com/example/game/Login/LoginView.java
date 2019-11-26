@@ -25,5 +25,4 @@ public interface LoginView {
     void displayError();
     void displayInvalidUser();
     void navigateToHome();
-
 }

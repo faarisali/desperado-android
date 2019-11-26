@@ -1,8 +1,11 @@
 package com.example.game.LevelThree;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
@@ -12,6 +15,7 @@ import com.example.game.R;
 import com.example.game.WinActivity;
 
 import java.util.List;
+
 
 public class LevelThreeActivity extends AbstractActivity implements View.OnClickListener, LevelThreeView {
     /**
@@ -32,6 +36,21 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     private List<ImageView> playerHearts;
 
     /**
+     * The list of images representing the CPU enemy in their position.
+     */
+    private List<ImageView> targetViews;
+
+    /**
+     * The list of images representing the player in their position.
+     */
+    private List<ImageView> playerViews;
+
+    /**
+     * The button that starts a round. Stored so it can be enabled/disabled at will.
+     */
+    private Button startButton;
+
+    /**
      * the gold collected in previous levels.
      */
     private int goldAccumulated;
@@ -48,27 +67,32 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         int lives = intent.getIntExtra("Lives", 3);
         goldAccumulated = intent.getIntExtra("Gold", 0);
         pointsAccumulated = intent.getIntExtra("Points", 0);
+        int spriteID = intent.getIntExtra("spriteID", R.drawable.cowboy_yellow);
 
         presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree(lives)));
 
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundResource(R.drawable.levelthreebg);
         setContentView(R.layout.activity_level_three);
-        
-        buildGameObjects();
-        presenter.setPositionValue(1); //sets values so that the default positions selected at start
-        presenter.setTargetValue(1);
 
+
+        buildGameObjects(spriteID);
     }
 
     /**
      * Creates all the buttons, image views, etc necessary for the level.
+     * @param spriteID the ID of the players selected appearence.
      */
-    public void buildGameObjects() {
+
+    public void buildGameObjects(int spriteID) {
         LevelThreeButtonBuilder builder = new LevelThreeButtonBuilder(this);
         playerPositions = builder.createPositions();
         targetPositions = builder.createTargets();
-        builder.buildStartButton();
+        startButton = builder.buildStartButton();
         playerHearts = builder.buildLifeBar();
 
+        targetViews = builder.buildTargetViews();
+        playerViews = builder.buildPlayerViews(spriteID);
     }
 
     /**
@@ -80,7 +104,9 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.startButton:
+                startButton.setClickable(false);
                 presenter.runRound();
+                startButton.setClickable(true);
                 break;
             case R.id.position0:
                 presenter.setPositionValue(0);
@@ -107,13 +133,27 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
 
     /**
      * Animates the round played, moving elements cpuPosition and targeting cpuTarget.
-     * @param cpuTarget the position the CPU is targeting.
+     *
+     * @param cpuTarget   the position the CPU is targeting.
      * @param cpuPosition the position the CPU is currently at.
      */
     public void animateRound(int cpuTarget, int cpuPosition) {
-        //TODO
-    }
+        ImageView animatedPosition = targetViews.get(cpuPosition);
 
+        ObjectAnimator moveUp = ObjectAnimator.ofFloat(animatedPosition, "translationY", -175f);
+        moveUp.setDuration(500);
+
+        ObjectAnimator stay = ObjectAnimator.ofFloat(animatedPosition, "translationY", 0);
+        stay.setDuration(2000);
+
+        ObjectAnimator moveDown = ObjectAnimator.ofFloat(animatedPosition, "translationY", 25f);
+        moveDown.setDuration(500);
+
+        AnimatorSet enemyAppear = new AnimatorSet();
+        enemyAppear.playSequentially(moveUp, stay, moveDown);
+        enemyAppear.start();
+        setPreviousComputerTarget(cpuTarget); //Informs the player where the CPU targeted
+    }
 
     /**
      * sets the players targeted position as selected and the un-selects the other positions.
@@ -121,13 +161,11 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
      * @param target the target position that the user wants to be at.
      */
     public void setPositionSelected(int target) {
-        for (int i = 0; i < playerPositions.size(); i++) {
+        for (int i = 0; i < playerViews.size(); i++) {
             if (i == target) {
-                playerPositions.get(i).setChecked(true);
-                playerPositions.get(i).setBackgroundResource(R.drawable.crateselected);
+                playerViews.get(i).setVisibility(View.VISIBLE);
             } else {
-                playerPositions.get(i).setChecked(false);
-                playerPositions.get(i).setBackgroundResource(R.drawable.crate);
+                playerViews.get(i).setVisibility(View.INVISIBLE);
             }
         }
     }
@@ -145,6 +183,24 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
             } else {
                 targetPositions.get(i).setChecked(false);
                 targetPositions.get(i).setBackgroundResource(R.drawable.crate);
+            }
+        }
+    }
+
+    /**
+     * Sets an indicator for where the CPU targeted in the last round so user can see outcome of
+     * previous round.
+     *
+     * @param cpuTarget where the CPU targeted.
+     */
+    public void setPreviousComputerTarget(int cpuTarget) {
+        for (int i = 0; i < playerPositions.size(); i++) {
+            if (i == cpuTarget) {
+                playerPositions.get(i).setChecked(true);
+                playerPositions.get(i).setBackgroundResource(R.drawable.crateselected);
+            } else {
+                playerPositions.get(i).setChecked(false);
+                playerPositions.get(i).setBackgroundResource(R.drawable.crate);
             }
         }
     }
@@ -195,3 +251,4 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
 
 
 }
+

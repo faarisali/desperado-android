@@ -1,5 +1,6 @@
 package com.example.game.LevelTwo;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.MotionEvent;
@@ -18,16 +19,16 @@ public class LevelTwo extends GenericLevel {
     private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, 60, Color.BLUE);
     private Points points = new Points(45, 110, 50, Color.WHITE, 0);
     private Timer time = new Timer();
+
     private int lives = 3;
     private ArrayList<Heart> heartList = new ArrayList<>();
     /**
      * Constructs a GenericLevel
      *
-     * @param lives           the number of lives the player starts with on this level.
+     * @param lives  the number of lives the player starts with on this level.
      */
     public LevelTwo(int lives) {
         new SpawnObstacleTask(this).run();
-        lives = lives;
         countDown(30);
         populateHeartList(this.lives);
     }
@@ -52,10 +53,12 @@ public class LevelTwo extends GenericLevel {
     }
 
     private void countDown(int seconds) {
+        int secondsPassed;
         this.time.schedule(new TimerTask() {
             @Override
             public void run() {
                 isRunning = false;
+
             }
         }, seconds * 1000);//5 second countdown
     }
@@ -94,6 +97,9 @@ public class LevelTwo extends GenericLevel {
 
     }
 
+    private void drawSecondsPassed(Canvas canvas, int second) {
+
+    }
     @Override
     public void tapEvent(MotionEvent event) {
         player.jumpUp();
@@ -160,8 +166,13 @@ public class LevelTwo extends GenericLevel {
         return this.points.getPoints();
     }
 
-    public ArrayList<Obstacle> getObstacleList() {
-        return obstacleList;
+    /**
+     * Public method to add Obstacle object to Level two's obstacle list
+     *
+     * @param o
+     */
+    public void addToObstacleList(Obstacle o) {
+        this.obstacleList.add(o);
     }
 
     public int getGroundY() {

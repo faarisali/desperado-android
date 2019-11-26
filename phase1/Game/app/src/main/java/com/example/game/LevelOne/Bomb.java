@@ -6,6 +6,8 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 
+import java.util.ArrayList;
+
 /** A bomb that harms the player in level 1*/
 public class Bomb extends TappableObject {
 
@@ -26,12 +28,12 @@ public class Bomb extends TappableObject {
         canvas.drawCircle(super.x + 25, super.y + 25, 25, paint);
     }
 
-    /** Response of this bomb when tapped*/
-    public boolean tapped(int x, int y) {
-        if (super.x <= x && x <= super.x + super.getLength()) {
-            return super.y <= y && y <= super.y + super.getLength();
-        } else {
-            return false;
-        }
+    public ArrayList<Integer> tapResponse(){
+        ArrayList<Integer> response = new ArrayList<>();
+        response.add(0);
+        response.add(-1000);
+        response.add(-1);
+        return response;
     }
+
 }

@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
@@ -45,6 +46,11 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     private List<ImageView> playerViews;
 
     /**
+     * The button that starts a round. Stored so it can be enabled/disabled at will.
+     */
+    private Button startButton;
+
+    /**
      * the gold collected in previous levels.
      */
     private int goldAccumulated;
@@ -82,7 +88,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         LevelThreeButtonBuilder builder = new LevelThreeButtonBuilder(this);
         playerPositions = builder.createPositions();
         targetPositions = builder.createTargets();
-        builder.buildStartButton();
+        startButton = builder.buildStartButton();
         playerHearts = builder.buildLifeBar();
 
         targetViews = builder.buildTargetViews();
@@ -98,7 +104,9 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.startButton:
+                startButton.setClickable(false);
                 presenter.runRound();
+                startButton.setClickable(true);
                 break;
             case R.id.position0:
                 presenter.setPositionValue(0);

@@ -1,18 +1,33 @@
 package com.example.game.Login;
 
 public class User {
+    // login info
     private String username;
     private String password;
 
+    // Lifetime stats
     private int totalGold;
     private int totalLivesLost;
     private int totalPoints;
 
+    // settings/preferences
     private int costume;
     private int music;
     private int theme;
     private boolean isMusicPlaying;
 
+    /**
+     * Constructs a User object
+     * @param username this User's username
+     * @param password this User's password
+     * @param totalGold this User's gold amount
+     * @param totalLivesLost this User's total lives lost
+     * @param totalPoints this User's total points gained
+     * @param costume this User's preferred costume
+     * @param music this User's preferred music choice
+     * @param theme this User's preferred theme
+     * @param isMusicPlaying  if this User likes to keep the music on or not
+     */
     public User(String username, String password, int totalGold, int totalLivesLost, int totalPoints, int costume, int music, int theme, boolean isMusicPlaying) {
         this.username = username;
         this.password = password;

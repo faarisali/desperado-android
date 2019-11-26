@@ -61,9 +61,10 @@ class LevelThreeButtonBuilder {
     /**
      * builds the button to start a round.
      */
-    void buildStartButton() {
+    Button buildStartButton() {
         Button start = view.findViewById(R.id.startButton);
         start.setOnClickListener(view);
+        return start;
     }
 
     /**

@@ -68,6 +68,14 @@ class LevelThreeButtonBuilder {
     }
 
     /**
+     * builds the button to enable cheats.
+     */
+    void buildCheatButton() {
+        Button cheatButton = view.findViewById(R.id.cheatButton);
+        cheatButton.setOnClickListener(view);
+    }
+
+    /**
      * Builds the images representing the life bar.
      *
      * @return list of life bar images.

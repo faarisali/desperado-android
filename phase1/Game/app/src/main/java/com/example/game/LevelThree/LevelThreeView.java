@@ -22,6 +22,13 @@ public interface LevelThreeView {
     void setTargetSelected(int target);
 
     /**
+     * Sets the next position of the enemy. Required for the cheat view.
+     *
+     * @param position the target the user wants to target.
+     */
+    void setCpuNextPosition(int position);
+
+    /**
      * Sets the visible life bar of the player to the appropriate amount.
      *
      * @param newLives the new amount of lives to be displayed.

@@ -87,20 +87,17 @@ public class LevelOne extends GenericLevel {
     for (TappableObject tappableObject : tappables) {
       if (tappableObject.tapped((int) event.getX(), (int) event.getY())) {
         remove.add(tappableObject);
-        if (tappableObject instanceof Coin) {
-          super.setGold(super.getGold() + 1);
-          super.setPoints(super.getPoints() + 100);
-        } else if (tappableObject instanceof Bomb) {
-          super.setLives(super.getLives() - 1);
-          super.setPoints(super.getPoints() - 1000);
-          checkLives();
+        ArrayList<Integer> values = tappableObject.tapResponse();
+        super.setGold(super.getGold() + values.get(0));
+        super.setPoints(super.getPoints() + values.get(1));
+        super.setLives(super.getLives() + values.get(2));
+        checkLives();
         }
       }
-    }
 
       // remove single coin per tap
-    if (remove.size() > 0) {
-      tappables.remove(remove.get(0));
+      if (remove.size() > 0) {
+        tappables.remove(remove.get(0));
     }
   }
 }

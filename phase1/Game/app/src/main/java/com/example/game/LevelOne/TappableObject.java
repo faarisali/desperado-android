@@ -5,7 +5,9 @@ import android.view.MotionEvent;
 
 import com.example.game.GameObject;
 
-public class TappableObject extends GameObject {
+import java.util.ArrayList;
+
+public abstract class TappableObject extends GameObject {
     /**
      * length of hitbox.
      */
@@ -21,17 +23,6 @@ public class TappableObject extends GameObject {
         height = newHeight;
     }
 
-    public boolean isTapped(MotionEvent event) {
-        float x = event.getX();
-        float y = event.getY();
-
-        if (super.x <= x && x <= super.x + length) {
-            return super.y <= y && x <= super.y + height;
-        } else {
-            return false;
-        }
-    }
-
     public boolean tapped(int x, int y) {
         if (this.x <= x && x <= this.x + length) {
             return this.y <= y && x <= this.y + height;
@@ -40,10 +31,11 @@ public class TappableObject extends GameObject {
         }
     }
 
-    @Override
-    public void draw(Canvas canvas) {
+    public abstract ArrayList<Integer> tapResponse();
 
-    }
+    @Override
+    public abstract void draw(Canvas canvas);
+
     public void move() {
         y = y + 5;
     }

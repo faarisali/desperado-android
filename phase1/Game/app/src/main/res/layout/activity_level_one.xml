@@ -25,4 +25,13 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
+
+    <com.example.game.GameView
+        android:id="@+id/gameView"
+        android:layout_width="279dp"
+        android:layout_height="517dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bucket"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numOfCoins" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -31,12 +32,19 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
      */
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-    public GameView(Context context) {
-        super(context);
-//        setWillNotDraw(false); // Allow the background to be drawn
+    private void init() {
         getHolder().addCallback(this);
         setFocusable(true);
         gameManager = new GameManager((screenHeight), (screenWidth));
+    }
+    public GameView(Context context) {
+        super(context);
+        init();
+    }
+
+    public GameView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
     }
     /**
      * What happens when new view is created?

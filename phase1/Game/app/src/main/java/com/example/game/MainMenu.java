@@ -41,7 +41,8 @@ public class MainMenu extends AppCompatActivity {
             R.drawable.cowboy_yellow,
             R.drawable.cowboy_blue,
             R.drawable.cowboy_sheriff,
-            R.drawable.cowboy_bandit
+            R.drawable.cowboy_bandit,
+            R.drawable.clown
     };
 
     /** The switch that toggles the music*/

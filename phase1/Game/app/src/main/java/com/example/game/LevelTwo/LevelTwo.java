@@ -13,6 +13,7 @@ import java.util.TimerTask;
 
 public class LevelTwo extends GenericLevel {
 
+    private GameRuntimeTimer runtimeTimer = new GameRuntimeTimer(this);
     private ArrayList<Obstacle> obstacleList = new ArrayList<Obstacle>();
     private int groundY = 500;
     private float defaultObstacleMoveSpeed = 9;
@@ -29,14 +30,15 @@ public class LevelTwo extends GenericLevel {
      */
     public LevelTwo(int lives) {
         new SpawnObstacleTask(this).run();
-        countDown(30);
+        runtimeTimer.countDown(10);
         populateHeartList(this.lives);
     }
 
     public LevelTwo() {
         new SpawnObstacleTask(this).run();
         isRunning = true;
-        countDown(30);
+//        countDown(30);
+        runtimeTimer.countDown(10);
         populateHeartList(this.lives);
     }
 
@@ -52,16 +54,6 @@ public class LevelTwo extends GenericLevel {
 
     }
 
-    private void countDown(int seconds) {
-        int secondsPassed;
-        this.time.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                isRunning = false;
-
-            }
-        }, seconds * 1000);//5 second countdown
-    }
     /**
      * Need to draw background, character and obstacles.
      *
@@ -182,4 +174,6 @@ public class LevelTwo extends GenericLevel {
     public float getDefaultObstacleMoveSpeed() {
         return defaultObstacleMoveSpeed;
     }
+
+
 }

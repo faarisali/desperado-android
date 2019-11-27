@@ -136,4 +136,8 @@ public abstract class GenericLevel {
     public void setPoints(int points) {
         this.points = points;
     }
+
+    public void setIsRunning(boolean b) {
+        this.isRunning = b;
+    }
 }

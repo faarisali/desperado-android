@@ -4,7 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.view.MotionEvent;
+
+import java.util.ArrayList;
 
 /** A coin in level 1*/
 public class Coin extends TappableObject {
@@ -14,7 +15,7 @@ public class Coin extends TappableObject {
 
     /** Constructor for a new coin object*/
     public Coin(int newX, int newY) {
-        super(newX, newY, 150, 150);
+        super(newX, newY, 50, 50);
         this.paint = new Paint();
         paint.setTextSize(60);
         paint.setTypeface(Typeface.DEFAULT_BOLD);
@@ -26,12 +27,12 @@ public class Coin extends TappableObject {
         canvas.drawCircle(super.x + 25, super.y + 25, 25, paint);
     }
 
-    /** Response of this coin when tapped*/
-    public boolean tapped(int x, int y) {
-        if (super.x <= x && x <= super.x + super.getLength()) {
-            return super.y <= y && y <= super.y + super.getLength();
-        } else {
-            return false;
-        }
+    public ArrayList<Integer> tapResponse(){
+        ArrayList<Integer> response = new ArrayList<>();
+        response.add(1);
+        response.add(100);
+        response.add(0);
+        return response;
     }
+
 }

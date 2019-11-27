@@ -15,28 +15,12 @@ public class LevelThreePresenter implements Observer {
     }
 
     /**
-     * Tells the interactor that the user has selected a new position.
+     * send the id of the touched object to the interactor to interpret.
      *
-     * @param position the new position.
+     * @param buttonId the id of the touched button.
      */
-    void setPositionValue(int position) {
-        levelThreeInteractor.setPosition(position);
-    }
-
-    /**
-     * Tells the interactor that the user has selected a new target.
-     *
-     * @param target the new target.
-     */
-    void setTargetValue(int target) {
-        levelThreeInteractor.setTarget(target);
-    }
-
-    /**
-     * Tells the interactor that the user wants to run a round.
-     */
-    void runRound() {
-        levelThreeInteractor.runRound();
+    void recognizeEvent(int buttonId) {
+        levelThreeInteractor.recognizeEvent(buttonId);
     }
 
     /**
@@ -57,6 +41,8 @@ public class LevelThreePresenter implements Observer {
         boolean gameFinished = (boolean) (((Object[]) o)[5]);
         boolean animate = (boolean) (((Object[]) o)[6]);
 
+        int nextComputerPosition = (int) (((Object[]) o)[7]);
+
         if (animate) {
             levelThreeView.animateRound(cpuTarget, cpuPosition);
         }
@@ -71,6 +57,8 @@ public class LevelThreePresenter implements Observer {
             levelThreeView.setPositionSelected(newPlayerPosition);
             levelThreeView.setTargetSelected(newPlayerTarget);
             levelThreeView.setPlayerLives(newPlayerLives);
+
+            levelThreeView.setCpuNextPosition(nextComputerPosition);
         }
     }
 }

@@ -61,10 +61,17 @@ class LevelThreeButtonBuilder {
     /**
      * builds the button to start a round.
      */
-    Button buildStartButton() {
+    void buildStartButton() {
         Button start = view.findViewById(R.id.startButton);
         start.setOnClickListener(view);
-        return start;
+    }
+
+    /**
+     * builds the button to enable cheats.
+     */
+    void buildCheatButton() {
+        Button cheatButton = view.findViewById(R.id.cheatButton);
+        cheatButton.setOnClickListener(view);
     }
 
     /**

@@ -16,16 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/bucket" />
 
-    <TextView
-        android:id="@+id/numOfCoins"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:text="Coins: 0"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
-
     <com.example.game.GameView
         android:id="@+id/gameView"
         android:layout_width="279dp"
@@ -33,5 +23,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/bucket"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numOfCoins" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

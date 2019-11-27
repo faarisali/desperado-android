@@ -24,6 +24,11 @@ public class LevelThree extends Observable {
      */
     private int computerPosition;
 
+    /**
+     * The position the computer will take on the next turn.
+     */
+    private int nextComputerPosition;
+
 
 
     /**
@@ -35,6 +40,8 @@ public class LevelThree extends Observable {
         this.lives = lives;
         setPlayerPosition(1);
         setPlayerTarget(1);
+        Random randomNum = new Random();
+        setNextComputerPosition(randomNum.nextInt(3));
     }
 
     /**
@@ -46,7 +53,10 @@ public class LevelThree extends Observable {
         if (playerLives > 0) {
             Random randomNum = new Random();
              computerTarget = randomNum.nextInt(3);
-             computerPosition = randomNum.nextInt(3);
+
+             computerPosition = nextComputerPosition;
+             setNextComputerPosition(randomNum.nextInt(3));
+
 
             if (computerTarget == playerPosition) {
                 lives -= 1;
@@ -82,11 +92,20 @@ public class LevelThree extends Observable {
     }
 
     /**
+     * Sets the position the computer will be at on the next turn.
+     * @param position the new position.
+     */
+    private void setNextComputerPosition(int position) {
+        this.nextComputerPosition = position;
+        update(false, false);
+    }
+
+    /**
      * Will update the game using the observer pattern.
      */
     public void update(boolean finish, boolean animate) {
         setChanged();
-        Object[] data = {playerPosition, playerTarget, lives, computerTarget, computerPosition, finish, animate};
+        Object[] data = {playerPosition, playerTarget, lives, computerTarget, computerPosition, finish, animate, nextComputerPosition};
         notifyObservers(data);
     }
 }

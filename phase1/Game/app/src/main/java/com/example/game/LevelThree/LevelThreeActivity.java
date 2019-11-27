@@ -46,11 +46,6 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     private List<ImageView> playerViews;
 
     /**
-     * The button that starts a round. Stored so it can be enabled/disabled at will.
-     */
-    private Button startButton;
-
-    /**
      * the gold collected in previous levels.
      */
     private int goldAccumulated;
@@ -58,6 +53,11 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
      * the points accumulated in previous levels.
      */
     private int pointsAccumulated;
+
+    /**
+     * The position the cpu will hide at in the next round.
+     */
+    private int nextCpuPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,17 +70,18 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         int spriteID = intent.getIntExtra("spriteID", R.drawable.cowboy_yellow);
 
         presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree(lives)));
-
         View view = this.getWindow().getDecorView();
         view.setBackgroundResource(R.drawable.levelthreebg);
         setContentView(R.layout.activity_level_three);
-
-
         buildGameObjects(spriteID);
+
+        view.setId(R.id.target1); //Simulates a tap even so that the initial values (target selected = 1, player position = 1) are shown at level start
+        onClick(view);
     }
 
     /**
      * Creates all the buttons, image views, etc necessary for the level.
+     *
      * @param spriteID the ID of the players selected appearence.
      */
 
@@ -88,9 +89,9 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         LevelThreeButtonBuilder builder = new LevelThreeButtonBuilder(this);
         playerPositions = builder.createPositions();
         targetPositions = builder.createTargets();
-        startButton = builder.buildStartButton();
+        builder.buildStartButton();
         playerHearts = builder.buildLifeBar();
-
+        builder.buildCheatButton();
         targetViews = builder.buildTargetViews();
         playerViews = builder.buildPlayerViews(spriteID);
     }
@@ -103,32 +104,22 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.startButton:
-                startButton.setClickable(false);
-                presenter.runRound();
-                startButton.setClickable(true);
-                break;
-            case R.id.position0:
-                presenter.setPositionValue(0);
-                break;
-            case R.id.position1:
-                presenter.setPositionValue(1);
-                break;
-            case R.id.position2:
-                presenter.setPositionValue(2);
-                break;
-            case R.id.target0:
-                presenter.setTargetValue(0);
-                break;
-            case R.id.target1:
-                presenter.setTargetValue(1);
-                break;
-            case R.id.target2:
-                presenter.setTargetValue(2);
+            case R.id.cheatButton:
+                showCheatView();
                 break;
             case R.id.bPause:
                 pause();
+                break;
+            default:
+                presenter.recognizeEvent(view.getId());
         }
+    }
+
+    /**
+     * Makes the CPU's targets invisible so that 'cheat vision' is enabled and the player can see where the CPU hides.
+     */
+    void showCheatView() {
+        targetPositions.get(nextCpuPosition).getBackground().setAlpha(128);
     }
 
     /**
@@ -170,6 +161,16 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         }
     }
 
+
+    /**
+     * Sets the position the CPU will take on the next round. Needed for cheat mode.
+     *
+     * @param position the target the user wants to target.
+     */
+    public void setCpuNextPosition(int position) {
+        nextCpuPosition = position;
+    }
+
     /**
      * sets the players desired position asn selected and un-selects the other positions.
      *
@@ -177,6 +178,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
      */
     public void setTargetSelected(int target) {
         for (int i = 0; i < targetPositions.size(); i++) {
+            targetPositions.get(i).getBackground().setAlpha(255); //required to refrain from  making all the buttons translucent when pressed.
             if (i == target) {
                 targetPositions.get(i).setChecked(true);
                 targetPositions.get(i).setBackgroundResource(R.drawable.crateselected);

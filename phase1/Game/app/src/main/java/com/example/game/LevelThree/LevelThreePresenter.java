@@ -15,28 +15,12 @@ public class LevelThreePresenter implements Observer {
     }
 
     /**
-     * Tells the interactor that the user has selected a new position.
+     * send the id of the touched object to the interactor to interpret.
      *
-     * @param position the new position.
+     * @param buttonId the id of the touched button.
      */
-    void setPositionValue(int position) {
-        levelThreeInteractor.setPosition(position);
-    }
-
-    /**
-     * Tells the interactor that the user has selected a new target.
-     *
-     * @param target the new target.
-     */
-    void setTargetValue(int target) {
-        levelThreeInteractor.setTarget(target);
-    }
-
-    /**
-     * Tells the interactor that the user wants to run a round.
-     */
-    void runRound() {
-        levelThreeInteractor.runRound();
+    void recognizeEvent(int buttonId) {
+        levelThreeInteractor.recognizeEvent(buttonId);
     }
 
     /**

@@ -1,5 +1,7 @@
 package com.example.game.LevelThree;
 
+import com.example.game.R;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -37,6 +39,37 @@ public class LevelThreeInteractor extends Observable implements Observer {
      */
     void runRound() {
         levelThree.runRound();
+    }
+
+    /**
+     * recognizes the button pressed and delegates to level three accordingly.
+     *
+     * @param buttonId the ID of the button pressed.
+     */
+    void recognizeEvent(int buttonId) {
+        switch (buttonId) {
+            case R.id.startButton:
+                runRound();
+                break;
+            case R.id.position0:
+                setPosition(0);
+                break;
+            case R.id.position1:
+                setPosition(1);
+                break;
+            case R.id.position2:
+                setPosition(2);
+                break;
+            case R.id.target0:
+                setTarget(0);
+                break;
+            case R.id.target1:
+                setTarget(1);
+                break;
+            case R.id.target2:
+                setTarget(2);
+                break;
+        }
     }
 
     /**

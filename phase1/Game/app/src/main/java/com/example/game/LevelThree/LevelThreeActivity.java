@@ -46,11 +46,6 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     private List<ImageView> playerViews;
 
     /**
-     * The button that starts a round. Stored so it can be enabled/disabled at will.
-     */
-    private Button startButton;
-
-    /**
      * the gold collected in previous levels.
      */
     private int goldAccumulated;
@@ -81,6 +76,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
 
     /**
      * Creates all the buttons, image views, etc necessary for the level.
+     *
      * @param spriteID the ID of the players selected appearence.
      */
 
@@ -88,7 +84,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         LevelThreeButtonBuilder builder = new LevelThreeButtonBuilder(this);
         playerPositions = builder.createPositions();
         targetPositions = builder.createTargets();
-        startButton = builder.buildStartButton();
+        builder.buildStartButton();
         playerHearts = builder.buildLifeBar();
         builder.buildCheatButton();
         targetViews = builder.buildTargetViews();
@@ -103,29 +99,6 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.startButton:
-                startButton.setClickable(false);
-                presenter.runRound();
-                startButton.setClickable(true);
-                break;
-            case R.id.position0:
-                presenter.setPositionValue(0);
-                break;
-            case R.id.position1:
-                presenter.setPositionValue(1);
-                break;
-            case R.id.position2:
-                presenter.setPositionValue(2);
-                break;
-            case R.id.target0:
-                presenter.setTargetValue(0);
-                break;
-            case R.id.target1:
-                presenter.setTargetValue(1);
-                break;
-            case R.id.target2:
-                presenter.setTargetValue(2);
-                break;
             case R.id.cheatButton:
                 showCheatView();
                 break;
@@ -133,13 +106,14 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
                 pause();
                 break;
         }
+        presenter.recognizeEvent(view.getId());
     }
 
     /**
      * Makes the CPU's targets invisible so that 'cheat vision' is enabled and the player can see where the CPU hides.
      */
     void showCheatView() {
-    for (int i = 0; i < targetPositions.size(); i++) {
+        for (int i = 0; i < targetPositions.size(); i++) {
             targetPositions.get(i).setVisibility(View.INVISIBLE);
         }
     }

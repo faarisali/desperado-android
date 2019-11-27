@@ -41,6 +41,8 @@ public class LevelThreePresenter implements Observer {
         boolean gameFinished = (boolean) (((Object[]) o)[5]);
         boolean animate = (boolean) (((Object[]) o)[6]);
 
+        int nextComputerPosition = (int) (((Object[]) o)[7]);
+
         if (animate) {
             levelThreeView.animateRound(cpuTarget, cpuPosition);
         }
@@ -55,6 +57,8 @@ public class LevelThreePresenter implements Observer {
             levelThreeView.setPositionSelected(newPlayerPosition);
             levelThreeView.setTargetSelected(newPlayerTarget);
             levelThreeView.setPlayerLives(newPlayerLives);
+
+            levelThreeView.setCpuNextPosition(nextComputerPosition);
         }
     }
 }

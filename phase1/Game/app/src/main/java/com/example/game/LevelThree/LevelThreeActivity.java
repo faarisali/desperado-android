@@ -54,6 +54,11 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
      */
     private int pointsAccumulated;
 
+    /**
+     * The position the cpu will hide at in the next round.
+     */
+    private int nextCpuPosition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,13 +70,13 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         int spriteID = intent.getIntExtra("spriteID", R.drawable.cowboy_yellow);
 
         presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree(lives)));
-
         View view = this.getWindow().getDecorView();
         view.setBackgroundResource(R.drawable.levelthreebg);
         setContentView(R.layout.activity_level_three);
-
-
         buildGameObjects(spriteID);
+
+        view.setId(R.id.target1); //Simulates a tap even so that the initial values (target selected = 1, player position = 1) are shown at level start
+        onClick(view);
     }
 
     /**
@@ -105,17 +110,16 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
             case R.id.bPause:
                 pause();
                 break;
+            default:
+                presenter.recognizeEvent(view.getId());
         }
-        presenter.recognizeEvent(view.getId());
     }
 
     /**
      * Makes the CPU's targets invisible so that 'cheat vision' is enabled and the player can see where the CPU hides.
      */
     void showCheatView() {
-        for (int i = 0; i < targetPositions.size(); i++) {
-            targetPositions.get(i).setVisibility(View.INVISIBLE);
-        }
+        targetPositions.get(nextCpuPosition).getBackground().setAlpha(128);
     }
 
     /**
@@ -158,14 +162,13 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     }
 
 
+    /**
+     * Sets the position the CPU will take on the next round. Needed for cheat mode.
+     *
+     * @param position the target the user wants to target.
+     */
     public void setCpuNextPosition(int position) {
-        for (int i = 0; i < targetViews.size(); i++) {
-            if (i == position) {
-                targetViews.get(i).setVisibility(View.VISIBLE);
-            } else {
-                targetViews.get(i).setVisibility(View.INVISIBLE);
-            }
-        }
+        nextCpuPosition = position;
     }
 
     /**
@@ -175,6 +178,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
      */
     public void setTargetSelected(int target) {
         for (int i = 0; i < targetPositions.size(); i++) {
+            targetPositions.get(i).getBackground().setAlpha(255); //required to refrain from  making all the buttons translucent when pressed.
             if (i == target) {
                 targetPositions.get(i).setChecked(true);
                 targetPositions.get(i).setBackgroundResource(R.drawable.crateselected);

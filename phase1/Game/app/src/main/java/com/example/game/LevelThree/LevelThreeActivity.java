@@ -5,9 +5,10 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
+
+import androidx.appcompat.app.ActionBar;
 
 import com.example.game.AbstractActivity;
 import com.example.game.LoseActivity;
@@ -72,6 +73,9 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree(lives)));
         View view = this.getWindow().getDecorView();
         view.setBackgroundResource(R.drawable.levelthreebg);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         setContentView(R.layout.activity_level_three);
         buildGameObjects(spriteID);
 

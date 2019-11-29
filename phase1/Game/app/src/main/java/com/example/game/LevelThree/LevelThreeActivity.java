@@ -70,10 +70,17 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         goldAccumulated = intent.getIntExtra("Gold", 0);
         pointsAccumulated = intent.getIntExtra("Points", 0);
         int spriteID = intent.getIntExtra("spriteID", R.drawable.cowboy_yellow);
+        int gameTime = intent.getIntExtra("Time", 0);
 
         presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree(lives)));
         View view = this.getWindow().getDecorView();
-        view.setBackgroundResource(R.drawable.levelthreebg);
+
+        if (gameTime == 0) { //sets to day mode / night mode depending
+            view.setBackgroundResource(R.drawable.levelthreebg);
+        } else {
+            view.setBackgroundResource(R.drawable.levelthreebg_night);
+        }
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 

@@ -12,12 +12,14 @@ import com.example.game.Login.LoginAndroidMapDatabase;
 import com.example.game.Login.User;
 
 public class LoseActivity extends AppCompatActivity implements View.OnClickListener {
+    private LoginAndroidMapDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lose);
 
+        db = LoginAndroidMapDatabase.getSingleton(this);
         Intent intent = getIntent(); //get the data from sender
         int pointsValue = intent.getIntExtra("Points", 0);
         int goldValue = intent.getIntExtra("Gold", 0);
@@ -31,12 +33,11 @@ public class LoseActivity extends AppCompatActivity implements View.OnClickListe
         displayStats(pointsValue, goldValue);
 
         // Update user info
-        User currentUser = LoginAndroidMapDatabase.getSingleton(this).getCurrentUser();
+        User currentUser = db.getCurrentUser();
         currentUser.setTotalPoints(currentUser.getTotalPoints() + pointsValue);
         currentUser.setTotalGold(currentUser.getTotalGold() + goldValue);
         currentUser.setTotalLivesLost(currentUser.getTotalLivesLost() + 3);
-        LoginAndroidMapDatabase.getSingleton(this).addUser(currentUser);
-        LoginAndroidMapDatabase.getSingleton(this).setCurrentUser(currentUser);
+        db.updateCurrentUser(currentUser);
     }
 
     /**

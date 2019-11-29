@@ -11,21 +11,16 @@ import java.util.ArrayList;
 /** A bomb that harms the player in level 1*/
 public class Bomb extends TappableObject {
 
-    /** The style of this bomb*/
-    private Paint paint;
 
     /** Constructor for a new bomb object*/
     public Bomb(int newX, int newY) {
         super(newX, newY, 50, 50);
-        this.paint = new Paint();
-        paint.setTextSize(60);
-        paint.setTypeface(Typeface.DEFAULT_BOLD);
-        paint.setColor(Color.GRAY);
     }
 
+    @Override
     /** Draw this bomb*/
-    public void draw(Canvas canvas) {
-        canvas.drawCircle(super.x + 25, super.y + 25, 25, paint);
+    public void draw(LevelOnePresenter presenter) {
+        presenter.drawBomb(super.x, super.y);
     }
 
     public ArrayList<Integer> tapResponse(){

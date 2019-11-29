@@ -13,7 +13,7 @@ public class User {
     // settings/preferences
     private int costume;
     private int music;
-    private int theme;
+    private boolean darkTheme;
     private boolean isMusicPlaying;
 
     /**
@@ -24,20 +24,53 @@ public class User {
      * @param totalLivesLost this User's total lives lost
      * @param totalPoints this User's total points gained
      * @param costume this User's preferred costume
-     * @param music this User's preferred music choice
-     * @param theme this User's preferred theme
+     * @param darkTheme this User's preferred theme
      * @param isMusicPlaying  if this User likes to keep the music on or not
      */
-    public User(String username, String password, int totalGold, int totalLivesLost, int totalPoints, int costume, int music, int theme, boolean isMusicPlaying) {
+    public User(String username, String password, int totalGold, int totalLivesLost, int totalPoints, int costume, boolean darkTheme, boolean isMusicPlaying) {
         this.username = username;
         this.password = password;
         this.totalGold = totalGold;
         this.totalLivesLost = totalLivesLost;
         this.totalPoints = totalPoints;
         this.costume = costume;
-        this.music = music;
-        this.theme = theme;
+        this.darkTheme = darkTheme;
         this.isMusicPlaying = isMusicPlaying;
+    }
+
+    /**
+     * Returns a User object based off of the given string
+     * @param userInfoString the string that describes the new user object to be created
+     * @return returns the new user object based off of userInfoString
+     */
+    public User(String userInfoString) {
+        String[] userInfo = userInfoString.split("\\$");
+        username = userInfo[0];
+        password = userInfo[1];
+        totalGold = Integer.parseInt(userInfo[2]);
+        totalLivesLost = Integer.parseInt(userInfo[3]);
+        totalPoints = Integer.parseInt(userInfo[4]);
+        costume = Integer.parseInt(userInfo[5]);
+        darkTheme = userInfo[6].equals("true");
+        isMusicPlaying = userInfo[7].equals("true");
+    }
+
+    @Override
+    /**
+     * Returns a string based on the input User.
+     * @param user the user to be converted into a string format
+     * @return string that represents the User user
+     */
+    public String toString() {
+        String username = this.getUsername();
+        String password = this.getPassword();
+        int totalGold = this.getTotalGold();
+        int totalLivesLost = this.getTotalLivesLost();
+        int totalPoints = this.getTotalPoints();
+        int costume = this.getCostume();
+        boolean theme = this.isDarkTheme();
+        boolean musicPlaying = this.isMusicPlaying();
+        return username + "$" + password + "$" + totalGold + "$" + totalLivesLost + "$" + totalPoints + "$" + costume + "$" + theme + "$" + musicPlaying;
     }
 
     public String getUsername() {
@@ -72,12 +105,12 @@ public class User {
         this.music = music;
     }
 
-    public int getTheme() {
-        return theme;
+    public boolean isDarkTheme() {
+        return darkTheme;
     }
 
-    public void setTheme(int theme) {
-        this.theme = theme;
+    public void setDarkTheme(boolean darkTheme) {
+        this.darkTheme = darkTheme;
     }
 
     public boolean isMusicPlaying() {

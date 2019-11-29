@@ -29,6 +29,10 @@ public abstract class GenericLevel {
      * Number of points collected in this level.
      */
     private int points;
+    /**
+     * Number of seconds left in the game.
+     */
+    protected int secondsLeft;
 
     /**
      * Constructs a GenericLevel
@@ -51,6 +55,24 @@ public abstract class GenericLevel {
         points = 0;
     }
 
+    /**
+     * Draws the current level onto the canvas.
+     * @param canvas the canvas on to draw this level on
+     */
+    public void draw(Canvas canvas) {
+        for (GameObject gameObject : gameObjects) {
+            gameObject.draw(canvas);
+        }
+    }
+
+    /**
+     * Stops the level from running (brings to win screen) once time is up
+     */
+    public void checkGameOver() {
+        if (this.secondsLeft == 0) {
+            this.isRunning = false;
+        }
+    }
     /**
      * Updates this level.
      */
@@ -130,6 +152,15 @@ public abstract class GenericLevel {
     public void setIsRunning(boolean b) {
         this.isRunning = b;
     }
+
+    public int getSecondsLeft() {
+        return secondsLeft;
+    }
+
+    public void setSecondsLeft(int secondsLeft) {
+        this.secondsLeft = secondsLeft;
+    }
+
 
     public boolean isRunning() {
         return isRunning;

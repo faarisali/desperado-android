@@ -24,7 +24,7 @@ public class LevelTwoActivity extends AbstractActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         currView = new GameView(this);
-        currView.setLevelPresenter(new LevelTwoPresenter(this, new LevelTwo()));
+        currView.setLevelPresenter(new LevelTwoPresenter(this, new LevelTwo(3, 11)));
 
 //        LevelTwo newLevel = new LevelTwo();
 //        LevelTwoPresenter presenter = new LevelTwoPresenter(this, newLevel);
@@ -58,6 +58,11 @@ public class LevelTwoActivity extends AbstractActivity {
     void drawPoints(Canvas canvas, Point location, int size, int numPoints) {
         pointPaint.setTextSize(size);
         canvas.drawText("Points:" + numPoints, location.x, location.y, pointPaint);
+    }
+
+    void drawTimerDisplay(Canvas canvas, Point location, int size, int secondsLeft) {
+        pointPaint.setTextSize(size);
+        canvas.drawText("Time Left:" + secondsLeft, location.x, location.y, pointPaint);
     }
 
     void drawPlayer(Canvas canvas, Point location, int size) {

@@ -20,27 +20,41 @@ public class LevelTwo extends GenericLevel {
     private final int HEART_SIZE = 60;
     private final int POINT_SIZE = 50;
     private final int OBSTACLE_SIZE = 90;
+    private final int TIMERDISPLAY_SIZE = 50;
     private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, PLAYER_SIZE, Color.BLUE);
     private Points points = new Points(45, 110, POINT_SIZE, Color.WHITE, 0);
-    private Timer time = new Timer();
     private int lives = 3;
+    private TimerDisplay timerDisplay = new TimerDisplay(45, 160, 50, Color.WHITE, this.secondsLeft);
+
+
     private ArrayList<Heart> heartList = new ArrayList<>();
     /**
-     * Constructs a GenericLevel
+     * Constructs a LevelTwo
      *
      * @param lives  the number of lives the player starts with on this level.
      */
     public LevelTwo(int lives) {
+        isRunning = true;
+        this.secondsLeft = 30;
+        this.lives = lives;
+        runtimeTimer.countDown();
         new SpawnObstacleTask(this).run();
-        runtimeTimer.countDown(10);
+        runtimeTimer.countDown();
         populateHeartList(this.lives);
     }
 
-    public LevelTwo() {
-        new SpawnObstacleTask(this).run();
+    /**
+     * Constructs a LevelTwo
+     *
+     * @param lives
+     * @param secondsLeft
+     */
+    public LevelTwo(int lives, int secondsLeft) {
         isRunning = true;
-//        countDown(30);
-        runtimeTimer.countDown(10);
+        this.secondsLeft = secondsLeft;
+        this.lives = lives;
+        new SpawnObstacleTask(this).run();
+        runtimeTimer.countDown();
         populateHeartList(this.lives);
     }
 
@@ -56,17 +70,37 @@ public class LevelTwo extends GenericLevel {
 
     }
 
+    /**
+     * Need to draw background, character and obstacles.
+     *
+     * @param canvas where the img is drawn
+     */
+    @Override
+    public void draw(Canvas canvas) {
+//        player.draw(canvas);
+//        points.draw(canvas);
+//        drawObstacles(canvas);
+//        drawHearts(canvas);
+//        timerDisplay.draw(canvas, this.secondsLeft);
+
+
+    }
+
+
     public RenderData draw() {
         RenderData levelTwoData = new RenderData();
         levelTwoData.store("player", player.draw());
         levelTwoData.store("obstacle", drawObstacles());
         levelTwoData.store("lives", drawHearts());
         levelTwoData.store("points", points.draw());
+        levelTwoData.store("timerdisplay", timerDisplay.draw());
         levelTwoData.store("playerSize", PLAYER_SIZE);
         levelTwoData.store("obstacleSize", OBSTACLE_SIZE);
         levelTwoData.store("livesSize", HEART_SIZE);
         levelTwoData.store("pointsSize", POINT_SIZE);
+        levelTwoData.store("timerDisplaySize", TIMERDISPLAY_SIZE);
         levelTwoData.store("numPoints", points.getPoints());
+        levelTwoData.store("secondsLeft", this.secondsLeft);
         return levelTwoData;
 
     }
@@ -100,9 +134,6 @@ public class LevelTwo extends GenericLevel {
 
     }
 
-    private void drawSecondsPassed(Canvas canvas, int second) {
-
-    }
     @Override
     public void tapEvent(MotionEvent event) {
         player.jumpUp();
@@ -138,6 +169,7 @@ public class LevelTwo extends GenericLevel {
             updateObstacles();
             detectCollisions();
         }
+        checkGameOver();
     }
 
     private void updateLives() {

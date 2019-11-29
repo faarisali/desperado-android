@@ -51,6 +51,8 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
         LevelTwoDataFormatter formatter = new LevelTwoDataFormatter(data);
         drawPoints(canvas, formatter.getPointsLocation(), formatter.getPointsSize(),
                 formatter.getPoints());
+        drawTimerDisplay(canvas, formatter.getTimerDisplayLocation(), formatter.getTimerDisplaySize(),
+                formatter.getSecondsLeft());
         drawHearts(canvas, formatter.getLivesLocation(), formatter.getLivesSize());
         drawPlayer(canvas, formatter.getPlayerLocation(), formatter.getPlayerSize());
         drawObstacles(canvas, formatter.getObstacleLocation(), formatter.getObstacleSize());
@@ -81,6 +83,10 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
     private void drawPoints(Canvas canvas, Point location, int size, int points) {
         view.drawPoints(canvas, location, size, points);
 
+    }
+
+    private void drawTimerDisplay(Canvas canvas, Point location, int size, int secondsLeft) {
+        view.drawTimerDisplay(canvas, location, size, secondsLeft);
     }
 
     private void drawPlayer(Canvas canvas, Point location, int size) {

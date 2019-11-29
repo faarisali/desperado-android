@@ -31,12 +31,12 @@ public class LoseActivity extends AppCompatActivity implements View.OnClickListe
         displayStats(pointsValue, goldValue);
 
         // Update user info
-        User currentUser = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
+        User currentUser = LoginAndroidMapDatabase.getSingleton(this).getCurrentUser();
         currentUser.setTotalPoints(currentUser.getTotalPoints() + pointsValue);
         currentUser.setTotalGold(currentUser.getTotalGold() + goldValue);
         currentUser.setTotalLivesLost(currentUser.getTotalLivesLost() + 3);
-        LoginAndroidMapDatabase.getSingleton().addUser(currentUser);
-
+        LoginAndroidMapDatabase.getSingleton(this).addUser(currentUser);
+        LoginAndroidMapDatabase.getSingleton(this).setCurrentUser(currentUser);
     }
 
     /**

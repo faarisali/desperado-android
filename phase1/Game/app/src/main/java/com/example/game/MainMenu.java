@@ -149,7 +149,7 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         TextView usernameText = findViewById(R.id.usernameTextView);
-        User currentUser = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
+        User currentUser = LoginAndroidMapDatabase.getSingleton(this).getCurrentUser();
         String username = currentUser.getUsername();
         usernameText.setText(username);
         customizeCharacter();
@@ -166,7 +166,7 @@ public class MainMenu extends AppCompatActivity {
     }
 
     private void updateStats() {
-        User currentUser = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
+        User currentUser = LoginAndroidMapDatabase.getSingleton(this).getCurrentUser();
         TextView points = findViewById(R.id.totalPoints);
         points.setText(String.valueOf(currentUser.getTotalPoints()));
         TextView gold = findViewById(R.id.totalGold);
@@ -183,24 +183,39 @@ public class MainMenu extends AppCompatActivity {
     public void beginLevelOne(View v) {
         Intent levelOne = new Intent(this.getBaseContext(), LevelOneActivity.class);
         levelOne.putExtra("spriteID", costumes[currentCostume]);
+        if (nightModeSwitch.isChecked()) {
+            levelOne.putExtra("Time", 1);
+        } else {
+            levelOne.putExtra("Time", 0);
+        }
         startActivity(levelOne);
     }
 
     public void beginLevelTwo(View v) {
         Intent levelTwo = new Intent(this.getBaseContext(), LevelTwoActivity.class);
         levelTwo.putExtra("spriteID", costumes[currentCostume]);
+        if (nightModeSwitch.isChecked()) {
+            levelTwo.putExtra("Time", 1);
+        } else {
+            levelTwo.putExtra("Time", 0);
+        }
         startActivity(levelTwo);
     }
 
     public void beginLevelThree(View v) {
         Intent levelThree = new Intent(this.getBaseContext(), LevelThreeActivity.class);
         levelThree.putExtra("spriteID", costumes[currentCostume]);
+        if (nightModeSwitch.isChecked()) {
+            levelThree.putExtra("Time", 1);
+        } else {
+            levelThree.putExtra("Time", 0);
+        }
         startActivity(levelThree);
     }
 
     public void logOut(View v) {
         Intent logout = new Intent(this, LoginActivity.class);
-        LoginAndroidMapDatabase.getSingleton().setCurrentUser(null);
+        LoginAndroidMapDatabase.getSingleton(this).setCurrentUser(null);
         startActivity(logout);
     }
 }

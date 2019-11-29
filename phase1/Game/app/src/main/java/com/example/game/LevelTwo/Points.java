@@ -22,7 +22,6 @@ public class Points extends GameObject {
         return points;
     }
 
-    @Override
     public void draw(Canvas canvas) {
         canvas.drawText("Points: " + Integer.toString(this.points), x, y, getPaintText());
     }

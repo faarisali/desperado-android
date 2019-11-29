@@ -43,7 +43,6 @@ public class Obstacle extends GameObject {
     /**
      * Draw the obstacle.
      */
-    @Override
     public void draw(Canvas canvas) {
         canvas.drawText("{}", x, y, getPaintText());
     }

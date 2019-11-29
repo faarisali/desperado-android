@@ -58,7 +58,8 @@ public class LevelTwo extends GenericLevel {
         populateHeartList(this.lives);
     }
 
-
+    private void returnToMain() {
+    }
 
     private void populateHeartList(int lives) {
         int xIncrement = 45;
@@ -189,7 +190,6 @@ public class LevelTwo extends GenericLevel {
             }
         }
     }
-
 
     @Override
     public int getLives() {

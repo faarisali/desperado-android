@@ -1,7 +1,6 @@
 package com.example.game;
 
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ public abstract class GenericLevel {
      * The objects in this level
      */
     private ArrayList<GameObject> gameObjects;
+
     /**
      * True iff this level is running
      */

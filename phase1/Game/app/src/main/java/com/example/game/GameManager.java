@@ -121,7 +121,6 @@ public class GameManager {
     }
 
     public void draw(Canvas canvas) {
-        currLevel.draw(canvas);
         pausePaint.setColor(Color.WHITE);
         canvas.drawRect(1000, 30, 1070, 100, pausePaint);
         pausePaint.setColor(Color.BLACK);

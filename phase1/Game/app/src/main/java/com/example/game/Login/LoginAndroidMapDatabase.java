@@ -17,18 +17,13 @@ public class LoginAndroidMapDatabase implements LoginMapDatabase {
     private static LoginAndroidMapDatabase loginAndroidMapDatabase = null;
 
     /**
-     * Create an android map database using a given context
-     * @param context the context in which this databse is instantiated
-     */
-    static void setSingleton(Context context) {
-        loginAndroidMapDatabase = new LoginAndroidMapDatabase(context);
-    }
-
-    /**
      * Returns the database singleton
      * @return the databse singleton
      */
-    public static LoginAndroidMapDatabase getSingleton() {
+    public static LoginAndroidMapDatabase getSingleton(Context context) {
+        if (loginAndroidMapDatabase == null) {
+            loginAndroidMapDatabase = new LoginAndroidMapDatabase(context);
+        }
         return loginAndroidMapDatabase;
     }
 
@@ -111,7 +106,7 @@ public class LoginAndroidMapDatabase implements LoginMapDatabase {
      */
     @Override
     public User addDefaultUser(String username, String password) {
-        User newUser = new User(username, password, 0, 0, 0, R.drawable.cowboy_yellow, R.raw.music, 0, false);
+        User newUser = new User(username, password, 0, 0, 0, R.drawable.cowboy_yellow, false, false);
         addUser(newUser);
         return newUser;
     }
@@ -130,16 +125,7 @@ public class LoginAndroidMapDatabase implements LoginMapDatabase {
         if (userInfo.length < 8) {
             return null;
         }
-        String usernameVal = userInfo[0];
-        String password = userInfo[1];
-        int totalGold = Integer.parseInt(userInfo[2]);
-        int totalLivesLost = Integer.parseInt(userInfo[3]);
-        int totalPoints = Integer.parseInt(userInfo[4]);
-        int costume = Integer.parseInt(userInfo[5]);
-        int music = Integer.parseInt(userInfo[6]);
-        int theme = Integer.parseInt(userInfo[7]);
-        boolean isMusicPlaying = userInfo[8].equals("true");
-        return new User(usernameVal, password, totalGold, totalLivesLost, totalPoints, costume, music, theme, isMusicPlaying);
+        return new User(userInfoString);
     }
 
     /**
@@ -151,15 +137,6 @@ public class LoginAndroidMapDatabase implements LoginMapDatabase {
         if (user == null) {
             return "";
         }
-        String username = user.getUsername();
-        String password = user.getPassword();
-        int totalGold = user.getTotalGold();
-        int totalLivesLost = user.getTotalLivesLost();
-        int totalPoints = user.getTotalPoints();
-        int costume = user.getCostume();
-        int music = user.getMusic();
-        int theme = user.getTheme();
-        boolean musicPlaying = user.isMusicPlaying();
-        return username + "$" + password + "$" + totalGold + "$" + totalLivesLost + "$" + totalPoints + "$" + costume + "$" + music + "$" + theme + "$" + musicPlaying;
+        return user.toString();
     }
 }

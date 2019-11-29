@@ -70,10 +70,17 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         goldAccumulated = intent.getIntExtra("Gold", 0);
         pointsAccumulated = intent.getIntExtra("Points", 0);
         int spriteID = intent.getIntExtra("spriteID", R.drawable.cowboy_yellow);
+        int gameTime = intent.getIntExtra("Time", 0);
 
         presenter = new LevelThreePresenter(this, new LevelThreeInteractor(new LevelThree(lives)));
         View view = this.getWindow().getDecorView();
-        view.setBackgroundResource(R.drawable.levelthreebg);
+
+        if (gameTime == 0) { //sets to day mode / night mode depending
+            view.setBackgroundResource(R.drawable.levelthreebg);
+        } else {
+            view.setBackgroundResource(R.drawable.levelthreebg_night);
+        }
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
@@ -223,7 +230,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     public void setPlayerLives(int newLives) {
         for (int i = 0; i < playerHearts.size(); i++) {
             if (i >= newLives) {
-                playerHearts.get(i).setVisibility(View.GONE);
+                playerHearts.get(i).setVisibility(View.INVISIBLE);
             }
         }
     }
@@ -232,13 +239,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
      * Sends the game to the lose screen.
      */
     public void loseGame() {
-        Intent intent = new Intent(this, LoseActivity.class);
-        intent.putExtra("Points", pointsAccumulated);
-        intent.putExtra("Gold", goldAccumulated);
-        intent.putExtra("Lives", 0);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
-        finish();
+        super.loseGame(pointsAccumulated, goldAccumulated);
     }
 
     /**
@@ -247,15 +248,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
      * @param playerLives the amount of lives remaining.
      */
     public void winGame(int playerLives) {
-        Intent intent = new Intent(this, WinActivity.class);
-        intent.putExtra("Points", pointsAccumulated);
-        intent.putExtra("Gold", goldAccumulated);
-        intent.putExtra("Lives", playerLives);
-        intent.putExtra("total lives lost", 3 - playerLives);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
-        finish();
-
+        super.winGame(pointsAccumulated + 100 * playerLives, goldAccumulated, playerLives);
     }
 
 

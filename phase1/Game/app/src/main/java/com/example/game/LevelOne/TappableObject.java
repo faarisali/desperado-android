@@ -33,8 +33,7 @@ public abstract class TappableObject extends GameObject {
 
     public abstract ArrayList<Integer> tapResponse();
 
-    @Override
-    public abstract void draw(Canvas canvas);
+    public abstract void draw(LevelOnePresenter presenter);
 
     public void move() {
         y = y + 5;

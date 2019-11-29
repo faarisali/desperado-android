@@ -230,7 +230,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
     public void setPlayerLives(int newLives) {
         for (int i = 0; i < playerHearts.size(); i++) {
             if (i >= newLives) {
-                playerHearts.get(i).setVisibility(View.GONE);
+                playerHearts.get(i).setVisibility(View.INVISIBLE);
             }
         }
     }

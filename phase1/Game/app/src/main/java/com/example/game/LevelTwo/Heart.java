@@ -1,6 +1,7 @@
 package com.example.game.LevelTwo;
 
 import android.graphics.Canvas;
+import android.graphics.Point;
 
 import com.example.game.GameObject;
 
@@ -14,5 +15,9 @@ public class Heart extends GameObject {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawText("<3", x, y, getPaintText());
+    }
+
+    public Point draw() {
+        return new Point(this.x, this.y);
     }
 }

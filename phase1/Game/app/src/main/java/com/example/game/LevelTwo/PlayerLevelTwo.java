@@ -1,17 +1,13 @@
 package com.example.game.LevelTwo;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.media.Image;
 
-import com.example.game.GameObject;
+import java.util.ArrayList;
 
 /**
  * The player in Level Two, (will be update with context to other levels in future)
  */
-public class PlayerLevelTwo extends GameObject {
+public class PlayerLevelTwo {
     /**
      * How the object looks (2 states to accomodate running)
      */
@@ -30,14 +26,15 @@ public class PlayerLevelTwo extends GameObject {
      * Is the player in midair?
      */
     private boolean isFalling = false;
-
+    int x, y;
     private final double gravity = 1.6;
     private int ground;
     private final double jumpStrength = -25;
 
     public PlayerLevelTwo(int x, int y, int size, int color) {
-        super(x, y + 20, size, color);
-        this.ground = y + 20;
+        this.x = x;
+        this.y = y + 15;
+        this.ground = y + 15;
         Vy = 0;
     }
 
@@ -49,7 +46,6 @@ public class PlayerLevelTwo extends GameObject {
             Vy = jumpStrength;
             isFalling = true;
         }
-
     }
 
     private void fall() {
@@ -73,7 +69,11 @@ public class PlayerLevelTwo extends GameObject {
     /**
      * Draw the player.
      */
-    public void draw(Canvas canvas) {
-        canvas.drawText("O", this.x, this.y, getPaintText());
+    public ArrayList<Integer> draw() {
+        //canvas.drawText("O", this.x, this.y, getPaintText());
+        ArrayList<Integer> temp = new ArrayList<>();
+        temp.add(x);
+        temp.add(y);
+        return temp;
     }
 }

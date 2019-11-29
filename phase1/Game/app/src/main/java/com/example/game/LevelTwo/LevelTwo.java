@@ -2,6 +2,7 @@ package com.example.game.LevelTwo;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.view.MotionEvent;
 
 import com.example.game.GenericLevel;
@@ -9,14 +10,20 @@ import com.example.game.GenericLevel;
 import java.util.ArrayList;
 import java.util.Timer;
 
-
 public class LevelTwo extends GenericLevel {
 
     private GameRuntimeTimer runtimeTimer = new GameRuntimeTimer(this);
     private ArrayList<Obstacle> obstacleList = new ArrayList<Obstacle>();
     private int groundY = 500;
     private float defaultObstacleMoveSpeed = 9;
-    private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, 60, Color.BLUE);
+    private final int PLAYER_SIZE = 60;
+    private final int HEART_SIZE = 60;
+    private final int POINT_SIZE = 50;
+    private final int OBSTACLE_SIZE = 90;
+    private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, PLAYER_SIZE, Color.BLUE);
+    private Points points = new Points(45, 110, POINT_SIZE, Color.WHITE, 0);
+    private Timer time = new Timer();
+    private int lives = 3;
     private Points points = new Points(45, 110, 50, Color.WHITE, 0);
     private TimerDisplay timerDisplay;
     private int lives;
@@ -35,6 +42,7 @@ public class LevelTwo extends GenericLevel {
         this.lives = lives;
         runtimeTimer.countDown();
         new SpawnObstacleTask(this).run();
+        runtimeTimer.countDown(10);
         populateHeartList(this.lives);
     }
 
@@ -59,7 +67,7 @@ public class LevelTwo extends GenericLevel {
     private void populateHeartList(int lives) {
         int xIncrement = 45;
         for (int i = 0; i < lives; i++) {
-            heartList.add(new Heart(xIncrement, 55, 60, Color.RED));
+            heartList.add(new Heart(xIncrement, 55, HEART_SIZE, Color.RED));
             xIncrement += 80;
         }
 
@@ -82,28 +90,54 @@ public class LevelTwo extends GenericLevel {
     }
 
 
+    public RenderData draw() {
+        RenderData levelTwoData = new RenderData();
+        levelTwoData.store("player", player.draw());
+        levelTwoData.store("obstacle", drawObstacles());
+        levelTwoData.store("lives", drawHearts());
+        levelTwoData.store("points", points.draw());
+        levelTwoData.store("playerSize", PLAYER_SIZE);
+        levelTwoData.store("obstacleSize", OBSTACLE_SIZE);
+        levelTwoData.store("livesSize", HEART_SIZE);
+        levelTwoData.store("pointsSize", POINT_SIZE);
+        levelTwoData.store("numPoints", points.getPoints());
+        return levelTwoData;
+
+    }
+
+
     /**
      * draws every obstacle in managed in this Level2
      *
      * @param canvas      where obstacles are drawn.
      */
-    private void drawObstacles(Canvas canvas) {
-        for (Obstacle o :
-                obstacleList) {
-            o.draw(canvas);
+    private ArrayList<Integer> drawObstacles() {
+        ArrayList<Integer> temp = new ArrayList<>();
+        for (Obstacle obstacle :
+                obstacleList.toArray(new Obstacle[0])) {
+            Point toAdd = obstacle.draw();
+            temp.add(toAdd.x);
+            temp.add(toAdd.y);
         }
+        return temp;
 
     }
 
-    private void drawHearts(Canvas canvas) {
-        for (Heart h :
+    private ArrayList<Integer> drawHearts() {
+        ArrayList<Integer> temp = new ArrayList<>();
+        for (Heart heart :
                 heartList.toArray(new Heart[0])) {
-            h.draw(canvas);
+            Point toAdd = heart.draw();
+            temp.add(toAdd.x);
+            temp.add(toAdd.y);
         }
+        return temp;
 
     }
 
+    private void drawSecondsPassed(Canvas canvas, int second) {
 
+    }
     @Override
     public void tapEvent(MotionEvent event) {
         player.jumpUp();
@@ -138,7 +172,6 @@ public class LevelTwo extends GenericLevel {
             player.move();
             updateObstacles();
             detectCollisions();
-            checkGameOver();
         }
     }
 
@@ -152,7 +185,7 @@ public class LevelTwo extends GenericLevel {
 
     private void detectCollisions() {
         for(Obstacle item: obstacleList) {
-            if (item.isCollided() == false & player.y - item.y > -60) {
+            if (!item.isCollided() && player.y - item.y > -60) {
                 if (player.x - item.x > -40 && player.x - item.x < 40) {
                     updateLives();
                     item.setCollided(true);
@@ -183,6 +216,10 @@ public class LevelTwo extends GenericLevel {
 
     public int getGroundY() {
         return groundY;
+    }
+
+    public int getobstacleSize() {
+        return OBSTACLE_SIZE;
     }
 
     public float getDefaultObstacleMoveSpeed() {

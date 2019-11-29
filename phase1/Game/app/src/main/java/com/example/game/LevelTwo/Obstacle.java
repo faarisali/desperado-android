@@ -1,10 +1,7 @@
 package com.example.game.LevelTwo;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.media.Image;
+import android.graphics.Point;
 
 import com.example.game.GameObject;
 
@@ -48,9 +45,11 @@ public class Obstacle extends GameObject {
      */
     @Override
     public void draw(Canvas canvas) {
-
-
         canvas.drawText("{}", x, y, getPaintText());
+    }
+
+    public Point draw() {
+        return new Point(this.x, this.y);
     }
 
     public boolean isOutOfBounds() {

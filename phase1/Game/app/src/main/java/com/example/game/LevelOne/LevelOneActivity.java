@@ -15,6 +15,8 @@ import com.example.game.R;
 
 public class LevelOneActivity extends AbstractActivity {
 
+    private Paint textStyle = new Paint();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,25 +28,38 @@ public class LevelOneActivity extends AbstractActivity {
 //        currView.setZOrderOnTop(true);    // necessary
 //        SurfaceHolder holder = currView.getHolder();
 //        holder.setFormat(PixelFormat.TRANSPARENT);
+
+        setTextStyle(textStyle, Color.WHITE);
+
         GameManager game = currView.gameManager;
         GameManagerObserver observer = new GameManagerObserver(this);
         game.setObserver(observer);
         game.changeLevel(1);
+        LevelOnePresenter presenter = new LevelOnePresenter(this, new LevelOne());
+    }
+
+    private void setTextStyle(Paint textStyle, int white) {
+        textStyle.setTextSize(60);
+        textStyle.setTypeface(Typeface.DEFAULT_BOLD);
+        textStyle.setColor(white);
     }
 
     public void drawBomb(int x, int y, Canvas canvas) {
         Paint paint = new Paint();
-        paint.setTextSize(60);
-        paint.setTypeface(Typeface.DEFAULT_BOLD);
-        paint.setColor(Color.GRAY);
+        setTextStyle(paint, Color.GRAY);
         canvas.drawCircle(x + 25, y + 25, 25, paint);
     }
 
     public void drawCoin(int x, int y, Canvas canvas) {
         Paint paint = new Paint();
-        paint.setTextSize(60);
-        paint.setTypeface(Typeface.DEFAULT_BOLD);
-        paint.setColor(Color.YELLOW);
+        setTextStyle(paint, Color.YELLOW);
         canvas.drawCircle(x + 25, y + 25, 25, paint);
+    }
+
+    public void displayText(Canvas canvas, int gold, int lives, int points, String time) {
+        canvas.drawText("Coins : " + gold, 0, 50, textStyle);
+        canvas.drawText("Lives : " + lives, 0, 100, textStyle);
+        canvas.drawText("Points : " + points, 0, 150, textStyle);
+        canvas.drawText("Time left : " + time, 0, 200, textStyle);
     }
 }

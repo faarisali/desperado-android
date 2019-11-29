@@ -32,11 +32,11 @@ public class WinActivity extends AppCompatActivity implements View.OnClickListen
         displayStats(pointsValue, goldValue, livesRemaining);
 
         // Update user info
-        User currentUser = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
+        User currentUser = LoginAndroidMapDatabase.getSingleton(this).getCurrentUser();
         currentUser.setTotalPoints(currentUser.getTotalPoints() + pointsValue);
         currentUser.setTotalGold(currentUser.getTotalGold() + goldValue);
         currentUser.setTotalLivesLost(currentUser.getTotalLivesLost() + (3 - livesRemaining));
-        LoginAndroidMapDatabase.getSingleton().addUser(currentUser);
+        LoginAndroidMapDatabase.getSingleton(this).addUser(currentUser);
 
     }
     private void displayStats(int pointsValue, int goldValue, int livesRemaining) {

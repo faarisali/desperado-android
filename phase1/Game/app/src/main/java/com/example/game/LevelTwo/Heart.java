@@ -12,7 +12,6 @@ public class Heart extends GameObject {
 
     }
 
-    @Override
     public void draw(Canvas canvas) {
         canvas.drawText("<3", x, y, getPaintText());
     }

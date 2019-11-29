@@ -17,18 +17,13 @@ public class LoginAndroidMapDatabase implements LoginMapDatabase {
     private static LoginAndroidMapDatabase loginAndroidMapDatabase = null;
 
     /**
-     * Create an android map database using a given context
-     * @param context the context in which this databse is instantiated
-     */
-    static void setSingleton(Context context) {
-        loginAndroidMapDatabase = new LoginAndroidMapDatabase(context);
-    }
-
-    /**
      * Returns the database singleton
      * @return the databse singleton
      */
-    public static LoginAndroidMapDatabase getSingleton() {
+    public static LoginAndroidMapDatabase getSingleton(Context context) {
+        if (loginAndroidMapDatabase == null) {
+            loginAndroidMapDatabase = new LoginAndroidMapDatabase(context);
+        }
         return loginAndroidMapDatabase;
     }
 

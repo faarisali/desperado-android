@@ -149,7 +149,7 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         TextView usernameText = findViewById(R.id.usernameTextView);
-        User currentUser = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
+        User currentUser = LoginAndroidMapDatabase.getSingleton(this).getCurrentUser();
         String username = currentUser.getUsername();
         usernameText.setText(username);
         customizeCharacter();
@@ -166,7 +166,7 @@ public class MainMenu extends AppCompatActivity {
     }
 
     private void updateStats() {
-        User currentUser = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
+        User currentUser = LoginAndroidMapDatabase.getSingleton(this).getCurrentUser();
         TextView points = findViewById(R.id.totalPoints);
         points.setText(String.valueOf(currentUser.getTotalPoints()));
         TextView gold = findViewById(R.id.totalGold);
@@ -200,7 +200,7 @@ public class MainMenu extends AppCompatActivity {
 
     public void logOut(View v) {
         Intent logout = new Intent(this, LoginActivity.class);
-        LoginAndroidMapDatabase.getSingleton().setCurrentUser(null);
+        LoginAndroidMapDatabase.getSingleton(this).setCurrentUser(null);
         startActivity(logout);
     }
 }

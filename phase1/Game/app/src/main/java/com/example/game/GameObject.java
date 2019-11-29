@@ -32,7 +32,4 @@ public abstract class GameObject {
     public Paint getPaintText() {
         return paintText;
     }
-
-    public abstract void draw(Canvas canvas);
-
 }

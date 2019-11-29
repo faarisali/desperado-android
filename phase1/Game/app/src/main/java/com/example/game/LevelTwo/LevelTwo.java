@@ -56,20 +56,6 @@ public class LevelTwo extends GenericLevel {
 
     }
 
-    /**
-     * Need to draw background, character and obstacles.
-     *
-     * @param canvas where the img is drawn
-     */
-    @Override
-    public void draw(Canvas canvas) {
-//        player.draw();
-//        drawObstacles(canvas);
-//        drawHearts(canvas);
-//        points.draw(canvas);
-    }
-
-
     public RenderData draw() {
         RenderData levelTwoData = new RenderData();
         levelTwoData.store("player", player.draw());

@@ -52,16 +52,6 @@ public abstract class GenericLevel {
     }
 
     /**
-     * Draws the current level onto the canvas.
-     * @param canvas the canvas on to draw this level on
-     */
-    public void draw(Canvas canvas) {
-        for (GameObject gameObject : gameObjects) {
-            gameObject.draw(canvas);
-        }
-    }
-
-    /**
      * Updates this level.
      */
     public abstract void update();

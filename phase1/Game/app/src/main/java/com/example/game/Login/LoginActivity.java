@@ -41,14 +41,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        LoginAndroidMapDatabase.setSingleton(this); // opens login database file
-        LoginMapDatabase db = LoginAndroidMapDatabase.getSingleton();
+        LoginMapDatabase db = LoginAndroidMapDatabase.getSingleton(this);
         // goes to the default activity if already logged in
         if (db.getCurrentUser() != null) {
             navigateToHome();
         }
         // creates the presenter layer between this activity and the login business logic
-        presenter = new LoginPresenter(this, LoginAndroidMapDatabase.getSingleton());
+        presenter = new LoginPresenter(this, LoginAndroidMapDatabase.getSingleton(this));
 
         // stores UI elements inside variables
         username = findViewById(R.id.username);

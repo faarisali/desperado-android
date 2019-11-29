@@ -232,13 +232,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
      * Sends the game to the lose screen.
      */
     public void loseGame() {
-        Intent intent = new Intent(this, LoseActivity.class);
-        intent.putExtra("Points", pointsAccumulated);
-        intent.putExtra("Gold", goldAccumulated);
-        intent.putExtra("Lives", 0);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
-        finish();
+        super.loseGame(pointsAccumulated, goldAccumulated);
     }
 
     /**
@@ -247,15 +241,7 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
      * @param playerLives the amount of lives remaining.
      */
     public void winGame(int playerLives) {
-        Intent intent = new Intent(this, WinActivity.class);
-        intent.putExtra("Points", pointsAccumulated);
-        intent.putExtra("Gold", goldAccumulated);
-        intent.putExtra("Lives", playerLives);
-        intent.putExtra("total lives lost", 3 - playerLives);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
-        finish();
-
+        super.winGame(pointsAccumulated + 100 * playerLives, goldAccumulated, playerLives);
     }
 
 

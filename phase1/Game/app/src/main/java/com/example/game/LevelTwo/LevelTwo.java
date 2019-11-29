@@ -22,11 +22,8 @@ public class LevelTwo extends GenericLevel {
     private final int OBSTACLE_SIZE = 90;
     private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, PLAYER_SIZE, Color.BLUE);
     private Points points = new Points(45, 110, POINT_SIZE, Color.WHITE, 0);
-    private Timer time = new Timer();
     private int lives = 3;
-    private Points points = new Points(45, 110, 50, Color.WHITE, 0);
     private TimerDisplay timerDisplay;
-    private int lives;
 
 
     private ArrayList<Heart> heartList = new ArrayList<>();
@@ -42,7 +39,7 @@ public class LevelTwo extends GenericLevel {
         this.lives = lives;
         runtimeTimer.countDown();
         new SpawnObstacleTask(this).run();
-        runtimeTimer.countDown(10);
+        runtimeTimer.countDown();
         populateHeartList(this.lives);
     }
 
@@ -80,10 +77,10 @@ public class LevelTwo extends GenericLevel {
      */
     @Override
     public void draw(Canvas canvas) {
-        player.draw(canvas);
-        points.draw(canvas);
-        drawObstacles(canvas);
-        drawHearts(canvas);
+//        player.draw(canvas);
+//        points.draw(canvas);
+//        drawObstacles(canvas);
+//        drawHearts(canvas);
         timerDisplay.draw(canvas, this.secondsLeft);
 
 
@@ -109,7 +106,7 @@ public class LevelTwo extends GenericLevel {
     /**
      * draws every obstacle in managed in this Level2
      *
-     * @param canvas      where obstacles are drawn.
+     * @param canvas where obstacles are drawn.
      */
     private ArrayList<Integer> drawObstacles() {
         ArrayList<Integer> temp = new ArrayList<>();
@@ -173,6 +170,7 @@ public class LevelTwo extends GenericLevel {
             updateObstacles();
             detectCollisions();
         }
+        checkGameOver();
     }
 
     private void updateLives() {

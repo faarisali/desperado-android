@@ -36,7 +36,7 @@ public class LoseActivity extends AppCompatActivity implements View.OnClickListe
         currentUser.setTotalGold(currentUser.getTotalGold() + goldValue);
         currentUser.setTotalLivesLost(currentUser.getTotalLivesLost() + 3);
         LoginAndroidMapDatabase.getSingleton(this).addUser(currentUser);
-
+        LoginAndroidMapDatabase.getSingleton(this).setCurrentUser(currentUser);
     }
 
     /**

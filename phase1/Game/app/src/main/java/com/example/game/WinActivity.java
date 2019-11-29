@@ -37,7 +37,7 @@ public class WinActivity extends AppCompatActivity implements View.OnClickListen
         currentUser.setTotalGold(currentUser.getTotalGold() + goldValue);
         currentUser.setTotalLivesLost(currentUser.getTotalLivesLost() + (3 - livesRemaining));
         LoginAndroidMapDatabase.getSingleton(this).addUser(currentUser);
-
+        LoginAndroidMapDatabase.getSingleton(this).setCurrentUser(currentUser);
     }
     private void displayStats(int pointsValue, int goldValue, int livesRemaining) {
         TextView goldBox = findViewById(R.id.goldVariable);

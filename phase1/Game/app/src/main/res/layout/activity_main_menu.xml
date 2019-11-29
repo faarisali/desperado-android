@@ -151,8 +151,8 @@
 
     <TextView
         android:id="@+id/totalGoldPlaceHolder"
-        android:layout_width="61dp"
-        android:layout_height="14dp"
+        android:layout_width="85dp"
+        android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:text="Total Gold:"
         app:layout_constraintStart_toStartOf="parent"

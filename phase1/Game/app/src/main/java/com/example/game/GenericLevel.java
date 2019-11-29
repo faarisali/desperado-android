@@ -1,6 +1,7 @@
 package com.example.game;
 
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -11,7 +12,6 @@ public abstract class GenericLevel {
      * The objects in this level
      */
     private ArrayList<GameObject> gameObjects;
-
     /**
      * True iff this level is running
      */
@@ -29,6 +29,10 @@ public abstract class GenericLevel {
      * Number of points collected in this level.
      */
     private int points;
+    /**
+     * Number of seconds left in the game.
+     */
+    protected int secondsLeft;
 
     /**
      * Constructs a GenericLevel
@@ -61,6 +65,14 @@ public abstract class GenericLevel {
         }
     }
 
+    /**
+     * Stops the level from running (brings to win screen) once time is up
+     */
+    public void checkGameOver() {
+        if (this.secondsLeft == 0) {
+            this.isRunning = false;
+        }
+    }
     /**
      * Updates this level.
      */
@@ -140,6 +152,15 @@ public abstract class GenericLevel {
     public void setIsRunning(boolean b) {
         this.isRunning = b;
     }
+
+    public int getSecondsLeft() {
+        return secondsLeft;
+    }
+
+    public void setSecondsLeft(int secondsLeft) {
+        this.secondsLeft = secondsLeft;
+    }
+
 
     public boolean isRunning() {
         return isRunning;

@@ -84,4 +84,23 @@ public class LevelTwoDataFormatter {
         return data.getData("numPoints").get(0);
     }
 
+    public Point getTimerDisplayLocation() {
+        ArrayList<Integer> pointsData = data.getData("timerdisplay");
+        if (pointsData.size() != 0) {
+            return new Point(pointsData.get(0), pointsData.get(1));
+        }
+        return new Point();
+    }
+
+    public int getTimerDisplaySize() {
+        ArrayList<Integer> pointsSize = data.getData("pointsSize");
+        if (pointsSize.size() != 0) {
+            return pointsSize.get(0);
+        }
+        return 0;
+    }
+
+    int getSecondsLeft() {
+        return data.getData("secondsLeft").get(0);
+    }
 }

@@ -12,7 +12,10 @@ public class RenderData {
             return data.get(key);
         }
         return new ArrayList<>();
+    }
 
+    public void store(String key, ArrayList<Integer> value) {
+        data.put(key, value);
     }
 
     public void store(String key, int newVal) {

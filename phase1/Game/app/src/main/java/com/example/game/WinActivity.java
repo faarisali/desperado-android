@@ -1,14 +1,13 @@
 package com.example.game;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.game.LevelThree.LevelThreeActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.game.Login.LoginAndroidMapDatabase;
 import com.example.game.Login.User;
 
@@ -23,7 +22,6 @@ public class WinActivity extends AppCompatActivity implements View.OnClickListen
         int pointsValue = intent.getIntExtra("Points", 0);
         int goldValue = intent.getIntExtra("Gold", 0);
         int livesRemaining = intent.getIntExtra("Lives", 0);
-        int totalLivesLost = intent.getIntExtra("total lives lost", 0);
 
         Button mainMenu = findViewById(R.id.mainMenuButton);
         mainMenu.setOnClickListener(this);
@@ -37,7 +35,7 @@ public class WinActivity extends AppCompatActivity implements View.OnClickListen
         User currentUser = LoginAndroidMapDatabase.getSingleton().getCurrentUser();
         currentUser.setTotalPoints(currentUser.getTotalPoints() + pointsValue);
         currentUser.setTotalGold(currentUser.getTotalGold() + goldValue);
-        currentUser.setTotalLivesLost(currentUser.getTotalLivesLost() + totalLivesLost);
+        currentUser.setTotalLivesLost(currentUser.getTotalLivesLost() + (3 - livesRemaining));
         LoginAndroidMapDatabase.getSingleton().addUser(currentUser);
 
     }

@@ -6,7 +6,6 @@ import android.view.MotionEvent;
 import com.example.game.LevelPresenterInterface;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 /**
  * Presenter for level one.
@@ -34,7 +33,13 @@ public class LevelOnePresenter implements LevelPresenterInterface {
 
     @Override
     public void updateGame() {
-        levelOneModel.update();
+        if (levelOneModel.getLives() > 0 && levelOneModel.isRunning()) {
+            levelOneModel.update();
+        } else if (!levelOneModel.isRunning()) {
+            levelOneView.winGame(levelOneModel.getPoints(), levelOneModel.getGold(), levelOneModel.getLives());
+        } else {
+            levelOneView.loseGame(levelOneModel.getPoints(), levelOneModel.getGold());
+        }
     }
 
     @Override
@@ -51,6 +56,7 @@ public class LevelOnePresenter implements LevelPresenterInterface {
 
     @Override
     public void tapEvent(MotionEvent event) {
+
         levelOneModel.tapEvent(event);
     }
 

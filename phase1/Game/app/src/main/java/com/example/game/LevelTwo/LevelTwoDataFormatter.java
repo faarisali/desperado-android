@@ -72,12 +72,16 @@ public class LevelTwoDataFormatter {
         return new Point();
     }
 
-    public int getpointsSize() {
-        ArrayList<Integer> pointsSize = data.getData("player");
+    public int getPointsSize() {
+        ArrayList<Integer> pointsSize = data.getData("pointsSize");
         if (pointsSize.size() != 0) {
             return pointsSize.get(0);
         }
         return 0;
+    }
+
+    int getPoints() {
+        return data.getData("numPoints").get(0);
     }
 
 }

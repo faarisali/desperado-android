@@ -9,8 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.game.AbstractActivity;
-import com.example.game.GameManager;
-import com.example.game.GameManagerObserver;
 import com.example.game.R;
 
 public class LevelOneActivity extends AbstractActivity {
@@ -30,12 +28,13 @@ public class LevelOneActivity extends AbstractActivity {
 //        holder.setFormat(PixelFormat.TRANSPARENT);
 
         setTextStyle(textStyle, Color.WHITE);
+        currView = findViewById(R.id.gameView);
+        currView.setLevelPresenter(new LevelOnePresenter(this, new LevelOne()));
 
-        GameManager game = currView.gameManager;
-        GameManagerObserver observer = new GameManagerObserver(this);
-        game.setObserver(observer);
-        game.changeLevel(1);
-        LevelOnePresenter presenter = new LevelOnePresenter(this, new LevelOne());
+//        GameManager game = currView.gameManager;
+//        GameManagerObserver observer = new GameManagerObserver(this);
+//        game.setObserver(observer);
+//        game.changeLevel(1);
     }
 
     private void setTextStyle(Paint textStyle, int white) {

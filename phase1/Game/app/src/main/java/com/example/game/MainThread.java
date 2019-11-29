@@ -20,8 +20,10 @@ public class MainThread extends Thread {
             try {
                 canvas = this.canvasHolder.lockCanvas();
                 synchronized (canvasHolder) {
-                    this.gameView.update();
-                    this.gameView.draw(canvas);
+                    if (canvas != null) {
+                        this.gameView.update();
+                        this.gameView.draw(canvas);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();

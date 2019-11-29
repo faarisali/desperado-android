@@ -1,10 +1,6 @@
 package com.example.game.LevelOne;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
@@ -21,6 +17,10 @@ public class Bomb extends TappableObject {
     /** Draw this bomb*/
     public void draw(LevelOnePresenter presenter) {
         presenter.drawBomb(super.x, super.y);
+    }
+
+    public void draw(Canvas canvas) {
+
     }
 
     public ArrayList<Integer> tapResponse(){

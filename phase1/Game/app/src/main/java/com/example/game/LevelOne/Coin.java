@@ -34,6 +34,10 @@ public class Coin extends TappableObject {
         presenter.drawCoin(super.x, super.y);
     }
 
+    public void draw(Canvas canvas) {
+
+    }
+
     public ArrayList<Integer> tapResponse(){ // TODO: ask if this should be in the model itself or is fine to be in the class
         ArrayList<Integer> response = new ArrayList<>();
         response.add(1);

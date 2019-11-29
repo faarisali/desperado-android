@@ -3,6 +3,7 @@ package com.example.game.LevelThree;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -123,6 +124,8 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
      * Makes the CPU's targets invisible so that 'cheat vision' is enabled and the player can see where the CPU hides.
      */
     void showCheatView() {
+        MediaPlayer player = MediaPlayer.create(this, R.raw.screech);
+        player.start();
         targetPositions.get(nextCpuPosition).getBackground().setAlpha(128);
     }
 

@@ -9,24 +9,24 @@ public class GameRuntimeTimer {
 
     private Timer timer = new Timer();
     private GenericLevel level;
-    private int seconds;
 
     public GameRuntimeTimer(GenericLevel level) {
         this.level = level;
-        this.seconds = seconds;
     }
 
-    public void countDown(int seconds) {
-        timer.schedule(returnTimerTask(this.level), seconds * 1000);
+    public void countDown() {
+        timer.scheduleAtFixedRate(getDecreaseSecondsLeftTask(this.level), 0, 1000);
     }
 
-    private TimerTask returnTimerTask(final GenericLevel level) {
+    private TimerTask getDecreaseSecondsLeftTask(final GenericLevel level) {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                level.setIsRunning(false);
+                level.setSecondsLeft(level.getSecondsLeft() - 1);
             }
         };
         return timerTask;
     }
+
+
 }

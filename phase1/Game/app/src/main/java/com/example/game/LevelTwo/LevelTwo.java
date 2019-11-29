@@ -1,6 +1,5 @@
 package com.example.game.LevelTwo;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.MotionEvent;
@@ -9,7 +8,7 @@ import com.example.game.GenericLevel;
 
 import java.util.ArrayList;
 import java.util.Timer;
-import java.util.TimerTask;
+
 
 public class LevelTwo extends GenericLevel {
 
@@ -19,31 +18,43 @@ public class LevelTwo extends GenericLevel {
     private float defaultObstacleMoveSpeed = 9;
     private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, 60, Color.BLUE);
     private Points points = new Points(45, 110, 50, Color.WHITE, 0);
-    private Timer time = new Timer();
+    private TimerDisplay timerDisplay;
+    private int lives;
 
-    private int lives = 3;
+
     private ArrayList<Heart> heartList = new ArrayList<>();
     /**
-     * Constructs a GenericLevel
+     * Constructs a LevelTwo
      *
      * @param lives  the number of lives the player starts with on this level.
      */
     public LevelTwo(int lives) {
-        new SpawnObstacleTask(this).run();
-        runtimeTimer.countDown(10);
-        populateHeartList(this.lives);
-    }
-
-    public LevelTwo() {
-        new SpawnObstacleTask(this).run();
         isRunning = true;
-//        countDown(30);
-        runtimeTimer.countDown(10);
+        this.secondsLeft = 30;
+        this.timerDisplay = new TimerDisplay(45, 160, 50, Color.WHITE, this.secondsLeft);
+        this.lives = lives;
+        runtimeTimer.countDown();
+        new SpawnObstacleTask(this).run();
         populateHeartList(this.lives);
     }
 
-    private void returnToMain() {
+    /**
+     * Constructs a LevelTwo
+     *
+     * @param lives
+     * @param secondsLeft
+     */
+    public LevelTwo(int lives, int secondsLeft) {
+        isRunning = true;
+        this.secondsLeft = secondsLeft;
+        this.timerDisplay = new TimerDisplay(45, 165, 50, Color.WHITE, this.secondsLeft);
+        this.lives = lives;
+        new SpawnObstacleTask(this).run();
+        runtimeTimer.countDown();
+        populateHeartList(this.lives);
     }
+
+
 
     private void populateHeartList(int lives) {
         int xIncrement = 45;
@@ -62,9 +73,12 @@ public class LevelTwo extends GenericLevel {
     @Override
     public void draw(Canvas canvas) {
         player.draw(canvas);
+        points.draw(canvas);
         drawObstacles(canvas);
         drawHearts(canvas);
-        points.draw(canvas);
+        timerDisplay.draw(canvas, this.secondsLeft);
+
+
     }
 
 
@@ -89,9 +103,7 @@ public class LevelTwo extends GenericLevel {
 
     }
 
-    private void drawSecondsPassed(Canvas canvas, int second) {
 
-    }
     @Override
     public void tapEvent(MotionEvent event) {
         player.jumpUp();
@@ -126,6 +138,7 @@ public class LevelTwo extends GenericLevel {
             player.move();
             updateObstacles();
             detectCollisions();
+            checkGameOver();
         }
     }
 
@@ -147,6 +160,7 @@ public class LevelTwo extends GenericLevel {
             }
         }
     }
+
 
     @Override
     public int getLives() {

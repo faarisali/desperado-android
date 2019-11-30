@@ -8,7 +8,7 @@ import com.example.game.GenericLevel;
 import java.util.ArrayList;
 
 
-public class LevelTwo extends GenericLevel {
+public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
 
     private GameRuntimeTimer runtimeTimer = new GameRuntimeTimer(this);
     private ArrayList<Obstacle> obstacleList = new ArrayList<Obstacle>();
@@ -243,6 +243,21 @@ public class LevelTwo extends GenericLevel {
 
     public float getDefaultObstacleMoveSpeed() {
         return defaultObstacleMoveSpeed;
+    }
+
+    /**
+     * Return 0 if the model is still running.
+     * Return 1 if game is won.
+     * Return -1 if game is lost.
+     */
+    public int getState() {
+        if (getLives() > 0 && isRunning()) {
+            return 0;
+        } else if (isRunning() && getLives() > 0) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
 

@@ -38,6 +38,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
         win.putExtra("Points", points);
         win.putExtra("Gold", goldCoins);
         win.putExtra("Lives", lives);
+        win.putExtra("Previous", this.getClass());
         startActivity(win);
         finish();
     }
@@ -47,6 +48,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
         lose.putExtra("Points", points);
         lose.putExtra("Gold", goldCoins);
         lose.putExtra("Lives", 0);
+        lose.putExtra("Previous", this.getClass());
         startActivity(lose);
         finish();
 

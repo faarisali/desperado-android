@@ -197,4 +197,14 @@
         app:layout_constraintEnd_toStartOf="@+id/textMenu"
         app:layout_constraintTop_toBottomOf="@+id/totalGold" />
 
+    <Button
+        android:id="@+id/bReplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="beginReplay"
+        android:text="Replay"
+        app:layout_constraintEnd_toStartOf="@+id/bLevelTwo"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="341dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

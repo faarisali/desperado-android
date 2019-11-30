@@ -33,7 +33,9 @@ public abstract class GameObject {
         return paintText;
     }
 
-    public abstract void draw(Canvas canvas);
+    public void draw(Canvas canvas) {
+
+    }
 
     //add proper draw abstract method
 }

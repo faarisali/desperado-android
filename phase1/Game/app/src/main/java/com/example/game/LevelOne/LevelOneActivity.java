@@ -23,6 +23,7 @@ public class LevelOneActivity extends AbstractCanvasActivity {
 
     private Bitmap coin;
     private Bitmap bomb;
+    private Bitmap background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +32,17 @@ public class LevelOneActivity extends AbstractCanvasActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         currView = new GameView(this);
+
+        int screenWidth = currView.getScreenWidth();
+        int screenLength = currView.getScreenHeight();
+
         setContentView(currView);
 
         setTextStyle(textStyle, Color.WHITE);
 //        currView = findViewById(R.id.gameView);
-        currView.setLevelPresenter(new LevelOnePresenter(this, new LevelOne()));
-        defaultBitmaps();
+        currView.setLevelPresenter(new LevelOnePresenter(this, new LevelOne(screenWidth, screenLength)));
 
+        defaultBitmaps();
 //        GameManager game = currView.gameManager;
 //        GameManagerObserver observer = new GameManagerObserver(this);
 //        game.setObserver(observer);
@@ -47,12 +52,18 @@ public class LevelOneActivity extends AbstractCanvasActivity {
     private void defaultBitmaps() {
         coin = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         bomb = BitmapFactory.decodeResource(getResources(), R.drawable.bomb);
+        background = BitmapFactory.decodeResource(getResources(), R.drawable.wildwesttown);
     }
 
     private void setTextStyle(Paint textStyle, int white) {
         textStyle.setTextSize(60);
         textStyle.setTypeface(Typeface.DEFAULT_BOLD);
         textStyle.setColor(white);
+    }
+
+    public void drawBackground(int screenWidth, int screenHeight) {
+        Rect source = new Rect(0, 0, screenWidth, screenHeight);
+        super.getCanvas().drawBitmap(background, null, source, null);
     }
 
     public void drawBomb(int x, int y) {

@@ -29,13 +29,17 @@ public class LevelOne extends GenericLevel {
 
     private List<TappableObject> tappables = new ArrayList<>();
 
+    public LevelOneBackground background;
+
     private TappableObject tappableToRemove;
 
-    public LevelOne() {
+
+    public LevelOne(int screenWidth, int screenLength) {
         super(3);
         countDown(60);
         isRunning = true;
         isPaused = false;
+        background = new LevelOneBackground(screenWidth, screenLength);
         tappableToRemove = null;
     }
 
@@ -68,6 +72,7 @@ public class LevelOne extends GenericLevel {
     }
 
     public void draw(LevelOnePresenter presenter) {
+        background.draw(presenter);
         for (TappableObject tappableObject : tappables) {
             tappableObject.draw(presenter);
         }

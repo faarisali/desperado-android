@@ -20,7 +20,7 @@ public class Bomb extends TappableObject {
      * Communicates with the presenter to draw a bomb at its x and y location.
      */
     @Override
-    public void draw(LevelOnePresenter presenter) {
+    public void draw(LevelOnePresenterInterface presenter) {
         presenter.drawBomb(super.x, super.y);
     }
 

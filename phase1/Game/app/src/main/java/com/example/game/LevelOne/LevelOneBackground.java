@@ -9,7 +9,7 @@ public class LevelOneBackground {
         backgroundLength = screenLength;
     }
 
-    public void draw(LevelOnePresenter presenter) { // TODO: is it weird to pass in the presenter here?
+    public void draw(LevelOnePresenterInterface presenter) {
         presenter.drawBackground(backgroundWidth, backgroundLength);
     }
 }

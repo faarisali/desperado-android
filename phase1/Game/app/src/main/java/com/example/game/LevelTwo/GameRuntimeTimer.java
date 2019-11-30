@@ -27,6 +27,4 @@ public class GameRuntimeTimer {
         };
         return timerTask;
     }
-
-
 }

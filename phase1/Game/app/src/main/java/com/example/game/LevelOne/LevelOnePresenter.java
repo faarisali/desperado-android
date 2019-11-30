@@ -5,11 +5,11 @@ import com.example.game.LevelPresenterInterface;
 /**
  * Presenter for level one.
  */
-public class LevelOnePresenter implements LevelPresenterInterface {
-    LevelOneActivity levelOneView;
+public class LevelOnePresenter implements LevelPresenterInterface, LevelOnePresenterInterface{
+    LevelOneView levelOneView;
     LevelOne levelOneModel;
 
-    public LevelOnePresenter (LevelOneActivity levelOneActivity, LevelOne levelOne) {
+    public LevelOnePresenter (LevelOneView levelOneActivity, LevelOne levelOne) {
         this.levelOneView = levelOneActivity;
         this.levelOneModel = levelOne;
     }

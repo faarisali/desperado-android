@@ -46,7 +46,7 @@ public abstract class TappableObject extends GameObject {
     /**
      * Communicates with the presenter to draw a TappableObject at its x and y location.
      */
-    public abstract void draw(LevelOnePresenter presenter);
+    public abstract void draw(LevelOnePresenterInterface presenter);
 
     /**
      * Moves the tappable object down the screen.

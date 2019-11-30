@@ -29,11 +29,14 @@ public class LevelOne extends GenericLevel {
 
     private List<TappableObject> tappables = new ArrayList<>();
 
+    private TappableObject tappableToRemove;
+
     public LevelOne() {
         super(3);
         countDown(60);
         isRunning = true;
         isPaused = false;
+        tappableToRemove = null;
     }
 
     private void countDown(int seconds) {
@@ -68,6 +71,10 @@ public class LevelOne extends GenericLevel {
         for (TappableObject tappableObject : tappables) {
             tappableObject.draw(presenter);
         }
+
+        if (tappableToRemove != null) {
+            tappables.remove(tappableToRemove);
+        }
     }
 
     @Override
@@ -96,7 +103,7 @@ public class LevelOne extends GenericLevel {
 
         // remove single coin per tap
         if (remove.size() > 0) {
-            tappables.remove(remove.get(0));
+            tappableToRemove = remove.get(0);
         }
     }
 }

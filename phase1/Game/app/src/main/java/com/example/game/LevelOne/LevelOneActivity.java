@@ -2,17 +2,14 @@ package com.example.game.LevelOne;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.example.game.AbstractActivity;
 import com.example.game.AbstractCanvasActivity;
 import com.example.game.GameView;
 import com.example.game.R;
@@ -48,7 +45,7 @@ public class LevelOneActivity extends AbstractCanvasActivity {
         textStyle.setColor(white);
     }
 
-    public void drawBomb(Canvas canvas, int x, int y) {
+    public void drawBomb(int x, int y) {
 //        bombPaint.setTextSize(size);
         Bitmap bomb = BitmapFactory.decodeResource(getResources(), R.drawable.bomb);
         Rect source = new Rect(x, y, x + 250, y + 250);
@@ -59,7 +56,7 @@ public class LevelOneActivity extends AbstractCanvasActivity {
 //        canvas.drawCircle(x + 25, y + 25, 25, paint);
     }
 
-    public void drawCoin(Canvas canvas, int x, int y) {
+    public void drawCoin(int x, int y) {
 //        coinPaint.setTextSize(size);
         Bitmap bomb = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         Rect source = new Rect(x, y, x + 250, y + 250);
@@ -70,7 +67,7 @@ public class LevelOneActivity extends AbstractCanvasActivity {
 //        canvas.drawCircle(x + 25, y + 25, 25, paint);
     }
 
-    public void displayText(Canvas canvas, int gold, int lives, int points, String time) {
+    public void displayText(int gold, int lives, int points, String time) {
         super.getCanvas().drawText("Coins : " + gold, 0, 50, textStyle);
         super.getCanvas().drawText("Lives : " + lives, 0, 100, textStyle);
         super.getCanvas().drawText("Points : " + points, 0, 150, textStyle);

@@ -76,14 +76,14 @@ public class LevelOnePresenter implements LevelPresenterInterface {
         int lives = levelOneModel.getLives();
         int points = levelOneModel.getPoints();
         String time = levelOneModel.getTime().toString();
-        levelOneView.displayText(canvas, gold, lives, points, time);
+        levelOneView.displayText(gold, lives, points, time);
     }
 
     public void drawCoin(int x, int y) {
-        levelOneView.drawCoin(canvas, x, y);
+        levelOneView.drawCoin(x, y);
     }
 
     public void drawBomb(int x, int y) {
-        levelOneView.drawBomb(canvas, x, y);
+        levelOneView.drawBomb(x, y);
     }
 }

@@ -12,9 +12,7 @@ import android.widget.ToggleButton;
 import androidx.appcompat.app.ActionBar;
 
 import com.example.game.AbstractActivity;
-import com.example.game.LoseActivity;
 import com.example.game.R;
-import com.example.game.WinActivity;
 
 import java.util.List;
 
@@ -82,23 +80,26 @@ public class LevelThreeActivity extends AbstractActivity implements View.OnClick
         }
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+
+        if (actionBar != null) {
+            actionBar.hide(); //hides action bar for more screen real estate.
+        }
 
         setContentView(R.layout.activity_level_three);
         buildGameObjects(spriteID);
 
-        view.setId(R.id.target1); //Simulates a tap even so that the initial values (target selected = 1, player position = 1) are shown at level start
+        view.setId(R.id.target1); //Simulates a tap event so that the initial values (target selected = 1, player position = 1) are shown at level start
         onClick(view);
     }
 
     /**
      * Creates all the buttons, image views, etc necessary for the level.
      *
-     * @param spriteID the ID of the players selected appearence.
+     * @param spriteID the ID of the players selected appearance.
      */
 
     public void buildGameObjects(int spriteID) {
-        LevelThreeButtonBuilder builder = new LevelThreeButtonBuilder(this);
+        LevelThreeObjectBuilder builder = new LevelThreeObjectBuilder(this);
         playerPositions = builder.createPositions();
         targetPositions = builder.createTargets();
         builder.buildStartButton();

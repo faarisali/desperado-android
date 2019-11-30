@@ -10,10 +10,10 @@ import com.example.game.R;
 import java.util.Arrays;
 import java.util.List;
 
-class LevelThreeButtonBuilder {
+class LevelThreeObjectBuilder {
     private LevelThreeActivity view;
 
-    LevelThreeButtonBuilder(LevelThreeActivity view) {
+    LevelThreeObjectBuilder(LevelThreeActivity view) {
         this.view = view;
     }
 

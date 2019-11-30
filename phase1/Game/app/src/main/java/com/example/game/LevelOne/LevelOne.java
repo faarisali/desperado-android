@@ -15,8 +15,8 @@ import java.util.TimerTask;
 
 public class LevelOne extends GenericLevel {
 
-    public Timer getTime() {
-        return time;
+    public String getTime() {
+        return Integer.toString(gameTimer.getSeconds());
     }
 
     public void setPaused(boolean paused) {
@@ -25,7 +25,7 @@ public class LevelOne extends GenericLevel {
 
     private boolean isPaused;
 
-    private Timer time = new Timer(); // TODO: should this be in the front end?
+    private GameTimer gameTimer;
 
     private List<TappableObject> tappables = new ArrayList<>();
 
@@ -33,23 +33,20 @@ public class LevelOne extends GenericLevel {
 
     private TappableObject tappableToRemove;
 
+    private Dynamite dynamite;
+
+    private List<TappableObject> bombsRemoved = new ArrayList<>();
+
+    private boolean dynamiteExploded = false;
 
     public LevelOne(int screenWidth, int screenLength) {
         super(3);
-        countDown(60);
         isRunning = true;
         isPaused = false;
         background = new LevelOneBackground(screenWidth, screenLength);
+        dynamite = new Dynamite(400, 1700);
         tappableToRemove = null;
-    }
-
-    private void countDown(int seconds) {
-        this.time.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                isRunning = false;
-            }
-        }, seconds * 1000);//5 second countdown
+        gameTimer = new GameTimer(31);
     }
 
     public void spawnTappables() {
@@ -79,6 +76,14 @@ public class LevelOne extends GenericLevel {
 
         if (tappableToRemove != null) {
             tappables.remove(tappableToRemove);
+            tappableToRemove = null;
+        }
+        if (dynamiteExploded) {
+            for (TappableObject bomb: bombsRemoved) {
+                tappables.remove(bomb);
+            }
+        }else{
+            dynamite.draw(presenter);
         }
     }
 
@@ -90,11 +95,20 @@ public class LevelOne extends GenericLevel {
                 tappables.get(i).move();
             }
         }
+
+        if (gameTimer.getSeconds() <= 0) {
+            isRunning = false;
+        }
     }
 
     @Override
     public void tapEvent(float x, float y) { // TODO: move motion even to front end Question, should this be in activity (view) or presenter/controller
         ArrayList<TappableObject> remove = new ArrayList<>();
+        if (!dynamiteExploded && dynamite.tapped(x, y)) {
+            dynamite.explode(tappables, bombsRemoved);
+            dynamite = null;
+            dynamiteExploded = true;
+        }
         for (TappableObject tappableObject : tappables) {
             if (tappableObject.tapped(x, y)) {
                 remove.add(tappableObject);

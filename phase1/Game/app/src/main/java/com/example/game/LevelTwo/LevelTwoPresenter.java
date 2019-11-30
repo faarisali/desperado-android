@@ -49,6 +49,7 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
         RenderData data = model.draw();
         renderInfoForReplay.add(data);
         LevelTwoDataFormatter formatter = new LevelTwoDataFormatter(data);
+        drawBackground(canvas, formatter.getBackgroundLocation());
         drawPoints(canvas, formatter.getPointsLocation(), formatter.getPointsSize(),
                 formatter.getPoints());
         drawTimerDisplay(canvas, formatter.getTimerDisplayLocation(), formatter.getTimerDisplaySize(),
@@ -71,6 +72,12 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
                 model.tapEvent(event);
             }
 
+        }
+    }
+
+    private void drawBackground(Canvas canvas, ArrayList<Point> backgroundInfo) {
+        for (Point location : backgroundInfo) {
+            view.drawBackground(canvas, location);
         }
     }
 

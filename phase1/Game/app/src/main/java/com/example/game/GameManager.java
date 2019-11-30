@@ -90,7 +90,7 @@ public class GameManager {
                 currLevel = new LevelOne();
                 break;
             case 2:
-                currLevel = new LevelTwo(3, 11);
+                currLevel = new LevelTwo(3, 31);
                 break;
             default:
                 break;

@@ -8,12 +8,13 @@ import android.view.MotionEvent;
 import com.example.game.GenericLevel;
 
 import java.util.ArrayList;
-import java.util.Timer;
+
 
 public class LevelTwo extends GenericLevel {
 
     private GameRuntimeTimer runtimeTimer = new GameRuntimeTimer(this);
     private ArrayList<Obstacle> obstacleList = new ArrayList<Obstacle>();
+    private ArrayList<LevelTwoBackground> backgroundList = new ArrayList<>();
     private int groundY = 500;
     private float defaultObstacleMoveSpeed = 9;
     private final int PLAYER_SIZE = 60;
@@ -23,8 +24,10 @@ public class LevelTwo extends GenericLevel {
     private final int TIMERDISPLAY_SIZE = 50;
     private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, PLAYER_SIZE, Color.BLUE);
     private Points points = new Points(45, 110, POINT_SIZE, Color.WHITE, 0);
-    private int lives = 3;
+    private int lives;
     private TimerDisplay timerDisplay = new TimerDisplay(45, 160, 50, Color.WHITE, this.secondsLeft);
+
+    private LevelTwoBackground backgroundDisplay = new LevelTwoBackground(0, 0, 10, Color.WHITE);
 
 
     private ArrayList<Heart> heartList = new ArrayList<>();
@@ -56,6 +59,7 @@ public class LevelTwo extends GenericLevel {
         new SpawnObstacleTask(this).run();
         runtimeTimer.countDown();
         populateHeartList(this.lives);
+        backgroundList.add(this.backgroundDisplay);
     }
 
     private void returnToMain() {
@@ -82,11 +86,13 @@ public class LevelTwo extends GenericLevel {
 //        drawObstacles(canvas);
 //        drawHearts(canvas);
 //        timerDisplay.draw(canvas, this.secondsLeft);
-
-
     }
 
-
+    /**
+     * //returns a RenderData object containing x and y data about all objects that need to drawn
+     *
+     * @return
+     */
     public RenderData draw() {
         RenderData levelTwoData = new RenderData();
         levelTwoData.store("player", player.draw());
@@ -94,6 +100,8 @@ public class LevelTwo extends GenericLevel {
         levelTwoData.store("lives", drawHearts());
         levelTwoData.store("points", points.draw());
         levelTwoData.store("timerdisplay", timerDisplay.draw());
+        levelTwoData.store("backgrounddisplay", drawBackgrounds());
+
         levelTwoData.store("playerSize", PLAYER_SIZE);
         levelTwoData.store("obstacleSize", OBSTACLE_SIZE);
         levelTwoData.store("livesSize", HEART_SIZE);
@@ -122,6 +130,18 @@ public class LevelTwo extends GenericLevel {
 
     }
 
+    private ArrayList<Integer> drawBackgrounds() {
+        ArrayList<Integer> temp = new ArrayList<>();
+        for (LevelTwoBackground bd :
+                backgroundList.toArray(new LevelTwoBackground[0])) {
+            Point toAdd = bd.draw();
+            temp.add(toAdd.x);
+            temp.add(toAdd.y);
+        }
+        return temp;
+
+    }
+
     private ArrayList<Integer> drawHearts() {
         ArrayList<Integer> temp = new ArrayList<>();
         for (Heart heart :
@@ -137,6 +157,26 @@ public class LevelTwo extends GenericLevel {
     @Override
     public void tapEvent(MotionEvent event) {
         player.jumpUp();
+    }
+
+    /**
+     * update movement of player (jumps), spawning of obstacles and update
+     */
+    @Override
+    public void update() {
+        checkGameOver();
+        if (isRunning) {
+            player.move();
+            updateObstacles();
+            detectCollisions();
+            updateBackgrounds();
+        }
+    }
+
+    private void updateBackgrounds() {
+        for (LevelTwoBackground background : backgroundList.toArray(new LevelTwoBackground[0])) {
+            background.update(8);
+        }
     }
 
     /**
@@ -158,18 +198,6 @@ public class LevelTwo extends GenericLevel {
             return true;
         }
         return false;
-    }
-    /**
-     * update movement of player (jumps), spawning of obstacles and update
-     */
-    @Override
-    public void update() {
-        if (isRunning) {
-            player.move();
-            updateObstacles();
-            detectCollisions();
-        }
-        checkGameOver();
     }
 
     private void updateLives() {

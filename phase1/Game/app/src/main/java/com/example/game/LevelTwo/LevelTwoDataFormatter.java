@@ -103,4 +103,9 @@ public class LevelTwoDataFormatter {
     int getSecondsLeft() {
         return data.getData("secondsLeft").get(0);
     }
+
+    public ArrayList<Point> getBackgroundLocation() {
+        ArrayList<Integer> obstacleData = data.getData("backgrounddisplay");
+        return generatePoints(obstacleData);
+    }
 }

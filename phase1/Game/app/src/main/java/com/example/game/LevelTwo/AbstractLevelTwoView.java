@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.game.AbstractCanvasActivity;
+import com.example.game.Login.LoginAndroidMapDatabase;
 import com.example.game.R;
 
 public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
@@ -109,5 +110,7 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
 
     void storeReplay(String dataToStore) {
         //Store replay info here into database
+        LoginAndroidMapDatabase db = LoginAndroidMapDatabase.getSingleton(this);
+        db.save("$replay", dataToStore);
     }
 }

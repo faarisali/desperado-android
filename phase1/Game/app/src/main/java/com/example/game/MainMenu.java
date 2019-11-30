@@ -234,14 +234,18 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void beginReplay(View v) {
-        Intent replay = new Intent(this.getBaseContext(), LevelTwoReplayActivity.class);
-        replay.putExtra("spriteID", costumes[currentCostume]);
-        if (nightModeSwitch.isChecked()) {
-            replay.putExtra("Time", 1);
-        } else {
-            replay.putExtra("Time", 0);
+        String replayString = db.load("$replay");
+
+        if (replayString != null) {
+            Intent replay = new Intent(this.getBaseContext(), LevelTwoReplayActivity.class);
+            replay.putExtra("spriteID", costumes[currentCostume]);
+            if (nightModeSwitch.isChecked()) {
+                replay.putExtra("Time", 1);
+            } else {
+                replay.putExtra("Time", 0);
+            }
+            startActivity(replay);
         }
-        startActivity(replay);
     }
 
     public void logOut(View v) {

@@ -80,9 +80,13 @@ public abstract class GenericLevel {
 
     /**
      * registers a tap even in the level.
-     * @param event the tap event registered.
+     *
+     * @param x the x coordinate of a tap.
+     * @param y the y coordinate of a tap.
      */
-    public abstract void tapEvent(MotionEvent event);
+    public void tapEvent(float x, float y) {
+
+    }
 
     /**
      * Returns gameObjects

@@ -1,6 +1,5 @@
 package com.example.game.LevelTwo;
 
-import android.graphics.Canvas;
 import android.graphics.Point;
 
 import com.example.game.GameObject;
@@ -11,14 +10,9 @@ public class LevelTwoBackground extends GameObject {
     int x, y;
 
     public LevelTwoBackground(int x, int y, int size, int color) {
-        super(x, y, size, color);
+        super(x, y);
         this.x = x;
         this.y = y;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-
     }
 
     public Point draw() {

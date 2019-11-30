@@ -1,6 +1,5 @@
 package com.example.game.LevelTwo;
 
-import android.graphics.Canvas;
 import android.graphics.Point;
 
 import com.example.game.GameObject;
@@ -20,7 +19,7 @@ public class Obstacle extends GameObject {
      * @param moveSpeed how fast this obstacle is going to be moving
      */
     public Obstacle(int x, int y, int size, int color, float moveSpeed) {
-        super(x, y, size, color);
+        super(x, y);
         this.Vx = moveSpeed;
         this.outOfBounds = false;
         this.collided = false;
@@ -39,12 +38,6 @@ public class Obstacle extends GameObject {
         if (x <= -40) {
             this.outOfBounds = true;
         }
-    }
-    /**
-     * Draw the obstacle.
-     */
-    public void draw(Canvas canvas) {
-        canvas.drawText("{}", x, y, getPaintText());
     }
 
     public Point draw() {

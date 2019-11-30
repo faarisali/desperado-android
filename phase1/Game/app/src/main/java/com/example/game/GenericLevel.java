@@ -56,16 +56,6 @@ public abstract class GenericLevel {
     }
 
     /**
-     * Draws the current level onto the canvas.
-     * @param canvas the canvas on to draw this level on
-     */
-    public void draw(Canvas canvas) {
-        for (GameObject gameObject : gameObjects) {
-            gameObject.draw(canvas);
-        }
-    }
-
-    /**
      * Stops the level from running (brings to win screen) once time is up
      */
     public void checkGameOver() {

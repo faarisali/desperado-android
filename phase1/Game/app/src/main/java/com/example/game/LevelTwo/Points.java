@@ -1,7 +1,5 @@
 package com.example.game.LevelTwo;
 
-import android.graphics.Canvas;
-
 import com.example.game.GameObject;
 
 import java.util.ArrayList;
@@ -14,16 +12,12 @@ public class Points extends GameObject {
     }
 
     public Points(int x, int y, int size, int color, int points) {
-        super(x, y, size, color);
+        super(x, y);
         this.points = points;
     }
 
     public int getPoints() {
         return points;
-    }
-
-    public void draw(Canvas canvas) {
-        canvas.drawText("Points: " + Integer.toString(this.points), x, y, getPaintText());
     }
 
     public ArrayList<Integer> draw() {

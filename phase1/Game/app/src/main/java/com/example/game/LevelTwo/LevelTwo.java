@@ -1,9 +1,7 @@
 package com.example.game.LevelTwo;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
-import android.view.MotionEvent;
 
 import com.example.game.GenericLevel;
 
@@ -25,7 +23,7 @@ public class LevelTwo extends GenericLevel {
     private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, PLAYER_SIZE, Color.BLUE);
     private Points points = new Points(45, 110, POINT_SIZE, Color.WHITE, 0);
     private int lives;
-    private TimerDisplay timerDisplay = new TimerDisplay(45, 160, 50, Color.WHITE, this.secondsLeft);
+    private TimerDisplay timerDisplay = new TimerDisplay(45, 160, this.secondsLeft);
 
     private LevelTwoBackground backgroundDisplay = new LevelTwoBackground(0, 0, 10, Color.WHITE);
 
@@ -72,20 +70,6 @@ public class LevelTwo extends GenericLevel {
             xIncrement += 80;
         }
 
-    }
-
-    /**
-     * Need to draw background, character and obstacles.
-     *
-     * @param canvas where the img is drawn
-     */
-    @Override
-    public void draw(Canvas canvas) {
-//        player.draw(canvas);
-//        points.draw(canvas);
-//        drawObstacles(canvas);
-//        drawHearts(canvas);
-//        timerDisplay.draw(canvas, this.secondsLeft);
     }
 
     /**

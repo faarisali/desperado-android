@@ -1,10 +1,6 @@
 package com.example.game.LevelOne;
 
-import android.graphics.Canvas;
-
 import com.example.game.LevelPresenterInterface;
-
-import java.util.ArrayList;
 
 /**
  * Presenter for level one.
@@ -12,8 +8,6 @@ import java.util.ArrayList;
 public class LevelOnePresenter implements LevelPresenterInterface {
     LevelOneActivity levelOneView;
     LevelOne levelOneModel;
-    ArrayList<TappableObject> levelOneObjects;
-    Canvas canvas;
 
     public LevelOnePresenter (LevelOneActivity levelOneActivity, LevelOne levelOne) {
         this.levelOneView = levelOneActivity;
@@ -47,14 +41,14 @@ public class LevelOnePresenter implements LevelPresenterInterface {
         levelOneModel.draw(this);
 
         // print level stats to canvas
-        displayLevelStats(canvas);
+        displayLevelStats();
     }
 
     public void tapEvent(float x, float y) {
         levelOneModel.tapEvent(x, y);
     }
 
-    private void displayLevelStats(Canvas canvas) {
+    private void displayLevelStats() {
         int gold = levelOneModel.getGold();
         int lives = levelOneModel.getLives();
         int points = levelOneModel.getPoints();

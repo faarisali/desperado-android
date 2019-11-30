@@ -1,10 +1,6 @@
 package com.example.game.LevelOne;
 
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-
 import com.example.game.GameObject;
-
 import java.util.ArrayList;
 
 public abstract class TappableObject extends GameObject {
@@ -56,8 +52,4 @@ public abstract class TappableObject extends GameObject {
     public int getHeight() {
         return height;
     }
-
-//    public boolean outOfBounds() {
-//
-//    }
 }

@@ -14,6 +14,7 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
     private LevelTwoActivity view;
     private boolean gameIsPaused;
     private ArrayList<RenderData> renderInfoForReplay = new ArrayList<>();
+    private Canvas canvas;
 
     public LevelTwoPresenter(LevelTwoActivity viewForOutput, LevelTwo modelForLogic) {
         model = modelForLogic;
@@ -46,6 +47,22 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
 
     @Override
     public void drawGame(Canvas canvas) {
+        RenderData data = model.draw();
+        renderInfoForReplay.add(data);
+        LevelTwoDataFormatter formatter = new LevelTwoDataFormatter(data);
+        drawBackground(canvas, formatter.getBackgroundLocation());
+        drawPoints(canvas, formatter.getPointsLocation(), formatter.getPointsSize(),
+                formatter.getPoints());
+        drawTimerDisplay(canvas, formatter.getTimerDisplayLocation(), formatter.getTimerDisplaySize(),
+                formatter.getSecondsLeft());
+        drawHearts(canvas, formatter.getLivesLocation(), formatter.getLivesSize());
+        drawPlayer(canvas, formatter.getPlayerLocation(), formatter.getPlayerSize());
+        drawObstacles(canvas, formatter.getObstacleLocation(), formatter.getObstacleSize());
+        drawPauseButton(canvas);
+    }
+
+    @Override
+    public void drawGame() {
         RenderData data = model.draw();
         renderInfoForReplay.add(data);
         LevelTwoDataFormatter formatter = new LevelTwoDataFormatter(data);

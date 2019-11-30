@@ -5,7 +5,7 @@ import android.view.SurfaceHolder;
 
 public class MainThread extends Thread {
     private SurfaceHolder canvasHolder;
-    private  GameView gameView;
+    private GameView gameView;
     private boolean isRunning;
 
     public MainThread(SurfaceHolder holder, GameView view) {
@@ -16,9 +16,9 @@ public class MainThread extends Thread {
     public void run() {
         while (isRunning) {
             Canvas canvas = null;
-
             try {
                 canvas = this.canvasHolder.lockCanvas();
+                gameView.getLevelActivity().setCanvas(canvas);
                 synchronized (canvasHolder) {
                     if (canvas != null) {
                         this.gameView.update();

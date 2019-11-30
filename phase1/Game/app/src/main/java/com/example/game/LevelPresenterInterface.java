@@ -29,6 +29,11 @@ public interface LevelPresenterInterface {
     void drawGame(Canvas canvas);
 
     /**
+     * Draw the objects of the level.
+     */
+    void drawGame();
+
+    /**
      * Tell the level what to do when a tap is detected.
      */
     void tapEvent(MotionEvent event);

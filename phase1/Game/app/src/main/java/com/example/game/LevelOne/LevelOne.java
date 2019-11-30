@@ -84,7 +84,7 @@ public class LevelOne extends GenericLevel {
     public void tapEvent(MotionEvent event) { // TODO: move motion even to front end Question, should this be in activity (view) or presenter/controller
         ArrayList<TappableObject> remove = new ArrayList<>();
         for (TappableObject tappableObject : tappables) {
-            if (tappableObject.tapped((int) event.getX(), (int) event.getY())) {
+            if (tappableObject.tapped(event.getX(), event.getY())) {
                 remove.add(tappableObject);
                 ArrayList<Integer> values = tappableObject.tapResponse();
                 super.setGold(super.getGold() + values.get(0));

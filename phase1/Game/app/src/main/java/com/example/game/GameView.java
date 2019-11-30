@@ -30,12 +30,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
      */
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
+    private AbstractCanvasActivity levelActivity;
+
     private void init() {
         getHolder().addCallback(this);
         setFocusable(true);
     }
-    public GameView(Context context) {
-        super(context);
+
+    public GameView(AbstractCanvasActivity levelActivity) {
+        super(levelActivity);
+        this.levelActivity = levelActivity;
         init();
     }
 
@@ -102,9 +106,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if (canvas != null && levelPresenter != null) {
-            levelPresenter.drawGame(canvas);
+            levelPresenter.drawGame();
         }
+    }
 
+    public void draw() {
+        if (levelPresenter != null) {
+            levelPresenter.drawGame();
+        }
     }
 
     public void setLevelPresenter(LevelPresenterInterface levelPresenter) {
@@ -119,6 +128,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         surfaceCreated(getHolder());
     }
 
-
+    public AbstractCanvasActivity getLevelActivity() {
+        return levelActivity;
+    }
 }
 

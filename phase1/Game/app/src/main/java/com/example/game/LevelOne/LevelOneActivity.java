@@ -9,9 +9,11 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.game.AbstractActivity;
+import com.example.game.AbstractCanvasActivity;
+import com.example.game.GameView;
 import com.example.game.R;
 
-public class LevelOneActivity extends AbstractActivity {
+public class LevelOneActivity extends AbstractCanvasActivity {
 
     private Paint textStyle = new Paint();
 
@@ -21,14 +23,10 @@ public class LevelOneActivity extends AbstractActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_level_one);
-        currView = findViewById(R.id.gameView);
-//        currView.setZOrderOnTop(true);    // necessary
-//        SurfaceHolder holder = currView.getHolder();
-//        holder.setFormat(PixelFormat.TRANSPARENT);
+        currView = new GameView(this);
+        setContentView(currView);
 
         setTextStyle(textStyle, Color.WHITE);
-        currView = findViewById(R.id.gameView);
         currView.setLevelPresenter(new LevelOnePresenter(this, new LevelOne()));
 
 //        GameManager game = currView.gameManager;
@@ -46,19 +44,19 @@ public class LevelOneActivity extends AbstractActivity {
     public void drawBomb(int x, int y, Canvas canvas) {
         Paint paint = new Paint();
         setTextStyle(paint, Color.GRAY);
-        canvas.drawCircle(x + 25, y + 25, 25, paint);
+        super.getCanvas().drawCircle(x + 25, y + 25, 25, paint);
     }
 
     public void drawCoin(int x, int y, Canvas canvas) {
         Paint paint = new Paint();
         setTextStyle(paint, Color.YELLOW);
-        canvas.drawCircle(x + 25, y + 25, 25, paint);
+        super.getCanvas().drawCircle(x + 25, y + 25, 25, paint);
     }
 
     public void displayText(Canvas canvas, int gold, int lives, int points, String time) {
-        canvas.drawText("Coins : " + gold, 0, 50, textStyle);
-        canvas.drawText("Lives : " + lives, 0, 100, textStyle);
-        canvas.drawText("Points : " + points, 0, 150, textStyle);
-        canvas.drawText("Time left : " + time, 0, 200, textStyle);
+        super.getCanvas().drawText("Coins : " + gold, 0, 50, textStyle);
+        super.getCanvas().drawText("Lives : " + lives, 0, 100, textStyle);
+        super.getCanvas().drawText("Points : " + points, 0, 150, textStyle);
+        super.getCanvas().drawText("Time left : " + time, 0, 200, textStyle);
     }
 }

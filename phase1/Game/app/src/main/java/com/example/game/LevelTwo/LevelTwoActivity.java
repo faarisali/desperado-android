@@ -13,10 +13,11 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.game.AbstractActivity;
+import com.example.game.AbstractCanvasActivity;
 import com.example.game.GameView;
 import com.example.game.R;
 
-public class LevelTwoActivity extends AbstractActivity {
+public class LevelTwoActivity extends AbstractCanvasActivity {
     private Paint heartPaint = new Paint();
     private Paint playerPaint = new Paint();
     private Paint obstaclePaint = new Paint();
@@ -57,7 +58,7 @@ public class LevelTwoActivity extends AbstractActivity {
 
     void drawHeart(Canvas canvas, Point location, int size) {
         heartPaint.setTextSize(size);
-        canvas.drawText("<3", location.x, location.y, heartPaint);
+        super.getCanvas().drawText("<3", location.x, location.y, heartPaint);
 //        Bitmap ball = BitmapFactory.decodeResource(getResources(), R.drawable.cowboy_bandit);
 //        Rect source = new Rect(0, 0, 1000, 1000);
 //        canvas.drawBitmap(ball, null, source,null);
@@ -65,17 +66,17 @@ public class LevelTwoActivity extends AbstractActivity {
 
     void drawPoints(Canvas canvas, Point location, int size, int numPoints) {
         pointPaint.setTextSize(size);
-        canvas.drawText("Points:" + numPoints, location.x, location.y, pointPaint);
+        super.getCanvas().drawText("Points:" + numPoints, location.x, location.y, pointPaint);
     }
 
     void drawTimerDisplay(Canvas canvas, Point location, int size, int secondsLeft) {
         timerDisplayPaint.setTextSize(size);
-        canvas.drawText("Time Left:" + secondsLeft, location.x, location.y, timerDisplayPaint);
+        super.getCanvas().drawText("Time Left:" + secondsLeft, location.x, location.y, timerDisplayPaint);
     }
 
     void drawPlayer(Canvas canvas, Point location, int size) {
         playerPaint.setTextSize(size);
-        canvas.drawText("O", location.x, location.y, playerPaint);
+        super.getCanvas().drawText("O", location.x, location.y, playerPaint);
     }
 
     void drawObstacle(Canvas canvas, Point location, int size) {
@@ -83,22 +84,22 @@ public class LevelTwoActivity extends AbstractActivity {
 //        canvas.drawText("{}", location.x, location.y, obstaclePaint);
         Bitmap cactus = BitmapFactory.decodeResource(getResources(), R.drawable.cactus_1);
         Rect source = new Rect(location.x, location.y, location.x + 250, location.y + 250);
-        canvas.drawBitmap(cactus, null, source, null);
+        super.getCanvas().drawBitmap(cactus, null, source, null);
     }
 
     void drawBackground(Canvas canvas, Point location) {
         Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.desert_background_level2);
         Rect source = new Rect(location.x, location.y, location.x + background.getWidth(), location.y + background.getHeight());
-        canvas.drawBitmap(background, null, source, null);
+        super.getCanvas().drawBitmap(background, null, source, null);
 
     }
 
     void drawPauseButton(Canvas canvas) {
         pausePaint.setColor(Color.WHITE);
-        canvas.drawRect(1000, 30, 1070, 100, pausePaint);
+        super.getCanvas().drawRect(1000, 30, 1070, 100, pausePaint);
         pausePaint.setColor(Color.BLACK);
-        canvas.drawRect(1010, 45, 1030, 85, pausePaint);
-        canvas.drawRect(1040, 45, 1060, 85, pausePaint);
+        super.getCanvas().drawRect(1010, 45, 1030, 85, pausePaint);
+        super.getCanvas().drawRect(1040, 45, 1060, 85, pausePaint);
     }
 
 

@@ -55,8 +55,19 @@ public class LevelOnePresenter implements LevelPresenterInterface {
     }
 
     @Override
-    public void tapEvent(MotionEvent event) {
+    public void drawGame () {
+        // set canvas
+        this.canvas = canvas;
 
+        // print level stats to canvas
+        displayLevelStats(canvas);
+
+        // draw level objects
+        levelOneModel.draw(this);
+    }
+
+    @Override
+    public void tapEvent(MotionEvent event) {
         levelOneModel.tapEvent(event);
     }
 

@@ -20,6 +20,8 @@ public class LevelTwo extends GenericLevel {
     private final int POINT_SIZE = 50;
     private final int OBSTACLE_SIZE = 90;
     private final int TIMERDISPLAY_SIZE = 50;
+    private final int CANVAS_WIDTH = 1080;
+    private final int BACKGROUND_BITMAP_WIDTH = 1920;
     private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, PLAYER_SIZE, Color.BLUE);
     private Points points = new Points(45, 110, POINT_SIZE, Color.WHITE, 0);
     private int lives;
@@ -40,7 +42,6 @@ public class LevelTwo extends GenericLevel {
         this.lives = lives;
         runtimeTimer.countDown();
         new SpawnObstacleTask(this).run();
-        runtimeTimer.countDown();
         populateHeartList(this.lives);
     }
 
@@ -156,9 +157,20 @@ public class LevelTwo extends GenericLevel {
         }
     }
 
+    private boolean needNewBackground = true;
+
     private void updateBackgrounds() {
         for (LevelTwoBackground background : backgroundList.toArray(new LevelTwoBackground[0])) {
-            background.update(8);
+            if (background.x <= -(BACKGROUND_BITMAP_WIDTH - CANVAS_WIDTH) && needNewBackground) {
+                backgroundList.add(new LevelTwoBackground(CANVAS_WIDTH - 20, 0, 10, Color.WHITE));
+                needNewBackground = false;
+            }
+            if (background.x < -(BACKGROUND_BITMAP_WIDTH - 5)) {
+                backgroundList.remove(background);
+                needNewBackground = true;
+            }
+            background.update(12);
+
         }
     }
 

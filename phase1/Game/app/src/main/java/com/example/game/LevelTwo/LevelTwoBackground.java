@@ -20,7 +20,7 @@ public class LevelTwoBackground extends GameObject {
     }
 
     public void update(int xIncrement) {
-        // x = x + xIncrement;
+        x = x - xIncrement;
     }
 
     public boolean isReversedFirst() {

@@ -95,7 +95,7 @@ public class LevelTwoActivity extends AbstractCanvasActivity {
     }
 
     void drawBackground(Point location) {
-        Rect source = new Rect(location.x, location.y, location.x + background.getWidth(), location.y + background.getHeight());
+        Rect source = new Rect(location.x, location.y, location.x + 1920, location.y + 1200);
         super.getCanvas().drawBitmap(background, null, source, null);
 
     }

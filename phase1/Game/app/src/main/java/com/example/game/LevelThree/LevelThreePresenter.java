@@ -31,7 +31,7 @@ public class LevelThreePresenter implements Observer {
      */
     @Override
     public void update(Observable observable, Object o) {
-        int newPlayerPosition = (int) (((Object[]) o)[0]); //TODO: get rid of nasty casting
+        int newPlayerPosition = (int) (((Object[]) o)[0]);
         int newPlayerTarget = (int) (((Object[]) o)[1]);
         int newPlayerLives = (int) (((Object[]) o)[2]);
 

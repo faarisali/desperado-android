@@ -55,7 +55,7 @@ public class LevelThree extends Observable {
              computerTarget = randomNum.nextInt(3);
 
              computerPosition = nextComputerPosition;
-             setNextComputerPosition(randomNum.nextInt(3));
+             setNextComputerPosition(randomNum.nextInt(3)); //want to take previously stored value for next and give that a new value.
 
 
             if (computerTarget == playerPosition) {
@@ -68,7 +68,7 @@ public class LevelThree extends Observable {
                 update(true, true); // Win game
             }
         }
-        update(false, true);
+        update(false, true); //No win/loss but display to player that round ocurred.
     }
 
     /**

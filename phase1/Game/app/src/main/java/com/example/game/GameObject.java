@@ -1,41 +1,54 @@
 package com.example.game;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.media.Image;
-
 public abstract class GameObject {
+    /**
+     * the X coordinate of this GameObject.
+     */
     public int x;
-    public int y;
-    private Image image;
-    private Paint paintText = new Paint();
-    private int size;
-    private int color;
 
-    public GameObject(int newX, int newY, int size, int color) {
-        x = newX;
-        y = newY;
-        this.size = size;
-        this.color = color;
-        paintText.setTypeface(Typeface.DEFAULT_BOLD);
-        paintText.setTextSize(this.size);
-        paintText.setColor(this.color);
-    }
+    /**
+     * the Y coordinate of this GameObject.
+     */
+    public int y;
 
     public GameObject(int newX, int newY) {
         x = newX;
         y = newY;
     }
 
-    public Paint getPaintText() {
-        return paintText;
+    /**
+     * gets the x value for this object.
+     *
+     * @return this object's X coordinate.
+     */
+    public int getX() {
+        return x;
     }
 
-    public void draw(Canvas canvas) {
-
+    /**
+     * gets the y value for this object.
+     *
+     * @return this object's Y coordinate.
+     */
+    public int getY() {
+        return y;
     }
 
-    //add proper draw abstract method
+    /**
+     * sets the value of this objects X coordinate.
+     *
+     * @param x the new X coordinate.
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * sets the value of this objects Y coordinate.
+     *
+     * @param y the new Y coordinate.
+     */
+    public void setY(int y) {
+        this.y = y;
+    }
 }

@@ -1,48 +1,37 @@
 package com.example.game.LevelOne;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-
 import java.util.ArrayList;
 
-/** A coin in level 1*/
+/**
+ * A coin in level 1
+ */
 public class Coin extends TappableObject {
+
     /**
-     * TODO: ask should coin class be treated as front end or backend?
-     * Using coordinates in a designated coins list versus having coin object?
-     * Polymorphic drawing difficulties
-     *
+     * Constructor for a new coin object
      */
-
-    /** The style of this coin*/
-    private Paint paint;
-
-    /** Constructor for a new coin object*/
-    public Coin(int newX, int newY) {
+    Coin(int newX, int newY) {
         super(newX, newY, 50, 50);
-        this.paint = new Paint();
-        paint.setTextSize(60);
-        paint.setTypeface(Typeface.DEFAULT_BOLD);
-        paint.setColor(Color.YELLOW);
     }
 
+    /**
+     * Communicates with the presenter to draw a coin at its x and y location.
+     */
     @Override
-    /** Draw this coin*/
-    public void draw(LevelOnePresenter presenter) { // TODO: is it weird to pass in the presenter here?
+    public void draw(LevelOnePresenter presenter) {
         presenter.drawCoin(super.x, super.y);
     }
 
-    public void draw(Canvas canvas) {
-
-    }
-
-    public ArrayList<Integer> tapResponse(){ // TODO: ask if this should be in the model itself or is fine to be in the class
+    /**
+     * Generates the 'response' to a coin getting tapped, i.e. how it affects game stats (lives, coins, points).
+     *
+     * @return an ArrayList where the 1st element is the change in gold, 2nd change in points, 3rd change in lives.
+     */
+    public ArrayList<Integer> tapResponse() {
         ArrayList<Integer> response = new ArrayList<>();
-        response.add(1);
-        response.add(100);
-        response.add(0);
+        response.add(1); //Change in gold associated with a piece of gold
+        response.add(100); //change in points associated with a piece of gold
+        response.add(0); //change in lives associated with a piece of gold.
         return response;
     }
 

@@ -21,7 +21,7 @@ public class LevelThreeInteractor extends Observable implements Observer {
      *
      * @param position the new position.
      */
-    void setPosition(int position) {
+    private void setPosition(int position) {
         levelThree.setPlayerPosition(position);
     }
 
@@ -30,14 +30,14 @@ public class LevelThreeInteractor extends Observable implements Observer {
      *
      * @param target the new target
      */
-    void setTarget(int target) {
+    private void setTarget(int target) {
         levelThree.setPlayerTarget(target);
     }
 
     /**
      * Runs a new round in the level object.
      */
-    void runRound() {
+    private void runRound() {
         levelThree.runRound();
     }
 

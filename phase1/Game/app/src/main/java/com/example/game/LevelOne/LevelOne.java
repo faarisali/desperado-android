@@ -15,8 +15,8 @@ import java.util.TimerTask;
 
 public class LevelOne extends GenericLevel {
 
-    public Timer getTime() {
-        return time;
+    public String getTime() {
+        return Integer.toString(gameTimer.getSeconds());
     }
 
     public void setPaused(boolean paused) {
@@ -25,7 +25,7 @@ public class LevelOne extends GenericLevel {
 
     private boolean isPaused;
 
-    private Timer time = new Timer(); // TODO: should this be in the front end?
+    private GameTimer gameTimer;
 
     private List<TappableObject> tappables = new ArrayList<>();
 
@@ -36,20 +36,11 @@ public class LevelOne extends GenericLevel {
 
     public LevelOne(int screenWidth, int screenLength) {
         super(3);
-        countDown(60);
         isRunning = true;
         isPaused = false;
         background = new LevelOneBackground(screenWidth, screenLength);
         tappableToRemove = null;
-    }
-
-    private void countDown(int seconds) {
-        this.time.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                isRunning = false;
-            }
-        }, seconds * 1000);//5 second countdown
+        gameTimer = new GameTimer(31);
     }
 
     public void spawnTappables() {
@@ -89,6 +80,10 @@ public class LevelOne extends GenericLevel {
             for (int i = 0; i < tappables.size(); i++) {
                 tappables.get(i).move();
             }
+        }
+
+        if (gameTimer.getSeconds() <= 0) {
+            isRunning = false;
         }
     }
 

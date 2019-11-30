@@ -52,7 +52,7 @@ public class LevelOnePresenter implements LevelPresenterInterface {
         int gold = levelOneModel.getGold();
         int lives = levelOneModel.getLives();
         int points = levelOneModel.getPoints();
-        String time = levelOneModel.getTime().toString();
+        String time = levelOneModel.getTime();
         levelOneView.displayText(gold, lives, points, time);
     }
 

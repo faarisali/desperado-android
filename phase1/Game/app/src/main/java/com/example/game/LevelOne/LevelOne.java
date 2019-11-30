@@ -48,7 +48,7 @@ public class LevelOne extends GenericLevel {
         isRunning = true;
         isPaused = false;
         background = new LevelOneBackground(screenWidth, screenLength);
-        dynamite = new Dynamite(500, 100);
+        dynamite = new Dynamite(400, 1700);
         tappableToRemove = null;
     }
 

@@ -3,7 +3,6 @@ package com.example.game.LevelTwo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
-import android.view.MotionEvent;
 
 import com.example.game.GenericLevel;
 
@@ -154,7 +153,7 @@ public class LevelTwo extends GenericLevel {
 
     }
 
-    public void tapEvent(MotionEvent event) {
+    public void tapEvent(float x, float y) {
         player.jumpUp();
     }
 

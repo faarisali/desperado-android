@@ -5,8 +5,6 @@ import android.graphics.Point;
 
 import com.example.game.GameObject;
 
-import java.util.ArrayList;
-
 public class LevelTwoBackground extends GameObject {
 
     private boolean reversedFirst = false;
@@ -28,7 +26,7 @@ public class LevelTwoBackground extends GameObject {
     }
 
     public void update(int xIncrement) {
-        x = x + xIncrement;
+        // x = x + xIncrement;
     }
 
     public boolean isReversedFirst() {

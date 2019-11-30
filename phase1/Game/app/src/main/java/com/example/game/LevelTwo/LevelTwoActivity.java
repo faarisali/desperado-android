@@ -22,6 +22,11 @@ public class LevelTwoActivity extends AbstractCanvasActivity {
     private Paint pointPaint = new Paint();
     private Paint pausePaint = new Paint();
     private Paint timerDisplayPaint = new Paint();
+    private final int vAdjustment = 600;
+
+    private Bitmap cactus;
+    private Bitmap background;
+    private Bitmap hearts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,7 @@ public class LevelTwoActivity extends AbstractCanvasActivity {
 
         //Setting default paint values
         defaultPaintValues();
+        defaultBitmaps();
     }
 
     private void defaultPaintValues() {
@@ -54,12 +60,16 @@ public class LevelTwoActivity extends AbstractCanvasActivity {
 
     }
 
+    private void defaultBitmaps() {
+        cactus = BitmapFactory.decodeResource(getResources(), R.drawable.cactus_1);
+        background = BitmapFactory.decodeResource(getResources(), R.drawable.desert_background_level2);
+        hearts = BitmapFactory.decodeResource(getResources(), R.drawable.pixelheart);
+    }
+
     void drawHeart(Point location, int size) {
         heartPaint.setTextSize(size);
-        super.getCanvas().drawText("<3", location.x, location.y, heartPaint);
-//        Bitmap ball = BitmapFactory.decodeResource(getResources(), R.drawable.cowboy_bandit);
-//        Rect source = new Rect(0, 0, 1000, 1000);
-//        canvas.drawBitmap(ball, null, source,null);
+        Rect dst = new Rect(location.x, location.y - 50, location.x + 50, location.y);
+        super.getCanvas().drawBitmap(hearts, null, dst, null);
     }
 
     void drawPoints(Point location, int size, int numPoints) {
@@ -74,19 +84,17 @@ public class LevelTwoActivity extends AbstractCanvasActivity {
 
     void drawPlayer(Point location, int size) {
         playerPaint.setTextSize(size);
-        super.getCanvas().drawText("O", location.x, location.y, playerPaint);
+        super.getCanvas().drawText("O", location.x, location.y + vAdjustment, playerPaint);
     }
 
     void drawObstacle(Point location, int size) {
         obstaclePaint.setTextSize(size);
 //        canvas.drawText("{}", location.x, location.y, obstaclePaint);
-        Bitmap cactus = BitmapFactory.decodeResource(getResources(), R.drawable.cactus_1);
-        Rect source = new Rect(location.x, location.y, location.x + 250, location.y + 250);
+        Rect source = new Rect(location.x, location.y - 100 + vAdjustment, location.x + 100, location.y + vAdjustment);
         super.getCanvas().drawBitmap(cactus, null, source, null);
     }
 
     void drawBackground(Point location) {
-        Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.desert_background_level2);
         Rect source = new Rect(location.x, location.y, location.x + background.getWidth(), location.y + background.getHeight());
         super.getCanvas().drawBitmap(background, null, source, null);
 

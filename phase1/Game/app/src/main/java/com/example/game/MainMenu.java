@@ -89,6 +89,8 @@ public class MainMenu extends AppCompatActivity {
         nightModeSwitch.setChecked(isDark);
         boolean isPlaying = currentUser.isMusicPlaying();
         musicSwitch.setChecked(isPlaying);
+        currentCostume = currentUser.getCostume();
+        setCurrentCostume();
     }
 
     public void customizeCharacter() {
@@ -98,10 +100,15 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 currentCostume++;
-                currentCostume = currentCostume % costumes.length;
-                character.setImageResource(costumes[currentCostume]);
+                setCurrentCostume();
             }
         });
+    }
+
+    private void setCurrentCostume() {
+        currentCostume = currentCostume % costumes.length;
+        character.setImageResource(costumes[currentCostume]);
+        saveCurrentCostume(currentCostume);
     }
 
     public void playMusic() {
@@ -243,6 +250,11 @@ public class MainMenu extends AppCompatActivity {
 
     public void saveIsMusicPlaying(boolean isMusicPlaying) {
         currentUser.setMusicIsPlaying(isMusicPlaying);
+        db.updateCurrentUser(currentUser);
+    }
+
+    public void saveCurrentCostume (int currentCostume) {
+        currentUser.setCostume(currentCostume);
         db.updateCurrentUser(currentUser);
     }
 }

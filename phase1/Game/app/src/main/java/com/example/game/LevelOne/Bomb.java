@@ -19,10 +19,6 @@ public class Bomb extends TappableObject {
         presenter.drawBomb(super.x, super.y);
     }
 
-    public void draw(Canvas canvas) {
-
-    }
-
     public ArrayList<Integer> tapResponse(){
         ArrayList<Integer> response = new ArrayList<>();
         response.add(0);
@@ -30,5 +26,4 @@ public class Bomb extends TappableObject {
         response.add(-1);
         return response;
     }
-
 }

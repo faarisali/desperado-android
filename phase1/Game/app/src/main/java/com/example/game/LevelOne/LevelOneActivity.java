@@ -19,6 +19,10 @@ public class LevelOneActivity extends AbstractCanvasActivity {
     private Paint textStyle = new Paint();
     private Paint bombPaint = new Paint();
     private Paint coinPaint = new Paint();
+    private final int offsetHitbox = 50;
+
+    private Bitmap coin;
+    private Bitmap bomb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,11 @@ public class LevelOneActivity extends AbstractCanvasActivity {
 //        game.changeLevel(1);
     }
 
+    private void defaultBitmaps() {
+        coin = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
+        bomb = BitmapFactory.decodeResource(getResources(), R.drawable.bomb);
+    }
+
     private void setTextStyle(Paint textStyle, int white) {
         textStyle.setTextSize(60);
         textStyle.setTypeface(Typeface.DEFAULT_BOLD);
@@ -57,9 +66,9 @@ public class LevelOneActivity extends AbstractCanvasActivity {
 
     public void drawBomb(int x, int y) {
 //        bombPaint.setTextSize(size);
-        Bitmap bomb = BitmapFactory.decodeResource(getResources(), R.drawable.bomb);
-        Rect source = new Rect(x, y, x + 250, y + 250);
-        super.getCanvas().drawBitmap(bomb, null, source, null);
+
+        Rect dst = new Rect(x - offsetHitbox, y - offsetHitbox, x + 100, y + 100);
+        super.getCanvas().drawBitmap(bomb, null, dst, null);
 
 //        Paint paint = new Paint();
 //        setTextStyle(paint, Color.GRAY);
@@ -68,9 +77,11 @@ public class LevelOneActivity extends AbstractCanvasActivity {
 
     public void drawCoin(int x, int y) {
 //        coinPaint.setTextSize(size);
-        Bitmap bomb = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
-        Rect source = new Rect(x, y, x + 250, y + 250);
-        super.getCanvas().drawBitmap(bomb, null, source, null);
+        x -= offsetHitbox;
+        y -= offsetHitbox;
+
+        Rect source = new Rect(x, y, x + 200, y + 200);
+        super.getCanvas().drawBitmap(coin, null, source, null);
 
 //        Paint paint = new Paint();
 //        setTextStyle(paint, Color.YELLOW);

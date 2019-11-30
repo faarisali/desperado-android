@@ -35,7 +35,7 @@ public class LevelOnePresenter implements LevelPresenterInterface {
     public void updateGame() {
         if (levelOneModel.getLives() > 0 && levelOneModel.isRunning()) {
             levelOneModel.update();
-        } else if (!levelOneModel.isRunning()) {
+        } else if (!levelOneModel.isRunning() && levelOneModel.getLives() > 0) {
             levelOneView.winGame(levelOneModel.getPoints(), levelOneModel.getGold(), levelOneModel.getLives());
         } else {
             levelOneView.loseGame(levelOneModel.getPoints(), levelOneModel.getGold());
@@ -65,9 +65,8 @@ public class LevelOnePresenter implements LevelPresenterInterface {
         displayLevelStats(canvas);
     }
 
-    @Override
-    public void tapEvent(MotionEvent event) {
-        levelOneModel.tapEvent(event);
+    public void tapEvent(float x, float y) {
+        levelOneModel.tapEvent(x, y);
     }
 
     private void displayLevelStats(Canvas canvas) {

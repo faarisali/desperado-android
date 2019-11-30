@@ -36,6 +36,6 @@ public interface LevelPresenterInterface {
     /**
      * Tell the level what to do when a tap is detected.
      */
-    void tapEvent(MotionEvent event);
+    void tapEvent(float x, float y);
 
 }

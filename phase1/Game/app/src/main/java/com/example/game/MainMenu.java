@@ -232,6 +232,8 @@ public class MainMenu extends AppCompatActivity {
         Intent logout = new Intent(this, LoginActivity.class);
         db.setCurrentUser(null);
         startActivity(logout);
+        stopMusic();
+        finish();
     }
 
     public void saveDarkMode(boolean isDark) {

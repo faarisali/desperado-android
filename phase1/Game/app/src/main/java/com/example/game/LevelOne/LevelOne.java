@@ -31,12 +31,16 @@ public class LevelOne extends GenericLevel {
 
     public LevelOneBackground background;
 
+    private TappableObject tappableToRemove;
+
+
     public LevelOne(int screenWidth, int screenLength) {
         super(3);
         countDown(60);
         isRunning = true;
         isPaused = false;
         background = new LevelOneBackground(screenWidth, screenLength);
+        tappableToRemove = null;
     }
 
     private void countDown(int seconds) {
@@ -72,6 +76,10 @@ public class LevelOne extends GenericLevel {
         for (TappableObject tappableObject : tappables) {
             tappableObject.draw(presenter);
         }
+
+        if (tappableToRemove != null) {
+            tappables.remove(tappableToRemove);
+        }
     }
 
     @Override
@@ -85,10 +93,10 @@ public class LevelOne extends GenericLevel {
     }
 
     @Override
-    public void tapEvent(MotionEvent event) { // TODO: move motion even to front end Question, should this be in activity (view) or presenter/controller
+    public void tapEvent(float x, float y) { // TODO: move motion even to front end Question, should this be in activity (view) or presenter/controller
         ArrayList<TappableObject> remove = new ArrayList<>();
         for (TappableObject tappableObject : tappables) {
-            if (tappableObject.tapped(event.getX(), event.getY())) {
+            if (tappableObject.tapped(x, y)) {
                 remove.add(tappableObject);
                 ArrayList<Integer> values = tappableObject.tapResponse();
                 super.setGold(super.getGold() + values.get(0));
@@ -100,7 +108,7 @@ public class LevelOne extends GenericLevel {
 
         // remove single coin per tap
         if (remove.size() > 0) {
-            tappables.remove(remove.get(0));
+            tappableToRemove = remove.get(0);
         }
     }
 }

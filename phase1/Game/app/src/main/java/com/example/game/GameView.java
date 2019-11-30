@@ -89,7 +89,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         // and other input controls. In this case, you are only
         // interested in events where the touch position changed.
         if (MotionEvent.ACTION_DOWN == e.getAction()) {
-            levelPresenter.tapEvent(e);
+            levelPresenter.tapEvent(e.getX(), e.getY());
         }
 
 

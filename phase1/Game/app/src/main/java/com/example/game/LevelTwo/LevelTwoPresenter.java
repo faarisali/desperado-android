@@ -77,15 +77,13 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
     }
 
     @Override
-    public void tapEvent(MotionEvent event) {
+    public void tapEvent(float x, float y) {
         if (!gameIsPaused) {
-            float x = event.getX();
-            float y = event.getY();
             if (1000 <= x && x <= 1070 && 30 <= y && y <= 100) {
                 pauseGame();
                 view.pause();
             } else {
-                model.tapEvent(event);
+                model.tapEvent();
             }
 
         }

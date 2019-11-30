@@ -126,6 +126,7 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
             i++;
         }
         dataToStore.deleteCharAt(dataToStore.length() - 1);
+        view.storeReplay(dataToStore.toString());
     }
 
 

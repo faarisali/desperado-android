@@ -14,7 +14,6 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
     private LevelTwoActivity view;
     private boolean gameIsPaused;
     private ArrayList<RenderData> renderInfoForReplay = new ArrayList<>();
-    private Canvas canvas;
 
     public LevelTwoPresenter(LevelTwoActivity viewForOutput, LevelTwo modelForLogic) {
         model = modelForLogic;
@@ -50,15 +49,15 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
         RenderData data = model.draw();
         renderInfoForReplay.add(data);
         LevelTwoDataFormatter formatter = new LevelTwoDataFormatter(data);
-        drawBackground(canvas, formatter.getBackgroundLocation());
-        drawPoints(canvas, formatter.getPointsLocation(), formatter.getPointsSize(),
+        drawBackground(formatter.getBackgroundLocation());
+        drawPoints(formatter.getPointsLocation(), formatter.getPointsSize(),
                 formatter.getPoints());
-        drawTimerDisplay(canvas, formatter.getTimerDisplayLocation(), formatter.getTimerDisplaySize(),
+        drawTimerDisplay(formatter.getTimerDisplayLocation(), formatter.getTimerDisplaySize(),
                 formatter.getSecondsLeft());
-        drawHearts(canvas, formatter.getLivesLocation(), formatter.getLivesSize());
-        drawPlayer(canvas, formatter.getPlayerLocation(), formatter.getPlayerSize());
-        drawObstacles(canvas, formatter.getObstacleLocation(), formatter.getObstacleSize());
-        drawPauseButton(canvas);
+        drawHearts(formatter.getLivesLocation(), formatter.getLivesSize());
+        drawPlayer(formatter.getPlayerLocation(), formatter.getPlayerSize());
+        drawObstacles(formatter.getObstacleLocation(), formatter.getObstacleSize());
+        drawPauseButton();
     }
 
     @Override
@@ -66,15 +65,15 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
         RenderData data = model.draw();
         renderInfoForReplay.add(data);
         LevelTwoDataFormatter formatter = new LevelTwoDataFormatter(data);
-        drawBackground(canvas, formatter.getBackgroundLocation());
-        drawPoints(canvas, formatter.getPointsLocation(), formatter.getPointsSize(),
+        drawBackground(formatter.getBackgroundLocation());
+        drawPoints(formatter.getPointsLocation(), formatter.getPointsSize(),
                 formatter.getPoints());
-        drawTimerDisplay(canvas, formatter.getTimerDisplayLocation(), formatter.getTimerDisplaySize(),
+        drawTimerDisplay(formatter.getTimerDisplayLocation(), formatter.getTimerDisplaySize(),
                 formatter.getSecondsLeft());
-        drawHearts(canvas, formatter.getLivesLocation(), formatter.getLivesSize());
-        drawPlayer(canvas, formatter.getPlayerLocation(), formatter.getPlayerSize());
-        drawObstacles(canvas, formatter.getObstacleLocation(), formatter.getObstacleSize());
-        drawPauseButton(canvas);
+        drawHearts(formatter.getLivesLocation(), formatter.getLivesSize());
+        drawPlayer(formatter.getPlayerLocation(), formatter.getPlayerSize());
+        drawObstacles(formatter.getObstacleLocation(), formatter.getObstacleSize());
+        drawPauseButton();
     }
 
     @Override
@@ -92,39 +91,39 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
         }
     }
 
-    private void drawBackground(Canvas canvas, ArrayList<Point> backgroundInfo) {
+    private void drawBackground(ArrayList<Point> backgroundInfo) {
         for (Point location : backgroundInfo) {
-            view.drawBackground(canvas, location);
+            view.drawBackground(location);
         }
     }
 
-    private void drawHearts(Canvas canvas, ArrayList<Point> heartInfo, int size) {
+    private void drawHearts(ArrayList<Point> heartInfo, int size) {
         for (Point location : heartInfo) {
-            view.drawHeart(canvas, location, size);
+            view.drawHeart(location, size);
         }
     }
 
-    private void drawPoints(Canvas canvas, Point location, int size, int points) {
-        view.drawPoints(canvas, location, size, points);
+    private void drawPoints(Point location, int size, int points) {
+        view.drawPoints(location, size, points);
 
     }
 
-    private void drawTimerDisplay(Canvas canvas, Point location, int size, int secondsLeft) {
-        view.drawTimerDisplay(canvas, location, size, secondsLeft);
+    private void drawTimerDisplay(Point location, int size, int secondsLeft) {
+        view.drawTimerDisplay(location, size, secondsLeft);
     }
 
-    private void drawPlayer(Canvas canvas, Point location, int size) {
-        view.drawPlayer(canvas, location, size);
+    private void drawPlayer(Point location, int size) {
+        view.drawPlayer(location, size);
     }
 
-    private void drawObstacles(Canvas canvas, ArrayList<Point> obstacleInfo, int size) {
+    private void drawObstacles(ArrayList<Point> obstacleInfo, int size) {
         for (Point location : obstacleInfo) {
-            view.drawObstacle(canvas, location, size);
+            view.drawObstacle(location, size);
         }
     }
 
-    private void drawPauseButton(Canvas canvas) {
-        view.drawPauseButton(canvas);
+    private void drawPauseButton() {
+        view.drawPauseButton();
     }
 
 

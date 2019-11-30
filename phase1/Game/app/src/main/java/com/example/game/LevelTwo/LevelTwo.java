@@ -179,7 +179,7 @@ public class LevelTwo extends GenericLevel {
      */
     private void updateObstacles() {
         for (Obstacle o : obstacleList.toArray(new Obstacle[0])) {
-            if (removeOutOfBoundsObstacles(o)) {
+            if (removeOutOfBoundsObstacles(o) && !o.isCollided()) {
                 this.points.setPoints(this.points.getPoints() + 100);
             }
             o.move();
@@ -204,11 +204,11 @@ public class LevelTwo extends GenericLevel {
     }
 
     private void detectCollisions() {
-        for(Obstacle item: obstacleList) {
-            if (!item.isCollided() && player.y - item.y > -60) {
-                if (player.x - item.x > -40 && player.x - item.x < 40) {
+        for (Obstacle obstacle : obstacleList) {
+            if (!obstacle.isCollided() && player.y - obstacle.y > -60) {
+                if (player.x - obstacle.x > -40 && player.x - obstacle.x < 40) {
                     updateLives();
-                    item.setCollided(true);
+                    obstacle.setCollided(true);
                 }
             }
         }

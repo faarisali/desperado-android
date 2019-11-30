@@ -17,15 +17,17 @@ public abstract class TappableObject extends GameObject {
      */
     private int height;
 
+    private final int hitboxBuffer = 25;
+
     public TappableObject(int newX, int newY, int newLength, int newHeight) {
         super(newX, newY);
         length = newLength;
         height = newHeight;
     }
 
-    public boolean tapped(int x, int y) {
-        if (this.x <= x && x <= this.x + length) {
-            return this.y <= y && x <= this.y + height;
+    public boolean tapped(float x, float y) {
+        if (this.x - hitboxBuffer <= x && x <= this.x + length + hitboxBuffer) {
+            return this.y -hitboxBuffer <= y && y <= this.y + height + hitboxBuffer;
         } else {
             return false;
         }

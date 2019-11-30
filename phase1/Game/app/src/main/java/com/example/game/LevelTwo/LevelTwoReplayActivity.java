@@ -15,6 +15,8 @@ public class LevelTwoReplayActivity extends AbstractLevelTwoView {
     @Override
     public void setCurrView() {
         currView = new GameView(this);
-        currView.setLevelPresenter(new LevelTwoPresenter(this, new ReplayModel(), true));
+        //Retrieve database info here
+        String retrievedData = new String();
+        currView.setLevelPresenter(new LevelTwoPresenter(this, new ReplayModel(retrievedData), true));
     }
 }

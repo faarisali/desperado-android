@@ -7,8 +7,15 @@ public class ReplayModel implements LevelTwoModelInterface {
     private int currOutput;
     private ArrayList<RenderData> dataToPlay;
 
-    public ReplayModel() {
-        dataToPlay = retrieveReplay();
+    /**
+     * Precondition: replayString has format:
+     * * Format: renderdata0%renderdata1%renderdata2 ...., where each renderData_n has format:
+     * * "Name@Key1,item1,item2...!Key2,item1 ... "
+     *
+     * @param replayString string that contains replay information to be displayed.
+     */
+    public ReplayModel(String replayString) {
+        dataToPlay = retrieveReplay(replayString);
         currOutput = 0;
     }
 
@@ -19,10 +26,18 @@ public class ReplayModel implements LevelTwoModelInterface {
         }
     }
 
-    private ArrayList<RenderData> retrieveReplay() {
+    /**
+     * Precondition: replayString has format:
+     * Format: renderdata0%renderdata1%renderdata2 ...., where each renderData_n has format:
+     * "Name@Key1,item1,item2...!Key2,item1 ... "
+     *
+     * @param replayString the string containing replay information.
+     * @return RenderData ArrayList describing replay information.
+     */
+
+    private ArrayList<RenderData> retrieveReplay(String replayString) {
         ArrayList<RenderData> dataArrayList = new ArrayList<>();
-        //Get data from database
-        String replayString = new String();
+
         //FormatData
         String[] renderDataEntries = replayString.split("%");
         for (String entry : renderDataEntries) {

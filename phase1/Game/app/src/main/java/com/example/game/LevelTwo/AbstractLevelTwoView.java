@@ -106,4 +106,8 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         super.getCanvas().drawRect(1010, 45, 1030, 85, pausePaint);
         super.getCanvas().drawRect(1040, 45, 1060, 85, pausePaint);
     }
+
+    void storeReplay(String dataToStore) {
+        //Store replay info here into database
+    }
 }

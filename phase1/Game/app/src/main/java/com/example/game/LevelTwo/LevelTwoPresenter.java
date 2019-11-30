@@ -83,7 +83,7 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
                 pauseGame();
                 view.pause();
             } else {
-                model.tapEvent(x, y);
+                model.tapEvent();
             }
 
         }

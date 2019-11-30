@@ -154,7 +154,7 @@ public class LevelTwo extends GenericLevel {
 
     }
 
-    public void tapEvent(MotionEvent event) {
+    public void tapEvent() {
         player.jumpUp();
     }
 

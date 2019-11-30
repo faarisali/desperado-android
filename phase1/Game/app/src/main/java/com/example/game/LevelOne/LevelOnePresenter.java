@@ -42,6 +42,7 @@ public class LevelOnePresenter implements LevelPresenterInterface {
         }
     }
 
+    /** not used */
     @Override
     public void drawGame (Canvas canvas) {
         // set canvas
@@ -52,18 +53,16 @@ public class LevelOnePresenter implements LevelPresenterInterface {
 
         // draw level objects
         levelOneModel.draw(this);
+
     }
 
     @Override
     public void drawGame () {
-        // set canvas
-        this.canvas = canvas;
+        // draw level objects
+        levelOneModel.draw(this);
 
         // print level stats to canvas
         displayLevelStats(canvas);
-
-        // draw level objects
-        levelOneModel.draw(this);
     }
 
     @Override
@@ -77,6 +76,10 @@ public class LevelOnePresenter implements LevelPresenterInterface {
         int points = levelOneModel.getPoints();
         String time = levelOneModel.getTime().toString();
         levelOneView.displayText(gold, lives, points, time);
+    }
+
+    public void drawBackground(int x, int y) {
+        levelOneView.drawBackground(x, y);
     }
 
     public void drawCoin(int x, int y) {

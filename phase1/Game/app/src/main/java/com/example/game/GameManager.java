@@ -87,7 +87,7 @@ public class GameManager {
     public void changeLevel(int level) {
         switch (level) {
             case 1:
-                currLevel = new LevelOne();
+//                currLevel = new LevelOne();
                 break;
             case 2:
                 currLevel = new LevelTwo(3, 31);

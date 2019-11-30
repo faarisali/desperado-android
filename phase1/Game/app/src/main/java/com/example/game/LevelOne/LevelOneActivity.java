@@ -27,11 +27,15 @@ public class LevelOneActivity extends AbstractCanvasActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         currView = new GameView(this);
+
+        int screenWidth = currView.getScreenWidth();
+        int screenLength = currView.getScreenHeight();
+
         setContentView(currView);
 
         setTextStyle(textStyle, Color.WHITE);
 //        currView = findViewById(R.id.gameView);
-        currView.setLevelPresenter(new LevelOnePresenter(this, new LevelOne()));
+        currView.setLevelPresenter(new LevelOnePresenter(this, new LevelOne(screenWidth, screenLength)));
 
 //        GameManager game = currView.gameManager;
 //        GameManagerObserver observer = new GameManagerObserver(this);
@@ -43,6 +47,12 @@ public class LevelOneActivity extends AbstractCanvasActivity {
         textStyle.setTextSize(60);
         textStyle.setTypeface(Typeface.DEFAULT_BOLD);
         textStyle.setColor(white);
+    }
+
+    public void drawBackground(int screenWidth, int screenHeight) {
+        Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.wildwesttown);
+        Rect source = new Rect(0, 0, screenWidth, screenHeight);
+        super.getCanvas().drawBitmap(background, null, source, null);
     }
 
     public void drawBomb(int x, int y) {

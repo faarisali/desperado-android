@@ -1,8 +1,6 @@
 package com.example.game.LevelTwo;
 
-import android.graphics.Canvas;
 import android.graphics.Point;
-import android.view.MotionEvent;
 
 import com.example.game.LevelPresenterInterface;
 
@@ -42,22 +40,6 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
             }
         }
 
-    }
-
-    @Override
-    public void drawGame(Canvas canvas) {
-        RenderData data = model.draw();
-        renderInfoForReplay.add(data);
-        LevelTwoDataFormatter formatter = new LevelTwoDataFormatter(data);
-        drawBackground(formatter.getBackgroundLocation());
-        drawPoints(formatter.getPointsLocation(), formatter.getPointsSize(),
-                formatter.getPoints());
-        drawTimerDisplay(formatter.getTimerDisplayLocation(), formatter.getTimerDisplaySize(),
-                formatter.getSecondsLeft());
-        drawHearts(formatter.getLivesLocation(), formatter.getLivesSize());
-        drawPlayer(formatter.getPlayerLocation(), formatter.getPlayerSize());
-        drawObstacles(formatter.getObstacleLocation(), formatter.getObstacleSize());
-        drawPauseButton();
     }
 
     @Override

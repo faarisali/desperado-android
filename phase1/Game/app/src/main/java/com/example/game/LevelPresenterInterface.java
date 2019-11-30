@@ -26,11 +26,6 @@ public interface LevelPresenterInterface {
     /**
      * Draw the objects of the level.
      */
-    void drawGame(Canvas canvas);
-
-    /**
-     * Draw the objects of the level.
-     */
     void drawGame();
 
     /**

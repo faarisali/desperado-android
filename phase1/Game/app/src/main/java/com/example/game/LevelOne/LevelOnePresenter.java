@@ -1,7 +1,6 @@
 package com.example.game.LevelOne;
 
 import android.graphics.Canvas;
-import android.view.MotionEvent;
 
 import com.example.game.LevelPresenterInterface;
 
@@ -40,18 +39,6 @@ public class LevelOnePresenter implements LevelPresenterInterface {
         } else {
             levelOneView.loseGame(levelOneModel.getPoints(), levelOneModel.getGold());
         }
-    }
-
-    @Override
-    public void drawGame (Canvas canvas) {
-        // set canvas
-        this.canvas = canvas;
-
-        // print level stats to canvas
-        displayLevelStats(canvas);
-
-        // draw level objects
-        levelOneModel.draw(this);
     }
 
     @Override

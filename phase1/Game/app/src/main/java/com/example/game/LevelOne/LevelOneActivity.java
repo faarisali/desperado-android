@@ -24,6 +24,7 @@ public class LevelOneActivity extends AbstractCanvasActivity {
     private Bitmap coin;
     private Bitmap bomb;
     private Bitmap background;
+    private Bitmap dynamite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class LevelOneActivity extends AbstractCanvasActivity {
         coin = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         bomb = BitmapFactory.decodeResource(getResources(), R.drawable.bomb);
         background = BitmapFactory.decodeResource(getResources(), R.drawable.wildwesttown);
+        dynamite = BitmapFactory.decodeResource(getResources(), R.drawable.dynamite);
     }
 
     private void setTextStyle(Paint textStyle, int white) {
@@ -64,6 +66,11 @@ public class LevelOneActivity extends AbstractCanvasActivity {
     public void drawBackground(int screenWidth, int screenHeight) {
         Rect source = new Rect(0, 0, screenWidth, screenHeight);
         super.getCanvas().drawBitmap(background, null, source, null);
+    }
+
+    public void drawDynamite(int x, int y) {
+        Rect source = new Rect(x - offsetHitbox, y - offsetHitbox, x + 100, y + 100);
+        super.getCanvas().drawBitmap(dynamite, null, source, null);
     }
 
     public void drawBomb(int x, int y) {

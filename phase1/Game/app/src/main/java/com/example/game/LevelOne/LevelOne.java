@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.view.MotionEvent;
 
 import com.example.game.GenericLevel;
+import com.example.game.LevelTwo.TimerDisplay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class LevelOne extends GenericLevel {
 
     private boolean isPaused;
 
-    private Timer time = new Timer(); // TODO: should this be in the front end?
+    private Timer time = new Timer();
 
     private List<TappableObject> tappables = new ArrayList<>();
 
@@ -33,6 +34,13 @@ public class LevelOne extends GenericLevel {
 
     private TappableObject tappableToRemove;
 
+    private Dynamite dynamite;
+
+    private List<TappableObject> bombsRemoved = new ArrayList<>();
+
+    private boolean dynamiteExploded = false;
+
+    private TimerDisplay timerDisplay = new TimerDisplay(45, 160, 50, Color.WHITE, this.secondsLeft);
 
     public LevelOne(int screenWidth, int screenLength) {
         super(3);
@@ -40,6 +48,7 @@ public class LevelOne extends GenericLevel {
         isRunning = true;
         isPaused = false;
         background = new LevelOneBackground(screenWidth, screenLength);
+        dynamite = new Dynamite(500, 100);
         tappableToRemove = null;
     }
 
@@ -76,9 +85,16 @@ public class LevelOne extends GenericLevel {
         for (TappableObject tappableObject : tappables) {
             tappableObject.draw(presenter);
         }
-
         if (tappableToRemove != null) {
             tappables.remove(tappableToRemove);
+            tappableToRemove = null;
+        }
+        if (dynamiteExploded) {
+            for (TappableObject bomb: bombsRemoved) {
+                tappables.remove(bomb);
+            }
+        }else{
+            dynamite.draw(presenter);
         }
     }
 
@@ -95,6 +111,11 @@ public class LevelOne extends GenericLevel {
     @Override
     public void tapEvent(float x, float y) { // TODO: move motion even to front end Question, should this be in activity (view) or presenter/controller
         ArrayList<TappableObject> remove = new ArrayList<>();
+        if (!dynamiteExploded && dynamite.tapped(x, y)) {
+            dynamite.explode(tappables, bombsRemoved);
+            dynamite = null;
+            dynamiteExploded = true;
+        }
         for (TappableObject tappableObject : tappables) {
             if (tappableObject.tapped(x, y)) {
                 remove.add(tappableObject);

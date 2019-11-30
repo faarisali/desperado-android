@@ -66,6 +66,10 @@ public class LevelOnePresenter implements LevelPresenterInterface {
         levelOneView.drawBackground(x, y);
     }
 
+    public void drawDynamite(int x, int y) {
+        levelOneView.drawDynamite(x, y);
+    }
+
     public void drawCoin(int x, int y) {
         levelOneView.drawCoin(x, y);
     }

@@ -13,4 +13,6 @@ interface LoginMapDatabase {
     public User getUser(String username); //return a user given a username from the database
 
     public User addDefaultUser(String username, String password); // add a default user to the database
+
+    void updateCurrentUser(User user);
 }

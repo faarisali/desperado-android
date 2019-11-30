@@ -13,11 +13,14 @@ import com.example.game.Login.User;
 
 public class WinActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private LoginAndroidMapDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_win);
 
+        db = LoginAndroidMapDatabase.getSingleton(this);
         Intent intent = getIntent(); //get the data from sender
         int pointsValue = intent.getIntExtra("Points", 0);
         int goldValue = intent.getIntExtra("Gold", 0);
@@ -32,12 +35,11 @@ public class WinActivity extends AppCompatActivity implements View.OnClickListen
         displayStats(pointsValue, goldValue, livesRemaining);
 
         // Update user info
-        User currentUser = LoginAndroidMapDatabase.getSingleton(this).getCurrentUser();
+        User currentUser = db.getCurrentUser();
         currentUser.setTotalPoints(currentUser.getTotalPoints() + pointsValue);
         currentUser.setTotalGold(currentUser.getTotalGold() + goldValue);
         currentUser.setTotalLivesLost(currentUser.getTotalLivesLost() + (3 - livesRemaining));
-        LoginAndroidMapDatabase.getSingleton(this).addUser(currentUser);
-        LoginAndroidMapDatabase.getSingleton(this).setCurrentUser(currentUser);
+        db.updateCurrentUser(currentUser);
     }
     private void displayStats(int pointsValue, int goldValue, int livesRemaining) {
         TextView goldBox = findViewById(R.id.goldVariable);

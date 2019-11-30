@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -60,7 +61,35 @@ public class MainMenu extends AppCompatActivity {
 
     private ArrayList<TextView> viewsList = new ArrayList<>();
 
+    private LoginAndroidMapDatabase db;
+
+    private User currentUser;
+
     public static final String USERNAME = "username";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_menu);
+        TextView usernameText = findViewById(R.id.usernameTextView);
+
+        db = LoginAndroidMapDatabase.getSingleton(this);
+
+        currentUser = db.getCurrentUser();
+        String username = currentUser.getUsername();
+        usernameText.setText(username);
+        customizeCharacter();
+        toggleMusic();
+        toggleNightMode();
+        updateStats();
+        populateViewsList();
+
+        // sets users preferences
+        boolean isDark = currentUser.isDarkTheme();
+        nightModeSwitch.setChecked(isDark);
+        boolean isPlaying = currentUser.isMusicPlaying();
+        musicSwitch.setChecked(isPlaying);
+    }
 
     public void customizeCharacter() {
         character = findViewById(R.id.costume);
@@ -101,6 +130,7 @@ public class MainMenu extends AppCompatActivity {
             } else {
                 stopMusic();
             }
+            saveIsMusicPlaying(isChecked);
           }
         });
     }
@@ -118,8 +148,8 @@ public class MainMenu extends AppCompatActivity {
             } else {
                 menuBackground.setBackgroundColor(Color.WHITE);
                 setTextColor(Color.BLACK);
-
             }
+            saveDarkMode(isChecked);
           }
         });
     }
@@ -145,28 +175,13 @@ public class MainMenu extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
-        TextView usernameText = findViewById(R.id.usernameTextView);
-        User currentUser = LoginAndroidMapDatabase.getSingleton(this).getCurrentUser();
-        String username = currentUser.getUsername();
-        usernameText.setText(username);
-        customizeCharacter();
-        toggleMusic();
-        toggleNightMode();
-        updateStats();
-        populateViewsList();
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         updateStats();
     }
 
     private void updateStats() {
-        User currentUser = LoginAndroidMapDatabase.getSingleton(this).getCurrentUser();
+        User currentUser = db.getCurrentUser();
         TextView points = findViewById(R.id.totalPoints);
         points.setText(String.valueOf(currentUser.getTotalPoints()));
         TextView gold = findViewById(R.id.totalGold);
@@ -215,7 +230,17 @@ public class MainMenu extends AppCompatActivity {
 
     public void logOut(View v) {
         Intent logout = new Intent(this, LoginActivity.class);
-        LoginAndroidMapDatabase.getSingleton(this).setCurrentUser(null);
+        db.setCurrentUser(null);
         startActivity(logout);
+    }
+
+    public void saveDarkMode(boolean isDark) {
+        currentUser.setDarkTheme(isDark);
+        db.updateCurrentUser(currentUser);
+    }
+
+    public void saveIsMusicPlaying(boolean isMusicPlaying) {
+        currentUser.setMusicIsPlaying(isMusicPlaying);
+        db.updateCurrentUser(currentUser);
     }
 }

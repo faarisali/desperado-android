@@ -83,8 +83,8 @@ public class LoginAndroidMapDatabase implements LoginMapDatabase {
      */
     @Override
     public void addUser(User user) {
-        String key = userToString(user);
-        save(user.getUsername(), key);
+        String value = userToString(user);
+        save(user.getUsername(), value);
     }
 
     /**
@@ -109,6 +109,18 @@ public class LoginAndroidMapDatabase implements LoginMapDatabase {
         User newUser = new User(username, password, 0, 0, 0, R.drawable.cowboy_yellow, false, false);
         addUser(newUser);
         return newUser;
+    }
+
+    /**
+     * Updates the current user with the given user
+     * @param user the user to update the current user with
+     */
+    @Override
+    public void updateCurrentUser(User user) {
+        if (getCurrentUser().getUsername().equals(user.getUsername())) { // if the user passed in is the current user
+            addUser(user);
+            setCurrentUser(user);
+        }
     }
 
     /**

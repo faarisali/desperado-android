@@ -80,10 +80,10 @@ public class LevelOnePresenter implements LevelPresenterInterface {
     }
 
     public void drawCoin(int x, int y) {
-        levelOneView.drawCoin(x, y, canvas);
+        levelOneView.drawCoin(canvas, x, y);
     }
 
     public void drawBomb(int x, int y) {
-        levelOneView.drawBomb(x, y, canvas);
+        levelOneView.drawBomb(canvas, x, y);
     }
 }

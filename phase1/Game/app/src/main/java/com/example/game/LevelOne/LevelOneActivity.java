@@ -1,8 +1,12 @@
 package com.example.game.LevelOne;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Window;
@@ -16,6 +20,8 @@ import com.example.game.R;
 public class LevelOneActivity extends AbstractCanvasActivity {
 
     private Paint textStyle = new Paint();
+    private Paint bombPaint = new Paint();
+    private Paint coinPaint = new Paint();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,7 @@ public class LevelOneActivity extends AbstractCanvasActivity {
         setContentView(currView);
 
         setTextStyle(textStyle, Color.WHITE);
+//        currView = findViewById(R.id.gameView);
         currView.setLevelPresenter(new LevelOnePresenter(this, new LevelOne()));
 
 //        GameManager game = currView.gameManager;
@@ -41,16 +48,26 @@ public class LevelOneActivity extends AbstractCanvasActivity {
         textStyle.setColor(white);
     }
 
-    public void drawBomb(int x, int y, Canvas canvas) {
-        Paint paint = new Paint();
-        setTextStyle(paint, Color.GRAY);
-        super.getCanvas().drawCircle(x + 25, y + 25, 25, paint);
+    public void drawBomb(Canvas canvas, int x, int y) {
+//        bombPaint.setTextSize(size);
+        Bitmap bomb = BitmapFactory.decodeResource(getResources(), R.drawable.bomb);
+        Rect source = new Rect(x, y, x + 250, y + 250);
+        super.getCanvas().drawBitmap(bomb, null, source, null);
+
+//        Paint paint = new Paint();
+//        setTextStyle(paint, Color.GRAY);
+//        canvas.drawCircle(x + 25, y + 25, 25, paint);
     }
 
-    public void drawCoin(int x, int y, Canvas canvas) {
-        Paint paint = new Paint();
-        setTextStyle(paint, Color.YELLOW);
-        super.getCanvas().drawCircle(x + 25, y + 25, 25, paint);
+    public void drawCoin(Canvas canvas, int x, int y) {
+//        coinPaint.setTextSize(size);
+        Bitmap bomb = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
+        Rect source = new Rect(x, y, x + 250, y + 250);
+        super.getCanvas().drawBitmap(bomb, null, source, null);
+
+//        Paint paint = new Paint();
+//        setTextStyle(paint, Color.YELLOW);
+//        canvas.drawCircle(x + 25, y + 25, 25, paint);
     }
 
     public void displayText(Canvas canvas, int gold, int lives, int points, String time) {

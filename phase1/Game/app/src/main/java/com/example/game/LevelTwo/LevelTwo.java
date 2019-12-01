@@ -57,6 +57,17 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
         backgroundList.add(this.backgroundDisplay);
     }
 
+    public LevelTwo(int lives, int secondsLeft, int jumpStrength) {
+        isRunning = true;
+        this.secondsLeft = secondsLeft;
+        this.lives = lives;
+        new SpawnObstacleTask(this).run();
+        player = new PlayerLevelTwo(10, groundY, -30);
+        runtimeTimer.countDown();
+        populateHeartList(this.lives);
+        backgroundList.add(this.backgroundDisplay);
+    }
+
     /**
      * Adds Heart objcts to heartList based on how many lives this level is instantiated with
      *
@@ -234,7 +245,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
     private void detectCollisions() {
         for (Obstacle obstacle : obstacleList) {
             if (!obstacle.isCollided() && player.y - obstacle.y > -60) {
-                if (player.x - obstacle.x > -40 && player.x - obstacle.x < 40) {
+                if (player.x - obstacle.x > -100 && player.x - obstacle.x < 30) {
                     updateLives();
                     obstacle.setCollided(true);
                 }

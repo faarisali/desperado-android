@@ -29,13 +29,22 @@ public class PlayerLevelTwo {
     int x, y;
     private final double gravity = 1.6;
     private int ground;
-    private final double jumpStrength = -25;
+    private double jumpStrength;
 
     public PlayerLevelTwo(int x, int y) {
         this.x = x;
         this.y = y + 15;
         this.ground = y + 15;
         Vy = 0;
+        jumpStrength = -25;
+    }
+
+    public PlayerLevelTwo(int x, int y, int jumpStrength) {
+        this.x = x;
+        this.y = y + 15;
+        this.ground = y + 15;
+        Vy = 0;
+        this.jumpStrength = jumpStrength;
     }
 
     /**

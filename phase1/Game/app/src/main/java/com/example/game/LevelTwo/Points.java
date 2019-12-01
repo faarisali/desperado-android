@@ -11,7 +11,7 @@ public class Points extends GameObject {
         this.points = points;
     }
 
-    public Points(int x, int y, int size, int color, int points) {
+    public Points(int x, int y, int points) {
         super(x, y);
         this.points = points;
     }

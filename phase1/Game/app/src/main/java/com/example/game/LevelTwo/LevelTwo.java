@@ -22,11 +22,11 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
     private final int TIMERDISPLAY_SIZE = 50;
     private final int CANVAS_WIDTH = 1080;
     private final int BACKGROUND_BITMAP_WIDTH = 1920;
-    private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, PLAYER_SIZE, Color.BLUE);
-    private Points points = new Points(45, 110, POINT_SIZE, Color.WHITE, 0);
+    private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY);
+    private Points points = new Points(45, 110, 0);
     private int lives;
     private TimerDisplay timerDisplay = new TimerDisplay(45, 160, this.secondsLeft);
-    private LevelTwoBackground backgroundDisplay = new LevelTwoBackground(0, 0, 10, Color.WHITE);
+    private LevelTwoBackground backgroundDisplay = new LevelTwoBackground(0, 0);
     private ArrayList<Heart> heartList = new ArrayList<>();
 
     /**
@@ -67,7 +67,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
     private void populateHeartList(int lives) {
         int xIncrement = 45;
         for (int i = 0; i < lives; i++) {
-            heartList.add(new Heart(xIncrement, 55, HEART_SIZE, Color.RED));
+            heartList.add(new Heart(xIncrement, 55));
             xIncrement += 80;
         }
 
@@ -180,7 +180,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
         for (LevelTwoBackground background : backgroundList.toArray(new LevelTwoBackground[0])) {
             if (background.x <= -(BACKGROUND_BITMAP_WIDTH - CANVAS_WIDTH) && needNewBackground) {
                 //CANVAS_WIDTH - 20, minus 20 is to deal slight gap between side by side backgrounds
-                backgroundList.add(new LevelTwoBackground(CANVAS_WIDTH - 20, 0, 10, Color.WHITE));
+                backgroundList.add(new LevelTwoBackground(CANVAS_WIDTH - 20, 0));
                 needNewBackground = false;
             }
             if (background.x < -(BACKGROUND_BITMAP_WIDTH - 5)) {

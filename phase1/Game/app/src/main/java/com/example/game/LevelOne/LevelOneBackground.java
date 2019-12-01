@@ -3,7 +3,7 @@ package com.example.game.LevelOne;
 /**
  The background for level one
  */
-public class LevelOneBackground {
+class LevelOneBackground {
     /** The background width */
     private int backgroundWidth;
     /** The background height */

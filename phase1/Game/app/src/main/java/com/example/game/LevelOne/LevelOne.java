@@ -42,7 +42,7 @@ public class LevelOne extends GenericLevel {
     }
 
     /** Spawn tappables randomly in level one*/
-    public void spawnTappables() {
+    private void spawnTappables() {
         double randDouble = Math.random();
         randDouble = randDouble * 1080 + 1;
         int randHorizontal = (int) randDouble;

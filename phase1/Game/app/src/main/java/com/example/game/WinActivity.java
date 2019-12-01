@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.game.Login.LoginAndroidMapDatabase;
 import com.example.game.Login.User;
@@ -14,6 +15,9 @@ import com.example.game.Login.User;
 public class WinActivity extends AppCompatActivity implements View.OnClickListener{
 
     private LoginAndroidMapDatabase db;
+
+    /** The menu layout*/
+    private ConstraintLayout menuBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,9 @@ public class WinActivity extends AppCompatActivity implements View.OnClickListen
 
         Button mainMenu = findViewById(R.id.mainMenuButton);
         mainMenu.setOnClickListener(this);
+
+        menuBackground = findViewById(R.id.menu);
+        menuBackground.setBackgroundResource(R.drawable.win_background);
 
         Button restart = findViewById(R.id.restartButton);
         restart.setOnClickListener(this);

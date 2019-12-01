@@ -15,18 +15,17 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
     private ArrayList<LevelTwoBackground> backgroundList = new ArrayList<>();
     private int groundY = 500;
     private float defaultObstacleMoveSpeed = 9;
-    private final int PLAYER_SIZE = 60;
     private final int HEART_SIZE = 60;
     private final int POINT_SIZE = 50;
     private final int OBSTACLE_SIZE = 90;
     private final int TIMERDISPLAY_SIZE = 50;
     private final int CANVAS_WIDTH = 1080;
     private final int BACKGROUND_BITMAP_WIDTH = 1920;
-    private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY, PLAYER_SIZE, Color.BLUE);
-    private Points points = new Points(45, 110, POINT_SIZE, Color.WHITE, 0);
+    private PlayerLevelTwo player = new PlayerLevelTwo(10, groundY);
+    private Points points = new Points(45, 110, 0);
     private int lives;
     private TimerDisplay timerDisplay = new TimerDisplay(45, 160, this.secondsLeft);
-    private LevelTwoBackground backgroundDisplay = new LevelTwoBackground(0, 0, 10, Color.WHITE);
+    private LevelTwoBackground backgroundDisplay = new LevelTwoBackground(0, 0);
     private ArrayList<Heart> heartList = new ArrayList<>();
 
     /**
@@ -67,7 +66,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
     private void populateHeartList(int lives) {
         int xIncrement = 45;
         for (int i = 0; i < lives; i++) {
-            heartList.add(new Heart(xIncrement, 55, HEART_SIZE, Color.RED));
+            heartList.add(new Heart(xIncrement, 55));
             xIncrement += 80;
         }
 
@@ -87,7 +86,6 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
         levelTwoData.store("timerdisplay", timerDisplay.draw());
         levelTwoData.store("backgrounddisplay", drawBackgrounds());
 
-        levelTwoData.store("playerSize", PLAYER_SIZE);
         levelTwoData.store("obstacleSize", OBSTACLE_SIZE);
         levelTwoData.store("livesSize", HEART_SIZE);
         levelTwoData.store("pointsSize", POINT_SIZE);
@@ -180,7 +178,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
         for (LevelTwoBackground background : backgroundList.toArray(new LevelTwoBackground[0])) {
             if (background.x <= -(BACKGROUND_BITMAP_WIDTH - CANVAS_WIDTH) && needNewBackground) {
                 //CANVAS_WIDTH - 20, minus 20 is to deal slight gap between side by side backgrounds
-                backgroundList.add(new LevelTwoBackground(CANVAS_WIDTH - 20, 0, 10, Color.WHITE));
+                backgroundList.add(new LevelTwoBackground(CANVAS_WIDTH - 20, 0));
                 needNewBackground = false;
             }
             if (background.x < -(BACKGROUND_BITMAP_WIDTH - 5)) {
@@ -276,6 +274,11 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
     public float getDefaultObstacleMoveSpeed() {
         return defaultObstacleMoveSpeed;
     }
+
+    public int getCANVAS_WIDTH() {
+        return CANVAS_WIDTH;
+    }
+
 
     /**
      * Return 0 if the model is still running.

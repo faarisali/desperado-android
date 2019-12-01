@@ -31,7 +31,7 @@ public class PlayerLevelTwo {
     private int ground;
     private final double jumpStrength = -25;
 
-    public PlayerLevelTwo(int x, int y, int size, int color) {
+    public PlayerLevelTwo(int x, int y) {
         this.x = x;
         this.y = y + 15;
         this.ground = y + 15;

@@ -9,7 +9,7 @@ public class LevelTwoBackground extends GameObject {
     private boolean reversedFirst = false;
     int x, y;
 
-    public LevelTwoBackground(int x, int y, int size, int color) {
+    public LevelTwoBackground(int x, int y) {
         super(x, y);
         this.x = x;
         this.y = y;
@@ -20,7 +20,7 @@ public class LevelTwoBackground extends GameObject {
     }
 
     public void update(int xIncrement) {
-        x = x - xIncrement;
+        x = x + xIncrement;
     }
 
     public boolean isReversedFirst() {

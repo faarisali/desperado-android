@@ -18,7 +18,7 @@ public class Obstacle extends GameObject {
      *
      * @param moveSpeed how fast this obstacle is going to be moving
      */
-    public Obstacle(int x, int y, int size, int color, float moveSpeed) {
+    public Obstacle(int x, int y, float moveSpeed) {
         super(x, y);
         this.Vx = moveSpeed;
         this.outOfBounds = false;

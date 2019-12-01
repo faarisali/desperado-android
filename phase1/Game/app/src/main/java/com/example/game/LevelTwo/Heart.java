@@ -6,7 +6,7 @@ import com.example.game.GameObject;
 
 public class Heart extends GameObject {
 
-    public Heart(int x, int y, int size, int color) {
+    public Heart(int x, int y) {
         super(x, y);
 
     }

@@ -27,6 +27,7 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     private Bitmap cactus;
     private Bitmap background;
     private Bitmap hearts;
+    private Bitmap horse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         cactus = BitmapFactory.decodeResource(getResources(), R.drawable.cactus_1);
         background = BitmapFactory.decodeResource(getResources(), R.drawable.level_2_bg);
         hearts = BitmapFactory.decodeResource(getResources(), R.drawable.pixelheart);
+        horse = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_00);
     }
 
     void drawHeart(Point location, int size) {
@@ -80,9 +82,9 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         super.getCanvas().drawText("Time Left:" + secondsLeft, location.x, location.y, timerDisplayPaint);
     }
 
-    void drawPlayer(Point location, int size) {
-        playerPaint.setTextSize(size);
-        super.getCanvas().drawText("O", location.x, location.y + vAdjustment, playerPaint);
+    void drawPlayer(Point location) {
+        Rect source = new Rect(location.x, location.y - 144 + vAdjustment, location.x + 190, location.y + vAdjustment);
+        super.getCanvas().drawBitmap(horse, null, source, null);
     }
 
     void drawObstacle(Point location, int size) {

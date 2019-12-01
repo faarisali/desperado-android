@@ -17,7 +17,7 @@ public class LevelOne extends GenericLevel {
     /** The tappable objects in level one*/
     private List<TappableObject> tappables = new ArrayList<>();
     /** The background of level one*/
-    public LevelOneBackground background;
+    private LevelOneBackground background;
     /** The tappable object being removed*/
     private TappableObject tappableToRemove;
     /** The dynamite object in the level (hidden feature)*/
@@ -55,7 +55,7 @@ public class LevelOne extends GenericLevel {
     }
 
     /** Check the number of lives left*/
-    public void checkLives() {
+    private void checkLives() {
         if (getLives() <= 0) {
             isRunning = false;
             System.out.println("Out of lives");
@@ -126,13 +126,13 @@ public class LevelOne extends GenericLevel {
     /** Getter for the time running
      * @return the time left
      */
-    public String getTime() {
+    String getTime() {
         return Integer.toString(gameTimer.getSeconds());
     }
     /** Setter for the time running
      * @param paused boolean that determines if level one is paused
      */
-    public void setPaused(boolean paused) {
+    void setPaused(boolean paused) {
         isPaused = paused;
     }
 }

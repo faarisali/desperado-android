@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * A bomb that harms the player in level 1
  */
-public class Bomb extends TappableObject {
+class Bomb extends TappableObject {
 
 
     /**
@@ -20,7 +20,7 @@ public class Bomb extends TappableObject {
      * Communicates with the presenter to draw a bomb at its x and y location.
      */
     @Override
-    public void draw(LevelOnePresenterInterface presenter) {
+    void draw(LevelOnePresenterInterface presenter) {
         presenter.drawBomb(super.x, super.y);
     }
 
@@ -29,7 +29,7 @@ public class Bomb extends TappableObject {
      *
      * @return an ArrayList where the 1st element is the change in gold, 2nd change in points, 3rd change in lives.
      */
-    public ArrayList<Integer> tapResponse() {
+    ArrayList<Integer> tapResponse() {
         ArrayList<Integer> response = new ArrayList<>();
         response.add(0); //Change in gold associated with touching a bomb.
         response.add(-1000); //Change in points associated with touching a bomb.

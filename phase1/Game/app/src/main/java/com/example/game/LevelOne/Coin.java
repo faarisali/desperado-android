@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * A coin in level 1
  */
-public class Coin extends TappableObject {
+class Coin extends TappableObject {
 
     /**
      * Constructor for a new coin object
@@ -18,7 +18,7 @@ public class Coin extends TappableObject {
      * Communicates with the presenter to draw a coin at its x and y location.
      */
     @Override
-    public void draw(LevelOnePresenterInterface presenter) {
+    void draw(LevelOnePresenterInterface presenter) {
         presenter.drawCoin(super.x, super.y);
     }
 
@@ -27,7 +27,7 @@ public class Coin extends TappableObject {
      *
      * @return an ArrayList where the 1st element is the change in gold, 2nd change in points, 3rd change in lives.
      */
-    public ArrayList<Integer> tapResponse() {
+    ArrayList<Integer> tapResponse() {
         ArrayList<Integer> response = new ArrayList<>();
         response.add(1); //Change in gold associated with a piece of gold
         response.add(100); //change in points associated with a piece of gold

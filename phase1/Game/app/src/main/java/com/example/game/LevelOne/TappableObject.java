@@ -4,7 +4,7 @@ import com.example.game.GameObject;
 
 import java.util.ArrayList;
 
-public abstract class TappableObject extends GameObject {
+abstract class TappableObject extends GameObject {
     /**
      * length of hitbox.
      */
@@ -41,12 +41,12 @@ public abstract class TappableObject extends GameObject {
      *
      * @return an ArrayList where the 1st element is the change in gold, 2nd change in points, 3rd change in lives.
      */
-    public abstract ArrayList<Integer> tapResponse();
+    abstract ArrayList<Integer> tapResponse();
 
     /**
      * Communicates with the presenter to draw a TappableObject at its x and y location.
      */
-    public abstract void draw(LevelOnePresenterInterface presenter);
+    abstract void draw(LevelOnePresenterInterface presenter);
 
     /**
      * Moves the tappable object down the screen.
@@ -60,7 +60,7 @@ public abstract class TappableObject extends GameObject {
      *
      * @param newLength the new length.
      */
-    public void setLength(int newLength) {
+    void setLength(int newLength) {
         length = newLength;
     }
 
@@ -69,7 +69,7 @@ public abstract class TappableObject extends GameObject {
      *
      * @return the length of the tappable object.
      */
-    public int getLength() {
+    int getLength() {
         return length;
     }
 
@@ -78,7 +78,7 @@ public abstract class TappableObject extends GameObject {
      *
      * @param newHeight the new height being set to.
      */
-    public void setHeight(int newHeight) {
+    void setHeight(int newHeight) {
         length = newHeight;
     }
 
@@ -87,7 +87,7 @@ public abstract class TappableObject extends GameObject {
      *
      * @return the height of this object.
      */
-    public int getHeight() {
+    int getHeight() {
         return height;
     }
 }

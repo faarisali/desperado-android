@@ -18,7 +18,7 @@ public class Coin extends TappableObject {
      * Communicates with the presenter to draw a coin at its x and y location.
      */
     @Override
-    public void draw(LevelOnePresenter presenter) {
+    public void draw(LevelOnePresenterInterface presenter) {
         presenter.drawCoin(super.x, super.y);
     }
 

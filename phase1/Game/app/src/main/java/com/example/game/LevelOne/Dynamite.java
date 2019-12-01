@@ -11,7 +11,7 @@ public class Dynamite extends TappableObject{
     }
 
     /** Draw this dynamite*/
-    public void draw(LevelOnePresenter presenter) {
+    public void draw(LevelOnePresenterInterface presenter) {
         presenter.drawDynamite(x, y);
     }
 

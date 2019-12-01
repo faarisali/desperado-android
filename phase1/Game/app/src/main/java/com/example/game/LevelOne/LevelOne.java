@@ -1,27 +1,11 @@
 package com.example.game.LevelOne;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.view.MotionEvent;
-
 import com.example.game.GenericLevel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class LevelOne extends GenericLevel {
-
-    public String getTime() {
-        return Integer.toString(gameTimer.getSeconds());
-    }
-
-    public void setPaused(boolean paused) {
-        isPaused = paused;
-    }
 
     private boolean isPaused;
 
@@ -68,7 +52,7 @@ public class LevelOne extends GenericLevel {
         }
     }
 
-    public void draw(LevelOnePresenter presenter) {
+    public void draw(LevelOnePresenterInterface presenter) {
         background.draw(presenter);
         for (TappableObject tappableObject : tappables) {
             tappableObject.draw(presenter);
@@ -102,7 +86,7 @@ public class LevelOne extends GenericLevel {
     }
 
     @Override
-    public void tapEvent(float x, float y) { // TODO: move motion even to front end Question, should this be in activity (view) or presenter/controller
+    public void tapEvent(float x, float y) {
         ArrayList<TappableObject> remove = new ArrayList<>();
         if (!dynamiteExploded && dynamite.tapped(x, y)) {
             dynamite.explode(tappables, bombsRemoved);
@@ -124,5 +108,13 @@ public class LevelOne extends GenericLevel {
         if (remove.size() > 0) {
             tappableToRemove = remove.get(0);
         }
+    }
+
+    public String getTime() {
+        return Integer.toString(gameTimer.getSeconds());
+    }
+
+    public void setPaused(boolean paused) {
+        isPaused = paused;
     }
 }

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -18,11 +17,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.game.LevelOne.LevelOneActivity;
 import com.example.game.LevelThree.LevelThreeActivity;
 import com.example.game.LevelTwo.LevelTwoActivity;
+import com.example.game.LevelTwo.LevelTwoReplayActivity;
 import com.example.game.Login.LoginActivity;
 import com.example.game.Login.LoginAndroidMapDatabase;
 import com.example.game.Login.User;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -233,6 +231,21 @@ public class MainMenu extends AppCompatActivity {
             levelThree.putExtra("Time", 0);
         }
         startActivity(levelThree);
+    }
+
+    public void beginReplay(View v) {
+        String replayString = db.load("$replay");
+
+        if (replayString != null) {
+            Intent replay = new Intent(this.getBaseContext(), LevelTwoReplayActivity.class);
+            replay.putExtra("spriteID", costumes[currentCostume]);
+            if (nightModeSwitch.isChecked()) {
+                replay.putExtra("Time", 1);
+            } else {
+                replay.putExtra("Time", 0);
+            }
+            startActivity(replay);
+        }
     }
 
     public void logOut(View v) {

@@ -14,6 +14,28 @@ public class RenderData {
         return new ArrayList<>();
     }
 
+
+    /**
+     * Precondition: format of parameter entry must follow the format of the output of
+     * RenderData.generateStorable.
+     *
+     * @param entry the string that specifies to object to be created.
+     * @return RenderData instance
+     */
+    public static RenderData toRenderData(String entry) {
+        RenderData dataOutput = new RenderData();
+        String stringMap = entry.split("@")[1];
+        String[] keyValuePairs = stringMap.split("!");
+        for (int i = 0; i < keyValuePairs.length; i++) {
+            String[] values = keyValuePairs[i].split(",");
+            String key = values[0];
+            for (int j = 1; j < values.length; j++) {
+                dataOutput.store(key, Integer.parseInt(values[j]));
+            }
+        }
+        return dataOutput;
+    }
+
     public void store(String key, ArrayList<Integer> value) {
         data.put(key, value);
     }
@@ -26,6 +48,34 @@ public class RenderData {
             temp.add(newVal);
             data.put(key, temp);
         }
+    }
+
+    /**
+     * Return a string representation for storage.
+     *
+     * @param name denotes a name for the RenderData object.
+     * @return a string representation of RenderData.
+     * Format: "Name@Key1,item1,item2...!Key2,item1 ... "
+     */
+
+    public String generateStorable(String name) {
+        StringBuilder stringStorable = new StringBuilder();
+        stringStorable.append(name);
+        stringStorable.append("@");
+        for (Map.Entry<String, ArrayList<Integer>> entry : data.entrySet()) {
+            StringBuilder temp = new StringBuilder();
+            temp.append(entry.getKey());
+            ArrayList<Integer> value = entry.getValue();
+            for (int dataEntries : value) {
+                temp.append(",");
+                temp.append(dataEntries);
+            }
+            stringStorable.append(temp);
+            stringStorable.append("!");
+        }
+        stringStorable.deleteCharAt(stringStorable.length() - 1);
+        return stringStorable.toString();
+
     }
 
 

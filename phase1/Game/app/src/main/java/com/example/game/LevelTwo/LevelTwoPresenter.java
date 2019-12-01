@@ -8,14 +8,16 @@ import java.util.ArrayList;
 
 public class LevelTwoPresenter implements LevelPresenterInterface {
 
-    private LevelTwo model;
-    private LevelTwoActivity view;
+    private LevelTwoModelInterface model;
+    private AbstractLevelTwoView view;
     private boolean gameIsPaused;
+    private boolean isReplaying;
     private ArrayList<RenderData> renderInfoForReplay = new ArrayList<>();
 
-    public LevelTwoPresenter(LevelTwoActivity viewForOutput, LevelTwo modelForLogic) {
+    public LevelTwoPresenter(AbstractLevelTwoView viewForOutput, LevelTwoModelInterface modelForLogic, boolean isReplaying) {
         model = modelForLogic;
         view = viewForOutput;
+        this.isReplaying = isReplaying;
     }
 
     @Override
@@ -31,11 +33,16 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
     @Override
     public void updateGame() {
         if (!gameIsPaused) {
-            if (model.getLives() > 0 && model.isRunning()) {
+            int state = model.getState();
+            if (state == 0) {
                 model.update();
-            } else if (!model.isRunning() && model.getLives() > 0) {
+            } else if (state == 1 && !isReplaying) {
+                storeReplay();
                 view.winGame(model.getPoints(), model.getGold(), model.getLives());
+            } else if (state == 1) {
+                view.finish();
             } else {
+                storeReplay();
                 view.loseGame(model.getPoints(), model.getGold());
             }
         }
@@ -104,6 +111,22 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
 
     private void drawPauseButton() {
         view.drawPauseButton();
+    }
+
+    /**
+     * Stores replay information into database.
+     * Format: renderdata0%renderdata1%renderdata2 ....
+     */
+    private void storeReplay() {
+        StringBuilder dataToStore = new StringBuilder();
+        int i = 0;
+        for (RenderData entry : renderInfoForReplay) {
+            dataToStore.append(entry.generateStorable(String.valueOf(i)));
+            dataToStore.append("%");
+            i++;
+        }
+        dataToStore.deleteCharAt(dataToStore.length() - 1);
+        view.storeReplay(dataToStore.toString());
     }
 
 

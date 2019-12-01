@@ -14,11 +14,9 @@ import com.example.game.AbstractCanvasActivity;
 import com.example.game.GameView;
 import com.example.game.R;
 
-public class LevelOneActivity extends AbstractCanvasActivity {
+public class LevelOneActivity extends AbstractCanvasActivity implements LevelOneView{
 
     private Paint textStyle = new Paint();
-    private Paint bombPaint = new Paint();
-    private Paint coinPaint = new Paint();
     private final int offsetHitbox = 50;
 
     private Bitmap coin;
@@ -40,14 +38,9 @@ public class LevelOneActivity extends AbstractCanvasActivity {
         setContentView(currView);
 
         setTextStyle(textStyle, Color.WHITE);
-//        currView = findViewById(R.id.gameView);
         currView.setLevelPresenter(new LevelOnePresenter(this, new LevelOne(screenWidth, screenLength)));
 
         defaultBitmaps();
-//        GameManager game = currView.gameManager;
-//        GameManagerObserver observer = new GameManagerObserver(this);
-//        game.setObserver(observer);
-//        game.changeLevel(1);
     }
 
     private void defaultBitmaps() {
@@ -63,40 +56,61 @@ public class LevelOneActivity extends AbstractCanvasActivity {
         textStyle.setColor(white);
     }
 
+    /**
+     * Draws a background that fits to a given screen width and height.
+     * @param screenWidth the width of the screen to draw to.
+     * @param screenHeight the height of the screen to draw to.
+     */
+    @Override
     public void drawBackground(int screenWidth, int screenHeight) {
         Rect source = new Rect(0, 0, screenWidth, screenHeight);
         super.getCanvas().drawBitmap(background, null, source, null);
     }
 
+    /**
+     * Draws a dynamite at a given (x,  y) coordinate.
+     * @param x the x-coordinate of the dynamite.
+     * @param y the y-coordinate of the dynamite.
+     */
+    @Override
     public void drawDynamite(int x, int y) {
         Rect source = new Rect(x - offsetHitbox, y - offsetHitbox, x + 100, y + 100);
         super.getCanvas().drawBitmap(dynamite, null, source, null);
     }
 
+    /**
+     * Draws a bomb at a given (x,  y) coordinate.
+     * @param x the x-coordinate of the dynamite.
+     * @param y the y-coordinate of the dynamite.
+     */
+    @Override
     public void drawBomb(int x, int y) {
-//        bombPaint.setTextSize(size);
-
         Rect dst = new Rect(x - offsetHitbox, y - offsetHitbox, x + 100, y + 100);
         super.getCanvas().drawBitmap(bomb, null, dst, null);
-
-//        Paint paint = new Paint();
-//        setTextStyle(paint, Color.GRAY);
-//        canvas.drawCircle(x + 25, y + 25, 25, paint);
     }
 
+    /**
+     * Draws a coin at a given (x,  y) coordinate.
+     * @param x the x-coordinate of the dynamite.
+     * @param y the y-coordinate of the dynamite.
+     */
+    @Override
     public void drawCoin(int x, int y) {
-//        coinPaint.setTextSize(size);
         x -= offsetHitbox;
         y -= offsetHitbox;
 
         Rect source = new Rect(x, y, x + 200, y + 200);
         super.getCanvas().drawBitmap(coin, null, source, null);
-
-//        Paint paint = new Paint();
-//        setTextStyle(paint, Color.YELLOW);
-//        canvas.drawCircle(x + 25, y + 25, 25, paint);
     }
 
+    /**
+     * Displays LevelOne game statistics.
+     * @param gold the number of gold collected to display.
+     * @param lives the number of lives left to display.
+     * @param points the number of points gained to display.
+     * @param time the amount of time left to display.
+     */
+    @Override
     public void displayText(int gold, int lives, int points, String time) {
         super.getCanvas().drawText("Coins : " + gold, 0, 50, textStyle);
         super.getCanvas().drawText("Lives : " + lives, 0, 100, textStyle);

@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     private Paint groundPaint = new Paint();
-    private Paint obstaclePaint = new Paint();
     private Paint pointPaint = new Paint();
     private Paint pausePaint = new Paint();
     private Paint timerDisplayPaint = new Paint();
@@ -49,11 +48,9 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     public abstract void setCurrView();
 
     private void defaultPaintValues() {
-        obstaclePaint.setTypeface(Typeface.DEFAULT_BOLD);
         pointPaint.setTypeface(Typeface.DEFAULT_BOLD);
 
         groundPaint.setColor(Color.YELLOW);
-        obstaclePaint.setColor(Color.GREEN);
         pointPaint.setColor(Color.WHITE);
         timerDisplayPaint.setColor(Color.WHITE);
 
@@ -78,7 +75,7 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         horseRunningSpritesArray[6] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_06);
     }
 
-    void drawHeart(Point location, int size) {
+    void drawHeart(Point location) {
         Rect dst = new Rect(location.x, location.y - 50, location.x + 50, location.y);
         super.getCanvas().drawBitmap(hearts, null, dst, null);
     }
@@ -103,8 +100,7 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         }
     }
 
-    void drawObstacle(Point location, int size) {
-        obstaclePaint.setTextSize(size);
+    void drawObstacle(Point location) {
         Rect source = new Rect(location.x, location.y - 87 + vAdjustment, location.x + 100, location.y + 13 + vAdjustment);
         super.getCanvas().drawBitmap(cactus, null, source, null);
     }

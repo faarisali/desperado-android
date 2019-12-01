@@ -7,12 +7,17 @@ import com.example.game.Login.LoginAndroidMapDatabase;
 
 public class LevelTwoReplayActivity extends AbstractLevelTwoView {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+    /**
+     * Instantiate the GameView. Retrieve the replay information and initialise the presenter and
+     * model accordingly.
+     */
     @Override
     public void setCurrView() {
         currView = new GameView(this);

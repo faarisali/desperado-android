@@ -17,7 +17,6 @@ import com.example.game.R;
 
 public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     private Paint groundPaint = new Paint();
-    private Paint playerPaint = new Paint();
     private Paint obstaclePaint = new Paint();
     private Paint pointPaint = new Paint();
     private Paint pausePaint = new Paint();
@@ -46,12 +45,10 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     public abstract void setCurrView();
 
     private void defaultPaintValues() {
-        playerPaint.setTypeface(Typeface.DEFAULT_BOLD);
         obstaclePaint.setTypeface(Typeface.DEFAULT_BOLD);
         pointPaint.setTypeface(Typeface.DEFAULT_BOLD);
 
         groundPaint.setColor(Color.YELLOW);
-        playerPaint.setColor(Color.BLUE);
         obstaclePaint.setColor(Color.GREEN);
         pointPaint.setColor(Color.WHITE);
         timerDisplayPaint.setColor(Color.WHITE);

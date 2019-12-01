@@ -105,7 +105,7 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
     }
 
     private void drawPlayer(Point location, int size) {
-        view.drawPlayer(location, size);
+        view.drawPlayer(location);
     }
 
     private void drawObstacles(ArrayList<Point> obstacleInfo, int size) {

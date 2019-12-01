@@ -1,6 +1,5 @@
 package com.example.game.LevelTwo;
 
-import android.graphics.Color;
 import android.graphics.Point;
 
 import com.example.game.GenericLevel;
@@ -186,7 +185,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
                 needNewBackground = true;
             }
             //shift background to the left by 10
-            background.update(10);
+            background.update(-10);
         }
     }
 

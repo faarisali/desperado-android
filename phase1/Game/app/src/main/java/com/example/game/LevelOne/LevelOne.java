@@ -5,24 +5,32 @@ import com.example.game.GenericLevel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ Class containing backend and logic for level one
+ */
 public class LevelOne extends GenericLevel {
 
+    /** Whether this level is paused or not*/
     private boolean isPaused;
-
+    /** A timer that keeps the game running*/
     private GameTimer gameTimer;
-
+    /** The tappable objects in level one*/
     private List<TappableObject> tappables = new ArrayList<>();
-
+    /** The background of level one*/
     public LevelOneBackground background;
-
+    /** The tappable object being removed*/
     private TappableObject tappableToRemove;
-
+    /** The dynamite object in the level (hidden feature)*/
     private Dynamite dynamite;
-
+    /** The bombs removed bu the dynamite*/
     private List<TappableObject> bombsRemoved = new ArrayList<>();
-
+    /** Whether the dynamite has been used*/
     private boolean dynamiteExploded = false;
 
+    /** Construct a new level one object
+     * @param screenWidth the width of the screen
+     * @param screenLength the length of the screen
+     */
     public LevelOne(int screenWidth, int screenLength) {
         super(3);
         isRunning = true;
@@ -33,6 +41,7 @@ public class LevelOne extends GenericLevel {
         gameTimer = new GameTimer(31);
     }
 
+    /** Spawn tappables randomly in level one*/
     public void spawnTappables() {
         double randDouble = Math.random();
         randDouble = randDouble * 1080 + 1;
@@ -45,6 +54,7 @@ public class LevelOne extends GenericLevel {
         }
     }
 
+    /** Check the number of lives left*/
     public void checkLives() {
         if (getLives() <= 0) {
             isRunning = false;
@@ -52,6 +62,9 @@ public class LevelOne extends GenericLevel {
         }
     }
 
+    /** Draw the objects in level one
+     * @param presenter the presenter where the objects are drawn
+     */
     public void draw(LevelOnePresenterInterface presenter) {
         background.draw(presenter);
         for (TappableObject tappableObject : tappables) {
@@ -110,10 +123,15 @@ public class LevelOne extends GenericLevel {
         }
     }
 
+    /** Getter for the time running
+     * @return the time left
+     */
     public String getTime() {
         return Integer.toString(gameTimer.getSeconds());
     }
-
+    /** Setter for the time running
+     * @param paused boolean that determines if level one is paused
+     */
     public void setPaused(boolean paused) {
         isPaused = paused;
     }

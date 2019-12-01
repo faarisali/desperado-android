@@ -5,12 +5,17 @@ import java.util.List;
 
 public class Dynamite extends TappableObject{
 
-    /** Constructor for a new dynamite object*/
+    /** Constructor for a new dynamite object
+     * @param newX the x coordinate of the dynamite
+     * @param newY the y coordinate of the dynamite
+     */
     public Dynamite(int newX, int newY) {
         super(newX, newY, 50, 50);
     }
 
-    /** Draw this dynamite*/
+    /** Draw this dynamite
+     * @param presenter the presenter where the dynamite is drawn
+     */
     public void draw(LevelOnePresenterInterface presenter) {
         presenter.drawDynamite(x, y);
     }
@@ -20,6 +25,10 @@ public class Dynamite extends TappableObject{
         return null;
     }
 
+    /** Delete all bombs in level one when the dynamite is tapped
+     * @param bombs a list of bombs in level one
+     * @param tappables the tappable objects in level one
+     */
     public void explode(List<TappableObject> tappables, List<TappableObject> bombs) {
         for (TappableObject tappableObject : tappables) {
             if (tappableObject instanceof Bomb) {

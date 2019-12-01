@@ -1,5 +1,6 @@
 package com.example.game.LevelTwo;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -8,7 +9,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -16,7 +16,7 @@ import com.example.game.AbstractCanvasActivity;
 import com.example.game.Login.LoginAndroidMapDatabase;
 import com.example.game.R;
 
-import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     private Paint groundPaint = new Paint();
@@ -94,6 +94,17 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     }
 
     void drawPoints(Point location, int size, int numPoints) {
+        Intent prev = getIntent();
+        int sprite = prev.getIntExtra("spriteID", R.drawable.cowboy_yellow);
+        if (sprite == R.drawable.clown) {
+            Random randomGenerator = new Random();
+            int red = randomGenerator.nextInt(256);
+            int green = randomGenerator.nextInt(256);
+            int blue = randomGenerator.nextInt(256);
+
+            int randomColour = Color.rgb(red, green, blue);
+            pointPaint.setColor(randomColour);
+        }
         pointPaint.setTextSize(size);
         super.getCanvas().drawText("Points:" + numPoints, location.x, location.y, pointPaint);
     }

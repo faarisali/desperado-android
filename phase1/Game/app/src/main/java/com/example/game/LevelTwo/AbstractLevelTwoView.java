@@ -75,7 +75,11 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     private void defaultBitmaps() {
         cactus = BitmapFactory.decodeResource(getResources(), R.drawable.cactus_1);
         //Note: Use JPEG 24-bit color resource for better performance as background is large.
-        background = BitmapFactory.decodeResource(getResources(), R.drawable.level_2_bg);
+        if (getIntent().getIntExtra("Time", 0) == 0) {
+            background = BitmapFactory.decodeResource(getResources(), R.drawable.level_2_bg);
+        } else {
+            background = BitmapFactory.decodeResource(getResources(), R.drawable.level_2_bg_nightmode);
+        }
         hearts = BitmapFactory.decodeResource(getResources(), R.drawable.pixelheart);
         damageScreen = BitmapFactory.decodeResource(getResources(), R.drawable.opaque_red);
         populateHorseRunningBitmapArray();

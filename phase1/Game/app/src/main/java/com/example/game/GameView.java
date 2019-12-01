@@ -13,15 +13,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread thread;
 
     /**
-     * The width of a character.
-     */
-    public static float charWidth;
-    /**
-     * The height of a character.
-     */
-    public static float charHeight;
-
-    /**
      * Screen width.
      */
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
@@ -101,17 +92,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         return screenWidth;
     }
 
-    public void setScreenWidth(int screenWidth) {
-        this.screenWidth = screenWidth;
-    }
-
     public int getScreenHeight() {
         return screenHeight;
     }
 
-    public void setScreenHeight(int screenHeight) {
-        this.screenHeight = screenHeight;
-    }
 
     public void update() {
         if (levelPresenter != null)

@@ -83,6 +83,9 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
         TextView usernameText = findViewById(R.id.usernameTextView);
 
+        menuBackground = findViewById(R.id.menu);
+        menuBackground.setBackgroundResource(R.drawable.menubackground);
+
         db = LoginAndroidMapDatabase.getSingleton(this);
 
         currentUser = db.getCurrentUser();
@@ -172,16 +175,15 @@ public class MainMenu extends AppCompatActivity {
      */
     public void setupNightModeComponent() {
         nightModeSwitch = findViewById(R.id.nightModeSwitch);
-        menuBackground = findViewById(R.id.menu);
-    nightModeSwitch.setOnCheckedChangeListener(
+        nightModeSwitch.setOnCheckedChangeListener(
         new CompoundButton.OnCheckedChangeListener() {
           @Override
           public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
             if (isChecked) {
-                menuBackground.setBackgroundColor(Color.BLACK);
+                menuBackground.setBackgroundResource(R.drawable.menubackground_night);
                 setTextColor(Color.WHITE);
             } else {
-                menuBackground.setBackgroundColor(Color.WHITE);
+                menuBackground.setBackgroundResource(R.drawable.menubackground);
                 setTextColor(Color.BLACK);
             }
             saveDarkMode(isChecked);

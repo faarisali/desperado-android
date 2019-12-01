@@ -36,8 +36,6 @@ public class WinActivity extends AppCompatActivity implements View.OnClickListen
         menuBackground = findViewById(R.id.menu);
         menuBackground.setBackgroundResource(R.drawable.win_background);
 
-        Button restart = findViewById(R.id.restartButton);
-        restart.setOnClickListener(this);
 
         displayStats(pointsValue, goldValue, livesRemaining);
 

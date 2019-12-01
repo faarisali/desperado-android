@@ -32,9 +32,6 @@ public class LoseActivity extends AppCompatActivity implements View.OnClickListe
         Button mainMenu = findViewById(R.id.mainMenuButton);
         mainMenu.setOnClickListener(this);
 
-        Button restart = findViewById(R.id.restartButton);
-        restart.setOnClickListener(this);
-
         displayStats(pointsValue, goldValue);
 
         // Update user info

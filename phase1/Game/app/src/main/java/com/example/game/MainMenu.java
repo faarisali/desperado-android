@@ -57,14 +57,25 @@ public class MainMenu extends AppCompatActivity {
     /** The menu layout*/
     private ConstraintLayout menuBackground;
 
+    /**
+     * List of text fields in this activity.
+     */
     private ArrayList<TextView> viewsList = new ArrayList<>();
 
+    /**
+     * The database used to access data stored on this android device by this application.
+     */
     private LoginAndroidMapDatabase db;
 
+    /**
+     * The user that is currently logged in.
+     */
     private User currentUser;
 
-    public static final String USERNAME = "username";
-
+    /**
+     * Initializes this activity.
+     * @param savedInstanceState if not null, contains information about last activity instance.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,9 +87,9 @@ public class MainMenu extends AppCompatActivity {
         currentUser = db.getCurrentUser();
         String username = currentUser.getUsername();
         usernameText.setText(username);
-        customizeCharacter();
-        toggleMusic();
-        toggleNightMode();
+        setupCostumeComponent();
+        setupMusicComponent();
+        setupNightModeComponent();
         updateStats();
         populateViewsList();
 
@@ -91,7 +102,10 @@ public class MainMenu extends AppCompatActivity {
         setCurrentCostume();
     }
 
-    public void customizeCharacter() {
+    /**
+     * Sets up the costume display and costume change button.
+     */
+    public void setupCostumeComponent() {
         character = findViewById(R.id.costume);
         customizeButton = findViewById(R.id.costumeButton);
         customizeButton.setOnClickListener(new View.OnClickListener() {
@@ -103,12 +117,18 @@ public class MainMenu extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sets the current costume to this currentCostume and saves it in the user.
+     */
     private void setCurrentCostume() {
         currentCostume = currentCostume % costumes.length;
         character.setImageResource(costumes[currentCostume]);
         saveCurrentCostume(currentCostume);
     }
 
+    /**
+     * Plays music in the background.
+     */
     public void playMusic() {
         if (player == null) {
             player = MediaPlayer.create(this, R.raw.music);
@@ -117,6 +137,9 @@ public class MainMenu extends AppCompatActivity {
         player.start();
     }
 
+    /**
+     * Stops the music if its playing in the background.
+     */
     public void stopMusic() {
         if (player != null) {
             player.release();
@@ -124,7 +147,10 @@ public class MainMenu extends AppCompatActivity {
         }
     }
 
-    public void toggleMusic() {
+    /**
+     * Sets up the music toggle button.
+     */
+    public void setupMusicComponent() {
         musicSwitch = findViewById(R.id.musicSwitch);
     musicSwitch.setOnCheckedChangeListener(
         new CompoundButton.OnCheckedChangeListener() {
@@ -140,7 +166,10 @@ public class MainMenu extends AppCompatActivity {
         });
     }
 
-    public void toggleNightMode() {
+    /**
+     * Sets up the night mode toggle button.
+     */
+    public void setupNightModeComponent() {
         nightModeSwitch = findViewById(R.id.nightModeSwitch);
         menuBackground = findViewById(R.id.menu);
     nightModeSwitch.setOnCheckedChangeListener(
@@ -159,12 +188,19 @@ public class MainMenu extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sets the color of all text fields in this viewList
+     * @param color the color to change all the text fields in this activity to
+     */
     private void setTextColor(int color) {
         for (TextView v : this.viewsList) {
             v.setTextColor(color);
         }
     }
 
+    /**
+     * Populates viewList with all the text fields present in this activity.
+     */
     private void populateViewsList() {
         viewsList.add((TextView) findViewById(R.id.livesLostPlaceHolder));
         viewsList.add((TextView) findViewById(R.id.welcomeTextView));
@@ -179,12 +215,18 @@ public class MainMenu extends AppCompatActivity {
         viewsList.add((TextView) findViewById(R.id.musicSwitch));
     }
 
+    /**
+     * Updates this activity on resume.
+     */
     @Override
     protected void onResume() {
         super.onResume();
         updateStats();
     }
 
+    /**
+     * Update the displayed user stats to match the values in the database.
+     */
     private void updateStats() {
         User currentUser = db.getCurrentUser();
         TextView points = findViewById(R.id.totalPoints);
@@ -196,7 +238,7 @@ public class MainMenu extends AppCompatActivity {
     }
 
     /**
-     * If a view object in this layout is clicked, decide what happens.
+     * Initializes Level One for the user to play.
      *
      * @param v the view object that is clicked.
      */
@@ -211,6 +253,11 @@ public class MainMenu extends AppCompatActivity {
         startActivity(levelOne);
     }
 
+    /**
+     * Initializes Level Two for the user to play.
+     *
+     * @param v the view object that is clicked.
+     */
     public void beginLevelTwo(View v) {
         Intent levelTwo = new Intent(this.getBaseContext(), LevelTwoActivity.class);
         levelTwo.putExtra("spriteID", costumes[currentCostume]);
@@ -222,6 +269,11 @@ public class MainMenu extends AppCompatActivity {
         startActivity(levelTwo);
     }
 
+    /**
+     * Initializes Level Three for the user to play.
+     *
+     * @param v the view object that is clicked.
+     */
     public void beginLevelThree(View v) {
         Intent levelThree = new Intent(this.getBaseContext(), LevelThreeActivity.class);
         levelThree.putExtra("spriteID", costumes[currentCostume]);
@@ -233,6 +285,11 @@ public class MainMenu extends AppCompatActivity {
         startActivity(levelThree);
     }
 
+    /**
+     * Initializes Replay for the user to play.
+     *
+     * @param v the view object that is clicked.
+     */
     public void beginReplay(View v) {
         String replayString = db.load("$replay");
 
@@ -248,6 +305,10 @@ public class MainMenu extends AppCompatActivity {
         }
     }
 
+    /**
+     * Begins the logout process.
+     * @param v the view that was clicked.
+     */
     public void logOut(View v) {
         Intent logout = new Intent(this, LoginActivity.class);
         db.setCurrentUser(null);
@@ -256,16 +317,29 @@ public class MainMenu extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Saves user's dark mode preference.
+     * @param isDark true iff user prefers dark mode to be on.
+     */
     public void saveDarkMode(boolean isDark) {
         currentUser.setDarkTheme(isDark);
         db.updateCurrentUser(currentUser);
     }
 
+    /**
+     * Saves user's music preference.
+     * @param isMusicPlaying true iff user prefers music to be playing.
+     */
     public void saveIsMusicPlaying(boolean isMusicPlaying) {
         currentUser.setMusicIsPlaying(isMusicPlaying);
         db.updateCurrentUser(currentUser);
     }
 
+    /**
+     * Saves user's costume preference.
+     * @param currentCostume represents the index of the costume that the user prefers from
+     *                       this costumes integer array.
+     */
     public void saveCurrentCostume (int currentCostume) {
         currentUser.setCostume(currentCostume);
         db.updateCurrentUser(currentUser);

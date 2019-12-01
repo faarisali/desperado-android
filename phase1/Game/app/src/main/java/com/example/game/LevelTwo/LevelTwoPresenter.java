@@ -64,6 +64,7 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
         drawPlayer(formatter.getPlayerLocation(), formatter.getPlayerIsJumping());
         drawObstacles(formatter.getObstacleLocation());
         drawPauseButton();
+        drawDamageScreen(formatter.getDamageScreenLocation(), formatter.getDamageScreenShouldDisplay());
     }
 
     private void drawGround() {
@@ -116,6 +117,10 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
 
     private void drawPauseButton() {
         view.drawPauseButton();
+    }
+
+    private void drawDamageScreen(Point location, int shouldDisplay) {
+        view.drawDamageScreen(location, shouldDisplay);
     }
 
     /**

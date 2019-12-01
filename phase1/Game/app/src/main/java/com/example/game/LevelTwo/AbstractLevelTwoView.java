@@ -30,6 +30,7 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     private Bitmap cactus;
     private Bitmap background;
     private Bitmap hearts;
+    private Bitmap damageScreen;
     private Bitmap[] horseRunningSpritesArray = new Bitmap[7];
     private Bitmap[] horseJumpingSpritesArray = new Bitmap[7];
 
@@ -64,6 +65,7 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         cactus = BitmapFactory.decodeResource(getResources(), R.drawable.cactus_1);
         background = BitmapFactory.decodeResource(getResources(), R.drawable.level_2_bg);
         hearts = BitmapFactory.decodeResource(getResources(), R.drawable.pixelheart);
+        damageScreen = BitmapFactory.decodeResource(getResources(), R.drawable.opaque_red);
         populateHorseRunningBitmapArray();
         populateHorseJumpBitmapArray();
     }
@@ -150,7 +152,6 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     void drawBackground(Point location) {
         Rect source = new Rect(location.x, location.y, location.x + 1920, location.y + 1900);
         super.getCanvas().drawBitmap(background, null, source, null);
-
     }
 
     void drawPauseButton() {
@@ -164,6 +165,14 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     void drawGround() {
         Rect dst = new Rect(0, 1810, 2000, 2000);
         getCanvas().drawRect(dst, groundPaint);
+    }
+
+    void drawDamageScreen(Point Location, int shouldDisplay) {
+        Rect source = new Rect(0, 0, 1080, 2028);
+        if (shouldDisplay >= 1) {
+            super.getCanvas().drawBitmap(damageScreen, null, source, null);
+        }
+
     }
 
     void storeReplay(String dataToStore) {

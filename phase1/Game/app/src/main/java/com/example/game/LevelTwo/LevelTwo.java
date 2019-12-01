@@ -25,6 +25,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
     private int lives;
     private TimerDisplay timerDisplay = new TimerDisplay(45, 160, this.secondsLeft);
     private LevelTwoBackground backgroundDisplay = new LevelTwoBackground(0, 0);
+    private DamageScreen damageScreen = new DamageScreen(0, 0);
     private ArrayList<Heart> heartList = new ArrayList<>();
 
     /**
@@ -95,6 +96,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
         levelTwoData.store("points", points.draw());
         levelTwoData.store("timerdisplay", timerDisplay.draw());
         levelTwoData.store("backgrounddisplay", drawBackgrounds());
+        levelTwoData.store("damagescreen", damageScreen.draw());
 
         levelTwoData.store("obstacleSize", OBSTACLE_SIZE);
         levelTwoData.store("livesSize", HEART_SIZE);
@@ -243,11 +245,14 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
      * updateLives() and set the collided obstacle.isCollided to true
      */
     private void detectCollisions() {
+        damageScreen.buffer();
+
         for (Obstacle obstacle : obstacleList) {
             if (!obstacle.isCollided() && player.y - obstacle.y > -60) {
                 if (player.x - obstacle.x > -100 && player.x - obstacle.x < 30) {
                     updateLives();
                     obstacle.setCollided(true);
+                    damageScreen.shouldDisplay++;
                 }
             }
         }

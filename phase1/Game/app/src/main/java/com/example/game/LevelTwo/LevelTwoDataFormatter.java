@@ -108,4 +108,20 @@ public class LevelTwoDataFormatter {
         ArrayList<Integer> obstacleData = data.getData("backgrounddisplay");
         return generatePoints(obstacleData);
     }
+
+    public Point getDamageScreenLocation() {
+        ArrayList<Integer> damageScreenData = data.getData("damagescreen");
+        if (damageScreenData.size() != 0) {
+            return new Point(damageScreenData.get(0), damageScreenData.get(1));
+        }
+        return new Point();
+    }
+
+    public int getDamageScreenShouldDisplay() {
+        ArrayList<Integer> damageScreenData = data.getData("damagescreen");
+        if (damageScreenData.size() != 0) {
+            return damageScreenData.get(2);
+        }
+        return 0;
+    }
 }

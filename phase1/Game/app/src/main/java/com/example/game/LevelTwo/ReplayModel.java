@@ -49,7 +49,7 @@ public class ReplayModel implements LevelTwoModelInterface {
 
     @Override
     public RenderData draw() {
-        return null;
+        return dataToPlay.get(currOutput);
     }
 
     @Override

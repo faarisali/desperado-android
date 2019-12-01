@@ -39,10 +39,10 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
             } else if (state == 1 && !isReplaying) {
                 storeReplay();
                 view.winGame(model.getPoints(), model.getGold(), model.getLives());
-            } else if (state == 1 && isReplaying) {
-                storeReplay();
+            } else if (state == 1) {
                 view.finish();
             } else {
+                storeReplay();
                 view.loseGame(model.getPoints(), model.getGold());
             }
         }

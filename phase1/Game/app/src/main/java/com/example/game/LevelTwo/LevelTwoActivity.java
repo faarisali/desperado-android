@@ -11,6 +11,10 @@ public class LevelTwoActivity extends AbstractLevelTwoView {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Instantiate a gameView object and initialise currView field.
+     * If clown player model is selected. The jump strength of the horse is enhanced.
+     */
     @Override
     public void setCurrView() {
         currView = new GameView(this);

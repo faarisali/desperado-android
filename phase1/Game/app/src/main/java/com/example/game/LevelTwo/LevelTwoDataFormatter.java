@@ -4,15 +4,25 @@ import android.graphics.Point;
 
 import java.util.ArrayList;
 
-public class LevelTwoDataFormatter {
+/**
+ * A class that manipulates renderData and formats to specified output.
+ */
+class LevelTwoDataFormatter {
+    /**
+     * The rendering data that will be formatted.
+     */
+    private RenderData data;
 
-    RenderData data;
-
-    public LevelTwoDataFormatter(RenderData data) {
+    LevelTwoDataFormatter(RenderData data) {
         this.data = data;
     }
 
-    public Point getPlayerLocation() {
+    /**
+     * Retrieve the player location from data.
+     *
+     * @return top left of the player location.
+     */
+    Point getPlayerLocation() {
         ArrayList<Integer> playerData = data.getData("player");
         if (playerData.size() != 0) {
             return new Point(playerData.get(0), playerData.get(1));
@@ -20,7 +30,12 @@ public class LevelTwoDataFormatter {
         return new Point();
     }
 
-    public int getPlayerIsJumping() {
+    /**
+     * Return's an integer indicating whether the player is jumping.
+     *
+     * @return int representing whether player is midair.
+     */
+    int getPlayerIsJumping() {
         ArrayList<Integer> playerData = data.getData("player");
         if (playerData.size() != 0) {
             return playerData.get(2);
@@ -28,6 +43,11 @@ public class LevelTwoDataFormatter {
         return 0;
     }
 
+    /**
+     * Helper method to generate a list of points.
+     * @param input a list of integers in [x1,y1,x2,y2, ..] format.
+     * @return an ArrayList of points.
+     */
     private ArrayList<Point> generatePoints(ArrayList<Integer> input) {
         ArrayList<Point> temp = new ArrayList<>();
         for (int i = 0; i + 1 < input.size(); i += 2) {
@@ -37,34 +57,33 @@ public class LevelTwoDataFormatter {
         return temp;
     }
 
-    public ArrayList<Point> getObstacleLocation() {
+    /**
+     * Retrieve the obstacle locations from data.
+     *
+     * @return a list top left corner points of obstacle hit-boxes.
+     */
+    ArrayList<Point> getObstacleLocation() {
         ArrayList<Integer> obstacleData = data.getData("obstacle");
         return generatePoints(obstacleData);
 
     }
 
-    public int getObstacleSize() {
-        ArrayList<Integer> obstacleData = data.getData("obstacleSize");
-        if (obstacleData.size() != 0) {
-            return obstacleData.get(0);
-        }
-        return 0;
-    }
-
-    public ArrayList<Point> getLivesLocation() {
+    /**
+     * Retrieve the lives' (visual of lives left) locations from data.
+     *
+     * @return a list points representing lives' locations.
+     */
+    ArrayList<Point> getLivesLocation() {
         ArrayList<Integer> livesData = data.getData("lives");
         return generatePoints(livesData);
     }
 
-    public int getLivesSize() {
-        ArrayList<Integer> livesSize = data.getData("livesSize");
-        if (livesSize.size() != 0) {
-            return livesSize.get(0);
-        }
-        return 0;
-    }
-
-    public Point getPointsLocation() {
+    /**
+     * Retrieve the points locations from data.
+     *
+     * @return a point that represents where the points counter will be drawn.
+     */
+    Point getPointsLocation() {
         ArrayList<Integer> pointsData = data.getData("points");
         if (pointsData.size() != 0) {
             return new Point(pointsData.get(0), pointsData.get(1));
@@ -72,7 +91,11 @@ public class LevelTwoDataFormatter {
         return new Point();
     }
 
-    public int getPointsSize() {
+    /**
+     * Retrieve the font size of the points counter from data.
+     * @return point size of points counter.
+     */
+    int getPointsSize() {
         ArrayList<Integer> pointsSize = data.getData("pointsSize");
         if (pointsSize.size() != 0) {
             return pointsSize.get(0);
@@ -80,11 +103,20 @@ public class LevelTwoDataFormatter {
         return 0;
     }
 
+    /**
+     * Retrieve the number of points amounted.
+     * @return a number of points earned thus far in this run.
+     */
     int getPoints() {
         return data.getData("numPoints").get(0);
     }
 
-    public Point getTimerDisplayLocation() {
+    /**
+     * Return countdown display location.
+     *
+     * @return point that indicates where timer display will be drawn.
+     */
+    Point getTimerDisplayLocation() {
         ArrayList<Integer> pointsData = data.getData("timerdisplay");
         if (pointsData.size() != 0) {
             return new Point(pointsData.get(0), pointsData.get(1));
@@ -92,7 +124,11 @@ public class LevelTwoDataFormatter {
         return new Point();
     }
 
-    public int getTimerDisplaySize() {
+    /**
+     * Return the size of the countdown font.
+     * @return the size of the countdown font.
+     */
+    int getTimerDisplaySize() {
         ArrayList<Integer> pointsSize = data.getData("pointsSize");
         if (pointsSize.size() != 0) {
             return pointsSize.get(0);
@@ -100,11 +136,20 @@ public class LevelTwoDataFormatter {
         return 0;
     }
 
+    /**
+     * Return the number of seconds left
+     * @return the amount of seconds left to be display on countdown timer.
+     */
     int getSecondsLeft() {
         return data.getData("secondsLeft").get(0);
     }
 
-    public ArrayList<Point> getBackgroundLocation() {
+    /**
+     * Return locations of the background (it can change since it scrolls as character moves).
+     *
+     * @return the location of the background bitmaps (and objects).
+     */
+    ArrayList<Point> getBackgroundLocation() {
         ArrayList<Integer> obstacleData = data.getData("backgrounddisplay");
         return generatePoints(obstacleData);
     }

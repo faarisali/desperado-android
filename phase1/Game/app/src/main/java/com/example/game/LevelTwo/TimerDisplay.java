@@ -14,8 +14,8 @@ public class TimerDisplay extends GameObject {
 
     public ArrayList<Integer> draw() {
         ArrayList<Integer> temp = new ArrayList<>();
-        temp.add(x);
-        temp.add(y);
+        temp.add(getX());
+        temp.add(getY());
         return temp;
     }
 }

@@ -12,6 +12,6 @@ public class Heart extends GameObject {
     }
 
     public Point draw() {
-        return new Point(this.x, this.y);
+        return new Point(getX(), getY());
     }
 }

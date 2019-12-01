@@ -19,7 +19,7 @@ class Coin extends TappableObject {
      */
     @Override
     void draw(LevelOnePresenterInterface presenter) {
-        presenter.drawCoin(super.x, super.y);
+        presenter.drawCoin(getX(), getY());
     }
 
     /**

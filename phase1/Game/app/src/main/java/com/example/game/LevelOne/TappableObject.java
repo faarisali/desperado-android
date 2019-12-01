@@ -29,8 +29,8 @@ abstract class TappableObject extends GameObject {
      */
     boolean tapped(float x, float y) {
         int hitboxBuffer = 25; //defines a zone around the tappable object that will still register a tap
-        if (this.x - hitboxBuffer <= x && x <= this.x + length + hitboxBuffer) {
-            return this.y - hitboxBuffer <= y && y <= this.y + height + hitboxBuffer;
+        if (getX() - hitboxBuffer <= x && x <= getX() + length + hitboxBuffer) {
+            return getY() - hitboxBuffer <= y && y <= getY() + height + hitboxBuffer;
         } else {
             return false;
         }
@@ -52,7 +52,7 @@ abstract class TappableObject extends GameObject {
      * Moves the tappable object down the screen.
      */
     void move() {
-        y = y + 5;
+         setY(getY() + 5);
     }
 
     /**

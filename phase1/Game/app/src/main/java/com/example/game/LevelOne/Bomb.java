@@ -21,7 +21,7 @@ class Bomb extends TappableObject {
      */
     @Override
     void draw(LevelOnePresenterInterface presenter) {
-        presenter.drawBomb(super.x, super.y);
+        presenter.drawBomb(getX(), getY());
     }
 
     /**

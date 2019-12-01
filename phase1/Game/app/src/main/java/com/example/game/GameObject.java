@@ -4,12 +4,12 @@ public abstract class GameObject {
     /**
      * the X coordinate of this GameObject.
      */
-    public int x;
+    private int x;
 
     /**
      * the Y coordinate of this GameObject.
      */
-    public int y;
+    private int y;
 
     public GameObject(int newX, int newY) {
         x = newX;

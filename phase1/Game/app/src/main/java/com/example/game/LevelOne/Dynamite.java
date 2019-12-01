@@ -17,7 +17,7 @@ class Dynamite extends TappableObject{
      * @param presenter the presenter where the dynamite is drawn
      */
     void draw(LevelOnePresenterInterface presenter) {
-        presenter.drawDynamite(x, y);
+        presenter.drawDynamite(getX(), getY());
     }
 
     @Override

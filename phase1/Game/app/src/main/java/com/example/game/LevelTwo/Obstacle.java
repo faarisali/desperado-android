@@ -30,18 +30,18 @@ public class Obstacle extends GameObject {
      * Move the obstacle according to to its speed Vx
      */
     public void move() {
-        x -= Vx;
+        setX(getX() - Math.round(Vx));
         checkOutOfBounds();
     }
 
     private void checkOutOfBounds() {
-        if (x <= -40) {
+        if (getX() <= -40) {
             this.outOfBounds = true;
         }
     }
 
     public Point draw() {
-        return new Point(this.x, this.y);
+        return new Point(getX(), getY());
     }
 
     public boolean isOutOfBounds() {

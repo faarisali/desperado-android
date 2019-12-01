@@ -15,7 +15,6 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
     private ArrayList<LevelTwoBackground> backgroundList = new ArrayList<>();
     private int groundY = 500;
     private float defaultObstacleMoveSpeed = 9;
-    private final int PLAYER_SIZE = 60;
     private final int HEART_SIZE = 60;
     private final int POINT_SIZE = 50;
     private final int OBSTACLE_SIZE = 90;
@@ -87,7 +86,6 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
         levelTwoData.store("timerdisplay", timerDisplay.draw());
         levelTwoData.store("backgrounddisplay", drawBackgrounds());
 
-        levelTwoData.store("playerSize", PLAYER_SIZE);
         levelTwoData.store("obstacleSize", OBSTACLE_SIZE);
         levelTwoData.store("livesSize", HEART_SIZE);
         levelTwoData.store("pointsSize", POINT_SIZE);

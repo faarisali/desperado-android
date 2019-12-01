@@ -26,15 +26,13 @@ public class LevelTwo extends GenericLevel {
     private Points points = new Points(45, 110, POINT_SIZE, Color.WHITE, 0);
     private int lives;
     private TimerDisplay timerDisplay = new TimerDisplay(45, 160, this.secondsLeft);
-
     private LevelTwoBackground backgroundDisplay = new LevelTwoBackground(0, 0, 10, Color.WHITE);
-
-
     private ArrayList<Heart> heartList = new ArrayList<>();
+
     /**
      * Constructs a LevelTwo
      *
-     * @param lives  the number of lives the player starts with on this level.
+     * @param lives the number of lives the player starts with on this level.
      */
     public LevelTwo(int lives) {
         isRunning = true;
@@ -48,8 +46,8 @@ public class LevelTwo extends GenericLevel {
     /**
      * Constructs a LevelTwo
      *
-     * @param lives
-     * @param secondsLeft
+     * @param lives the number of lives the player starts with on this level.
+     * @param secondsLeft the number of seconds the game will run for
      */
     public LevelTwo(int lives, int secondsLeft) {
         isRunning = true;
@@ -61,9 +59,11 @@ public class LevelTwo extends GenericLevel {
         backgroundList.add(this.backgroundDisplay);
     }
 
-    private void returnToMain() {
-    }
-
+    /**
+     * Adds Heart objcts to heartList based on how many lives this level is instantiated with
+     *
+     * @param lives
+     */
     private void populateHeartList(int lives) {
         int xIncrement = 45;
         for (int i = 0; i < lives; i++) {
@@ -74,9 +74,9 @@ public class LevelTwo extends GenericLevel {
     }
 
     /**
-     * //returns a RenderData object containing x and y data about all objects that need to drawn
+     * returns a RenderData object containing x and y data about all objects that need to drawn
      *
-     * @return
+     * @return RenderData object containing x and y data about all objects that need to drawn
      */
     public RenderData draw() {
         RenderData levelTwoData = new RenderData();
@@ -100,8 +100,9 @@ public class LevelTwo extends GenericLevel {
 
 
     /**
-     * draws every obstacle in managed in this Level2
+     * returns location information of each obstacle to send to LevelTwoPresenter
      *
+     * @return ArrayList<Integer> arraylist of ordered x and y's, with each x and y pair describing the location of an obstacle
      */
     private ArrayList<Integer> drawObstacles() {
         ArrayList<Integer> temp = new ArrayList<>();
@@ -115,6 +116,11 @@ public class LevelTwo extends GenericLevel {
 
     }
 
+    /**
+     * returns location information of each background to send to LevelTwoPresenter
+     *
+     * @return ArrayList<Integer> arraylist of ordered x and y's, with each x and y pair describing the location of a background
+     */
     private ArrayList<Integer> drawBackgrounds() {
         ArrayList<Integer> temp = new ArrayList<>();
         for (LevelTwoBackground bd :
@@ -127,6 +133,11 @@ public class LevelTwo extends GenericLevel {
 
     }
 
+    /**
+     * returns location information of each heart to send to LevelTwoPresenter
+     *
+     * @return ArrayList<Integer> arraylist of ordered x and y's, with each x and y pair describing the location of a heart
+     */
     private ArrayList<Integer> drawHearts() {
         ArrayList<Integer> temp = new ArrayList<>();
         for (Heart heart :
@@ -157,11 +168,18 @@ public class LevelTwo extends GenericLevel {
         }
     }
 
+    //boolean to control how many times we draw a new background
     private boolean needNewBackground = true;
 
+    /**
+     * Logic for scrolling background images, starts with an initial LevelTwoBackground at (0,0)
+     * that starts "scrolling" to the left, once first background has reached a point where a new
+     * background needs to be added on, we add a new LevelTwoBackground to the backgroundList
+     */
     private void updateBackgrounds() {
         for (LevelTwoBackground background : backgroundList.toArray(new LevelTwoBackground[0])) {
             if (background.x <= -(BACKGROUND_BITMAP_WIDTH - CANVAS_WIDTH) && needNewBackground) {
+                //CANVAS_WIDTH - 20, minus 20 is to deal slight gap between side by side backgrounds
                 backgroundList.add(new LevelTwoBackground(CANVAS_WIDTH - 20, 0, 10, Color.WHITE));
                 needNewBackground = false;
             }
@@ -169,8 +187,8 @@ public class LevelTwo extends GenericLevel {
                 backgroundList.remove(background);
                 needNewBackground = true;
             }
-            background.update(12);
-
+            //shift background to the left by 10
+            background.update(-10);
         }
     }
 
@@ -187,6 +205,12 @@ public class LevelTwo extends GenericLevel {
         }
     }
 
+    /**
+     * removes obstacles that are off the screen
+     *
+     * @param o an Obstacle from obstacleList
+     * @return if obstacle is off the screen AND been removed from obstacleList
+     */
     private boolean removeOutOfBoundsObstacles(Obstacle o) {
         if (o.isOutOfBounds()) {
             this.obstacleList.remove(o);
@@ -195,6 +219,9 @@ public class LevelTwo extends GenericLevel {
         return false;
     }
 
+    /**
+     * removes one life and heart then checks if the player has run out of lives
+     */
     private void updateLives() {
         this.lives--;
         heartList.remove(heartList.size() - 1);
@@ -203,6 +230,10 @@ public class LevelTwo extends GenericLevel {
         }
     }
 
+    /**
+     * Checks for collisions between player and obstacles, once a collision is detected, call
+     * updateLives() and set the collided obstacle.isCollided to true
+     */
     private void detectCollisions() {
         for (Obstacle obstacle : obstacleList) {
             if (!obstacle.isCollided() && player.y - obstacle.y > -60) {
@@ -212,6 +243,15 @@ public class LevelTwo extends GenericLevel {
                 }
             }
         }
+    }
+
+    /**
+     * Public method to add Obstacle object to Level two's obstacle list
+     *
+     * @param o
+     */
+    public void addToObstacleList(Obstacle o) {
+        this.obstacleList.add(o);
     }
 
     @Override
@@ -224,14 +264,6 @@ public class LevelTwo extends GenericLevel {
         return this.points.getPoints();
     }
 
-    /**
-     * Public method to add Obstacle object to Level two's obstacle list
-     *
-     * @param o
-     */
-    public void addToObstacleList(Obstacle o) {
-        this.obstacleList.add(o);
-    }
 
     public int getGroundY() {
         return groundY;

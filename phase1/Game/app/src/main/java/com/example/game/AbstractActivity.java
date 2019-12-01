@@ -33,6 +33,12 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Instantiate the win game state.
+     * @param points the points that the game was lost with.
+     * @param goldCoins the gold that was won with.
+     * @param lives the lives remaining that were won with.
+     */
     public void winGame(int points, int goldCoins, int lives) {
         Intent win = new Intent(this, WinActivity.class);
         win.putExtra("Points", points);
@@ -43,6 +49,11 @@ public abstract class AbstractActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Instantiate the lose game state.
+     * @param points the points that the game was lost with.
+     * @param goldCoins the gold that was lost with.
+     */
     public void loseGame(int points, int goldCoins) {
         Intent lose = new Intent(this, LoseActivity.class);
         lose.putExtra("Points", points);

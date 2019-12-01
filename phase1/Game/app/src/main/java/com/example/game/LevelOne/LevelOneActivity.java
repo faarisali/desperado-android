@@ -56,24 +56,44 @@ public class LevelOneActivity extends AbstractCanvasActivity implements LevelOne
         textStyle.setColor(white);
     }
 
+    /**
+     * Draws a background that fits to a given screen width and height.
+     * @param screenWidth the width of the screen to draw to.
+     * @param screenHeight the height of the screen to draw to.
+     */
     @Override
     public void drawBackground(int screenWidth, int screenHeight) {
         Rect source = new Rect(0, 0, screenWidth, screenHeight);
         super.getCanvas().drawBitmap(background, null, source, null);
     }
 
+    /**
+     * Draws a dynamite at a given (x,  y) coordinate.
+     * @param x the x-coordinate of the dynamite.
+     * @param y the y-coordinate of the dynamite.
+     */
     @Override
     public void drawDynamite(int x, int y) {
         Rect source = new Rect(x - offsetHitbox, y - offsetHitbox, x + 100, y + 100);
         super.getCanvas().drawBitmap(dynamite, null, source, null);
     }
 
+    /**
+     * Draws a bomb at a given (x,  y) coordinate.
+     * @param x the x-coordinate of the dynamite.
+     * @param y the y-coordinate of the dynamite.
+     */
     @Override
     public void drawBomb(int x, int y) {
         Rect dst = new Rect(x - offsetHitbox, y - offsetHitbox, x + 100, y + 100);
         super.getCanvas().drawBitmap(bomb, null, dst, null);
     }
 
+    /**
+     * Draws a coin at a given (x,  y) coordinate.
+     * @param x the x-coordinate of the dynamite.
+     * @param y the y-coordinate of the dynamite.
+     */
     @Override
     public void drawCoin(int x, int y) {
         x -= offsetHitbox;
@@ -83,6 +103,13 @@ public class LevelOneActivity extends AbstractCanvasActivity implements LevelOne
         super.getCanvas().drawBitmap(coin, null, source, null);
     }
 
+    /**
+     * Displays LevelOne game statistics.
+     * @param gold the number of gold collected to display.
+     * @param lives the number of lives left to display.
+     * @param points the number of points gained to display.
+     * @param time the amount of time left to display.
+     */
     @Override
     public void displayText(int gold, int lives, int points, String time) {
         super.getCanvas().drawText("Coins : " + gold, 0, 50, textStyle);

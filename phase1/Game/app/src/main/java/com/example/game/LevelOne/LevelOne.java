@@ -1,17 +1,9 @@
 package com.example.game.LevelOne;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.view.MotionEvent;
-
 import com.example.game.GenericLevel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class LevelOne extends GenericLevel {
 

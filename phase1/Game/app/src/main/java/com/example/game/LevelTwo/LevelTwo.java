@@ -277,6 +277,11 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
         return defaultObstacleMoveSpeed;
     }
 
+    public int getCANVAS_WIDTH() {
+        return CANVAS_WIDTH;
+    }
+
+
     /**
      * Return 0 if the model is still running.
      * Return 1 if game is won.

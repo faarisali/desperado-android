@@ -1,16 +1,22 @@
 package com.example.game.Login;
 
 public class User {
-    // login info
+    /**
+     * login info
+     */
     private String username;
     private String password;
 
-    // Lifetime stats
+    /**
+     * Lifetime stats
+     */
     private int totalGold;
     private int totalLivesLost;
     private int totalPoints;
 
-    // settings/preferences
+    /**
+     * Settings and preferences.
+     */
     private int costume;
     private int music;
     private boolean darkTheme;

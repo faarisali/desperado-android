@@ -1,24 +1,32 @@
 package com.example.game.Login;
 
 /**
- * The class that models the login system.
+ * The class that the presenter uses to interact with the database data
  */
-public class LoginModel {
+public class LoginInteractor {
+    /**
+     * The presenter of this interactor
+     */
     private LoginPresenter presenter;
+    /**
+     * The database used to access user data
+     */
     private LoginMapDatabase loginMapDatabase;
 
     /**
-     * Constructs a LoginModel
-     * @param presenter the presenter that presents the model to the view
+     * Constructs a LoginInteractor
+     *
+     * @param presenter        the presenter that presents the model to the view
      * @param loginMapDatabase the database used for the login logic
      */
-    LoginModel(LoginPresenter presenter, LoginMapDatabase loginMapDatabase) {
+    LoginInteractor(LoginPresenter presenter, LoginMapDatabase loginMapDatabase) {
         this.presenter = presenter;
         this.loginMapDatabase = loginMapDatabase;
     }
 
     /**
      * Processes a login attempt for a give username and password
+     *
      * @param username the username given for a login attempt
      * @param password the password given for a login attempt
      */
@@ -36,6 +44,7 @@ public class LoginModel {
 
     /**
      * Processes a sign up attempt for a give username and password
+     *
      * @param username the username given for a sign up attempt
      * @param password the password given for a sign up attempt
      */

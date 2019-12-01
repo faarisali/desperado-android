@@ -288,7 +288,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
     public int getState() {
         if (getLives() > 0 && isRunning()) {
             return 0;
-        } else if (isRunning() && getLives() > 0) {
+        } else if (!isRunning() && getLives() > 0) {
             return 1;
         } else {
             return -1;

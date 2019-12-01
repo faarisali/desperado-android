@@ -60,7 +60,7 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
 
     private void defaultBitmaps() {
         cactus = BitmapFactory.decodeResource(getResources(), R.drawable.cactus_1);
-        background = BitmapFactory.decodeResource(getResources(), R.drawable.desert_background_level2);
+        background = BitmapFactory.decodeResource(getResources(), R.drawable.level_2_bg);
         hearts = BitmapFactory.decodeResource(getResources(), R.drawable.pixelheart);
         horse = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_00);
     }

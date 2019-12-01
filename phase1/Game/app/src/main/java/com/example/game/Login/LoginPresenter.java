@@ -7,7 +7,7 @@ public class LoginPresenter {
     // The UI that this object presents to
     private LoginView loginView;
     // The part of the login system that handles logging in and signing up
-    private  LoginModel loginModel;
+    private LoginInteractor loginInteractor;
 
     /**
      * Constructsor for a login presenter
@@ -16,7 +16,7 @@ public class LoginPresenter {
      */
     LoginPresenter(LoginView loginView, LoginMapDatabase loginMapDatabase) {
         this.loginView = loginView;
-        this.loginModel = new LoginModel(this, loginMapDatabase);
+        this.loginInteractor = new LoginInteractor(this, loginMapDatabase);
     }
 
     /**
@@ -25,7 +25,7 @@ public class LoginPresenter {
      * @param password the password used to attempt a login with
      */
     public void login(String username, String password) {
-        loginModel.login(username, password);
+        loginInteractor.login(username, password);
     }
 
     /**
@@ -34,7 +34,7 @@ public class LoginPresenter {
      * @param password the password used to attempt a sign up with
      */
     public void signup(String username, String password) {
-        loginModel.signup(username, password);
+        loginInteractor.signup(username, password);
     }
 
     /**

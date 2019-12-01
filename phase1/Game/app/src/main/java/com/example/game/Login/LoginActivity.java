@@ -14,16 +14,22 @@ import com.example.game.R;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
-    // presenter object for this activity
+    /**
+     * presenter object for this activity
+     */
     private LoginPresenter presenter;
 
-    // refer to the activity_login xml for these UI elements
+    /**
+     * refer to the activity_login xml for these UI elements
+     */
     private EditText username;
     private EditText password;
     private Button loginButton;
     private Button signupButton;
 
-    // listeners for login and sign up
+    /**
+     * listeners for login and sign up
+     */
     View.OnClickListener loginListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -37,6 +43,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         }
     };
 
+    /**
+     * Initializes this activity.
+     * @param savedInstanceState if not null, contains information about last activity instance.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

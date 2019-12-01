@@ -14,9 +14,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
     private ArrayList<LevelTwoBackground> backgroundList = new ArrayList<>();
     private int groundY = 500;
     private float defaultObstacleMoveSpeed = 9;
-    private final int HEART_SIZE = 60;
     private final int POINT_SIZE = 50;
-    private final int OBSTACLE_SIZE = 90;
     private final int TIMERDISPLAY_SIZE = 50;
     private final int CANVAS_WIDTH = 1080;
     private final int BACKGROUND_BITMAP_WIDTH = 1920;
@@ -96,8 +94,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
         levelTwoData.store("timerdisplay", timerDisplay.draw());
         levelTwoData.store("backgrounddisplay", drawBackgrounds());
 
-        levelTwoData.store("obstacleSize", OBSTACLE_SIZE);
-        levelTwoData.store("livesSize", HEART_SIZE);
+
         levelTwoData.store("pointsSize", POINT_SIZE);
         levelTwoData.store("timerDisplaySize", TIMERDISPLAY_SIZE);
         levelTwoData.store("numPoints", points.getPoints());
@@ -245,7 +242,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
     private void detectCollisions() {
         for (Obstacle obstacle : obstacleList) {
             if (!obstacle.isCollided() && player.y - obstacle.y > -60) {
-                if (player.x - obstacle.x > -100 && player.x - obstacle.x < 30) {
+                if (player.x - obstacle.x > -100 && player.x - obstacle.x < 10) {
                     updateLives();
                     obstacle.setCollided(true);
                 }
@@ -277,9 +274,6 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
         return groundY;
     }
 
-    public int getobstacleSize() {
-        return OBSTACLE_SIZE;
-    }
 
     public float getDefaultObstacleMoveSpeed() {
         return defaultObstacleMoveSpeed;
@@ -290,7 +284,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
     }
 
 
-    /**
+    /**Return the current state of the game:
      * Return 0 if the model is still running.
      * Return 1 if game is won.
      * Return -1 if game is lost.

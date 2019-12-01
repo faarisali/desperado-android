@@ -188,7 +188,7 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
                 needNewBackground = true;
             }
             //shift background to the left by 10
-            background.update(-10);
+            background.update(10);
         }
     }
 

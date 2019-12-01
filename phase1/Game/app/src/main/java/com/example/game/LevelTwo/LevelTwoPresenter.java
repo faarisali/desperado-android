@@ -60,9 +60,14 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
         drawTimerDisplay(formatter.getTimerDisplayLocation(), formatter.getTimerDisplaySize(),
                 formatter.getSecondsLeft());
         drawHearts(formatter.getLivesLocation(), formatter.getLivesSize());
+        drawGround();
         drawPlayer(formatter.getPlayerLocation(), formatter.getPlayerSize());
         drawObstacles(formatter.getObstacleLocation(), formatter.getObstacleSize());
         drawPauseButton();
+    }
+
+    private void drawGround() {
+        view.drawGround();
     }
 
     @Override

@@ -16,13 +16,13 @@ import com.example.game.Login.LoginAndroidMapDatabase;
 import com.example.game.R;
 
 public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
-    private Paint heartPaint = new Paint();
+    private Paint groundPaint = new Paint();
     private Paint playerPaint = new Paint();
     private Paint obstaclePaint = new Paint();
     private Paint pointPaint = new Paint();
     private Paint pausePaint = new Paint();
     private Paint timerDisplayPaint = new Paint();
-    private final int vAdjustment = 600;
+    private final int vAdjustment = 600 + 700;
 
     private Bitmap cactus;
     private Bitmap background;
@@ -45,12 +45,11 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     public abstract void setCurrView();
 
     private void defaultPaintValues() {
-        heartPaint.setTypeface(Typeface.DEFAULT_BOLD);
         playerPaint.setTypeface(Typeface.DEFAULT_BOLD);
         obstaclePaint.setTypeface(Typeface.DEFAULT_BOLD);
         pointPaint.setTypeface(Typeface.DEFAULT_BOLD);
 
-        heartPaint.setColor(Color.RED);
+        groundPaint.setColor(Color.YELLOW);
         playerPaint.setColor(Color.BLUE);
         obstaclePaint.setColor(Color.GREEN);
         pointPaint.setColor(Color.WHITE);
@@ -67,7 +66,6 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     }
 
     void drawHeart(Point location, int size) {
-        heartPaint.setTextSize(size);
         Rect dst = new Rect(location.x, location.y - 50, location.x + 50, location.y);
         super.getCanvas().drawBitmap(hearts, null, dst, null);
     }
@@ -89,13 +87,12 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
 
     void drawObstacle(Point location, int size) {
         obstaclePaint.setTextSize(size);
-//        canvas.drawText("{}", location.x, location.y, obstaclePaint);
-        Rect source = new Rect(location.x, location.y - 100 + vAdjustment, location.x + 100, location.y + vAdjustment);
+        Rect source = new Rect(location.x, location.y - 87 + vAdjustment, location.x + 100, location.y + 13 + vAdjustment);
         super.getCanvas().drawBitmap(cactus, null, source, null);
     }
 
     void drawBackground(Point location) {
-        Rect source = new Rect(location.x, location.y, location.x + 1920, location.y + 1200);
+        Rect source = new Rect(location.x, location.y, location.x + 1920, location.y + 1900);
         super.getCanvas().drawBitmap(background, null, source, null);
 
     }
@@ -106,6 +103,11 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         pausePaint.setColor(Color.BLACK);
         super.getCanvas().drawRect(1010, 45, 1030, 85, pausePaint);
         super.getCanvas().drawRect(1040, 45, 1060, 85, pausePaint);
+    }
+
+    void drawGround() {
+        Rect dst = new Rect(0, 1810, 2000, 2000);
+        getCanvas().drawRect(dst, groundPaint);
     }
 
     void storeReplay(String dataToStore) {

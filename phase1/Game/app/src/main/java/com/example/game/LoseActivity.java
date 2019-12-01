@@ -7,12 +7,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.game.Login.LoginAndroidMapDatabase;
 import com.example.game.Login.User;
 
 public class LoseActivity extends AppCompatActivity implements View.OnClickListener {
     private LoginAndroidMapDatabase db;
+    private ConstraintLayout menuBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,9 @@ public class LoseActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent(); //get the data from sender
         int pointsValue = intent.getIntExtra("Points", 0);
         int goldValue = intent.getIntExtra("Gold", 0);
+
+        menuBackground = findViewById(R.id.menu);
+        menuBackground.setBackgroundResource(R.drawable.lose_background);
 
         Button mainMenu = findViewById(R.id.mainMenuButton);
         mainMenu.setOnClickListener(this);

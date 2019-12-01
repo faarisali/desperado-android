@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.example.game.GameView;
 import com.example.game.Login.LoginAndroidMapDatabase;
-import com.example.game.Login.LoginModel;
 
 public class LevelTwoReplayActivity extends AbstractLevelTwoView {
 

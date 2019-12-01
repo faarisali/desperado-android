@@ -22,7 +22,18 @@ package com.example.game.Login;
  * Interface that specifies methods that every login UI must implement
  */
 public interface LoginView {
+    /**
+     * Displays an error in this activity when login info is incorrect
+     */
     void displayError();
+
+    /**
+     * Displays an error in this activity when the user name is invalid upon sign up attempt
+     */
     void displayInvalidUser();
+
+    /**
+     * Goes to the default page of the app if the user has logged in or is logged in
+     */
     void navigateToHome();
 }

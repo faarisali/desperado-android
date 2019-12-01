@@ -4,9 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The replay information at one tick (or one moment).
+ */
 public class RenderData {
     private Map<String, ArrayList<Integer>> data = new HashMap<>();
 
+    /**
+     * Retrieve information which was previously stored. If key is not found, empty list is returned.
+     * @param key the reference corresponding to the information which needs to be retrieved.
+     * @return the ArrayList<Integer> that corresponds to key.
+     */
     public ArrayList<Integer> getData(String key) {
         if (data.containsKey(key)) {
             return data.get(key);
@@ -36,10 +44,20 @@ public class RenderData {
         return dataOutput;
     }
 
+    /**
+     * Store the key-value pair.
+     * @param key the reference that will be used to retrieve the information stored.
+     * @param value the ArrayList<Integer> to be stored.
+     */
     public void store(String key, ArrayList<Integer> value) {
         data.put(key, value);
     }
 
+    /**
+     * Store the key-value pair.
+     * @param key the reference that will be used to retrieve the information stored.
+     * @param newVal and integer to store.
+     */
     public void store(String key, int newVal) {
         if (data.containsKey(key)) {
             data.get(key).add(newVal);

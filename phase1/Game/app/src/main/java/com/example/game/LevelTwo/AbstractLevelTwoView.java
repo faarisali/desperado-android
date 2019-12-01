@@ -24,12 +24,14 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     private Paint pausePaint = new Paint();
     private Paint timerDisplayPaint = new Paint();
     private final int vAdjustment = 600 + 700;
-    private final int animationDelay = 3;
+    private final int runningAnimationDelay = 3;
+    private final int jumpingAnimationDelay = 4;
 
     private Bitmap cactus;
     private Bitmap background;
     private Bitmap hearts;
     private Bitmap[] horseRunningSpritesArray = new Bitmap[7];
+    private Bitmap[] horseJumpingSpritesArray = new Bitmap[7];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         background = BitmapFactory.decodeResource(getResources(), R.drawable.level_2_bg);
         hearts = BitmapFactory.decodeResource(getResources(), R.drawable.pixelheart);
         populateHorseRunningBitmapArray();
+        populateHorseJumpBitmapArray();
     }
 
     private void populateHorseRunningBitmapArray() {
@@ -73,6 +76,16 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         horseRunningSpritesArray[4] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_04);
         horseRunningSpritesArray[5] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_05);
         horseRunningSpritesArray[6] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_06);
+    }
+
+    private void populateHorseJumpBitmapArray() {
+        horseJumpingSpritesArray[0] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_jump_00);
+        horseJumpingSpritesArray[1] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_jump_01);
+        horseJumpingSpritesArray[2] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_jump_02);
+        horseJumpingSpritesArray[3] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_jump_03);
+        horseJumpingSpritesArray[4] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_jump_04);
+        horseJumpingSpritesArray[5] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_jump_05);
+        horseJumpingSpritesArray[6] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_jump_06);
     }
 
     void drawHeart(Point location) {
@@ -90,13 +103,31 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         super.getCanvas().drawText("Time Left:" + secondsLeft, location.x, location.y, timerDisplayPaint);
     }
 
-    private int spriteIndex = 0;
-    void drawPlayer(Point location) {
+    private int runningSpriteIndex = 0;
+    private int jumpingSpriteIndex = 0;
+
+    void drawPlayer(Point location, int isJumping) {
         Rect source = new Rect(location.x, location.y - 144 + vAdjustment, location.x + 190, location.y + vAdjustment);
-        super.getCanvas().drawBitmap(horseRunningSpritesArray[spriteIndex / animationDelay], null, source, null);
-        spriteIndex++;
-        if (spriteIndex == horseRunningSpritesArray.length * animationDelay) {
-            spriteIndex = 0;
+
+        if (isJumping == 1) {
+            if (jumpingSpriteIndex / jumpingAnimationDelay >= horseRunningSpritesArray.length - 1) {
+                //holds bitmap at the last frame of the jump animation sequence until player lands
+                super.getCanvas().drawBitmap(horseJumpingSpritesArray[horseRunningSpritesArray.length - 1], null, source, null);
+            } else {
+                super.getCanvas().drawBitmap(horseJumpingSpritesArray[jumpingSpriteIndex / jumpingAnimationDelay], null, source, null);
+            }
+            //increment the jumping sprite index while player is jumping
+            jumpingSpriteIndex++;
+        } else {
+            super.getCanvas().drawBitmap(horseRunningSpritesArray[runningSpriteIndex / runningAnimationDelay], null, source, null);
+            //once player is not jumping, reset index of jumping animation to zero
+            jumpingSpriteIndex = 0;
+        }
+
+        runningSpriteIndex++;
+        //reset running animation index to 0 after it reaches the last one
+        if (runningSpriteIndex == horseRunningSpritesArray.length * runningAnimationDelay) {
+            runningSpriteIndex = 0;
         }
     }
 

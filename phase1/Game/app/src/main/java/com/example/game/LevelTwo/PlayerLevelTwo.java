@@ -48,6 +48,13 @@ public class PlayerLevelTwo {
         }
     }
 
+    private int isJumping() {
+        if (y >= ground) {
+            return 0;
+        }
+        return 1;
+    }
+
     private void fall() {
         Vy += gravity;
     }
@@ -74,6 +81,7 @@ public class PlayerLevelTwo {
         ArrayList<Integer> temp = new ArrayList<>();
         temp.add(x);
         temp.add(y);
+        temp.add(isJumping());
         return temp;
     }
 }

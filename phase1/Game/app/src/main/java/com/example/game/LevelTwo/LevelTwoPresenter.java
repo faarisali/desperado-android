@@ -61,7 +61,7 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
                 formatter.getSecondsLeft());
         drawHearts(formatter.getLivesLocation());
         drawGround();
-        drawPlayer(formatter.getPlayerLocation());
+        drawPlayer(formatter.getPlayerLocation(), formatter.getPlayerIsJumping());
         drawObstacles(formatter.getObstacleLocation());
         drawPauseButton();
     }
@@ -104,8 +104,8 @@ public class LevelTwoPresenter implements LevelPresenterInterface {
         view.drawTimerDisplay(location, size, secondsLeft);
     }
 
-    private void drawPlayer(Point location) {
-        view.drawPlayer(location);
+    private void drawPlayer(Point location, int isJumping) {
+        view.drawPlayer(location, isJumping);
     }
 
     private void drawObstacles(ArrayList<Point> obstacleInfo) {

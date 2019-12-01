@@ -20,10 +20,10 @@ public class LevelTwoDataFormatter {
         return new Point();
     }
 
-    public int getPlayerSize() {
-        ArrayList<Integer> playerData = data.getData("playerSize");
+    public int getPlayerIsJumping() {
+        ArrayList<Integer> playerData = data.getData("player");
         if (playerData.size() != 0) {
-            return playerData.get(0);
+            return playerData.get(2);
         }
         return 0;
     }

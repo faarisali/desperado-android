@@ -29,8 +29,8 @@
         app:layout_constraintEnd_toEndOf="@+id/bLevelTwo"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/bLevelTwo"
-        app:layout_constraintTop_toBottomOf="@+id/textMenu"
-        app:layout_constraintVertical_bias="0.678" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameTextView"
+        app:layout_constraintVertical_bias="0.896" />
 
     <Button
         android:id="@+id/bLevelThree"
@@ -94,19 +94,6 @@
         app:layout_constraintStart_toEndOf="@+id/welcomeTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        android:text="Menu"
-        android:textAllCaps="false"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="@+id/bLevelOne"
-        app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toStartOf="@+id/bLevelOne"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/logOutButton"
         android:layout_width="86dp"
@@ -141,61 +128,61 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/totalPointsPlaceHolder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Total Points:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameTextView" />
-
-    <TextView
-        android:id="@+id/totalGoldPlaceHolder"
-        android:layout_width="85dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:text="Total Gold:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totalPointsPlaceHolder" />
-
-    <TextView
         android:id="@+id/livesLostPlaceHolder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="Total Lives Lost:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/totalGoldPlaceHolder" />
 
     <TextView
-        android:id="@+id/totalPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/textMenu"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeTextView" />
+        android:id="@+id/totalGoldPlaceHolder"
+        android:layout_width="85dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:text="Total Gold:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalPointsPlaceHolder" />
 
     <TextView
         android:id="@+id/totalGold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/textMenu"
+        android:layout_width="48dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toEndOf="@+id/totalGoldPlaceHolder"
         app:layout_constraintTop_toBottomOf="@+id/totalPoints" />
 
     <TextView
-        android:id="@+id/totalLivesLost"
+        android:id="@+id/totalPointsPlaceHolder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/textMenu"
+        android:layout_marginTop="120dp"
+        android:text="Total Points:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameTextView" />
+
+    <TextView
+        android:id="@+id/totalLivesLost"
+        android:layout_width="44dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.015"
+        app:layout_constraintStart_toEndOf="@+id/livesLostPlaceHolder"
         app:layout_constraintTop_toBottomOf="@+id/totalGold" />
+
+    <TextView
+        android:id="@+id/totalPoints"
+        android:layout_width="57dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toEndOf="@+id/totalPointsPlaceHolder"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextView" />
 
     <Button
         android:id="@+id/bReplay"

@@ -208,7 +208,6 @@ public class MainMenu extends AppCompatActivity {
         viewsList.add((TextView) findViewById(R.id.livesLostPlaceHolder));
         viewsList.add((TextView) findViewById(R.id.welcomeTextView));
         viewsList.add((TextView) findViewById(R.id.usernameTextView));
-        viewsList.add((TextView) findViewById(R.id.textMenu));
         viewsList.add((TextView) findViewById(R.id.totalPointsPlaceHolder));
         viewsList.add((TextView) findViewById(R.id.totalGoldPlaceHolder));
         viewsList.add((TextView) findViewById(R.id.totalPoints));

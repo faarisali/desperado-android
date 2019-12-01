@@ -8,6 +8,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -15,18 +16,21 @@ import com.example.game.AbstractCanvasActivity;
 import com.example.game.Login.LoginAndroidMapDatabase;
 import com.example.game.R;
 
+import java.util.ArrayList;
+
 public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
-    private Paint heartPaint = new Paint();
+    private Paint groundPaint = new Paint();
     private Paint obstaclePaint = new Paint();
     private Paint pointPaint = new Paint();
     private Paint pausePaint = new Paint();
     private Paint timerDisplayPaint = new Paint();
-    private final int vAdjustment = 600;
+    private final int vAdjustment = 600 + 700;
+    private final int animationDelay = 3;
 
     private Bitmap cactus;
     private Bitmap background;
     private Bitmap hearts;
-    private Bitmap horse;
+    private Bitmap[] horseRunningSpritesArray = new Bitmap[7];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +49,10 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     public abstract void setCurrView();
 
     private void defaultPaintValues() {
-        heartPaint.setTypeface(Typeface.DEFAULT_BOLD);
         obstaclePaint.setTypeface(Typeface.DEFAULT_BOLD);
         pointPaint.setTypeface(Typeface.DEFAULT_BOLD);
 
-        heartPaint.setColor(Color.RED);
+        groundPaint.setColor(Color.YELLOW);
         obstaclePaint.setColor(Color.GREEN);
         pointPaint.setColor(Color.WHITE);
         timerDisplayPaint.setColor(Color.WHITE);
@@ -62,11 +65,20 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         cactus = BitmapFactory.decodeResource(getResources(), R.drawable.cactus_1);
         background = BitmapFactory.decodeResource(getResources(), R.drawable.level_2_bg);
         hearts = BitmapFactory.decodeResource(getResources(), R.drawable.pixelheart);
-        horse = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_00);
+        populateHorseRunningBitmapArray();
+    }
+
+    private void populateHorseRunningBitmapArray() {
+        horseRunningSpritesArray[0] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_00);
+        horseRunningSpritesArray[1] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_01);
+        horseRunningSpritesArray[2] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_02);
+        horseRunningSpritesArray[3] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_03);
+        horseRunningSpritesArray[4] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_04);
+        horseRunningSpritesArray[5] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_05);
+        horseRunningSpritesArray[6] = BitmapFactory.decodeResource(getResources(), R.drawable.horse_run_06);
     }
 
     void drawHeart(Point location, int size) {
-        heartPaint.setTextSize(size);
         Rect dst = new Rect(location.x, location.y - 50, location.x + 50, location.y);
         super.getCanvas().drawBitmap(hearts, null, dst, null);
     }
@@ -81,18 +93,24 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         super.getCanvas().drawText("Time Left:" + secondsLeft, location.x, location.y, timerDisplayPaint);
     }
 
+    private int spriteIndex = 0;
     void drawPlayer(Point location) {
         Rect source = new Rect(location.x, location.y - 144 + vAdjustment, location.x + 190, location.y + vAdjustment);
-        super.getCanvas().drawBitmap(horse, null, source, null);
+        super.getCanvas().drawBitmap(horseRunningSpritesArray[spriteIndex / animationDelay], null, source, null);
+        spriteIndex++;
+        if (spriteIndex == horseRunningSpritesArray.length * animationDelay) {
+            spriteIndex = 0;
+        }
     }
 
     void drawObstacle(Point location, int size) {
-        Rect source = new Rect(location.x, location.y - 100 + vAdjustment, location.x + 100, location.y + vAdjustment);
+        obstaclePaint.setTextSize(size);
+        Rect source = new Rect(location.x, location.y - 87 + vAdjustment, location.x + 100, location.y + 13 + vAdjustment);
         super.getCanvas().drawBitmap(cactus, null, source, null);
     }
 
     void drawBackground(Point location) {
-        Rect source = new Rect(location.x, location.y, location.x + 1920, location.y + 1200);
+        Rect source = new Rect(location.x, location.y, location.x + 1920, location.y + 1900);
         super.getCanvas().drawBitmap(background, null, source, null);
 
     }
@@ -103,6 +121,11 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
         pausePaint.setColor(Color.BLACK);
         super.getCanvas().drawRect(1010, 45, 1030, 85, pausePaint);
         super.getCanvas().drawRect(1040, 45, 1060, 85, pausePaint);
+    }
+
+    void drawGround() {
+        Rect dst = new Rect(0, 1810, 2000, 2000);
+        getCanvas().drawRect(dst, groundPaint);
     }
 
     void storeReplay(String dataToStore) {

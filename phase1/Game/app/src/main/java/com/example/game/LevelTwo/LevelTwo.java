@@ -1,6 +1,5 @@
 package com.example.game.LevelTwo;
 
-import android.graphics.Color;
 import android.graphics.Point;
 
 import com.example.game.GenericLevel;

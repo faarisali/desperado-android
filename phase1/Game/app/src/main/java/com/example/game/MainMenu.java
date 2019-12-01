@@ -74,6 +74,7 @@ public class MainMenu extends AppCompatActivity {
 
     /**
      * Initializes this activity.
+     *
      * @param savedInstanceState if not null, contains information about last activity instance.
      */
     @Override

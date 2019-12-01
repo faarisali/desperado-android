@@ -87,8 +87,6 @@ public abstract class AbstractLevelTwoView extends AbstractCanvasActivity {
     }
 
     void drawObstacle(Point location, int size) {
-        obstaclePaint.setTextSize(size);
-//        canvas.drawText("{}", location.x, location.y, obstaclePaint);
         Rect source = new Rect(location.x, location.y - 100 + vAdjustment, location.x + 100, location.y + vAdjustment);
         super.getCanvas().drawBitmap(cactus, null, source, null);
     }

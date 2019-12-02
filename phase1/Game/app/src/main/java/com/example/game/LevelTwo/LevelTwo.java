@@ -245,8 +245,8 @@ public class LevelTwo extends GenericLevel implements LevelTwoModelInterface {
         damageScreen.buffer();
 
         for (Obstacle obstacle : obstacleList) {
-            if (!obstacle.isCollided() && player.y - obstacle.getY() > -60) {
-                if (player.x - obstacle.getX() > -100 && player.x - obstacle.getX() < 10) {
+            if (!obstacle.isCollided() && player.getY() - obstacle.getY() > -60) {
+                if (player.getX() - obstacle.getX() > -100 && player.getX() - obstacle.getX() < 10) {
                     updateLives();
                     obstacle.setCollided(true);
                     damageScreen.shouldDisplay++;

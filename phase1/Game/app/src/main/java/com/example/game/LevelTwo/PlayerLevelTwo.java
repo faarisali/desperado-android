@@ -1,15 +1,13 @@
 package com.example.game.LevelTwo;
 
-import android.media.Image;
-
 import java.util.ArrayList;
 
 /**
- * The player in Level Two, (will be update with context to other levels in future)
+ * The player in Level Two
  */
 public class PlayerLevelTwo {
     /**
-     * How fast the player will jump
+     * The current vertical velocity of the player.
      */
     private double Vy;
 
@@ -17,9 +15,28 @@ public class PlayerLevelTwo {
      * Is the player in midair?
      */
     private boolean isFalling = false;
-    int x, y;
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * The x,y coordinates of the player.
+     */
+    private int x, y;
+    /**
+     * How fast the player falls to the ground.
+     */
     private final double gravity = 1.6;
+    /**
+     * The location of the ground, where player will be running.
+     */
     private int ground;
+
     private double jumpStrength;
 
     public PlayerLevelTwo(int x, int y) {
@@ -39,7 +56,7 @@ public class PlayerLevelTwo {
     }
 
     /**
-     * Player performs a jump
+     * Player performs a jump. The player cannot jump again until it hits the ground.
      */
     public void jumpUp() {
         if (!isFalling) {
@@ -48,6 +65,11 @@ public class PlayerLevelTwo {
         }
     }
 
+    /**
+     * Returns whether the player is airborne.
+     *
+     * @return
+     */
     private int isJumping() {
         if (y >= ground) {
             return 0;
@@ -55,10 +77,16 @@ public class PlayerLevelTwo {
         return 1;
     }
 
+    /**
+     * Update the players velocity w.r.t gravity.
+     */
     private void fall() {
         Vy += gravity;
     }
 
+    /**
+     * Make the player move according to its Vy (vertical) velocity.
+     */
     public void move() {
         if (Vy + y <= ground) {
             y += Vy;
@@ -74,7 +102,7 @@ public class PlayerLevelTwo {
     }
 
     /**
-     * Draw the player.
+     * Return the drawing information for the player.
      */
     public ArrayList<Integer> draw() {
         //canvas.drawText("O", this.x, this.y, getPaintText());

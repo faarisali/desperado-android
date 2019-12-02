@@ -11,6 +11,13 @@ public class Points extends GameObject {
         this.points = points;
     }
 
+    /**
+     * Initializes a Points object.
+     *
+     * @param x      x coordinate of top left corner
+     * @param y      y coordinate of top left corner
+     * @param points points earned
+     */
     public Points(int x, int y, int points) {
         super(x, y);
         this.points = points;
@@ -20,6 +27,11 @@ public class Points extends GameObject {
         return points;
     }
 
+    /**
+     * Draws a Points object.
+     *
+     * @return an arraylist that contains x, y
+     */
     public ArrayList<Integer> draw() {
         ArrayList<Integer> temp = new ArrayList<>();
         temp.add(getX());

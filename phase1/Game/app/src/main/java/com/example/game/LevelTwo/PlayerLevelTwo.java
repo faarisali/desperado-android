@@ -9,15 +9,6 @@ import java.util.ArrayList;
  */
 public class PlayerLevelTwo {
     /**
-     * How the object looks (2 states to accomodate running)
-     */
-    private Image modelState1;
-
-    /**
-     * How the object looks (2 states to accomodate running)
-     */
-    private Image modelState2;
-    /**
      * How fast the player will jump
      */
     private double Vy;

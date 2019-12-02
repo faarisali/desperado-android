@@ -36,6 +36,7 @@ public class DamageScreen extends GameObject {
     }
 
     /**
+     * Draws a DamageScreen.
      *
      * @return an array list contain x, y and shouldDisplay;
      */

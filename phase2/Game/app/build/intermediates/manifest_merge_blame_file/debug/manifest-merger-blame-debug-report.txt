@@ -1,0 +1,77 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.game"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="15"
+8-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml
+10
+11    <application
+11-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:5:5-30:19
+12        android:allowBackup="true"
+12-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:6:9-35
+13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+13-->[androidx.core:core:1.0.1] C:\Users\faari\.gradle\caches\transforms-2\files-2.1\46da25c3e2ae6308b2227b660caa604d\core-1.0.1\AndroidManifest.xml:22:18-86
+14        android:debuggable="true"
+15        android:icon="@drawable/game_icon"
+15-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:7:9-43
+16        android:label="@string/app_name"
+16-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:8:9-41
+17        android:roundIcon="@drawable/game_icon_round"
+17-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:9:9-54
+18        android:supportsRtl="true"
+18-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:10:9-35
+19        android:testOnly="true"
+20        android:theme="@style/AppTheme" >
+20-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:11:9-40
+21        <activity android:name="com.example.game.LevelTwo.LevelTwoReplayActivity" />
+21-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:12:9-69
+21-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:12:19-66
+22        <activity android:name="com.example.game.AbstractActivity" />
+22-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:13:9-54
+22-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:13:19-51
+23        <activity android:name="com.example.game.WinActivity" />
+23-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:14:9-49
+23-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:14:19-46
+24        <activity android:name="com.example.game.Login.LoginActivity" >
+24-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:15:9-21:20
+24-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:15:19-54
+25            <intent-filter>
+25-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:16:13-20:29
+26                <action android:name="android.intent.action.MAIN" />
+26-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:17:17-69
+26-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:17:25-66
+27
+28                <category android:name="android.intent.category.LAUNCHER" />
+28-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:19:17-77
+28-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:19:27-74
+29            </intent-filter>
+30        </activity>
+31        <activity android:name="com.example.game.LoseActivity" />
+31-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:22:9-50
+31-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:22:19-47
+32        <activity
+32-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:23:9-25:56
+33            android:name="com.example.game.PauseScreen"
+33-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:24:13-40
+34            android:theme="@style/Theme.Transparent" />
+34-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:25:13-53
+35        <activity android:name="com.example.game.MainMenu" />
+35-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:26:9-46
+35-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:26:19-43
+36        <activity android:name="com.example.game.LevelOne.LevelOneActivity" />
+36-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:27:9-63
+36-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:27:19-60
+37        <activity android:name="com.example.game.LevelThree.LevelThreeActivity" />
+37-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:28:9-67
+37-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:28:19-64
+38        <activity android:name="com.example.game.LevelTwo.LevelTwoActivity" />
+38-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:29:9-63
+38-->D:\csc207phase1\phase1\Game\app\src\main\AndroidManifest.xml:29:19-60
+39    </application>
+40
+41</manifest>

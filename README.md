@@ -1,11 +1,11 @@
 # desperado-android
 This app is wild-west themed and has 3 distinct levels.
 
-SETUP
+Setup
 ====================
 To setup the project, simply clone the phase 2 project in android studio and should work after building.
 
-GAME INSTRUCTIONS
+Game Instructions
 ====================
 Level One:
 	Tap the coins to gain gold and points. Do not tap bombs, otherwise you will be penalized.

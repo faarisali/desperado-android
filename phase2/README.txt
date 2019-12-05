@@ -2,8 +2,6 @@ README
 ========
 To setup the project, simply clone the phase 2 project in android studio and should work after building.
 
-Note: while working on phase 2, all of our commits were still occuring for the phase 1 folder. Please look at that directory for our phase 2 commits.
-
 GAME INSTRUCTIONS
 ====================
 Level One:
